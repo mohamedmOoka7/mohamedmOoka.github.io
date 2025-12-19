@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- ================= NAVBAR ================= -->
 <nav class="navbar">
   <div class="nav-container">
     <div class="logo">Mooka</div>
@@ -21,6 +22,7 @@
   </div>
 </nav>
 
+<!-- ================= HERO ================= -->
 <header class="hero">
   <h1>DFIR Investigation Lab</h1>
   <p class="subtitle">Incident Response & Forensics Case Study</p>
@@ -28,21 +30,24 @@
 
 <main>
 
+<!-- ================= OVERVIEW ================= -->
 <section class="section" id="overview">
   <h2>Project Overview</h2>
   <div class="card">
     <p>
-      This project simulates a real-world security incident requiring full DFIR investigation.
-      The goal was to identify attacker activity, collect evidence, and build an incident timeline.
+      This project simulates a real-world security incident requiring a full
+      DFIR investigation. The objective was to detect malicious activity,
+      analyze forensic artifacts, and reconstruct the attacker’s timeline.
     </p>
   </div>
 </section>
 
-  <section class="section">
+<!-- ================= INCIDENT DETECTION ================= -->
+<section class="section">
   <h2>Incident Detection</h2>
   <div class="card">
     <p>
-      The incident was initially detected through abnormal authentication activity
+      The incident was initially detected through abnormal authentication behavior
       identified in Windows Security Event Logs. Multiple failed login attempts
       were followed by a successful authentication from an unusual source.
     </p>
@@ -55,32 +60,35 @@
   </div>
 </section>
 
-
+<!-- ================= TOOLS ================= -->
 <section class="section" id="tools">
   <h2>Tools & Technologies</h2>
   <div class="card skills">
-    <span>SIEM</span>
-    <span>Windows Event Logs</span>
-    <span>Linux</span>
+    <span>Splunk SIEM</span>
+    <span>Windows Security Logs</span>
+    <span>Sysmon</span>
+    <span>PowerShell</span>
     <span>Timeline Analysis</span>
-    <span>Memory Forensics</span>
   </div>
 </section>
 
+<!-- ================= ANALYSIS ================= -->
 <section class="section" id="analysis">
   <h2>Investigation & Analysis</h2>
   <div class="card">
-    <p>
-      Log analysis revealed suspicious authentication attempts followed by privilege escalation.
-      Artifacts were collected and correlated to reconstruct attacker behavior.
-    </p>
+    <ol>
+      <li>Reviewed Windows Security logs for abnormal authentication activity</li>
+      <li>Identified multiple failed logons followed by a successful login</li>
+      <li>Analyzed Sysmon logs to detect suspicious PowerShell execution</li>
+      <li>Correlated events to reconstruct the full attack timeline</li>
+    </ol>
   </div>
 </section>
 
-  <section class="section">
+<!-- ================= TIMELINE ================= -->
+<section class="section">
   <h2>Attack Timeline</h2>
   <div class="card">
-
     <div style="overflow-x:auto;">
       <table style="width:100%; border-collapse: collapse;">
         <thead>
@@ -91,73 +99,94 @@
             <th>Evidence</th>
           </tr>
         </thead>
-
         <tbody>
           <tr>
             <td>09:41</td>
             <td>Multiple failed login attempts</td>
             <td>Windows Security (4625)</td>
-            <td>
-              <a href="#log1">View Log</a>
-            </td>
+            <td><a href="#log1">View Evidence</a></td>
           </tr>
-
           <tr>
             <td>09:44</td>
             <td>Successful login</td>
             <td>Windows Security (4624)</td>
-            <td>
-              <a href="#log2">View Log</a>
-            </td>
+            <td><a href="#log2">View Evidence</a></td>
           </tr>
-
           <tr>
             <td>09:46</td>
             <td>Encoded PowerShell execution</td>
             <td>Sysmon (Event ID 1)</td>
-            <td>
-              <a href="#log3">View Log</a>
-            </td>
+            <td><a href="#log3">View Evidence</a></td>
           </tr>
-
           <tr>
             <td>09:48</td>
             <td>Privilege escalation attempt</td>
             <td>Security Logs</td>
-            <td>
-              <a href="#log4">View Log</a>
-            </td>
+            <td><a href="#log4">View Evidence</a></td>
           </tr>
         </tbody>
       </table>
     </div>
-
   </div>
 </section>
 
-
-  <section class="section">
+<!-- ================= LOG EVIDENCE ================= -->
+<section class="section">
   <h2>Log Evidence</h2>
 
   <div class="card" id="log1">
-    <h3>Failed Login Attempts (Event ID 4625)</h3>
-
+    <h3>Failed Login Attempts – Event ID 4625</h3>
     <p>
-      Windows Security log analysis identified multiple failed authentication
-      attempts originating from the same IP address, indicating a brute-force attack.
+      Analysis of Windows Security logs revealed repeated failed authentication
+      attempts from the same source, indicating a brute-force attack.
     </p>
+    <img src="assets/images/failed-logon.png" style="width:100%; border-radius:12px; margin-top:15px;">
+    <p style="font-size:0.85rem; opacity:0.7;">Figure 1 – Failed logon attempts</p>
+  </div>
 
-    <img src="assets/images/failed-logon.png"
-         alt="Windows Event ID 4625 - Failed Logon"
-         style="width:100%; border-radius:12px; margin-top:15px;">
-
-    <p style="font-size:0.85rem; opacity:0.7; margin-top:8px;">
-      Figure 1 – Windows Security Event ID 4625 showing repeated failed logon attempts
+  <div class="card" id="log2">
+    <h3>Successful Login – Event ID 4624</h3>
+    <p>
+      A successful login occurred shortly after multiple failures,
+      confirming credential compromise.
     </p>
+    <img src="assets/images/successful-logon.png" style="width:100%; border-radius:12px; margin-top:15px;">
+    <p style="font-size:0.85rem; opacity:0.7;">Figure 2 – Successful authentication</p>
+  </div>
+
+  <div class="card" id="log3">
+    <h3>PowerShell Execution – Sysmon Event ID 1</h3>
+    <p>
+      Sysmon logs showed an encoded PowerShell command execution,
+      a common post-exploitation technique.
+    </p>
+    <img src="assets/images/powershell-encoded.png" style="width:100%; border-radius:12px; margin-top:15px;">
+    <p style="font-size:0.85rem; opacity:0.7;">Figure 3 – Encoded PowerShell execution</p>
+  </div>
+
+  <div class="card" id="log4">
+    <h3>Privilege Escalation Attempt</h3>
+    <p>
+      Further investigation revealed suspicious activity consistent with
+      a privilege escalation attempt.
+    </p>
+    <img src="assets/images/privilege-escalation.png" style="width:100%; border-radius:12px; margin-top:15px;">
+    <p style="font-size:0.85rem; opacity:0.7;">Figure 4 – Privilege escalation evidence</p>
   </div>
 
 </section>
 
+<!-- ================= RESULTS ================= -->
+<section class="section" id="results">
+  <h2>Results & Outcome</h2>
+  <div class="card">
+    <p>
+      The investigation successfully identified the attack vector,
+      reconstructed the timeline, and extracted relevant indicators of compromise.
+      Recommendations were provided to improve detection and response capabilities.
+    </p>
+  </div>
+</section>
 
 </main>
 
