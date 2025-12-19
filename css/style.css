@@ -9,6 +9,26 @@
   --border-soft: rgba(255, 255, 255, 0.06);
 }
 
+/* ================= RESET NAVBAR ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: radial-gradient(circle at top, #020617, #020617);
+  color: var(--text-main);
+  line-height: 1.7;
+  padding-top: 80px; /* مهم عشان navbar fixed */
+}
+
 /* ================= NAVBAR ================= */
 
 .navbar {
@@ -36,6 +56,8 @@
   color: var(--primary);
 }
 
+/* ================= NAV LINKS ================= */
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -43,33 +65,34 @@
 }
 
 .nav-links a {
+  position: relative;
   text-decoration: none;
   color: var(--text-main);
-  font-size: .95rem;
-  transition: color .3s ease;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
   color: var(--primary);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* underline animation */
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
 }
 
-html {
-  scroll-behavior: smooth;
+.nav-links a:hover::after {
+  width: 100%;
 }
 
-
-body {
-  font-family: "Segoe UI", Tahoma, sans-serif;
-  background: radial-gradient(circle at top, #020617, #020617);
-  color: var(--text-main);
-  line-height: 1.7;
-}
 
 /* ================= HEADER / HERO ================= */
 
