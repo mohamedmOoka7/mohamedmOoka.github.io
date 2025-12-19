@@ -325,3 +325,10 @@ footer {
     font-size: 1.8rem;
   }
 }
+
+/* Disable scroll reveal for project pages */
+.no-animate .section,
+.no-animate .card {
+  opacity: 1 !important;
+  transform: none !important;
+}
