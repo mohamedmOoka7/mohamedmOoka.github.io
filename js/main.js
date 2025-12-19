@@ -5,6 +5,30 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================================
+     DARK MODE TOGGLE
+  =============================================== */
+
+  const toggleButton = document.getElementById('dark-mode-toggle');
+  const body = document.body;
+
+  // Function to toggle theme
+  const toggleTheme = () => {
+    const currentTheme = body.dataset.theme || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    body.dataset.theme = newTheme;
+    toggleButton.innerHTML = newTheme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    localStorage.setItem('theme', newTheme); // Save to localStorage
+  };
+
+  // Set initial theme from localStorage or default to dark
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  body.dataset.theme = savedTheme;
+  toggleButton.innerHTML = savedTheme === 'light' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+
+  // Add event listener to toggle button
+  toggleButton.addEventListener('click', toggleTheme);
+
+  /* ===============================================
      DISABLE ANIMATION ON PROJECT PAGES
   =============================================== */
 
