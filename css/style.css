@@ -131,6 +131,31 @@ body {
   transition: transform .3s ease, box-shadow .3s ease;
 }
 
+.card ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.card ul li {
+  padding-left: 22px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.card ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+
 .card::before {
   content: "";
   position: absolute;
