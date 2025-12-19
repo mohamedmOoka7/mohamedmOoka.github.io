@@ -1,39 +1,44 @@
-// js/main.js
+// ==================================================
+// MAIN JAVASCRIPT FILE
+// ==================================================
 
-/* ================================
-   Smooth Reveal on Scroll
-   ================================ */
+document.addEventListener("DOMContentLoaded", () => {
 
-const observer = new IntersectionObserver(
-  entries => {
+  /* ===============================================
+     SCROLL REVEAL ANIMATION
+  =============================================== */
+
+  const observerOptions = {
+    threshold: 0.15
+  };
+
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('show');
+        entry.target.classList.add("show");
+        revealObserver.unobserve(entry.target); // improve performance
       }
     });
-  },
-  {
-    threshold: 0.15
+  }, observerOptions);
+
+  const revealElements = document.querySelectorAll(".section, .card");
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  /* ===============================================
+     FOOTER YEAR AUTO UPDATE
+  =============================================== */
+
+  const footerYear = document.querySelector("footer p");
+  if (footerYear) {
+    footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`;
   }
-);
 
-const hiddenElements = document.querySelectorAll('.section, .card');
-hiddenElements.forEach(el => observer.observe(el));
+  /* ===============================================
+     FUTURE FEATURES (PLACEHOLDERS)
+  =============================================== */
 
-/* ================================
-   Simple Year Auto Update
-   ================================ */
+  // Project filtering
+  // Dynamic project loading
+  // Markdown project rendering
 
-const footer = document.querySelector('footer p');
-if (footer) {
-  const year = new Date().getFullYear();
-  footer.innerHTML = `© ${year} Mohamed Mooka — Cybersecurity Portfolio`;
-}
-
-/* ================================
-   Future Expansion (Placeholders)
-   ================================ */
-
-// Project filtering
-// Dynamic project loading
-// Markdown project rendering
+});
