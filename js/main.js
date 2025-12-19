@@ -1,17 +1,44 @@
+// ==================================================
+// MAIN JAVASCRIPT FILE
+// ==================================================
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  if (document.body.classList.contains("no-animate")) return;
+  /* ===============================================
+     DISABLE ANIMATION ON PROJECT PAGES
+  =============================================== */
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("show");
-        observer.unobserve(e.target);
+  if (document.body.classList.contains("no-animate")) {
+    return;
+  }
+
+  /* ===============================================
+     SCROLL REVEAL ANIMATION
+  =============================================== */
+
+  const observerOptions = {
+    threshold: 0.15
+  };
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        revealObserver.unobserve(entry.target); // improve performance
       }
     });
-  }, { threshold: 0.15 });
+  }, observerOptions);
 
-  document.querySelectorAll(".section, .card")
-    .forEach(el => observer.observe(el));
+  const revealElements = document.querySelectorAll(".section, .card");
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  /* ===============================================
+     FOOTER YEAR AUTO UPDATE
+  =============================================== */
+
+  const footerYear = document.querySelector("footer p");
+  if (footerYear) {
+    footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`;
+  }
 
 });
