@@ -311,3 +311,26 @@ footer {
     font-size: 1.8rem;
   }
 }
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .nav-links {
+    gap: 14px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .section {
+    padding: 70px 16px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+}
