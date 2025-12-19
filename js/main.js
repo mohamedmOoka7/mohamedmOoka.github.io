@@ -33,25 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   revealElements.forEach(el => revealObserver.observe(el));
 
   /* ===============================================
-     HERO TYPING EFFECT
-  =============================================== */
-
-  const typingText = "Detecting • Investigating • Responding to Cyber Threats";
-  const typingElement = document.querySelector(".typing");
-  let charIndex = 0;
-
-  if (typingElement) {
-    function typeEffect() {
-      if (charIndex < typingText.length) {
-        typingElement.textContent += typingText.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeEffect, 60);
-      }
-    }
-    typeEffect();
-  }
-
-  /* ===============================================
      FOOTER YEAR AUTO UPDATE
   =============================================== */
 
