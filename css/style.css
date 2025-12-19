@@ -1,4 +1,6 @@
-/* css/style.css */
+/* ==================================================
+   GLOBAL VARIABLES
+================================================== */
 
 :root {
   --bg-main: #020617;
@@ -9,7 +11,9 @@
   --border-soft: rgba(255, 255, 255, 0.06);
 }
 
-/* ================= RESET NAVBAR ================= */
+/* ==================================================
+   RESET + BASE
+================================================== */
 
 * {
   margin: 0;
@@ -26,10 +30,12 @@ body {
   background: radial-gradient(circle at top, #020617, #020617);
   color: var(--text-main);
   line-height: 1.7;
-  padding-top: 80px; /* مهم عشان navbar fixed */
+  padding-top: 80px; /* for fixed navbar */
 }
 
-/* ================= NAVBAR ================= */
+/* ==================================================
+   NAVBAR
+================================================== */
 
 .navbar {
   position: fixed;
@@ -56,8 +62,6 @@ body {
   color: var(--primary);
 }
 
-/* ================= NAV LINKS ================= */
-
 .nav-links {
   list-style: none;
   display: flex;
@@ -76,8 +80,6 @@ body {
   color: var(--primary);
 }
 
-/* underline animation */
-
 .nav-links a::after {
   content: "";
   position: absolute;
@@ -93,15 +95,14 @@ body {
   width: 100%;
 }
 
-
-/* ================= HEADER / HERO ================= */
+/* ==================================================
+   HERO
+================================================== */
 
 .hero {
   text-align: center;
-  
   padding: 150px 20px 90px;
-
-  background: linear-gradient(180deg, rgba(56,189,248,.15), transparent);
+  background: linear-gradient(180deg, rgba(56, 189, 248, .15), transparent);
 }
 
 .hero h1 {
@@ -122,21 +123,19 @@ body {
 .intro {
   margin-top: 18px;
   max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-inline: auto;
   color: var(--text-muted);
 }
 
-/* ================= SECTIONS ================= */
+/* ==================================================
+   SECTIONS
+================================================== */
 
 .section {
   max-width: 1100px;
   margin: auto;
   padding: 90px 20px;
 }
-
-
-/* Section titles */
 
 .section h2 {
   font-size: 32px;
@@ -146,16 +145,16 @@ body {
 
 .section h2::after {
   content: "";
-  display: block;
   width: 60px;
   height: 3px;
   background: var(--primary);
+  display: block;
   margin-top: 10px;
 }
 
-
-
-/* ================= CARDS ================= */
+/* ==================================================
+   CARDS
+================================================== */
 
 .card {
   position: relative;
@@ -166,31 +165,6 @@ body {
   box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
   transition: transform .3s ease, box-shadow .3s ease;
 }
-
-.card ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.card ul li {
-  padding-left: 22px;
-  margin-bottom: 10px;
-  position: relative;
-}
-
-.card ul li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-}
-
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-}
-
 
 .card::before {
   content: "";
@@ -214,7 +188,28 @@ body {
   font-size: .95rem;
 }
 
-/* ================= SKILLS ================= */
+/* Lists inside cards */
+
+.card ul {
+  list-style: none;
+}
+
+.card ul li {
+  padding-left: 22px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.card ul li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+/* ==================================================
+   SKILLS
+================================================== */
 
 .skills span {
   display: inline-block;
@@ -226,7 +221,9 @@ body {
   font-size: .9rem;
 }
 
-/* ================= PROJECT GRID ================= */
+/* ==================================================
+   GRID / PROJECTS
+================================================== */
 
 .grid {
   display: grid;
@@ -248,8 +245,9 @@ body {
   text-decoration: underline;
 }
 
-
-/* ================= CONTACT ================= */
+/* ==================================================
+   CONTACT
+================================================== */
 
 .contact {
   text-align: center;
@@ -272,7 +270,9 @@ body {
   transform: translateY(-3px);
 }
 
-/* ================= FOOTER ================= */
+/* ==================================================
+   FOOTER
+================================================== */
 
 footer {
   text-align: center;
@@ -282,16 +282,9 @@ footer {
   font-size: .85rem;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-
-
-  /* ================= SCROLL REVEAL ANIMATION ================= */
+/* ==================================================
+   SCROLL REVEAL
+================================================== */
 
 .section,
 .card {
@@ -306,23 +299,18 @@ footer {
   transform: translateY(0);
 }
 
-
-  .section h2 {
-    font-size: 1.8rem;
-  }
-}
-
-
-/* ================= RESPONSIVE ================= */
+/* ==================================================
+   RESPONSIVE
+================================================== */
 
 @media (max-width: 768px) {
 
-  .nav-links {
-    gap: 14px;
+  .hero h1 {
+    font-size: 2.2rem;
   }
 
-  h1 {
-    font-size: 36px;
+  .nav-links {
+    gap: 14px;
   }
 
   .section {
@@ -333,4 +321,7 @@ footer {
     padding: 22px;
   }
 
+  .section h2 {
+    font-size: 1.8rem;
+  }
 }
