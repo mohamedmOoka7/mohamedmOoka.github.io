@@ -1,0 +1,159 @@
+/* css/style.css */
+
+:root {
+  --bg-main: #020617;
+  --bg-card: #0f172a;
+  --primary: #38bdf8;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-soft: rgba(255, 255, 255, 0.06);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: radial-gradient(circle at top, #020617, #020617);
+  color: var(--text-main);
+  line-height: 1.7;
+}
+
+/* ================= HEADER / HERO ================= */
+
+.hero {
+  text-align: center;
+  padding: 110px 20px 90px;
+  background: linear-gradient(180deg, rgba(56,189,248,.15), transparent);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.intro {
+  margin-top: 18px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-muted);
+}
+
+/* ================= SECTIONS ================= */
+
+.section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+.section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 30px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .45);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 70px rgba(56, 189, 248, .15);
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: .95rem;
+}
+
+/* ================= SKILLS ================= */
+
+.skills span {
+  display: inline-block;
+  margin: 8px 6px;
+  padding: 9px 18px;
+  background: rgba(56, 189, 248, .15);
+  color: var(--primary);
+  border-radius: 22px;
+  font-size: .9rem;
+}
+
+/* ================= PROJECT GRID ================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.card h3 {
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact {
+  text-align: center;
+}
+
+.contact-links a {
+  display: inline-block;
+  margin: 12px;
+  padding: 14px 32px;
+  background: var(--primary);
+  color: #020617;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.contact-links a:hover {
+  opacity: .85;
+  transform: translateY(-3px);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-muted);
+  font-size: .85rem;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+}
