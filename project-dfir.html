@@ -30,9 +30,9 @@
 
 <main>
 
-<!-- ================= OVERVIEW ================= -->
+<!-- ================= 1. OVERVIEW ================= -->
 <section class="section" id="overview">
-  <h2>Project Overview</h2>
+  <h2>1. Project Overview</h2>
   <div class="card">
     <p>
       This project simulates a real-world security incident requiring a full
@@ -42,16 +42,15 @@
   </div>
 </section>
 
-<!-- ================= INCIDENT DETECTION ================= -->
+<!-- ================= 2. INCIDENT DETECTION ================= -->
 <section class="section">
-  <h2>Incident Detection</h2>
+  <h2>2. Incident Detection</h2>
   <div class="card">
     <p>
       The incident was initially detected through abnormal authentication behavior
       identified in Windows Security Event Logs. Multiple failed login attempts
       were followed by a successful authentication from an unusual source.
     </p>
-
     <ul>
       <li>Event ID 4625 – Failed logon attempts</li>
       <li>Event ID 4624 – Successful logon</li>
@@ -60,9 +59,9 @@
   </div>
 </section>
 
-<!-- ================= TOOLS ================= -->
+<!-- ================= 3. TOOLS ================= -->
 <section class="section" id="tools">
-  <h2>Tools & Technologies</h2>
+  <h2>3. Tools & Technologies</h2>
   <div class="card skills">
     <span>Splunk SIEM</span>
     <span>Windows Security Logs</span>
@@ -72,9 +71,9 @@
   </div>
 </section>
 
-<!-- ================= ANALYSIS ================= -->
+<!-- ================= 4. ANALYSIS ================= -->
 <section class="section" id="analysis">
-  <h2>Investigation & Analysis</h2>
+  <h2>4. Investigation & Analysis</h2>
   <div class="card">
     <ol>
       <li>Reviewed Windows Security logs for abnormal authentication activity</li>
@@ -85,14 +84,15 @@
   </div>
 </section>
 
-<!-- ================= TIMELINE ================= -->
+<!-- ================= 5. TIMELINE ================= -->
 <section class="section">
-  <h2>Attack Timeline</h2>
+  <h2>5. Attack Timeline</h2>
   <div class="card">
     <div style="overflow-x:auto;">
       <table style="width:100%; border-collapse: collapse;">
         <thead>
           <tr style="color:#38bdf8; text-align:left;">
+            <th>Step</th>
             <th>Time</th>
             <th>Event</th>
             <th>Log Source</th>
@@ -101,24 +101,28 @@
         </thead>
         <tbody>
           <tr>
+            <td>1</td>
             <td>09:41</td>
             <td>Multiple failed login attempts</td>
             <td>Windows Security (4625)</td>
             <td><a href="#log1">View Evidence</a></td>
           </tr>
           <tr>
+            <td>2</td>
             <td>09:44</td>
             <td>Successful login</td>
             <td>Windows Security (4624)</td>
             <td><a href="#log2">View Evidence</a></td>
           </tr>
           <tr>
+            <td>3</td>
             <td>09:46</td>
             <td>Encoded PowerShell execution</td>
             <td>Sysmon (Event ID 1)</td>
             <td><a href="#log3">View Evidence</a></td>
           </tr>
           <tr>
+            <td>4</td>
             <td>09:48</td>
             <td>Privilege escalation attempt</td>
             <td>Security Logs</td>
@@ -130,55 +134,63 @@
   </div>
 </section>
 
-<!-- ================= LOG EVIDENCE ================= -->
+<!-- ================= 6. LOG EVIDENCE ================= -->
 <section class="section">
-  <h2>Log Evidence</h2>
+  <h2>6. Log Evidence</h2>
 
   <div class="card" id="log1">
-    <h3>Failed Login Attempts – Event ID 4625</h3>
+    <h3>6.1 Failed Login Attempts – Event ID 4625</h3>
     <p>
       Analysis of Windows Security logs revealed repeated failed authentication
       attempts from the same source, indicating a brute-force attack.
     </p>
     <img src="assets/images/failed-logon.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">Figure 1 – Failed logon attempts</p>
+    <p style="font-size:0.85rem; opacity:0.7;">
+      Figure 1 – Windows Security Event ID 4625 showing failed logon attempts
+    </p>
   </div>
 
   <div class="card" id="log2">
-    <h3>Successful Login – Event ID 4624</h3>
+    <h3>6.2 Successful Login – Event ID 4624</h3>
     <p>
       A successful login occurred shortly after multiple failures,
       confirming credential compromise.
     </p>
     <img src="assets/images/successful-logon.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">Figure 2 – Successful authentication</p>
+    <p style="font-size:0.85rem; opacity:0.7;">
+      Figure 2 – Windows Security Event ID 4624 showing successful authentication
+    </p>
   </div>
 
   <div class="card" id="log3">
-    <h3>PowerShell Execution – Sysmon Event ID 1</h3>
+    <h3>6.3 PowerShell Execution – Sysmon Event ID 1</h3>
     <p>
       Sysmon logs showed an encoded PowerShell command execution,
       a common post-exploitation technique.
     </p>
     <img src="assets/images/powershell-encoded.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">Figure 3 – Encoded PowerShell execution</p>
+    <p style="font-size:0.85rem; opacity:0.7;">
+      Figure 3 – Encoded PowerShell execution detected in Sysmon logs
+    </p>
   </div>
 
   <div class="card" id="log4">
-    <h3>Privilege Escalation Attempt</h3>
+    <h3>6.4 Privilege Escalation Attempt</h3>
     <p>
       Further investigation revealed suspicious activity consistent with
       a privilege escalation attempt.
     </p>
     <img src="assets/images/privilege-escalation.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">Figure 4 – Privilege escalation evidence</p>
+    <p style="font-size:0.85rem; opacity:0.7;">
+      Figure 4 – Evidence of privilege escalation attempt
+    </p>
   </div>
 
 </section>
 
-<!-- ================= RESULTS ================= -->
+<!-- ================= 7. RESULTS ================= -->
 <section class="section" id="results">
-  <h2>Results & Outcome</h2>
+  <h2>7. Results & Outcome</h2>
   <div class="card">
     <p>
       The investigation successfully identified the attack vector,
