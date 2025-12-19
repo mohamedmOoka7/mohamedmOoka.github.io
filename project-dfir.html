@@ -80,26 +80,61 @@
   <section class="section">
   <h2>Attack Timeline</h2>
   <div class="card">
-    <ul>
-      <li>09:41 – Multiple failed login attempts detected</li>
-      <li>09:44 – Successful login using compromised credentials</li>
-      <li>09:46 – PowerShell executed with encoded command</li>
-      <li>09:48 – Privilege escalation attempt observed</li>
-    </ul>
+
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr style="color:#38bdf8; text-align:left;">
+            <th>Time</th>
+            <th>Event</th>
+            <th>Log Source</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>09:41</td>
+            <td>Multiple failed login attempts</td>
+            <td>Windows Security (4625)</td>
+            <td>
+              <a href="#log1">View Log</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>09:44</td>
+            <td>Successful login</td>
+            <td>Windows Security (4624)</td>
+            <td>
+              <a href="#log2">View Log</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>09:46</td>
+            <td>Encoded PowerShell execution</td>
+            <td>Sysmon (Event ID 1)</td>
+            <td>
+              <a href="#log3">View Log</a>
+            </td>
+          </tr>
+
+          <tr>
+            <td>09:48</td>
+            <td>Privilege escalation attempt</td>
+            <td>Security Logs</td>
+            <td>
+              <a href="#log4">View Log</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </section>
 
-
-  <section class="section">
-  <h2>Key Findings</h2>
-  <div class="card">
-    <ul>
-      <li>Suspicious PowerShell execution detected via event logs</li>
-      <li>Unauthorized privilege escalation identified</li>
-      <li>Indicators of Compromise extracted and documented</li>
-    </ul>
-  </div>
-</section>
 
   <section class="section">
   <h2>Evidence</h2>
