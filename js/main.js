@@ -5,6 +5,14 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================================
+     DISABLE ANIMATION ON PROJECT PAGES
+  =============================================== */
+
+  if (document.body.classList.contains("no-animate")) {
+    return;
+  }
+
+  /* ===============================================
      SCROLL REVEAL ANIMATION
   =============================================== */
 
@@ -32,13 +40,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (footerYear) {
     footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`;
   }
-
-  /* ===============================================
-     FUTURE FEATURES (PLACEHOLDERS)
-  =============================================== */
-
-  // Project filtering
-  // Dynamic project loading
-  // Markdown project rendering
 
 });
