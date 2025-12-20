@@ -1,292 +1,283 @@
-// ==================================================
-// ULTRA-MODERN PORTFOLIO - MAIN JAVASCRIPT
-// ==================================================
+// ==========================================
+// MODERN PORTFOLIO - MAIN JAVASCRIPT
+// ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===============================================
-     PARTICLE ANIMATION CANVAS
-  =============================================== */
+  // Initialize all features
+  initNavigation()
+  initParticles()
+  initScrollAnimations()
+  initCounters()
+  initSmoothScroll()
+})
 
-  const canvas = document.getElementById("particlesCanvas")
-  if (canvas) {
-    const ctx = canvas.getContext("2d")
-    let particles = []
-    const particleCount = 50
+// ==========================================
+// NAVIGATION
+// ==========================================
+function initNavigation() {
+  const nav = document.querySelector(".nav")
+  const navToggle = document.querySelector(".nav-toggle")
+  const navLinks = document.querySelector(".nav-links")
 
-    // Resize canvas
-    function resizeCanvas() {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+  // Scroll effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 100) {
+      nav.classList.add("scrolled")
+    } else {
+      nav.classList.remove("scrolled")
     }
+  })
 
-    resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
-
-    // Particle class
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
-        this.size = Math.random() * 2 + 1
-        this.speedX = Math.random() * 0.5 - 0.25
-        this.speedY = Math.random() * 0.5 - 0.25
-        this.opacity = Math.random() * 0.5 + 0.2
-      }
-
-      update() {
-        this.x += this.speedX
-        this.y += this.speedY
-
-        if (this.x > canvas.width) this.x = 0
-        if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        if (this.y < 0) this.y = canvas.height
-      }
-
-      draw() {
-        ctx.fillStyle = `rgba(6, 182, 212, ${this.opacity})`
-        ctx.beginPath()
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-        ctx.fill()
-      }
-    }
-
-    // Initialize particles
-    function initParticles() {
-      particles = []
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle())
-      }
-    }
-
-    // Connect particles
-    function connectParticles() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
-          if (distance < 150) {
-            ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance / 150)})`
-            ctx.lineWidth = 0.5
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.stroke()
-          }
-        }
-      }
-    }
-
-    // Animation loop
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach((particle) => {
-        particle.update()
-        particle.draw()
-      })
-
-      connectParticles()
-      requestAnimationFrame(animate)
-    }
-
-    initParticles()
-    animate()
-  }
-
-  /* ===============================================
-     MOBILE NAVIGATION TOGGLE
-  =============================================== */
-
-  const mobileToggle = document.getElementById("mobileToggle")
-  const navLinks = document.getElementById("navLinks")
-
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener("click", () => {
+  // Mobile menu toggle
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
       navLinks.classList.toggle("active")
-      mobileToggle.classList.toggle("active")
+      navToggle.classList.toggle("active")
     })
 
+    // Close mobile menu when clicking on a link
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("active")
-        mobileToggle.classList.remove("active")
+        navToggle.classList.remove("active")
       })
     })
+  }
+}
 
-    document.addEventListener("click", (e) => {
-      if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
-        navLinks.classList.remove("active")
-        mobileToggle.classList.remove("active")
+// ==========================================
+// ANIMATED PARTICLES BACKGROUND
+// ==========================================
+function initParticles() {
+  const canvas = document.getElementById("particles-canvas")
+  if (!canvas) return
+
+  const ctx = canvas.getContext("2d")
+  let particlesArray = []
+  const mouse = { x: null, y: null, radius: 150 }
+
+  // Set canvas size
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    init()
+  })
+
+  // Mouse movement
+  window.addEventListener("mousemove", (event) => {
+    mouse.x = event.x
+    mouse.y = event.y
+  })
+
+  // Particle class
+  class Particle {
+    constructor(x, y, directionX, directionY, size, color) {
+      this.x = x
+      this.y = y
+      this.directionX = directionX
+      this.directionY = directionY
+      this.size = size
+      this.color = color
+    }
+
+    draw() {
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false)
+      ctx.fillStyle = this.color
+      ctx.fill()
+    }
+
+    update() {
+      if (this.x > canvas.width || this.x < 0) {
+        this.directionX = -this.directionX
       }
-    })
+      if (this.y > canvas.height || this.y < 0) {
+        this.directionY = -this.directionY
+      }
+
+      // Mouse interaction
+      const dx = mouse.x - this.x
+      const dy = mouse.y - this.y
+      const distance = Math.sqrt(dx * dx + dy * dy)
+
+      if (distance < mouse.radius + this.size) {
+        if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
+          this.x += 2
+        }
+        if (mouse.x > this.x && this.x > this.size * 10) {
+          this.x -= 2
+        }
+        if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
+          this.y += 2
+        }
+        if (mouse.y > this.y && this.y > this.size * 10) {
+          this.y -= 2
+        }
+      }
+
+      this.x += this.directionX
+      this.y += this.directionY
+      this.draw()
+    }
   }
 
-  /* ===============================================
-     NAVBAR SCROLL EFFECT
-  =============================================== */
+  // Initialize particles
+  function init() {
+    particlesArray = []
+    const numberOfParticles = (canvas.width * canvas.height) / 15000
 
-  const navbar = document.getElementById("navbar")
+    for (let i = 0; i < numberOfParticles; i++) {
+      const size = Math.random() * 3 + 1
+      const x = Math.random() * (canvas.width - size * 2) + size
+      const y = Math.random() * (canvas.height - size * 2) + size
+      const directionX = Math.random() * 0.4 - 0.2
+      const directionY = Math.random() * 0.4 - 0.2
+      const color = `rgba(0, 212, 255, ${Math.random() * 0.5 + 0.2})`
 
-  if (navbar) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add("scrolled")
-      } else {
-        navbar.classList.remove("scrolled")
-      }
-    })
+      particlesArray.push(new Particle(x, y, directionX, directionY, size, color))
+    }
   }
 
-  /* ===============================================
-     SMOOTH SCROLL
-  =============================================== */
+  // Connect particles
+  function connect() {
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        const distance =
+          (particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x) +
+          (particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y)
 
+        if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+          const opacity = 1 - distance / 20000
+          ctx.strokeStyle = `rgba(0, 212, 255, ${opacity * 0.3})`
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
+          ctx.stroke()
+        }
+      }
+    }
+  }
+
+  // Animation loop
+  function animate() {
+    requestAnimationFrame(animate)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update()
+    }
+    connect()
+  }
+
+  init()
+  animate()
+}
+
+// ==========================================
+// SCROLL ANIMATIONS
+// ==========================================
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -100px 0px",
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible")
+        observer.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+
+  // Observe all elements with fade-in class
+  const fadeElements = document.querySelectorAll(
+    ".expertise-card, .project-card, .stat-item, .skill-category, .contact-item",
+  )
+  fadeElements.forEach((el) => {
+    el.classList.add("fade-in")
+    observer.observe(el)
+  })
+}
+
+// ==========================================
+// ANIMATED COUNTERS
+// ==========================================
+function initCounters() {
+  const counters = document.querySelectorAll(".stat-value")
+  const speed = 200
+
+  const observerOptions = {
+    threshold: 0.5,
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const counter = entry.target
+        const target = +counter.getAttribute("data-target")
+        const increment = target / speed
+
+        const updateCount = () => {
+          const count = +counter.innerText
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment)
+            setTimeout(updateCount, 10)
+          } else {
+            counter.innerText = target + "+"
+          }
+        }
+
+        updateCount()
+        observer.unobserve(counter)
+      }
+    })
+  }, observerOptions)
+
+  counters.forEach((counter) => observer.observe(counter))
+}
+
+// ==========================================
+// SMOOTH SCROLL
+// ==========================================
+function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href")
-      if (href === "#" || href === "") return
-
       e.preventDefault()
-      const target = document.querySelector(href)
+      const target = document.querySelector(this.getAttribute("href"))
+
       if (target) {
+        const offsetTop = target.offsetTop - 80
         window.scrollTo({
-          top: target.offsetTop - 80,
+          top: offsetTop,
           behavior: "smooth",
         })
       }
     })
   })
+}
 
-  /* ===============================================
-     INTERSECTION OBSERVER - REVEAL ANIMATIONS
-  =============================================== */
+// ==========================================
+// CURSOR EFFECT (Optional Enhancement)
+// ==========================================
+function initCursorEffect() {
+  const cursor = document.createElement("div")
+  cursor.className = "custom-cursor"
+  document.body.appendChild(cursor)
 
-  const revealElements = document.querySelectorAll(".experience-card, .project-card, .info-card, .stat-card")
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.animation = `fadeInUp 0.8s ease-out forwards`
-          }, index * 100)
-          revealObserver.unobserve(entry.target)
-        }
-      })
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    },
-  )
-
-  revealElements.forEach((el) => {
-    el.style.opacity = "0"
-    revealObserver.observe(el)
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px"
+    cursor.style.top = e.clientY + "px"
   })
 
-  /* ===============================================
-     ANIMATED COUNTER FOR STATS
-  =============================================== */
-
-  const statNumbers = document.querySelectorAll(".stat-number")
-
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const target = entry.target
-          const targetValue = Number.parseInt(target.getAttribute("data-target"))
-          let current = 0
-          const increment = targetValue / 60
-
-          const timer = setInterval(() => {
-            current += increment
-            if (current >= targetValue) {
-              target.textContent = targetValue + (targetValue === 100 ? "%" : "+")
-              clearInterval(timer)
-            } else {
-              target.textContent = Math.floor(current) + (targetValue === 100 ? "%" : "+")
-            }
-          }, 30)
-
-          statsObserver.unobserve(target)
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  statNumbers.forEach((stat) => statsObserver.observe(stat))
-
-  /* ===============================================
-     3D TILT EFFECT ON CARDS
-  =============================================== */
-
-  const cards = document.querySelectorAll(".experience-card, .project-card, .contact-card, .info-card")
-
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-
-      const centerX = rect.width / 2
-      const centerY = rect.height / 2
-
-      const rotateX = (y - centerY) / 15
-      const rotateY = (centerX - x) / 15
-
-      card.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
-    })
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = ""
-    })
+  document.querySelectorAll("a, button").forEach((el) => {
+    el.addEventListener("mouseenter", () => cursor.classList.add("cursor-hover"))
+    el.addEventListener("mouseleave", () => cursor.classList.remove("cursor-hover"))
   })
-
-  /* ===============================================
-     DYNAMIC YEAR IN FOOTER
-  =============================================== */
-
-  const yearElement = document.getElementById("year")
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear()
-  }
-
-  /* ===============================================
-     PARALLAX EFFECT ON SCROLL
-  =============================================== */
-
-  window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset
-    const heroContent = document.querySelector(".hero-content")
-    const shapes = document.querySelectorAll(".shape")
-
-    if (heroContent && scrolled < window.innerHeight) {
-      heroContent.style.transform = `translateY(${scrolled * 0.4}px)`
-      heroContent.style.opacity = 1 - scrolled / 700
-    }
-
-    shapes.forEach((shape, index) => {
-      if (scrolled < window.innerHeight) {
-        const speed = 0.2 + index * 0.1
-        shape.style.transform = `translate(${scrolled * speed}px, ${scrolled * speed * 0.5}px)`
-      }
-    })
-  })
-
-  /* ===============================================
-     CONSOLE EASTER EGG
-  =============================================== */
-
-  console.log(
-    "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
-    "color: #06b6d4; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);",
-  )
-  console.log("%c⚡ Built with modern web technologies", "color: #3b82f6; font-size: 14px;")
-  console.log("%c🛡️ Passionate about securing digital systems", "color: #8b5cf6; font-size: 14px;")
-})
+}
