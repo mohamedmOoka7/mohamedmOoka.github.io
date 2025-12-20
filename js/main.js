@@ -1,146 +1,244 @@
-// ==========================================
-// MINIMAL PROFESSIONAL PORTFOLIO JS
-// ==========================================
+// ==================================================
+// CYBERSECURITY PORTFOLIO - MAIN JAVASCRIPT
+// Enhanced Interactions & Animations
+// ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  initNavigation()
-  initExperienceTabs()
-  initScrollReveal()
-  initCursorEffect()
-})
+  /* ===============================================
+     DISABLE ANIMATIONS ON PROJECT PAGES
+  =============================================== */
 
-// ==========================================
-// NAVIGATION
-// ==========================================
-function initNavigation() {
-  const nav = document.querySelector(".nav")
-  const navToggle = document.querySelector(".nav-toggle")
-  const navLinks = document.querySelector(".nav-links")
-  let lastScrollY = window.scrollY
+  if (document.body.classList.contains("no-animate")) {
+    return
+  }
 
-  // Navbar scroll effect
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 100) {
-      nav.classList.add("scrolled")
-    } else {
-      nav.classList.remove("scrolled")
-    }
-    lastScrollY = window.scrollY
-  })
+  /* ===============================================
+     MOBILE MENU TOGGLE
+  =============================================== */
 
-  // Mobile menu
-  if (navToggle) {
-    navToggle.addEventListener("click", () => {
+  const menuToggle = document.getElementById("menuToggle")
+  const navLinks = document.getElementById("navLinks")
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active")
       navLinks.classList.toggle("active")
-      navToggle.classList.toggle("active")
-      document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : ""
     })
 
-    // Close menu on link click
-    navLinks.querySelectorAll("a").forEach((link) => {
+    // Close mobile menu when clicking on a link
+    const navLinkItems = navLinks.querySelectorAll("a")
+    navLinkItems.forEach((link) => {
       link.addEventListener("click", () => {
+        menuToggle.classList.remove("active")
         navLinks.classList.remove("active")
-        navToggle.classList.remove("active")
-        document.body.style.overflow = ""
       })
+    })
+
+    // Close mobile menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        menuToggle.classList.remove("active")
+        navLinks.classList.remove("active")
+      }
     })
   }
 
-  // Smooth scroll for all anchor links
+  /* ===============================================
+     NAVBAR SCROLL EFFECT
+  =============================================== */
+
+  const navbar = document.getElementById("navbar")
+  let lastScroll = 0
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
+
+    // Add scrolled class for styling
+    if (currentScroll > 50) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
+    }
+
+    lastScroll = currentScroll
+  })
+
+  /* ===============================================
+     SMOOTH SCROLL FOR ANCHOR LINKS
+  =============================================== */
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href")
+
+      // Don't prevent default for hash-only links
+      if (href === "#") return
+
       e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
+
+      const target = document.querySelector(href)
       if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" })
+        const navbarHeight = navbar.offsetHeight
+        const targetPosition = target.offsetTop - navbarHeight - 20
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        })
       }
     })
   })
-}
 
-// ==========================================
-// EXPERIENCE TABS
-// ==========================================
-function initExperienceTabs() {
-  const tabButtons = document.querySelectorAll(".tab-button")
-  const tabPanels = document.querySelectorAll(".tab-panel")
-
-  if (tabButtons.length === 0) return
-
-  tabButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const targetTab = button.getAttribute("data-tab")
-
-      // Remove active from all
-      tabButtons.forEach((btn) => btn.classList.remove("active"))
-      tabPanels.forEach((panel) => panel.classList.remove("active"))
-
-      // Add active to selected
-      button.classList.add("active")
-      document.getElementById(targetTab).classList.add("active")
-    })
-  })
-}
-
-// ==========================================
-// SCROLL REVEAL
-// ==========================================
-function initScrollReveal() {
-  const sections = document.querySelectorAll(".section")
+  /* ===============================================
+     SCROLL REVEAL ANIMATION
+  =============================================== */
 
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
+        entry.target.classList.add("show")
+        revealObserver.unobserve(entry.target)
       }
     })
   }, observerOptions)
 
-  sections.forEach((section, index) => {
-    section.style.opacity = "0"
-    section.style.transform = "translateY(20px)"
-    section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
-    observer.observe(section)
+  // Observe all sections and cards
+  const revealElements = document.querySelectorAll(".section, .card")
+  revealElements.forEach((el) => {
+    revealObserver.observe(el)
   })
-}
 
-// ==========================================
-// CURSOR EFFECT
-// ==========================================
-function initCursorEffect() {
-  const interactiveElements = document.querySelectorAll("a, button, .project-card, .other-project-card")
+  /* ===============================================
+     DYNAMIC FOOTER YEAR
+  =============================================== */
 
-  interactiveElements.forEach((element) => {
-    element.addEventListener("mouseenter", (e) => {
-      element.style.transition = "all 0.3s ease"
+  const yearElement = document.getElementById("currentYear")
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
+  }
+
+  /* ===============================================
+     TYPING EFFECT FOR HERO SUBTITLE (OPTIONAL)
+  =============================================== */
+
+  const subtitle = document.querySelector(".subtitle")
+  if (subtitle && subtitle.dataset.typing === "true") {
+    const text = subtitle.textContent
+    subtitle.textContent = ""
+    subtitle.style.opacity = "1"
+
+    let charIndex = 0
+    const typeSpeed = 50
+
+    function type() {
+      if (charIndex < text.length) {
+        subtitle.textContent += text.charAt(charIndex)
+        charIndex++
+        setTimeout(type, typeSpeed)
+      }
+    }
+
+    setTimeout(type, 500)
+  }
+
+  /* ===============================================
+     PERFORMANCE OPTIMIZATION - LAZY LOADING
+  =============================================== */
+
+  // Lazy load images
+  const lazyImages = document.querySelectorAll("img[data-src]")
+
+  if ("IntersectionObserver" in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target
+          img.src = img.dataset.src
+          img.removeAttribute("data-src")
+          imageObserver.unobserve(img)
+        }
+      })
     })
-  })
 
-  const createScrollIndicator = () => {
-    const indicator = document.createElement("div")
-    indicator.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #60a5fa, #93c5fd);
-      z-index: 9999;
-      transition: width 0.1s ease;
-    `
-    document.body.appendChild(indicator)
-
-    window.addEventListener("scroll", () => {
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-      const scrolled = (window.scrollY / windowHeight) * 100
-      indicator.style.width = scrolled + "%"
+    lazyImages.forEach((img) => imageObserver.observe(img))
+  } else {
+    // Fallback for browsers that don't support IntersectionObserver
+    lazyImages.forEach((img) => {
+      img.src = img.dataset.src
+      img.removeAttribute("data-src")
     })
   }
 
-  createScrollIndicator()
+  /* ===============================================
+     EXTERNAL LINK SECURITY
+  =============================================== */
+
+  // Add rel="noopener noreferrer" to all external links
+  const externalLinks = document.querySelectorAll('a[href^="http"]')
+  externalLinks.forEach((link) => {
+    if (!link.hostname.includes(window.location.hostname)) {
+      link.setAttribute("rel", "noopener noreferrer")
+      link.setAttribute("target", "_blank")
+    }
+  })
+
+  /* ===============================================
+     KEYBOARD NAVIGATION IMPROVEMENTS
+  =============================================== */
+
+  // Improve focus visibility for keyboard users
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      document.body.classList.add("keyboard-nav")
+    }
+  })
+
+  document.addEventListener("mousedown", () => {
+    document.body.classList.remove("keyboard-nav")
+  })
+
+  /* ===============================================
+     CONSOLE EASTER EGG
+  =============================================== */
+
+  console.log("%c🔐 Cybersecurity Portfolio", "font-size: 20px; font-weight: bold; color: #60a5fa;")
+  console.log("%cInterested in security? Let's connect!", "font-size: 14px; color: #9ca3af;")
+  console.log("%cGitHub: https://github.com/mohamedmOoka7", "font-size: 12px; color: #60a5fa;")
+})
+
+// ==================================================
+// UTILITY FUNCTIONS
+// ==================================================
+
+/**
+ * Debounce function for performance optimization
+ */
+function debounce(func, wait = 100) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
+/**
+ * Throttle function for scroll events
+ */
+function throttle(func, delay = 100) {
+  let lastCall = 0
+  return (...args) => {
+    const now = new Date().getTime()
+    if (now - lastCall < delay) return
+    lastCall = now
+    return func(...args)
+  }
 }
