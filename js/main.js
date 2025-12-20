@@ -257,4 +257,82 @@ document.addEventListener("DOMContentLoaded", () => {
   if (aboutSection) {
     statsObserver.observe(aboutSection)
   }
+
+  /* ===============================================
+     ENHANCED PARTICLES ANIMATION
+  =============================================== */
+
+  const particles = document.querySelectorAll(".particle")
+
+  particles.forEach((particle, index) => {
+    const size = Math.random() * 4 + 2
+    particle.style.width = `${size}px`
+    particle.style.height = `${size}px`
+
+    // Random starting positions
+    particle.style.top = `${Math.random() * 100}%`
+    particle.style.left = `${Math.random() * 100}%`
+  })
+
+  /* ===============================================
+     ENHANCED SCROLL EFFECTS
+  =============================================== */
+
+  let ticking = false
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrolled = window.scrollY
+        const navbar = document.querySelector(".navbar")
+
+        // Navbar effects
+        if (scrolled > 50) {
+          navbar.classList.add("scrolled")
+        } else {
+          navbar.classList.remove("scrolled")
+        }
+
+        // Parallax effect for hero
+        const heroContent = document.querySelector(".hero-content")
+        if (heroContent && scrolled < window.innerHeight) {
+          heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
+          heroContent.style.opacity = 1 - scrolled / 500
+        }
+
+        // Update active nav state
+        const sections = document.querySelectorAll(".section")
+        const navItems = document.querySelectorAll(".nav-link")
+        let current = ""
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop
+          if (scrolled >= sectionTop - 200) {
+            current = section.getAttribute("id")
+          }
+        })
+
+        navItems.forEach((item) => {
+          item.classList.remove("active")
+          if (item.getAttribute("href").slice(1) === current) {
+            item.classList.add("active")
+          }
+        })
+
+        // Scroll to top button
+        const scrollTopBtn = document.querySelector(".scroll-top")
+        if (scrollTopBtn) {
+          if (scrolled > 500) {
+            scrollTopBtn.classList.add("visible")
+          } else {
+            scrollTopBtn.classList.remove("visible")
+          }
+        }
+
+        ticking = false
+      })
+
+      ticking = true
+    }
+  })
 })
