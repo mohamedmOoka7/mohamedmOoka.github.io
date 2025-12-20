@@ -1820,7 +1820,6 @@ ul {
 .project-tags {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .tag {
