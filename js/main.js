@@ -86,10 +86,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function drawMatrix() {
-      ctx.fillStyle = "rgba(10, 14, 39, 0.05)"
+      ctx.fillStyle = "rgba(10, 1, 24, 0.05)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      ctx.fillStyle = "#00d9ff"
+      ctx.fillStyle = "#6366f1"
       ctx.font = fontSize + "px monospace"
 
       for (let i = 0; i < drops.length; i++) {
@@ -113,24 +113,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     PARTICLES EFFECT
+     PARTICLES EFFECT - Enhanced
   =============================================== */
 
   const particlesContainer = document.getElementById("particles")
   if (particlesContainer) {
-    const particleCount = 30
+    const particleCount = 50
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement("div")
       particle.style.position = "absolute"
-      particle.style.width = Math.random() * 3 + 1 + "px"
+      particle.style.width = Math.random() * 4 + 1 + "px"
       particle.style.height = particle.style.width
-      particle.style.background = "rgba(0, 217, 255, 0.5)"
+      particle.style.background = `rgba(99, 102, 241, ${Math.random() * 0.5 + 0.3})`
       particle.style.borderRadius = "50%"
       particle.style.left = Math.random() * 100 + "%"
       particle.style.top = Math.random() * 100 + "%"
       particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`
       particle.style.animationDelay = Math.random() * 5 + "s"
+      particle.style.boxShadow = "0 0 10px rgba(99, 102, 241, 0.5)"
 
       particlesContainer.appendChild(particle)
     }
@@ -167,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const glow = card.querySelector(".card-glow")
       if (glow) {
-        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 217, 255, 0.3) 0%, transparent 50%)`
+        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(99, 102, 241, 0.4) 0%, transparent 50%)`
       }
     })
   })
@@ -192,6 +193,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(type, 1000)
   }
+
+  /* ===============================================
+     COUNTER ANIMATION FOR STATS - Enhanced
+  =============================================== */
+
+  const statNumbers = document.querySelectorAll(".stat-number[data-count]")
+
+  const animateCounter = (element) => {
+    const target = Number.parseInt(element.getAttribute("data-count"))
+    const duration = 2000
+    const increment = target / (duration / 16)
+    let current = 0
+
+    const updateCounter = () => {
+      current += increment
+      if (current < target) {
+        element.textContent = Math.floor(current) + "+"
+        requestAnimationFrame(updateCounter)
+      } else {
+        element.textContent = target + "+"
+      }
+    }
+
+    updateCounter()
+  }
+
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target)
+          statsObserver.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.5 },
+  )
+
+  statNumbers.forEach((stat) => statsObserver.observe(stat))
 
   /* ===============================================
      DYNAMIC YEAR IN FOOTER
