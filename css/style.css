@@ -58,8 +58,9 @@ body {
 
 .floating-nav {
   position: fixed;
-  /* Moving navigation from left to right side */
+  /* Ensuring navigation is on the right side */
   right: 40px;
+  left: auto; /* Explicitly removing any left positioning */
   top: 50%;
   transform: translateY(-50%);
   z-index: 1000;
@@ -93,8 +94,9 @@ body {
 
 .nav-tooltip {
   position: absolute;
-  /* Tooltip now appears on left side of dots */
+  /* Tooltip appears on left side of dots since dots are on right */
   right: 30px;
+  left: auto; /* Explicitly removing any left positioning */
   top: 50%;
   transform: translateY(-50%);
   background: var(--bg-card);
