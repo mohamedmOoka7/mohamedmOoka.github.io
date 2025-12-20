@@ -67,6 +67,60 @@ document.addEventListener("DOMContentLoaded", () => {
         cursor.style.opacity = "0.6"
       })
     })
+
+    const magneticElements = document.querySelectorAll(".magnetic-btn")
+
+    magneticElements.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        cursor.style.width = "60px"
+        cursor.style.height = "60px"
+        cursor.style.borderColor = "var(--secondary)"
+        cursor.style.opacity = "0.8"
+        cursor.style.background = "rgba(124, 58, 237, 0.1)"
+      })
+
+      el.addEventListener("mouseleave", () => {
+        cursor.style.width = "40px"
+        cursor.style.height = "40px"
+        cursor.style.borderColor = "var(--primary)"
+        cursor.style.opacity = "0.6"
+        cursor.style.background = "transparent"
+      })
+
+      el.addEventListener("mousemove", (e) => {
+        const rect = el.getBoundingClientRect()
+        const x = e.clientX - rect.left - rect.width / 2
+        const y = e.clientY - rect.top - rect.height / 2
+
+        el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`
+      })
+
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = ""
+      })
+    })
+
+    const tiltCards = document.querySelectorAll(".tilt-card")
+
+    tiltCards.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+
+        const centerX = rect.width / 2
+        const centerY = rect.height / 2
+
+        const rotateX = (y - centerY) / 10
+        const rotateY = (centerX - x) / 10
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
+      })
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = ""
+      })
+    })
   }
 
   /* ===============================================
@@ -403,5 +457,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerYear = document.querySelector("footer p")
   if (footerYear) {
     footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`
+  }
+})
+
+window.addEventListener("load", () => {
+  const pageLoader = document.querySelector(".page-loader")
+
+  setTimeout(() => {
+    if (pageLoader) {
+      pageLoader.classList.add("hidden")
+      setTimeout(() => {
+        pageLoader.style.display = "none"
+      }, 500)
+    }
+  }, 800)
+})
+
+window.addEventListener("scroll", () => {
+  const scrollProgress = document.querySelector(".scroll-progress")
+
+  if (scrollProgress) {
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    const scrolled = (window.scrollY / windowHeight) * 100
+    scrollProgress.style.transform = `scaleX(${scrolled / 100})`
   }
 })
