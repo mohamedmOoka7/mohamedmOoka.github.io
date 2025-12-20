@@ -1,60 +1,84 @@
 // ==================================================
-// MAIN JAVASCRIPT - Enhanced Version
+// MAIN JAVASCRIPT - ENHANCED
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ===============================================
-     NAVBAR SCROLL EFFECT
-  =============================================== */
-  const navbar = document.getElementById("navbar")
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled")
-    } else {
-      navbar.classList.remove("scrolled")
-    }
-  })
-
-  /* ===============================================
-     MOBILE MENU TOGGLE
-  =============================================== */
-  const mobileToggle = document.getElementById("mobile-toggle")
-  const navLinks = document.querySelector(".nav-links")
-
-  if (mobileToggle) {
-    mobileToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active")
-      mobileToggle.classList.toggle("active")
-    })
-
-    // Close menu when clicking on a link
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active")
-        mobileToggle.classList.remove("active")
-      })
-    })
-  }
-
-  /* ===============================================
      DISABLE ANIMATION ON PROJECT PAGES
   =============================================== */
+
   if (document.body.classList.contains("no-animate")) {
     return
   }
 
   /* ===============================================
-     SMOOTH SCROLL FOR ANCHOR LINKS
+     NAVBAR SCROLL EFFECT
   =============================================== */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href")
-      if (href !== "#" && href !== "") {
+
+  const navbar = document.querySelector(".navbar")
+  let lastScroll = 0
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
+
+    // Add scrolled class for styling
+    if (currentScroll > 100) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
+    }
+
+    lastScroll = currentScroll
+  })
+
+  /* ===============================================
+     MOBILE MENU TOGGLE
+  =============================================== */
+
+  const mobileToggle = document.querySelector(".mobile-toggle")
+  const navLinks = document.querySelector(".nav-links")
+
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", () => {
+      mobileToggle.classList.toggle("active")
+      navLinks.classList.toggle("active")
+    })
+
+    // Close menu when clicking on a link
+    const navLinksItems = document.querySelectorAll(".nav-links a")
+    navLinksItems.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileToggle.classList.remove("active")
+        navLinks.classList.remove("active")
+      })
+    })
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!mobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        mobileToggle.classList.remove("active")
+        navLinks.classList.remove("active")
+      }
+    })
+  }
+
+  /* ===============================================
+     SMOOTH SCROLL WITH OFFSET
+  =============================================== */
+
+  const links = document.querySelectorAll('a[href^="#"]')
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")
+
+      if (href !== "#" && href.length > 1) {
         e.preventDefault()
+
         const target = document.querySelector(href)
         if (target) {
-          const offsetTop = target.offsetTop - 80
+          const offsetTop = target.offsetTop - 80 // navbar height
+
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -65,8 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   /* ===============================================
-     INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+     SCROLL REVEAL ANIMATION
   =============================================== */
+
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
@@ -81,157 +106,240 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }, observerOptions)
 
-  // Observe all sections and cards
   const revealElements = document.querySelectorAll(".section, .card")
   revealElements.forEach((el) => revealObserver.observe(el))
 
   /* ===============================================
-     TYPING EFFECT FOR HERO SUBTITLE
+     BACK TO TOP BUTTON
   =============================================== */
-  const typingText = document.querySelector(".typing-text")
-  if (typingText) {
-    const text = typingText.textContent
-    typingText.textContent = ""
-    typingText.style.opacity = "1"
 
-    let charIndex = 0
-    const typeSpeed = 100
+  const backToTopButton = document.querySelector(".back-to-top")
 
-    function typeChar() {
-      if (charIndex < text.length) {
-        typingText.textContent += text.charAt(charIndex)
-        charIndex++
-        setTimeout(typeChar, typeSpeed)
+  if (backToTopButton) {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 500) {
+        backToTopButton.classList.add("show")
+      } else {
+        backToTopButton.classList.remove("show")
       }
-    }
+    })
 
-    setTimeout(typeChar, 500)
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    })
   }
 
   /* ===============================================
-     ANIMATED COUNTER FOR STATS
+     TYPING EFFECT FOR SUBTITLE
   =============================================== */
-  const statNumbers = document.querySelectorAll(".stat-number")
 
-  const animateCounter = (element) => {
-    const target = Number.parseInt(element.textContent)
-    const duration = 2000
-    const increment = target / (duration / 16)
-    let current = 0
+  const typingElement = document.querySelector(".typing-effect")
 
-    const updateCounter = () => {
-      current += increment
-      if (current < target) {
-        element.textContent = Math.floor(current) + "+"
-        requestAnimationFrame(updateCounter)
-      } else {
-        element.textContent = target + "+"
+  if (typingElement) {
+    const text = typingElement.textContent
+    typingElement.textContent = ""
+    let charIndex = 0
+
+    function type() {
+      if (charIndex < text.length) {
+        typingElement.textContent += text.charAt(charIndex)
+        charIndex++
+        setTimeout(type, 100)
       }
     }
 
-    updateCounter()
+    // Start typing after a small delay
+    setTimeout(type, 1000)
   }
+
+  /* ===============================================
+     PARALLAX EFFECT FOR HERO
+  =============================================== */
+
+  const heroBackground = document.querySelector(".hero-background")
+
+  if (heroBackground) {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset
+      const parallaxSpeed = 0.5
+
+      heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`
+    })
+  }
+
+  /* ===============================================
+     STATS COUNTER ANIMATION
+  =============================================== */
+
+  const statsNumbers = document.querySelectorAll(".stat-number")
+  let hasAnimated = false
 
   const statsObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target)
-          statsObserver.unobserve(entry.target)
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true
+
+          statsNumbers.forEach((stat) => {
+            const target = Number.parseInt(stat.textContent)
+            const duration = 2000
+            const increment = target / (duration / 16)
+            let current = 0
+
+            const updateCounter = () => {
+              current += increment
+              if (current < target) {
+                stat.textContent = Math.floor(current) + "+"
+                requestAnimationFrame(updateCounter)
+              } else {
+                stat.textContent = target + "+"
+              }
+            }
+
+            updateCounter()
+          })
         }
       })
     },
     { threshold: 0.5 },
   )
 
-  statNumbers.forEach((stat) => statsObserver.observe(stat))
+  const heroStats = document.querySelector(".hero-stats")
+  if (heroStats) {
+    statsObserver.observe(heroStats)
+  }
 
   /* ===============================================
-     CARD GLOW EFFECT FOLLOWING MOUSE
+     ACTIVE NAVIGATION HIGHLIGHT
   =============================================== */
-  const cards = document.querySelectorAll(".card")
 
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+  const sections = document.querySelectorAll("section[id]")
 
-      const glow = card.querySelector(".card-glow")
-      if (glow) {
-        glow.style.left = x + "px"
-        glow.style.top = y + "px"
-        glow.style.transform = "translate(-50%, -50%)"
+  window.addEventListener("scroll", () => {
+    const scrollY = window.pageYOffset
+
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight
+      const sectionTop = section.offsetTop - 100
+      const sectionId = section.getAttribute("id")
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.classList.remove("active")
+          if (link.getAttribute("href") === `#${sectionId}`) {
+            link.classList.add("active")
+          }
+        })
       }
     })
   })
 
   /* ===============================================
-     PARALLAX EFFECT FOR GRADIENT ORBS
+     CURSOR TRAIL EFFECT (OPTIONAL)
   =============================================== */
-  window.addEventListener("mousemove", (e) => {
-    const orbs = document.querySelectorAll(".gradient-orb")
-    const mouseX = e.clientX / window.innerWidth
-    const mouseY = e.clientY / window.innerHeight
 
-    orbs.forEach((orb, index) => {
-      const speed = (index + 1) * 20
-      const x = mouseX * speed
-      const y = mouseY * speed
-      orb.style.transform = `translate(${x}px, ${y}px)`
+  const createCursorTrail = () => {
+    const coords = { x: 0, y: 0 }
+    const circles = document.querySelectorAll(".cursor-circle")
+
+    if (circles.length === 0) return
+
+    circles.forEach((circle) => {
+      circle.x = 0
+      circle.y = 0
     })
-  })
+
+    window.addEventListener("mousemove", (e) => {
+      coords.x = e.clientX
+      coords.y = e.clientY
+    })
+
+    function animateCircles() {
+      let x = coords.x
+      let y = coords.y
+
+      circles.forEach((circle, index) => {
+        circle.style.left = x - 12 + "px"
+        circle.style.top = y - 12 + "px"
+        circle.style.transform = `scale(${(circles.length - index) / circles.length})`
+
+        circle.x = x
+        circle.y = y
+
+        const nextCircle = circles[index + 1] || circles[0]
+        x += (nextCircle.x - x) * 0.3
+        y += (nextCircle.y - y) * 0.3
+      })
+
+      requestAnimationFrame(animateCircles)
+    }
+
+    animateCircles()
+  }
+
+  // Uncomment to enable cursor trail
+  // createCursorTrail();
 
   /* ===============================================
      FOOTER YEAR AUTO UPDATE
   =============================================== */
-  const footerYear = document.querySelector(".footer-year")
-  if (footerYear) {
-    const currentYear = new Date().getFullYear()
-    footerYear.textContent = `© ${currentYear} All Rights Reserved`
+
+  const yearElement = document.getElementById("year")
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
   }
 
   /* ===============================================
-     ADD ACTIVE STATE TO CURRENT NAV LINK
+     LAZY LOADING IMAGES
   =============================================== */
-  const sections = document.querySelectorAll("section[id]")
-  const navLinksAll = document.querySelectorAll(".nav-links a")
 
-  window.addEventListener("scroll", () => {
-    let current = ""
+  const images = document.querySelectorAll("img[data-src]")
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop
-      const sectionHeight = section.clientHeight
-      if (window.scrollY >= sectionTop - 200) {
-        current = section.getAttribute("id")
-      }
-    })
-
-    navLinksAll.forEach((link) => {
-      link.classList.remove("active")
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active")
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target
+        img.src = img.dataset.src
+        img.removeAttribute("data-src")
+        observer.unobserve(img)
       }
     })
   })
 
-  /* ===============================================
-     PERFORMANCE: REDUCE MOTION FOR USERS WHO PREFER IT
-  =============================================== */
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+  images.forEach((img) => imageObserver.observe(img))
 
-  if (prefersReducedMotion.matches) {
-    document.querySelectorAll("*").forEach((el) => {
-      el.style.animation = "none"
-      el.style.transition = "none"
-    })
+  /* ===============================================
+     PERFORMANCE OPTIMIZATION
+  =============================================== */
+
+  // Debounce function for scroll events
+  function debounce(func, wait = 10) {
+    let timeout
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
+      }
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
+    }
   }
 
+  // Apply debounce to scroll-heavy functions
+  window.addEventListener(
+    "scroll",
+    debounce(() => {
+      // Any scroll-dependent functions can go here
+    }, 10),
+  )
+
   /* ===============================================
-     CONSOLE LOG - DEVELOPER MESSAGE
+     CONSOLE MESSAGE
   =============================================== */
-  console.log("%c👋 Hello Developer!", "color: #00d9ff; font-size: 20px; font-weight: bold;")
-  console.log("%cInterested in the code? Check it out on GitHub!", "color: #9ca3af; font-size: 14px;")
-  console.log("%chttps://github.com/mohamedmOoka7", "color: #7c3aed; font-size: 14px;")
+
+  console.log("%c🛡️ Mohamed Mooka Portfolio", "font-size: 20px; font-weight: bold; color: #38bdf8;")
+  console.log("%cLooking for a Cybersecurity Analyst? Let's connect!", "font-size: 14px; color: #9ca3af;")
 })
