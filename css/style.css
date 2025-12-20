@@ -666,18 +666,23 @@ body {
 
 .contact-container {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 60px;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
 }
 
 .contact-info h2 {
   font-size: 3rem;
-  margin-bottom: 20px;
+  font-weight: 900;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-info > p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
   margin-bottom: 40px;
 }
@@ -692,22 +697,39 @@ body {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 20px;
+  padding: 25px;
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
   border-radius: 15px;
   text-decoration: none;
   transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-method::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 0;
+  background: var(--primary);
+  transition: height var(--transition-normal);
+}
+
+.contact-method:hover::before {
+  height: 100%;
 }
 
 .contact-method:hover {
   border-color: var(--border-hover);
   transform: translateX(5px);
   box-shadow: var(--shadow-md);
+  background: rgba(15, 23, 42, 0.8);
 }
 
 .method-icon {
-  font-size: 2rem;
   width: 60px;
   height: 60px;
   display: flex;
@@ -716,6 +738,17 @@ body {
   background: rgba(56, 189, 248, 0.1);
   border-radius: 12px;
   flex-shrink: 0;
+  transition: all var(--transition-normal);
+}
+
+.method-icon svg {
+  stroke: var(--primary);
+  fill: var(--primary);
+}
+
+.contact-method:hover .method-icon {
+  background: rgba(56, 189, 248, 0.2);
+  transform: scale(1.1);
 }
 
 .method-details {
@@ -726,19 +759,59 @@ body {
 
 .method-label {
   font-size: 0.85rem;
-  color: var(--text-muted);
+  color: var(--text-dark);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .method-value {
   font-size: 1rem;
-  color: var(--primary);
+  color: var(--text-main);
+  font-weight: 500;
 }
 
-.contact-cta {
+/* New CTA card design for download resume */
+.contact-cta-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 40px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cta-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+}
+
+.cta-card-content h3 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.cta-card-content p {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.cta-card-content .btn {
+  width: 100%;
+  justify-content: center;
 }
 
 /* ==================================================
@@ -748,73 +821,128 @@ body {
 footer {
   background: var(--bg-dark);
   border-top: 1px solid var(--border-soft);
-  padding: 60px 40px 30px;
+  padding: 70px 40px 30px;
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
 }
 
 .footer-content {
   max-width: 1200px;
-  margin: 0 auto 40px;
+  margin: 0 auto 50px;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 40px;
-  align-items: start;
+  gap: 60px;
+}
+
+/* Improved footer brand section */
+.footer-brand {
+  max-width: 350px;
 }
 
 .footer-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.5rem;
+  gap: 12px;
+  font-size: 1.4rem;
   font-weight: 900;
-  color: var(--primary);
+  color: var(--text-main);
   margin-bottom: 15px;
 }
 
-.footer-info p {
+.footer-logo svg {
+  stroke: var(--primary);
+}
+
+.footer-tagline {
   color: var(--text-muted);
   font-size: 0.95rem;
-  margin: 0;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: color var(--transition-fast);
-}
-
-.footer-links a:hover {
-  color: var(--primary);
+  line-height: 1.6;
+  margin-bottom: 25px;
 }
 
 .footer-social {
   display: flex;
-  gap: 15px;
+  gap: 12px;
 }
 
 .footer-social a {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid rgba(56, 189, 248, 0.2);
-  border-radius: 12px;
+  border-radius: 10px;
   color: var(--primary);
   transition: all var(--transition-fast);
 }
 
 .footer-social a:hover {
   background: var(--primary);
-  color: var(--bg-main);
+  border-color: var(--primary);
   transform: translateY(-3px);
+}
+
+.footer-social a:hover svg {
+  fill: var(--bg-main);
+}
+
+/* Improved footer links sections */
+.footer-links-section h4,
+.footer-contact-section h4 {
+  font-size: 1rem;
+  color: var(--text-main);
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-contact-info a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+  word-break: break-word;
+}
+
+.footer-contact-info a:hover {
+  color: var(--primary);
 }
 
 .footer-bottom {
@@ -822,9 +950,13 @@ footer {
   margin: auto;
   padding-top: 30px;
   border-top: 1px solid var(--border-soft);
-  text-align: center;
-  color: var(--text-muted);
+}
+
+.footer-bottom p {
+  color: var(--text-dark);
   font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
 }
 
 /* ==================================================
@@ -877,7 +1009,13 @@ footer {
   }
 
   .footer-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
     text-align: center;
   }
 
@@ -954,14 +1092,22 @@ footer {
   }
 
   .footer-content {
-    gap: 30px;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
   }
 
-  .back-to-top {
-    bottom: 20px;
-    right: 20px;
-    width: 45px;
-    height: 45px;
+  .footer-links-section,
+  .footer-contact-section {
+    text-align: center;
+  }
+
+  .footer-links a {
+    display: block;
+  }
+
+  .footer-links a:hover {
+    transform: none;
   }
 }
 
@@ -994,18 +1140,7 @@ footer {
 
 /* Print Styles */
 @media print {
-  .floating-nav,
-  .hero-cta,
-  .scroll-indicator,
-  .back-to-top {
+  .floating-nav {
     display: none;
-  }
-
-  body {
-    padding-top: 0;
-  }
-
-  .section {
-    page-break-inside: avoid;
   }
 }
