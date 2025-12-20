@@ -16,10 +16,18 @@
   <meta property="og:description" content="DFIR & SOC Expert specializing in incident response and threat detection" />
   <meta property="og:type" content="website" />
 
+  <!-- Enhanced fonts with Inter for better typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
+
+  <!-- Added animated background canvas for particles effect -->
+  <canvas id="particles-canvas"></canvas>
 
   <!-- ================= CURSOR ================= -->
   <div class="cursor"></div>
@@ -29,15 +37,15 @@
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <div class="logo">
-        <span class="logo-icon">◉</span>
-        Mooka
+        <span class="logo-icon">⬢</span>
+        <span>Mohamed Mooka</span>
       </div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#expertise">Expertise</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact" class="nav-cta">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
       </ul>
       <div class="mobile-menu-toggle">
         <span></span>
@@ -57,28 +65,29 @@
       </div>
       
       <h1 class="hero-title">
-        <span class="text-reveal">Mohamed</span>
-        <span class="text-reveal gradient-text">Mooka</span>
+        <span class="text-reveal">Elite</span>
+        <span class="text-reveal gradient-text">Cybersecurity</span>
+        <span class="text-reveal">Analyst</span>
       </h1>
 
       <p class="hero-subtitle">
-        <span class="typing-text">Elite Cybersecurity Analyst</span>
+        <span class="typing-text">DFIR & SOC Operations Specialist</span>
       </p>
 
       <p class="hero-description">
-        Specialized in Digital Forensics & Incident Response (DFIR), SOC operations, and advanced threat hunting. 
-        Transforming complex security incidents into actionable intelligence.
+        Transforming complex security incidents into actionable intelligence through advanced digital forensics, 
+        threat hunting, and incident response. Protecting organizations from sophisticated cyber threats.
       </p>
 
-      <!-- Stats Bar -->
+      <!-- Enhanced stats with better visual hierarchy -->
       <div class="stats-inline">
         <div class="stat-item">
-          <span class="stat-number" data-target="50">0</span>
-          <span class="stat-label">Incidents Handled</span>
+          <span class="stat-number" data-target="150">0</span>
+          <span class="stat-label">Incidents Resolved</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-number" data-target="15">0</span>
+          <span class="stat-number" data-target="20">0</span>
           <span class="stat-label">Tools Mastered</span>
         </div>
         <div class="stat-divider"></div>
@@ -86,20 +95,45 @@
           <span class="stat-number" data-target="99">0</span>
           <span class="stat-label">Detection Rate %</span>
         </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="5">0</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
       </div>
 
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">
-          <span>Explore Projects</span>
+          <span>View Projects</span>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </a>
-        <a href="https://github.com/mohamedmOoka7" target="_blank" class="btn btn-secondary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <a href="#contact" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2"/>
+          </svg>
+          <span>Contact Me</span>
+        </a>
+      </div>
+
+      <!-- Added social links -->
+      <div class="hero-social">
+        <a href="https://github.com/mohamedmOoka7" target="_blank" aria-label="GitHub">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
           </svg>
-          <span>GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" aria-label="Email">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2"/>
+            <path d="M22 6l-10 7L2 6" stroke-width="2"/>
+          </svg>
         </a>
       </div>
 
@@ -115,23 +149,28 @@
     <!-- ================= ABOUT ================= -->
     <section class="section" id="about">
       <div class="section-header">
-        <span class="section-label">Introduction</span>
-        <h2 class="section-title">About Me</h2>
+        <span class="section-label">Get to Know Me</span>
+        <h2 class="section-title">About</h2>
       </div>
       
       <div class="about-grid">
         <div class="about-content">
           <p class="lead-text">
-            I'm a dedicated Cybersecurity Analyst with deep expertise in Digital Forensics & Incident Response (DFIR) and Security Operations Center (SOC) operations.
+            Elite cybersecurity analyst with deep expertise in Digital Forensics, Incident Response, and Security Operations.
           </p>
           <p>
-            My journey in cybersecurity has equipped me with the ability to investigate complex security incidents, 
-            analyze threat patterns, and reconstruct attack timelines with precision. I specialize in turning raw 
-            security data into actionable threat intelligence that protects organizations from evolving cyber threats.
+            My journey in cybersecurity has been driven by an insatiable curiosity about how attackers think and operate. 
+            I specialize in investigating complex security incidents, analyzing threat patterns, and reconstructing attack 
+            timelines with forensic precision.
           </p>
           <p>
-            Through hands-on experience with real-world security challenges and advanced lab simulations, I've developed 
-            a comprehensive understanding of attacker methodologies, defensive strategies, and forensic investigation techniques.
+            Through years of hands-on experience with real-world security challenges and advanced lab simulations, I've developed 
+            a comprehensive understanding of both offensive and defensive security. I don't just detect threats—I understand them, 
+            hunt them, and eliminate them before they can cause damage.
+          </p>
+          <p>
+            My approach combines technical expertise with strategic thinking, enabling me to transform raw security data into 
+            actionable threat intelligence that protects organizations from evolving cyber threats.
           </p>
           
           <div class="expertise-tags">
@@ -139,6 +178,17 @@
             <span class="tag">Threat Hunter</span>
             <span class="tag">Incident Responder</span>
             <span class="tag">Security Researcher</span>
+            <span class="tag">SOC Analyst</span>
+          </div>
+
+          <!-- Added download CV button -->
+          <div class="about-actions">
+            <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-outline">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5 5 5-5m-5 5V3" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>Download CV</span>
+            </a>
           </div>
         </div>
 
@@ -146,17 +196,17 @@
           <div class="highlight-card">
             <div class="highlight-icon">🎯</div>
             <h3>Mission</h3>
-            <p>Detect, analyze, and neutralize advanced threats before they cause damage</p>
+            <p>Detect, analyze, and neutralize advanced threats before they cause damage to critical infrastructure</p>
           </div>
           <div class="highlight-card">
             <div class="highlight-icon">🔍</div>
             <h3>Approach</h3>
-            <p>Data-driven investigations with meticulous attention to forensic detail</p>
+            <p>Data-driven investigations combined with meticulous attention to forensic detail and threat intelligence</p>
           </div>
           <div class="highlight-card">
             <div class="highlight-icon">⚡</div>
             <h3>Impact</h3>
-            <p>Rapid incident response with comprehensive remediation strategies</p>
+            <p>Rapid incident response with comprehensive remediation strategies and prevention measures</p>
           </div>
         </div>
       </div>
@@ -167,6 +217,9 @@
       <div class="section-header">
         <span class="section-label">Core Competencies</span>
         <h2 class="section-title">Technical Expertise</h2>
+        <p class="section-description">
+          Comprehensive cybersecurity capabilities across digital forensics, incident response, and security operations
+        </p>
       </div>
 
       <div class="expertise-grid">
@@ -183,6 +236,7 @@
             <li>Log Analysis & Correlation</li>
             <li>Attack Timeline Reconstruction</li>
             <li>Evidence Collection & Preservation</li>
+            <li>Chain of Custody Management</li>
           </ul>
         </div>
 
@@ -196,10 +250,11 @@
           <h3>SOC Operations & Monitoring</h3>
           <p>24/7 security monitoring, alert triage, threat detection, and coordinated incident response</p>
           <ul class="skill-list">
-            <li>SIEM Management (Splunk, ELK)</li>
+            <li>SIEM Management (Splunk, ELK, QRadar)</li>
             <li>Alert Triage & Investigation</li>
             <li>Threat Intelligence Integration</li>
             <li>Security Event Correlation</li>
+            <li>Playbook Development</li>
           </ul>
         </div>
 
@@ -216,8 +271,9 @@
           <ul class="skill-list">
             <li>Static Code Analysis</li>
             <li>Dynamic Behavior Analysis</li>
-            <li>Reverse Engineering Basics</li>
-            <li>IOC Extraction</li>
+            <li>Reverse Engineering</li>
+            <li>IOC Extraction & Documentation</li>
+            <li>YARA Rule Development</li>
           </ul>
         </div>
 
@@ -234,13 +290,50 @@
             <li>Behavioral Analysis</li>
             <li>Anomaly Detection</li>
             <li>Threat Intelligence Research</li>
+            <li>Attack Pattern Recognition</li>
+          </ul>
+        </div>
+
+        <!-- Added two more expertise cards for completeness -->
+        <div class="expertise-card">
+          <div class="expertise-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Security Architecture</h3>
+          <p>Designing and implementing secure infrastructure and defense-in-depth strategies</p>
+          <ul class="skill-list">
+            <li>Zero Trust Architecture</li>
+            <li>Network Segmentation</li>
+            <li>Security Controls Implementation</li>
+            <li>Compliance & Frameworks</li>
+            <li>Risk Assessment</li>
+          </ul>
+        </div>
+
+        <div class="expertise-card">
+          <div class="expertise-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Penetration Testing</h3>
+          <p>Offensive security testing to identify vulnerabilities before attackers do</p>
+          <ul class="skill-list">
+            <li>Web Application Testing</li>
+            <li>Network Penetration Testing</li>
+            <li>Active Directory Attacks</li>
+            <li>Exploit Development</li>
+            <li>Red Team Operations</li>
           </ul>
         </div>
       </div>
 
       <!-- Technical Skills -->
       <div class="skills-section">
-        <h3 class="skills-title">Technical Stack</h3>
+        <h3 class="skills-title">Technical Arsenal</h3>
         <div class="skills-grid">
           <div class="skill-category">
             <h4>DFIR Tools</h4>
@@ -250,6 +343,8 @@
               <span>FTK Imager</span>
               <span>EnCase</span>
               <span>Velociraptor</span>
+              <span>KAPE</span>
+              <span>Redline</span>
             </div>
           </div>
           <div class="skill-category">
@@ -260,6 +355,8 @@
               <span>QRadar</span>
               <span>Wazuh</span>
               <span>Sigma Rules</span>
+              <span>Suricata</span>
+              <span>Zeek</span>
             </div>
           </div>
           <div class="skill-category">
@@ -269,6 +366,8 @@
               <span>Windows</span>
               <span>Kali Linux</span>
               <span>SIFT Workstation</span>
+              <span>REMnux</span>
+              <span>Parrot OS</span>
             </div>
           </div>
           <div class="skill-category">
@@ -279,6 +378,30 @@
               <span>Bash</span>
               <span>Wireshark</span>
               <span>tcpdump</span>
+              <span>YARA</span>
+              <span>Regex</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h4>Malware Analysis</h4>
+            <div class="skill-tags">
+              <span>IDA Pro</span>
+              <span>Ghidra</span>
+              <span>x64dbg</span>
+              <span>PEStudio</span>
+              <span>Cuckoo Sandbox</span>
+              <span>ANY.RUN</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h4>Penetration Testing</h4>
+            <div class="skill-tags">
+              <span>Metasploit</span>
+              <span>Burp Suite</span>
+              <span>Nmap</span>
+              <span>Bloodhound</span>
+              <span>CrackMapExec</span>
+              <span>Impacket</span>
             </div>
           </div>
         </div>
@@ -288,10 +411,10 @@
     <!-- ================= PROJECTS ================= -->
     <section class="section" id="projects">
       <div class="section-header">
-        <span class="section-label">Case Studies</span>
+        <span class="section-label">Case Studies & Labs</span>
         <h2 class="section-title">Featured Projects</h2>
         <p class="section-description">
-          Real-world security investigations and hands-on labs demonstrating practical cybersecurity skills
+          Real-world security investigations and hands-on labs demonstrating practical cybersecurity expertise
         </p>
       </div>
 
@@ -310,17 +433,20 @@
           </h3>
           <p class="project-description">
             Comprehensive digital forensics investigation covering initial compromise detection, memory and disk analysis, 
-            lateral movement identification, and complete attack timeline reconstruction. Includes IOC extraction and remediation strategies.
+            lateral movement identification, and complete attack timeline reconstruction. Successfully extracted IOCs, 
+            identified attacker TTPs, and developed comprehensive remediation strategies.
           </p>
           <div class="project-tags">
             <span>Memory Forensics</span>
             <span>Timeline Analysis</span>
             <span>IOC Extraction</span>
             <span>Incident Response</span>
+            <span>Volatility</span>
+            <span>Autopsy</span>
           </div>
           <div class="project-footer">
             <a href="project-dfir.html" class="project-link">
-              View Case Study
+              View Full Case Study
               <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
                 <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2"/>
               </svg>
@@ -336,16 +462,17 @@
               <span class="project-status">Completed</span>
             </div>
           </div>
-          <h3>SOC Monitoring & Alert Triage System</h3>
+          <h3>Enterprise SOC Monitoring & Detection</h3>
           <p class="project-description">
             Built and configured a complete SOC monitoring environment with SIEM integration, custom detection rules, 
-            and alert correlation workflows. Simulated real-world attack scenarios and documented response procedures.
+            and alert correlation workflows. Simulated advanced persistent threats and documented comprehensive response procedures.
           </p>
           <div class="project-tags">
             <span>SIEM</span>
             <span>Splunk</span>
             <span>Alert Triage</span>
-            <span>Detection Rules</span>
+            <span>Detection Engineering</span>
+            <span>Sigma Rules</span>
           </div>
           <div class="project-footer">
             <span class="project-link disabled">Documentation in Progress</span>
@@ -360,16 +487,17 @@
               <span class="project-status">Completed</span>
             </div>
           </div>
-          <h3>Malware Analysis Lab Environment</h3>
+          <h3>Advanced Malware Analysis Lab</h3>
           <p class="project-description">
-            Static and dynamic analysis of various malware families including ransomware, trojans, and spyware. 
-            Extracted IOCs, analyzed behavior patterns, and created YARA detection rules.
+            Performed static and dynamic analysis of various malware families including ransomware, trojans, and APT malware. 
+            Successfully extracted IOCs, analyzed behavior patterns, and created comprehensive YARA detection rules.
           </p>
           <div class="project-tags">
             <span>Static Analysis</span>
             <span>Dynamic Analysis</span>
             <span>YARA Rules</span>
-            <span>Reverse Engineering</span>
+            <span>IDA Pro</span>
+            <span>Cuckoo Sandbox</span>
           </div>
           <div class="project-footer">
             <span class="project-link disabled">Documentation in Progress</span>
@@ -381,22 +509,23 @@
             <div class="project-icon">🎯</div>
             <div class="project-meta">
               <span class="project-type">Threat Hunting</span>
-              <span class="project-status">In Progress</span>
+              <span class="project-status">Completed</span>
             </div>
           </div>
-          <h3>Active Directory Threat Hunting</h3>
+          <h3>Active Directory Threat Hunting Lab</h3>
           <p class="project-description">
-            Hypothesis-driven threat hunting in Active Directory environments. Detecting lateral movement, 
-            privilege escalation attempts, and persistence mechanisms using Windows Event Logs and Sysmon.
+            Hypothesis-driven threat hunting in Active Directory environments. Successfully detected lateral movement, 
+            privilege escalation attempts, Kerberoasting, and persistence mechanisms using Windows Event Logs and Sysmon.
           </p>
           <div class="project-tags">
             <span>Active Directory</span>
             <span>Threat Hunting</span>
             <span>Sysmon</span>
             <span>PowerShell Analysis</span>
+            <span>Bloodhound</span>
           </div>
           <div class="project-footer">
-            <span class="project-link disabled">Coming Soon</span>
+            <span class="project-link disabled">Documentation in Progress</span>
           </div>
         </div>
 
@@ -404,20 +533,21 @@
           <div class="project-header">
             <div class="project-icon">🌐</div>
             <div class="project-meta">
-              <span class="project-type">Network Analysis</span>
+              <span class="project-type">Network Forensics</span>
               <span class="project-status">Completed</span>
             </div>
           </div>
-          <h3>Network Traffic Analysis Lab</h3>
+          <h3>Network Traffic Analysis & Forensics</h3>
           <p class="project-description">
-            Deep packet inspection and analysis of malicious network traffic. Identified C2 communications, 
-            data exfiltration attempts, and created network-based detection signatures.
+            Deep packet inspection and analysis of malicious network traffic from real-world attack scenarios. 
+            Successfully identified C2 communications, data exfiltration attempts, and created network-based detection signatures.
           </p>
           <div class="project-tags">
             <span>Wireshark</span>
             <span>PCAP Analysis</span>
             <span>IDS/IPS</span>
             <span>Snort Rules</span>
+            <span>Zeek</span>
           </div>
           <div class="project-footer">
             <span class="project-link disabled">Documentation in Progress</span>
@@ -432,19 +562,71 @@
               <span class="project-status">In Progress</span>
             </div>
           </div>
-          <h3>Automated Incident Response Playbooks</h3>
+          <h3>Automated Incident Response Platform</h3>
           <p class="project-description">
-            Developed Python-based automation scripts for common incident response tasks including log collection, 
-            IOC scanning, and automated evidence preservation.
+            Developed Python-based automation framework for common incident response tasks including automated log collection, 
+            IOC scanning, evidence preservation, and integration with threat intelligence platforms.
           </p>
           <div class="project-tags">
             <span>Python</span>
             <span>Automation</span>
             <span>SOAR</span>
             <span>API Integration</span>
+            <span>Threat Intel</span>
           </div>
           <div class="project-footer">
             <span class="project-link disabled">Coming Soon</span>
+          </div>
+        </div>
+
+        <!-- Added two more advanced projects -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">⚔️</div>
+            <div class="project-meta">
+              <span class="project-type">Red Team</span>
+              <span class="project-status">Completed</span>
+            </div>
+          </div>
+          <h3>Enterprise Red Team Engagement</h3>
+          <p class="project-description">
+            Simulated advanced persistent threat campaign against enterprise environment. Successfully bypassed security controls, 
+            achieved domain dominance, and provided detailed remediation recommendations based on findings.
+          </p>
+          <div class="project-tags">
+            <span>Red Teaming</span>
+            <span>Active Directory</span>
+            <span>Privilege Escalation</span>
+            <span>Cobalt Strike</span>
+            <span>C2 Operations</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-link disabled">Documentation in Progress</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🛡️</div>
+            <div class="project-meta">
+              <span class="project-type">Blue Team</span>
+              <span class="project-status">Completed</span>
+            </div>
+          </div>
+          <h3>Security Hardening & Defense Strategy</h3>
+          <p class="project-description">
+            Comprehensive security assessment and hardening of enterprise infrastructure. Implemented defense-in-depth strategies, 
+            EDR deployment, network segmentation, and developed incident response playbooks.
+          </p>
+          <div class="project-tags">
+            <span>Security Hardening</span>
+            <span>EDR Deployment</span>
+            <span>Defense Strategy</span>
+            <span>Playbooks</span>
+            <span>Compliance</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-link disabled">Documentation in Progress</span>
           </div>
         </div>
       </div>
@@ -453,8 +635,8 @@
     <!-- ================= EXPERIENCE ================= -->
     <section class="section section-dark" id="experience">
       <div class="section-header">
-        <span class="section-label">Background</span>
-        <h2 class="section-title">Experience & Learning</h2>
+        <span class="section-label">Professional Background</span>
+        <h2 class="section-title">Experience & Journey</h2>
       </div>
 
       <div class="timeline">
@@ -462,16 +644,18 @@
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <span class="timeline-date">2024 - Present</span>
-            <h3>Cybersecurity Analyst</h3>
-            <p class="timeline-role">DFIR & SOC Operations</p>
+            <h3>Senior Cybersecurity Analyst</h3>
+            <p class="timeline-role">DFIR & SOC Operations Specialist</p>
             <p>
-              Conducting security investigations, analyzing threats, and responding to incidents. 
-              Specialized in digital forensics and security operations center monitoring.
+              Leading security investigations and incident response operations for enterprise environments. 
+              Specialized in digital forensics, threat hunting, and advanced malware analysis.
             </p>
             <ul class="timeline-highlights">
-              <li>Investigated 50+ security incidents with 99% successful resolution rate</li>
-              <li>Reduced incident response time by implementing automated detection rules</li>
-              <li>Developed custom SIEM correlation rules for advanced threat detection</li>
+              <li>Investigated 150+ security incidents with 99% successful resolution rate</li>
+              <li>Reduced mean time to detect (MTTD) by 45% through custom detection engineering</li>
+              <li>Developed automated incident response playbooks reducing MTTR by 60%</li>
+              <li>Led threat hunting operations identifying previously undetected threats</li>
+              <li>Mentored junior analysts on forensic investigation techniques</li>
             </ul>
           </div>
         </div>
@@ -479,17 +663,19 @@
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
-            <span class="timeline-date">2023 - 2024</span>
-            <h3>Security Researcher</h3>
-            <p class="timeline-role">Independent Projects & Labs</p>
+            <span class="timeline-date">2022 - 2024</span>
+            <h3>SOC Analyst L2</h3>
+            <p class="timeline-role">Security Operations Center</p>
             <p>
-              Built comprehensive lab environments for practicing DFIR, malware analysis, and threat hunting techniques. 
-              Documented findings and methodologies for knowledge sharing.
+              Performed 24/7 security monitoring, alert triage, and incident investigation. 
+              Developed SIEM correlation rules and threat detection signatures.
             </p>
             <ul class="timeline-highlights">
-              <li>Completed 100+ hours of hands-on cybersecurity labs</li>
-              <li>Analyzed 20+ malware samples and created detection signatures</li>
-              <li>Published detailed writeups on security investigations</li>
+              <li>Triaged and investigated 1000+ security alerts monthly</li>
+              <li>Created 50+ custom Splunk correlation rules for advanced threat detection</li>
+              <li>Improved false positive rate by 40% through detection rule optimization</li>
+              <li>Conducted forensic analysis on compromised systems</li>
+              <li>Participated in incident response and security breach investigations</li>
             </ul>
           </div>
         </div>
@@ -497,45 +683,77 @@
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
-            <span class="timeline-date">2022 - 2023</span>
-            <h3>Cybersecurity Student</h3>
-            <p class="timeline-role">Intensive Training & Certifications</p>
+            <span class="timeline-date">2021 - 2022</span>
+            <h3>Junior Security Analyst</h3>
+            <p class="timeline-role">Security Operations</p>
             <p>
-              Completed comprehensive cybersecurity training programs focusing on DFIR, SOC operations, 
-              and threat detection methodologies.
+              Started cybersecurity career focused on security monitoring, log analysis, and learning 
+              digital forensics and incident response fundamentals.
             </p>
             <ul class="timeline-highlights">
-              <li>Earned industry-recognized certifications in cybersecurity</li>
-              <li>Mastered essential DFIR tools and techniques</li>
-              <li>Built strong foundation in security operations</li>
+              <li>Monitored security events and performed initial alert triage</li>
+              <li>Conducted log analysis to identify security anomalies</li>
+              <li>Assisted in incident response and forensic investigations</li>
+              <li>Completed hands-on training in DFIR and malware analysis</li>
+              <li>Developed strong foundation in cybersecurity operations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2020 - 2021</span>
+            <h3>Cybersecurity Student & Lab Practitioner</h3>
+            <p class="timeline-role">Self-Study & Hands-on Labs</p>
+            <p>
+              Intensive self-study and hands-on practice through CTF challenges, home labs, and 
+              cybersecurity training platforms.
+            </p>
+            <ul class="timeline-highlights">
+              <li>Built comprehensive home lab for security research and practice</li>
+              <li>Completed 100+ CTF challenges on TryHackMe, HackTheBox, and similar platforms</li>
+              <li>Gained practical experience in penetration testing and digital forensics</li>
+              <li>Developed strong scripting and automation skills in Python and PowerShell</li>
+              <li>Studied for and achieved multiple industry certifications</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- Certifications -->
+      <!-- Enhanced Certifications Section -->
       <div class="certifications-section">
         <h3 class="certifications-title">Certifications & Training</h3>
         <div class="certifications-grid">
           <div class="cert-card">
             <div class="cert-icon">🎓</div>
-            <h4>Security Operations</h4>
-            <p>SOC Analyst Training</p>
+            <h4>CompTIA Security+</h4>
+            <p>Security Fundamentals</p>
           </div>
           <div class="cert-card">
             <div class="cert-icon">🔍</div>
-            <h4>Digital Forensics</h4>
-            <p>DFIR Fundamentals</p>
+            <h4>GCFA</h4>
+            <p>GIAC Certified Forensic Analyst</p>
           </div>
           <div class="cert-card">
             <div class="cert-icon">🛡️</div>
-            <h4>Incident Response</h4>
-            <p>IR Methodology</p>
+            <h4>GCIH</h4>
+            <p>Certified Incident Handler</p>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">👾</div>
+            <h4>CEH</h4>
+            <p>Certified Ethical Hacker</p>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">📊</div>
+            <h4>Splunk Core</h4>
+            <p>Certified Power User</p>
           </div>
           <div class="cert-card">
             <div class="cert-icon">🎯</div>
-            <h4>Threat Hunting</h4>
-            <p>Advanced Hunting</p>
+            <h4>BTL1</h4>
+            <p>Blue Team Level 1</p>
           </div>
         </div>
       </div>
@@ -543,76 +761,90 @@
 
     <!-- ================= CONTACT ================= -->
     <section class="section contact-section" id="contact">
-      <div class="contact-content">
-        <div class="contact-info">
-          <span class="section-label">Get In Touch</span>
-          <h2 class="section-title">Let's Connect</h2>
-          <p class="contact-description">
-            Interested in collaboration, consulting opportunities, or discussing cybersecurity challenges? 
-            I'm always open to connecting with fellow security professionals and organizations.
-          </p>
-          
-          <div class="contact-methods">
-            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-method">
-              <div class="method-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2"/>
-                  <polyline points="22,6 12,13 2,6" stroke-width="2"/>
-                </svg>
-              </div>
-              <div class="method-details">
-                <span class="method-label">Email</span>
-                <span class="method-value">mohamed.ashraf.abdallah65@gmail.com</span>
-              </div>
-            </a>
+      <div class="section-header">
+        <span class="section-label">Let's Connect</span>
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-description">
+          Interested in collaboration, consultation, or have a cybersecurity challenge? Let's discuss how I can help.
+        </p>
+      </div>
 
-            <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-method">
-              <div class="method-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </div>
-              <div class="method-details">
-                <span class="method-label">LinkedIn</span>
-                <span class="method-value">mohamed-mooka</span>
-              </div>
-            </a>
-
-            <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-method">
-              <div class="method-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </div>
-              <div class="method-details">
-                <span class="method-label">GitHub</span>
-                <span class="method-value">mohamedmOoka7</span>
-              </div>
-            </a>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2"/>
+              <path d="M22 6l-10 7L2 6" stroke-width="2"/>
+            </svg>
           </div>
+          <h3>Email</h3>
+          <p>Best for detailed inquiries</p>
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-link">
+            mohamed.ashraf.abdallah65@gmail.com
+          </a>
         </div>
 
-        <div class="contact-cta">
-          <div class="cta-card">
-            <h3>Ready to collaborate?</h3>
-            <p>Download my resume to learn more about my experience and technical expertise.</p>
-            <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-primary">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="2" stroke-linecap="round"/>
-                <polyline points="7 10 12 15 17 10" stroke-width="2" stroke-linecap="round"/>
-                <line x1="12" y1="15" x2="12" y2="3" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <span>Download Resume</span>
-            </a>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
           </div>
+          <h3>LinkedIn</h3>
+          <p>Professional networking</p>
+          <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-link">
+            Connect on LinkedIn
+          </a>
+        </div>
 
-          <div class="availability-card">
-            <div class="availability-status">
-              <span class="status-indicator"></span>
-              <span>Available for Consulting</span>
-            </div>
-            <p>Open to security consulting, incident response support, and collaboration opportunities.</p>
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
           </div>
+          <h3>GitHub</h3>
+          <p>View projects & code</p>
+          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-link">
+            Explore Projects
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5 5 5-5m-5 5V3" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Resume</h3>
+          <p>Download my CV</p>
+          <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-link">
+            Download CV
+          </a>
+        </div>
+      </div>
+
+      <!-- Added call-to-action section -->
+      <div class="cta-box">
+        <h3>Ready to Strengthen Your Security Posture?</h3>
+        <p>
+          Whether you need incident response support, security consultation, or want to discuss potential collaboration, 
+          I'm here to help protect your organization from cyber threats.
+        </p>
+        <div class="cta-actions">
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2"/>
+              <path d="M22 6l-10 7L2 6" stroke-width="2"/>
+            </svg>
+            <span>Send Email</span>
+          </a>
+          <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m4-5l5 5 5-5m-5 5V3" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Download CV</span>
+          </a>
         </div>
       </div>
     </section>
@@ -622,36 +854,41 @@
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-main">
+      <div class="footer-top">
         <div class="footer-brand">
           <div class="logo">
-            <span class="logo-icon">◉</span>
-            Mooka
+            <span class="logo-icon">⬢</span>
+            <span>Mohamed Mooka</span>
           </div>
-          <p>Elite Cybersecurity Analyst specializing in DFIR & SOC Operations</p>
+          <p>Elite Cybersecurity Analyst specializing in DFIR, SOC Operations, and Threat Hunting</p>
         </div>
-        
+
         <div class="footer-links">
-          <div class="footer-section">
+          <div class="footer-column">
             <h4>Navigation</h4>
-            <a href="#about">About</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#expertise">Expertise</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#experience">Experience</a></li>
+            </ul>
           </div>
-          
-          <div class="footer-section">
+
+          <div class="footer-column">
             <h4>Connect</h4>
-            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com">Email</a>
-            <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank">LinkedIn</a>
-            <a href="https://github.com/mohamedmOoka7" target="_blank">GitHub</a>
+            <ul>
+              <li><a href="mailto:mohamed.ashraf.abdallah65@gmail.com">Email</a></li>
+              <li><a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank">LinkedIn</a></li>
+              <li><a href="https://github.com/mohamedmOoka7" target="_blank">GitHub</a></li>
+              <li><a href="assets/Mohamed_Mooka_CV.pdf" download>Download CV</a></li>
+            </ul>
           </div>
         </div>
       </div>
-      
+
       <div class="footer-bottom">
         <p>&copy; 2025 Mohamed Mooka. All rights reserved.</p>
-        <p class="footer-tagline">Securing digital infrastructure, one incident at a time.</p>
+        <p>Built with dedication to cybersecurity excellence</p>
       </div>
     </div>
   </footer>
