@@ -126,14 +126,16 @@ body {
 
 .hero {
   position: relative;
-  text-align: center;
-  padding: 180px 40px 120px;
+  /* Align hero content to the right side */
+  text-align: right;
+  padding: 180px 60px 120px 40px;
   overflow: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* Align items to the end (right side) */
+  align-items: flex-end;
 }
 
 .hero-background {
@@ -176,6 +178,8 @@ body {
   position: relative;
   z-index: 1;
   max-width: 900px;
+  /* Ensure content flows right-to-left */
+  text-align: right;
 }
 
 .hero-greeting {
@@ -243,7 +247,8 @@ body {
 .hero-cta {
   display: flex;
   gap: 20px;
-  justify-content: center;
+  /* Align buttons to the right */
+  justify-content: flex-end;
   margin-bottom: 60px;
   animation: fadeInUp 0.8s ease 0.8s both;
 }
@@ -893,6 +898,9 @@ footer {
   .hero {
     padding: 120px 20px 80px;
     min-height: auto;
+    /* Updated for mobile: Revert to center for better layout on small screens */
+    text-align: center;
+    align-items: center;
   }
 
   .hero-title {
@@ -910,6 +918,8 @@ footer {
   .hero-cta {
     flex-direction: column;
     gap: 15px;
+    /* Updated for mobile: Revert to center for better layout on small screens */
+    justify-content: center;
   }
 
   .btn {
