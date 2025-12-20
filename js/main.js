@@ -3,7 +3,7 @@
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("[v0] Ultimate Blue Team Portfolio Initialized ✨")
+  console.log("[v0] Professional Portfolio Initialized ✨")
 
   /* ===============================================
      MOBILE MENU TOGGLE
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset
 
-    if (currentScroll > 80) {
+    if (currentScroll > 50) {
       navbar.classList.add("scrolled")
     } else {
       navbar.classList.remove("scrolled")
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -80px 0px",
+    rootMargin: "0px 0px -50px 0px",
   }
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -87,9 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }, observerOptions)
 
-  document.querySelectorAll(".section, .card, .expertise-card, .project-card, .contact-card").forEach((el) => {
-    revealObserver.observe(el)
-  })
+  document
+    .querySelectorAll(".section, .card, .expertise-card, .project-card, .contact-card, .skill-item")
+    .forEach((el) => {
+      revealObserver.observe(el)
+    })
 
   /* ===============================================
      MATRIX RAIN EFFECT - ENHANCED
@@ -271,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(href)
 
       if (target) {
-        const offsetTop = target.offsetTop - 100
+        const offsetTop = target.offsetTop - 80
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
