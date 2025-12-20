@@ -4,56 +4,32 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   /* ===============================================
-     DARK MODE TOGGLE
+     MOBILE NAVIGATION TOGGLE
   =============================================== */
 
-  const toggleButton = document.getElementById("dark-mode-toggle")
-  const body = document.body
+  const mobileToggle = document.getElementById("mobileToggle")
+  const navLinks = document.getElementById("navLinks")
 
-  // Function to toggle theme
-  const toggleTheme = () => {
-    const currentTheme = body.dataset.theme || "dark"
-    const newTheme = currentTheme === "dark" ? "light" : "dark"
-    body.dataset.theme = newTheme
-    toggleButton.innerHTML = newTheme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
-    localStorage.setItem("theme", newTheme)
-  }
-
-  // Set initial theme from localStorage or default to dark
-  const savedTheme = localStorage.getItem("theme") || "dark"
-  body.dataset.theme = savedTheme
-  toggleButton.innerHTML = savedTheme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
-
-  // Add event listener to toggle button
-  toggleButton.addEventListener("click", toggleTheme)
-
-  /* ===============================================
-     MOBILE MENU TOGGLE
-  =============================================== */
-
-  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
-  const navLinks = document.querySelector(".nav-links")
-
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener("click", () => {
-      mobileMenuToggle.classList.toggle("active")
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener("click", () => {
       navLinks.classList.toggle("active")
+      mobileToggle.classList.toggle("active")
     })
 
-    // Close menu when clicking on a link
-    const navLinksItems = navLinks.querySelectorAll("a")
-    navLinksItems.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenuToggle.classList.remove("active")
+    // Close mobile menu when clicking a link
+    const navItems = navLinks.querySelectorAll("a")
+    navItems.forEach((item) => {
+      item.addEventListener("click", () => {
         navLinks.classList.remove("active")
+        mobileToggle.classList.remove("active")
       })
     })
 
-    // Close menu when clicking outside
+    // Close mobile menu when clicking outside
     document.addEventListener("click", (e) => {
-      if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        mobileMenuToggle.classList.remove("active")
+      if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
         navLinks.classList.remove("active")
+        mobileToggle.classList.remove("active")
       }
     })
   }
@@ -62,83 +38,31 @@ document.addEventListener("DOMContentLoaded", () => {
      NAVBAR SCROLL EFFECT
   =============================================== */
 
-  const navbar = document.querySelector(".navbar")
-  let lastScroll = 0
+  const navbar = document.getElementById("navbar")
 
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset
-
-    if (currentScroll > 100) {
-      navbar.classList.add("scrolled")
-    } else {
-      navbar.classList.remove("scrolled")
-    }
-
-    lastScroll = currentScroll
-  })
-
-  /* ===============================================
-     DISABLE ANIMATION ON PROJECT PAGES
-  =============================================== */
-
-  if (document.body.classList.contains("no-animate")) {
-    return
-  }
-
-  /* ===============================================
-     SCROLL REVEAL ANIMATION
-  =============================================== */
-
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show")
-        revealObserver.unobserve(entry.target)
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled")
+      } else {
+        navbar.classList.remove("scrolled")
       }
     })
-  }, observerOptions)
-
-  const revealElements = document.querySelectorAll(".section, .card")
-  revealElements.forEach((el) => revealObserver.observe(el))
-
-  /* ===============================================
-     TYPING EFFECT FOR SUBTITLE
-  =============================================== */
-
-  const typingText = document.querySelector(".typing-text")
-  if (typingText) {
-    const text = typingText.textContent
-    typingText.textContent = ""
-    let index = 0
-
-    const typeWriter = () => {
-      if (index < text.length) {
-        typingText.textContent += text.charAt(index)
-        index++
-        setTimeout(typeWriter, 100)
-      }
-    }
-
-    // Start typing after a delay
-    setTimeout(typeWriter, 1000)
   }
 
   /* ===============================================
      SMOOTH SCROLL WITH OFFSET
   =============================================== */
 
-  const smoothScrollLinks = document.querySelectorAll('a[href^="#"]')
-  smoothScrollLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href")
-      if (href === "#") return
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href")
+
+      // Don't prevent default for empty hash or just "#"
+      if (href === "#" || href === "") return
 
       e.preventDefault()
+
       const target = document.querySelector(href)
       if (target) {
         const offsetTop = target.offsetTop - 80
@@ -151,169 +75,109 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   /* ===============================================
-     COUNTER ANIMATION FOR STATS
+     SCROLL REVEAL ANIMATION
   =============================================== */
 
-  const statNumbers = document.querySelectorAll(".stat-number")
+  const revealElements = document.querySelectorAll(".experience-card, .project-card, .stat-item")
 
-  const animateCounter = (element) => {
-    const target = Number.parseInt(element.textContent)
-    const duration = 2000
-    const increment = target / (duration / 16)
-    let current = 0
-
-    const updateCounter = () => {
-      current += increment
-      if (current < target) {
-        element.textContent = Math.floor(current) + "+"
-        requestAnimationFrame(updateCounter)
-      } else {
-        element.textContent = target + "+"
-      }
-    }
-
-    updateCounter()
-  }
-
-  const statsObserver = new IntersectionObserver(
+  const revealObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          animateCounter(entry.target)
-          statsObserver.unobserve(entry.target)
+          // Stagger animation
+          setTimeout(() => {
+            entry.target.classList.add("reveal", "active")
+          }, index * 100)
+          revealObserver.unobserve(entry.target)
         }
       })
     },
-    { threshold: 0.5 },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    },
   )
 
-  statNumbers.forEach((stat) => statsObserver.observe(stat))
-
-  /* ===============================================
-     PARALLAX EFFECT FOR GRADIENT ORBS
-  =============================================== */
-
-  const orbs = document.querySelectorAll(".gradient-orb")
-
-  window.addEventListener("mousemove", (e) => {
-    const mouseX = e.clientX / window.innerWidth
-    const mouseY = e.clientY / window.innerHeight
-
-    orbs.forEach((orb, index) => {
-      const speed = (index + 1) * 20
-      const x = (mouseX - 0.5) * speed
-      const y = (mouseY - 0.5) * speed
-
-      orb.style.transform = `translate(${x}px, ${y}px)`
-    })
+  revealElements.forEach((el) => {
+    revealObserver.observe(el)
   })
 
   /* ===============================================
-     FOOTER YEAR AUTO UPDATE
-  =============================================== */
-
-  const footerYear = document.querySelector(".footer-year")
-  if (footerYear) {
-    footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`
-  }
-
-  /* ===============================================
-     PRELOAD CRITICAL IMAGES
-  =============================================== */
-
-  const criticalImages = document.querySelectorAll(".project-image img, .about-image img")
-  criticalImages.forEach((img) => {
-    const src = img.getAttribute("src")
-    if (src) {
-      const preloadLink = document.createElement("link")
-      preloadLink.rel = "preload"
-      preloadLink.as = "image"
-      preloadLink.href = src
-      document.head.appendChild(preloadLink)
-    }
-  })
-
-  /* ===============================================
-     ACTIVE NAV LINK INDICATOR
+     ACTIVE NAVIGATION HIGHLIGHTING
   =============================================== */
 
   const sections = document.querySelectorAll("section[id]")
+  const navLinksItems = document.querySelectorAll(".nav-links a")
 
-  const highlightNav = () => {
+  const highlightNavigation = () => {
     const scrollY = window.pageYOffset
 
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
       const sectionTop = section.offsetTop - 100
       const sectionId = section.getAttribute("id")
-      const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLink?.classList.add("active")
-      } else {
-        navLink?.classList.remove("active")
+        navLinksItems.forEach((link) => {
+          link.classList.remove("active")
+          if (link.getAttribute("href") === `#${sectionId}`) {
+            link.classList.add("active")
+          }
+        })
       }
     })
   }
 
-  window.addEventListener("scroll", highlightNav)
+  window.addEventListener("scroll", highlightNavigation)
 
   /* ===============================================
-     COPY EMAIL ON CLICK
+     DYNAMIC YEAR IN FOOTER
   =============================================== */
 
-  const emailLinks = document.querySelectorAll('a[href^="mailto:"]')
-  emailLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const email = link.getAttribute("href").replace("mailto:", "")
+  const yearElement = document.getElementById("year")
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
+  }
 
-      // Create temporary input
-      const tempInput = document.createElement("input")
-      tempInput.value = email
-      document.body.appendChild(tempInput)
-      tempInput.select()
+  /* ===============================================
+     PERFORMANCE: PRELOAD CRITICAL RESOURCES
+  =============================================== */
 
-      try {
-        document.execCommand("copy")
+  // Add preload hints for better performance
+  const addPreloadHints = () => {
+    const head = document.head
 
-        // Show success message
-        const originalText = link.querySelector("h3")?.textContent || link.textContent
-        if (link.querySelector("h3")) {
-          link.querySelector("h3").textContent = "Email Copied!"
-          setTimeout(() => {
-            link.querySelector("h3").textContent = originalText
-          }, 2000)
-        }
-      } catch (err) {
-        console.error("Failed to copy email:", err)
-      }
+    // Preload fonts if using custom fonts
+    // const fontLink = document.createElement("link");
+    // fontLink.rel = "preload";
+    // fontLink.as = "font";
+    // fontLink.type = "font/woff2";
+    // fontLink.href = "/fonts/your-font.woff2";
+    // fontLink.crossOrigin = "anonymous";
+    // head.appendChild(fontLink);
+  }
 
-      document.body.removeChild(tempInput)
-    })
+  addPreloadHints()
+
+  /* ===============================================
+     ACCESSIBILITY: KEYBOARD NAVIGATION
+  =============================================== */
+
+  // Add visible focus indicators for keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      document.body.classList.add("keyboard-nav")
+    }
+  })
+
+  document.addEventListener("mousedown", () => {
+    document.body.classList.remove("keyboard-nav")
   })
 
   /* ===============================================
-     PERFORMANCE OPTIMIZATION
+     CONSOLE MESSAGE (Optional)
   =============================================== */
 
-  // Lazy load images
-  if ("loading" in HTMLImageElement.prototype) {
-    const images = document.querySelectorAll('img[loading="lazy"]')
-    images.forEach((img) => {
-      img.src = img.dataset.src || img.src
-    })
-  } else {
-    // Fallback for browsers that don't support lazy loading
-    const script = document.createElement("script")
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-    document.body.appendChild(script)
-  }
-
-  /* ===============================================
-     CONSOLE EASTER EGG
-  =============================================== */
-
-  console.log("%c🛡️ Cybersecurity Portfolio", "color: #00d9ff; font-size: 20px; font-weight: bold;")
-  console.log("%cInterested in the code? Check out my GitHub!", "color: #7c3aed; font-size: 14px;")
-  console.log("%chttps://github.com/mohamedmOoka7", "color: #00d9ff; font-size: 12px;")
+  console.log("%c👋 Welcome to Mohamed Mooka's Portfolio", "color: #60a5fa; font-size: 16px; font-weight: bold;")
+  console.log("%c🔒 Interested in cybersecurity? Let's connect!", "color: #a8abb5; font-size: 14px;")
 })
