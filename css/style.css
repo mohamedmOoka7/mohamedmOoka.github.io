@@ -126,16 +126,16 @@ body {
 
 .hero {
   position: relative;
-  /* Align hero content to the right side */
-  text-align: right;
+  /* Revert hero to center alignment */
+  text-align: center;
   padding: 180px 60px 120px 40px;
   overflow: hidden;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Align items to the end (right side) */
-  align-items: flex-end;
+  /* Center align items instead of flex-end */
+  align-items: center;
 }
 
 .hero-background {
@@ -178,8 +178,8 @@ body {
   position: relative;
   z-index: 1;
   max-width: 900px;
-  /* Ensure content flows right-to-left */
-  text-align: right;
+  /* Center text alignment */
+  text-align: center;
 }
 
 .hero-greeting {
@@ -225,8 +225,9 @@ body {
 
 .typing-effect {
   display: inline-block;
-  border-left: 2px solid var(--primary);
-  padding-left: 10px;
+  /* Move cursor from left to right side of text */
+  border-right: 2px solid var(--primary);
+  padding-right: 10px;
   animation: blink 1s step-end infinite;
 }
 
@@ -247,8 +248,8 @@ body {
 .hero-cta {
   display: flex;
   gap: 20px;
-  /* Align buttons to the right */
-  justify-content: flex-end;
+  /* Center justify buttons */
+  justify-content: center;
   margin-bottom: 60px;
   animation: fadeInUp 0.8s ease 0.8s both;
 }
