@@ -22,24 +22,28 @@ window.addEventListener("load", () => {
 const navbar = document.getElementById("navbar")
 let lastScrollY = window.pageYOffset
 
+let scrollTimeout
 window.addEventListener("scroll", () => {
-  const currentScrollY = window.pageYOffset
+  clearTimeout(scrollTimeout)
+  scrollTimeout = setTimeout(() => {
+    const currentScrollY = window.pageYOffset
 
-  if (currentScrollY > 100) {
-    navbar.classList.add("scrolled")
+    if (currentScrollY > 100) {
+      navbar.classList.add("scrolled")
 
-    // Hide on scroll down, show on scroll up
-    if (currentScrollY > lastScrollY && currentScrollY > 500) {
-      navbar.style.transform = "translateY(-100%)"
+      // Improved scroll direction detection with smoother threshold
+      if (currentScrollY > lastScrollY && currentScrollY > 400) {
+        navbar.style.transform = "translateY(-100%)"
+      } else {
+        navbar.style.transform = "translateY(0)"
+      }
     } else {
+      navbar.classList.remove("scrolled")
       navbar.style.transform = "translateY(0)"
     }
-  } else {
-    navbar.classList.remove("scrolled")
-    navbar.style.transform = "translateY(0)"
-  }
 
-  lastScrollY = currentScrollY
+    lastScrollY = currentScrollY
+  }, 10)
 })
 
 const sections = document.querySelectorAll("section[id]")
@@ -235,9 +239,9 @@ if (canvas && ctx) {
     reset() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
-      this.vx = (Math.random() - 0.5) * 0.5
-      this.vy = (Math.random() - 0.5) * 0.5
-      this.size = Math.random() * 2 + 1
+      this.vx = (Math.random() - 0.5) * 0.4
+      this.vy = (Math.random() - 0.5) * 0.4
+      this.size = Math.random() * 1.5 + 0.8
     }
 
     update() {
@@ -250,14 +254,17 @@ if (canvas && ctx) {
     }
 
     draw() {
-      ctx.fillStyle = "rgba(0, 212, 255, 0.6)"
+      ctx.fillStyle = "rgba(0, 229, 255, 0.7)"
+      ctx.shadowBlur = 5
+      ctx.shadowColor = "rgba(0, 229, 255, 0.5)"
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
+      ctx.shadowBlur = 0
     }
   }
 
-  const particleCount = window.innerWidth < 768 ? 40 : 80
+  const particleCount = window.innerWidth < 768 ? 35 : window.innerWidth < 1024 ? 60 : 75
   const particles = []
 
   for (let i = 0; i < particleCount; i++) {
@@ -271,9 +278,9 @@ if (canvas && ctx) {
         const dy = particles[i].y - particles[j].y
         const distance = Math.sqrt(dx * dx + dy * dy)
 
-        if (distance < 150) {
-          ctx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - distance / 150)})`
-          ctx.lineWidth = 1
+        if (distance < 140) {
+          ctx.strokeStyle = `rgba(0, 229, 255, ${0.25 * (1 - distance / 140)})`
+          ctx.lineWidth = 0.8
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
           ctx.lineTo(particles[j].x, particles[j].y)
@@ -301,7 +308,7 @@ if (canvas && ctx) {
     clearTimeout(resizeTimeout)
     resizeTimeout = setTimeout(() => {
       resizeCanvas()
-    }, 250)
+    }, 200)
   })
 
   document.addEventListener("visibilitychange", () => {
