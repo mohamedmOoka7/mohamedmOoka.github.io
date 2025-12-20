@@ -1,26 +1,20 @@
-// ==================================================
-// PROFESSIONAL PORTFOLIO - OPTIMIZED PERFORMANCE
-// ==================================================
+// 2025 PROFESSIONAL PORTFOLIO - OPTIMIZED INTERACTIONS
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===============================================
-     NAVBAR SCROLL EFFECT
-  =============================================== */
-
+  // Navbar scroll effect
   const navbar = document.querySelector(".navbar")
   let lastScroll = 0
 
   const handleScroll = () => {
     const currentScroll = window.pageYOffset
 
-    if (currentScroll > 80) {
-      navbar.classList.add("scrolled")
+    if (currentScroll > 60) {
+      navbar.style.background = "rgba(0, 0, 0, 0.95)"
     } else {
-      navbar.classList.remove("scrolled")
+      navbar.style.background = "rgba(0, 0, 0, 0.8)"
     }
 
-    // Hide/show navbar on scroll
-    if (currentScroll > lastScroll && currentScroll > 200) {
+    if (currentScroll > lastScroll && currentScroll > 300) {
       navbar.style.transform = "translateY(-100%)"
     } else {
       navbar.style.transform = "translateY(0)"
@@ -30,20 +24,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let ticking = false
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        handleScroll()
-        ticking = false
-      })
-      ticking = true
-    }
-  })
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    },
+    { passive: true },
+  )
 
-  /* ===============================================
-     SMOOTH SCROLL WITH OFFSET
-  =============================================== */
-
+  // Smooth scroll with offset
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href")
@@ -64,35 +59,30 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  /* ===============================================
-     INTERSECTION OBSERVER FOR ANIMATIONS
-  =============================================== */
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show")
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    },
+  )
 
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show")
-        observer.unobserve(entry.target)
-      }
-    })
-  }, observerOptions)
-
-  // Observe all sections and cards
-  document.querySelectorAll(".section, .skill-card, .project-card, .stat-card").forEach((el) => {
+  document.querySelectorAll(".section").forEach((el) => {
     observer.observe(el)
   })
 
-  /* ===============================================
-     DYNAMIC YEAR IN FOOTER
-  =============================================== */
-
-  const footer = document.querySelector(".footer-content p")
-  if (footer && footer.textContent.includes("2025")) {
-    footer.textContent = footer.textContent.replace("2025", new Date().getFullYear())
+  // Update footer year
+  const footer = document.querySelector(".footer p")
+  if (footer) {
+    const year = new Date().getFullYear()
+    footer.textContent = `© ${year} Mohamed Mooka`
   }
 })
