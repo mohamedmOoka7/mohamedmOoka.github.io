@@ -3,446 +3,520 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Mooka | Cybersecurity Portfolio</title>
+  
+  <title>Mohamed Mooka | Cybersecurity Analyst</title>
+  
   <!-- SEO Meta -->
-  <meta name="description" content="Cybersecurity Analyst portfolio focused on DFIR, SOC operations, and incident response projects." />
-  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Portfolio" />
+  <meta name="description" content="Cybersecurity Analyst specializing in DFIR, SOC operations, and incident response. View my portfolio of security investigations and threat detection projects." />
+  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Security Operations, Threat Detection" />
   <meta name="author" content="Mohamed Mooka" />
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🛡️%3C/text%3E%3C/svg%3E">
+  
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
-  <!-- Animated Background -->
-  <div class="animated-bg">
-    <div class="grid-overlay"></div>
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-  </div>
 
-  <!-- Dark Mode Toggle -->
-  <button id="dark-mode-toggle" class="dark-mode-btn" aria-label="Toggle dark mode">
-    <i class="fas fa-moon"></i>
-  </button>
-
-  <!-- ================= NAVBAR ================= -->
-  <nav class="navbar">
+  <!-- ================= NAVIGATION ================= -->
+  <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <div class="logo">
-        <span class="logo-bracket">&lt;</span>
-        MOOKA
-        <span class="logo-bracket">/&gt;</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#about"><i class="fas fa-user"></i> <span>ABOUT</span></a></li>
-        <li><a href="#skills"><i class="fas fa-tools"></i> <span>SKILLS</span></a></li>
-        <li><a href="#projects"><i class="fas fa-project-diagram"></i> <span>PROJECTS</span></a></li>
-        <li><a href="#contact"><i class="fas fa-envelope"></i> <span>CONTACT</span></a></li>
-      </ul>
-      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <div class="logo">Mohamed Mooka</div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation" id="mobileToggle">
         <span></span>
         <span></span>
         <span></span>
       </button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= HERO SECTION ================= -->
   <header class="hero">
     <div class="hero-content">
-      <div class="hero-badge">
-        <i class="fas fa-shield-alt"></i>
-        <span>Cybersecurity Professional</span>
-      </div>
+      <div class="hero-label">Cybersecurity Professional</div>
       <h1>
-        Hi, I'm <span class="gradient-text">Mohamed Mooka</span>
+        Investigating threats.<br>
+        <span class="gradient-text">Securing systems.</span>
       </h1>
-      <p class="subtitle">
-        <span class="typing-text">Cybersecurity Analyst</span>
-        <span class="cursor">|</span>
+      <p class="hero-description">
+        I'm a Cybersecurity Analyst specializing in Digital Forensics & Incident Response (DFIR) and Security Operations Center (SOC) analysis. I investigate security incidents, analyze threat patterns, and reconstruct attack timelines.
       </p>
-      <p class="intro">
-        Specialized in <strong>DFIR</strong> & <strong>SOC Operations</strong> with hands-on experience in security investigations, threat detection, and incident response.
-      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-secondary">Download Resume</a>
+      </div>
+      
       <div class="hero-stats">
         <div class="stat-item">
-          <i class="fas fa-flask"></i>
-          <span class="stat-number">10+</span>
-          <span class="stat-label">Projects</span>
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Security Investigations</div>
         </div>
         <div class="stat-item">
-          <i class="fas fa-certificate"></i>
-          <span class="stat-number">5+</span>
-          <span class="stat-label">Certifications</span>
+          <div class="stat-number">15+</div>
+          <div class="stat-label">DFIR Projects</div>
         </div>
         <div class="stat-item">
-          <i class="fas fa-bug"></i>
-          <span class="stat-number">50+</span>
-          <span class="stat-label">Labs Completed</span>
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Incident Resolution</div>
         </div>
-      </div>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">
-          <i class="fas fa-eye"></i>
-          <span>View Projects</span>
-          <div class="btn-glow"></div>
-        </a>
-        <a href="https://github.com/mohamedmOoka7" target="_blank" class="btn btn-secondary">
-          <i class="fab fa-github"></i>
-          <span>GitHub</span>
-        </a>
-      </div>
-      <div class="scroll-indicator">
-        <i class="fas fa-chevron-down"></i>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- ================= ABOUT ================= -->
+
+    <!-- ================= ABOUT SECTION ================= -->
     <section class="section" id="about">
-      <div class="section-header">
-        <span class="section-number">01.</span>
-        <h2>About Me</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="about-content">
-        <div class="about-text card">
-          <p class="highlight-text">
-            <i class="fas fa-quote-left"></i>
-            Passionate about cybersecurity with a focus on defending digital assets and investigating security incidents.
-          </p>
-          <p>
-            As a <strong>Cybersecurity Analyst</strong>, I specialize in Digital Forensics & Incident Response (DFIR) and Security Operations Center (SOC) activities. My expertise includes analyzing security logs, detecting threats, investigating incidents, and reconstructing attack timelines.
-          </p>
-          <p>
-            I've completed numerous hands-on labs and simulations covering real-world security scenarios, from malware analysis to network intrusion detection. My approach combines technical knowledge with analytical thinking to identify and mitigate security risks effectively.
-          </p>
-          <div class="about-highlights">
-            <div class="highlight-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Incident Response & Handling</span>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Threat Detection & Analysis</span>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Digital Forensics Investigation</span>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-check-circle"></i>
-              <span>Security Monitoring & SIEM</span>
-            </div>
-          </div>
+      <div class="section-container">
+        <div class="section-header">
+          <h2>About Me</h2>
+          <p class="section-subtitle">Background & expertise in cybersecurity operations</p>
         </div>
-        <div class="about-image">
-          <div class="image-wrapper">
-            <div class="image-border"></div>
-            <img src="https://placehold.co/400x500?text=Professional+cybersecurity+analyst+working+at+modern+SOC+workstation+with+multiple+monitors+displaying+security+dashboards" alt="Professional cybersecurity analyst working at modern SOC workstation with multiple monitors displaying security dashboards" />
+        
+        <div class="about-grid">
+          <div class="about-content">
+            <p class="lead-text">
+              I'm a Cybersecurity Analyst with a focus on Digital Forensics, Incident Response, and Security Operations.
+            </p>
+            <p>
+              My expertise lies in investigating security incidents, analyzing malicious activity, and reconstructing attack timelines through forensic analysis. I have hands-on experience in threat detection, log analysis, and incident response workflows.
+            </p>
+            <p>
+              I leverage tools like SIEM platforms, forensic analysis tools, and threat intelligence to identify, contain, and remediate security threats. My approach combines technical investigation skills with a methodical understanding of attacker techniques and defense strategies.
+            </p>
+            <p>
+              Beyond technical skills, I'm passionate about continuous learning in the rapidly evolving cybersecurity landscape, staying current with emerging threats, attack vectors, and defensive technologies.
+            </p>
+          </div>
+          
+          <div class="about-sidebar">
+            <div class="info-card">
+              <h3>Technical Focus</h3>
+              <ul class="focus-list">
+                <li>Digital Forensics & Incident Response</li>
+                <li>Security Operations (SOC)</li>
+                <li>Threat Detection & Analysis</li>
+                <li>Log Analysis & SIEM</li>
+                <li>Malware Analysis</li>
+                <li>Attack Timeline Reconstruction</li>
+              </ul>
+            </div>
+            
+            <div class="info-card">
+              <h3>Tools & Platforms</h3>
+              <div class="tools-grid">
+                <span class="tool-tag">Splunk</span>
+                <span class="tool-tag">Wireshark</span>
+                <span class="tool-tag">Autopsy</span>
+                <span class="tool-tag">Volatility</span>
+                <span class="tool-tag">FTK Imager</span>
+                <span class="tool-tag">OSINT Tools</span>
+                <span class="tool-tag">Linux CLI</span>
+                <span class="tool-tag">PowerShell</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= SKILLS ================= -->
-    <section class="section" id="skills">
-      <div class="section-header">
-        <span class="section-number">02.</span>
-        <h2>Technical Skills</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-category card">
-          <div class="category-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3>Security Operations</h3>
-          <div class="skills-list">
-            <span class="skill-tag"><i class="fas fa-eye"></i> SOC Operations</span>
-            <span class="skill-tag"><i class="fas fa-chart-line"></i> SIEM Analysis</span>
-            <span class="skill-tag"><i class="fas fa-exclamation-triangle"></i> Threat Detection</span>
-            <span class="skill-tag"><i class="fas fa-bell"></i> Alert Triage</span>
-            <span class="skill-tag"><i class="fas fa-search"></i> Log Analysis</span>
-          </div>
+    <!-- ================= EXPERIENCE SECTION ================= -->
+    <section class="section section-dark" id="experience">
+      <div class="section-container">
+        <div class="section-header">
+          <h2>Experience & Skills</h2>
+          <p class="section-subtitle">Core competencies in cybersecurity operations</p>
         </div>
-        <div class="skill-category card">
-          <div class="category-icon">
-            <i class="fas fa-fire-extinguisher"></i>
+        
+        <div class="experience-grid">
+          <div class="experience-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+              </svg>
+            </div>
+            <h3>Incident Response</h3>
+            <p>Rapid detection, investigation, and containment of security incidents. Experience handling malware infections, data breaches, and unauthorized access cases.</p>
           </div>
-          <h3>Incident Response</h3>
-          <div class="skills-list">
-            <span class="skill-tag"><i class="fas fa-user-shield"></i> DFIR</span>
-            <span class="skill-tag"><i class="fas fa-microscope"></i> Forensic Analysis</span>
-            <span class="skill-tag"><i class="fas fa-clock"></i> Timeline Reconstruction</span>
-            <span class="skill-tag"><i class="fas fa-tools"></i> Artifact Analysis</span>
-            <span class="skill-tag"><i class="fas fa-file-medical-alt"></i> Evidence Collection</span>
+          
+          <div class="experience-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <h3>Digital Forensics</h3>
+            <p>Forensic analysis of compromised systems, memory dumps, and disk images. Skilled in artifact analysis, timeline reconstruction, and evidence collection.</p>
           </div>
-        </div>
-        <div class="skill-category card">
-          <div class="category-icon">
-            <i class="fas fa-laptop-code"></i>
+          
+          <div class="experience-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3>SOC Operations</h3>
+            <p>Security monitoring and alert triage in SOC environments. Proficient in SIEM platforms, log correlation, and threat detection rule creation.</p>
           </div>
-          <h3>Technical Tools</h3>
-          <div class="skills-list">
-            <span class="skill-tag"><i class="fab fa-linux"></i> Linux</span>
-            <span class="skill-tag"><i class="fab fa-windows"></i> Windows Forensics</span>
-            <span class="skill-tag"><i class="fas fa-terminal"></i> CLI Tools</span>
-            <span class="skill-tag"><i class="fas fa-network-wired"></i> Wireshark</span>
-            <span class="skill-tag"><i class="fas fa-bug"></i> Malware Analysis</span>
+          
+          <div class="experience-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+            </div>
+            <h3>Threat Detection</h3>
+            <p>Identifying malicious activity through log analysis, network traffic inspection, and behavioral anomaly detection using various security tools.</p>
           </div>
-        </div>
-        <div class="skill-category card">
-          <div class="category-icon">
-            <i class="fas fa-brain"></i>
+          
+          <div class="experience-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <line x1="9" y1="15" x2="15" y2="15"/>
+              </svg>
+            </div>
+            <h3>Malware Analysis</h3>
+            <p>Static and dynamic analysis of malware samples. Experience in identifying indicators of compromise (IOCs) and understanding malware behavior.</p>
           </div>
-          <h3>Analysis & Research</h3>
-          <div class="skills-list">
-            <span class="skill-tag"><i class="fas fa-binoculars"></i> Threat Intelligence</span>
-            <span class="skill-tag"><i class="fas fa-sitemap"></i> Attack Pattern Analysis</span>
-            <span class="skill-tag"><i class="fas fa-file-code"></i> IOC Identification</span>
-            <span class="skill-tag"><i class="fas fa-project-diagram"></i> Kill Chain Mapping</span>
-            <span class="skill-tag"><i class="fas fa-database"></i> OSINT</span>
+          
+          <div class="experience-card">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3>Timeline Analysis</h3>
+            <p>Reconstructing attack sequences and creating detailed timelines of security incidents from various log sources and forensic artifacts.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= FOCUS AREAS ================= -->
-    <section class="section focus-section">
-      <div class="section-header">
-        <span class="section-number">03.</span>
-        <h2>Focus Areas</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="focus-grid">
-        <div class="focus-card card">
-          <div class="focus-icon">
-            <i class="fas fa-fire-extinguisher"></i>
-            <div class="icon-glow"></div>
-          </div>
-          <h3>Incident Response</h3>
-          <p>Comprehensive incident handling from initial detection through containment, eradication, recovery, and post-incident analysis.</p>
-          <ul class="focus-list">
-            <li><i class="fas fa-arrow-right"></i> Incident Detection & Triage</li>
-            <li><i class="fas fa-arrow-right"></i> Containment Strategies</li>
-            <li><i class="fas fa-arrow-right"></i> Root Cause Analysis</li>
-            <li><i class="fas fa-arrow-right"></i> Recovery & Remediation</li>
-          </ul>
-        </div>
-        <div class="focus-card card">
-          <div class="focus-icon">
-            <i class="fas fa-exclamation-triangle"></i>
-            <div class="icon-glow"></div>
-          </div>
-          <h3>Threat Detection</h3>
-          <p>Proactive threat hunting and detection using advanced log analysis, SIEM platforms, and behavioral analytics in SOC environments.</p>
-          <ul class="focus-list">
-            <li><i class="fas fa-arrow-right"></i> SIEM Rule Development</li>
-            <li><i class="fas fa-arrow-right"></i> Anomaly Detection</li>
-            <li><i class="fas fa-arrow-right"></i> Threat Hunting</li>
-            <li><i class="fas fa-arrow-right"></i> Alert Investigation</li>
-          </ul>
-        </div>
-        <div class="focus-card card">
-          <div class="focus-icon">
-            <i class="fas fa-search"></i>
-            <div class="icon-glow"></div>
-          </div>
-          <h3>Digital Forensics</h3>
-          <p>Deep-dive forensic investigations analyzing host artifacts, memory dumps, and logs to reconstruct complete attack narratives.</p>
-          <ul class="focus-list">
-            <li><i class="fas fa-arrow-right"></i> Memory Forensics</li>
-            <li><i class="fas fa-arrow-right"></i> Disk Analysis</li>
-            <li><i class="fas fa-arrow-right"></i> Network Forensics</li>
-            <li><i class="fas fa-arrow-right"></i> Timeline Analysis</li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ================= PROJECTS ================= -->
+    <!-- ================= PROJECTS SECTION ================= -->
     <section class="section" id="projects">
-      <div class="section-header">
-        <span class="section-number">04.</span>
-        <h2>Featured Projects</h2>
-        <div class="section-line"></div>
+      <div class="section-container">
+        <div class="section-header">
+          <h2>Featured Projects</h2>
+          <p class="section-subtitle">Real-world cybersecurity investigations and labs</p>
+        </div>
+        
+        <div class="projects-grid">
+          
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-label">DFIR Investigation</div>
+              <div class="project-tags">
+                <span class="tag">Forensics</span>
+                <span class="tag">Incident Response</span>
+              </div>
+            </div>
+            <h3>Advanced Persistent Threat Investigation</h3>
+            <p class="project-description">
+              Complete DFIR investigation of a sophisticated APT attack. Analyzed compromised Windows endpoints, reconstructed attacker timeline, identified persistence mechanisms, and traced lateral movement across the network.
+            </p>
+            <div class="project-tech">
+              <span>Autopsy</span>
+              <span>Volatility</span>
+              <span>Wireshark</span>
+              <span>Timeline Explorer</span>
+            </div>
+            <a href="project-apt-investigation.html" class="project-link">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </article>
+          
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-label">SOC Analysis</div>
+              <div class="project-tags">
+                <span class="tag">SIEM</span>
+                <span class="tag">Log Analysis</span>
+              </div>
+            </div>
+            <h3>Enterprise SOC Monitoring Lab</h3>
+            <p class="project-description">
+              Configured and operated a simulated SOC environment with Splunk SIEM. Created custom detection rules, performed alert triage, and documented incident response procedures for common attack patterns.
+            </p>
+            <div class="project-tech">
+              <span>Splunk</span>
+              <span>Sysmon</span>
+              <span>Elastic Stack</span>
+              <span>Security Onion</span>
+            </div>
+            <a href="project-soc-lab.html" class="project-link">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </article>
+          
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-label">Malware Analysis</div>
+              <div class="project-tags">
+                <span class="tag">Reverse Engineering</span>
+                <span class="tag">Threat Intel</span>
+              </div>
+            </div>
+            <h3>Ransomware Family Analysis</h3>
+            <p class="project-description">
+              Static and dynamic analysis of modern ransomware samples. Identified encryption mechanisms, command & control infrastructure, and extracted indicators of compromise for threat intelligence sharing.
+            </p>
+            <div class="project-tech">
+              <span>IDA Pro</span>
+              <span>Ghidra</span>
+              <span>Cuckoo Sandbox</span>
+              <span>YARA</span>
+            </div>
+            <a href="project-ransomware.html" class="project-link">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </article>
+          
+          <!-- Project 4 -->
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-label">Network Forensics</div>
+              <div class="project-tags">
+                <span class="tag">PCAP Analysis</span>
+                <span class="tag">Threat Hunting</span>
+              </div>
+            </div>
+            <h3>Network Traffic Threat Hunting</h3>
+            <p class="project-description">
+              Deep packet analysis of suspicious network traffic. Identified data exfiltration attempts, command & control beaconing, and lateral movement indicators through comprehensive PCAP investigation.
+            </p>
+            <div class="project-tech">
+              <span>Wireshark</span>
+              <span>NetworkMiner</span>
+              <span>Zeek</span>
+              <span>Suricata</span>
+            </div>
+            <a href="project-network-forensics.html" class="project-link">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </article>
+          
+          <!-- Project 5 -->
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-label">Threat Intelligence</div>
+              <div class="project-tags">
+                <span class="tag">OSINT</span>
+                <span class="tag">CTI</span>
+              </div>
+            </div>
+            <h3>Cyber Threat Intelligence Platform</h3>
+            <p class="project-description">
+              Built an automated threat intelligence gathering platform using OSINT sources. Aggregates IOCs, tracks threat actor campaigns, and provides actionable intelligence for defensive operations.
+            </p>
+            <div class="project-tech">
+              <span>MISP</span>
+              <span>TheHive</span>
+              <span>Python</span>
+              <span>STIX/TAXII</span>
+            </div>
+            <a href="project-threat-intel.html" class="project-link">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </article>
+          
+          <!-- Project 6 -->
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-label">Memory Forensics</div>
+              <div class="project-tags">
+                <span class="tag">Memory Analysis</span>
+                <span class="tag">Malware</span>
+              </div>
+            </div>
+            <h3>Advanced Memory Dump Analysis</h3>
+            <p class="project-description">
+              Forensic analysis of memory dumps from compromised systems. Identified injected code, extracted malicious processes, and recovered encryption keys using advanced memory forensics techniques.
+            </p>
+            <div class="project-tech">
+              <span>Volatility 3</span>
+              <span>Rekall</span>
+              <span>WinDbg</span>
+              <span>FTK Imager</span>
+            </div>
+            <a href="project-memory-forensics.html" class="project-link">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </article>
+          
+        </div>
       </div>
-      <div class="projects-grid">
-        <div class="project-card card">
-          <div class="project-image">
-            <img src="https://placehold.co/600x400?text=DFIR+investigation+dashboard+showing+forensic+timeline+analysis+with+event+correlation+graphs+and+artifact+visualization" alt="DFIR investigation dashboard showing forensic timeline analysis with event correlation graphs and artifact visualization" />
-            <div class="project-overlay">
-              <a href="project-dfir.html" class="project-link">
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="project-content">
-            <div class="project-tags">
-              <span class="tag">DFIR</span>
-              <span class="tag">Forensics</span>
-              <span class="tag">Investigation</span>
-            </div>
-            <h3>
-              <a href="project-dfir.html">
-                <i class="fas fa-flask"></i> DFIR Investigation Lab
-              </a>
-            </h3>
-            <p>
-              Comprehensive DFIR case study demonstrating end-to-end incident investigation including evidence collection, forensic analysis, IOC extraction, and complete attacker timeline reconstruction.
-            </p>
-            <div class="project-footer">
-              <div class="project-tech">
-                <span><i class="fas fa-tools"></i> Autopsy</span>
-                <span><i class="fas fa-memory"></i> Volatility</span>
-                <span><i class="fas fa-terminal"></i> CLI Tools</span>
-              </div>
-              <a href="project-dfir.html" class="view-project">
-                View Case Study <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+    </section>
 
-        <div class="project-card card">
-          <div class="project-image">
-            <img src="https://placehold.co/600x400?text=SOC+monitoring+dashboard+with+security+alerts+SIEM+interface+log+analysis+panels+and+threat+detection+metrics" alt="SOC monitoring dashboard with security alerts SIEM interface log analysis panels and threat detection metrics" />
-            <div class="project-overlay">
-              <a href="#" class="project-link">
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="project-content">
-            <div class="project-tags">
-              <span class="tag">SOC</span>
-              <span class="tag">SIEM</span>
-              <span class="tag">Detection</span>
-            </div>
-            <h3>
-              <i class="fas fa-desktop"></i> SOC Monitoring & Detection
-            </h3>
-            <p>
-              Real-world SOC scenarios covering security monitoring, alert triage, log correlation, and threat detection using industry-standard SIEM platforms and analysis techniques.
+    <!-- ================= CONTACT SECTION ================= -->
+    <section class="section section-contact" id="contact">
+      <div class="section-container">
+        <div class="contact-content">
+          <div class="contact-text">
+            <h2>Let's Connect</h2>
+            <p class="contact-description">
+              Interested in collaboration, discussing cybersecurity projects, or exploring opportunities? I'm always open to connecting with fellow security professionals and organizations.
             </p>
-            <div class="project-footer">
-              <div class="project-tech">
-                <span><i class="fas fa-chart-line"></i> Splunk</span>
-                <span><i class="fas fa-database"></i> ELK Stack</span>
-                <span><i class="fas fa-code"></i> KQL</span>
+            <div class="contact-info">
+              <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <a href="mailto:mohamed.ashraf.abdallah65@gmail.com">mohamed.ashraf.abdallah65@gmail.com</a>
               </div>
-              <a href="#" class="view-project">
-                View Project <i class="fas fa-arrow-right"></i>
-              </a>
+              <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+                <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohamed-mooka</a>
+              </div>
+              <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+                <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer">github.com/mohamedmOoka7</a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="project-card card">
-          <div class="project-image">
-            <img src="https://placehold.co/600x400?text=Malware+analysis+environment+with+disassembly+code+hex+editor+behavioral+analysis+tools+and+sandbox+interface" alt="Malware analysis environment with disassembly code hex editor behavioral analysis tools and sandbox interface" />
-            <div class="project-overlay">
-              <a href="#" class="project-link">
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-          <div class="project-content">
-            <div class="project-tags">
-              <span class="tag">Malware</span>
-              <span class="tag">Reverse Engineering</span>
-              <span class="tag">Analysis</span>
-            </div>
-            <h3>
-              <i class="fas fa-bug"></i> Malware Analysis Basics
-            </h3>
-            <p>
-              Static and dynamic malware analysis projects focusing on identifying malicious behavior, extracting indicators of compromise, and understanding attack techniques through controlled analysis.
-            </p>
-            <div class="project-footer">
-              <div class="project-tech">
-                <span><i class="fas fa-microscope"></i> IDA Pro</span>
-                <span><i class="fas fa-cube"></i> Sandbox</span>
-                <span><i class="fas fa-file-code"></i> PE Analysis</span>
-              </div>
-              <a href="#" class="view-project">
-                View Project <i class="fas fa-arrow-right"></i>
-              </a>
-            </div>
+          
+          <div class="contact-links-grid">
+            <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-card">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span>Download Resume</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" class="contact-card">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+              <span>LinkedIn Profile</span>
+            </a>
+            
+            <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" class="contact-card">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              <span>GitHub Projects</span>
+            </a>
+            
+            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <span>Send Email</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section class="section contact-section" id="contact">
-      <div class="section-header">
-        <span class="section-number">05.</span>
-        <h2>Get In Touch</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="contact-content">
-        <p class="contact-intro">
-          I'm currently open to cybersecurity opportunities and collaborations. Whether you have a question, want to discuss a project, or just want to connect, feel free to reach out!
-        </p>
-        <div class="contact-grid">
-          <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-card card">
-            <div class="contact-icon">
-              <i class="fas fa-download"></i>
-            </div>
-            <h3>Download Resume</h3>
-            <p>Get my detailed CV</p>
-            <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-          </a>
-          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card card">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <h3>Email Me</h3>
-            <p>mohamed.ashraf.abdallah65@gmail.com</p>
-            <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-          </a>
-          <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card card">
-            <div class="contact-icon">
-              <i class="fab fa-linkedin"></i>
-            </div>
-            <h3>LinkedIn</h3>
-            <p>Connect with me professionally</p>
-            <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-          </a>
-          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card card">
-            <div class="contact-icon">
-              <i class="fab fa-github"></i>
-            </div>
-            <h3>GitHub</h3>
-            <p>Check out my repositories</p>
-            <span class="contact-arrow"><i class="fas fa-arrow-right"></i></span>
-          </a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <!-- ================= FOOTER ================= -->
-  <footer>
+  <footer class="footer">
     <div class="footer-content">
-      <p>Designed & Built by Mohamed Mooka</p>
-      <p class="footer-year">© 2025 Mohamed Mooka — Cybersecurity Portfolio</p>
-      <div class="footer-socials">
-        <a href="https://github.com/mohamedmOoka7" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo">Mohamed Mooka</div>
+          <p>Cybersecurity Analyst specializing in DFIR and SOC operations</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Projects</h4>
+            <ul>
+              <li><a href="project-apt-investigation.html">APT Investigation</a></li>
+              <li><a href="project-soc-lab.html">SOC Lab</a></li>
+              <li><a href="project-ransomware.html">Malware Analysis</a></li>
+              <li><a href="project-network-forensics.html">Network Forensics</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4>Connect</h4>
+            <ul>
+              <li><a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="mailto:mohamed.ashraf.abdallah65@gmail.com">Email</a></li>
+              <li><a href="assets/Mohamed_Mooka_CV.pdf" download>Resume</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2025</span> Mohamed Mooka. All rights reserved.</p>
+        <p class="footer-tagline">Securing the digital frontier through investigation and defense</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+
 </body>
 </html>
