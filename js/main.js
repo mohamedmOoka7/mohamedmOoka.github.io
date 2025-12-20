@@ -1,58 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Skip all animations on project pages
   if (document.body.classList.contains("no-animate")) {
     return
   }
 
   /* ===============================================
-     PARTICLES ANIMATION
+     PARTICLES ANIMATION - Optimized Canvas
   =============================================== */
 
   const canvas = document.querySelector(".particles-canvas")
 
   if (canvas) {
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext("2d", { alpha: true })
     let particles = []
     let animationFrameId
+    let isVisible = true
 
     function resizeCanvas() {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const dpr = window.devicePixelRatio || 1
+      canvas.width = window.innerWidth * dpr
+      canvas.height = window.innerHeight * dpr
+      canvas.style.width = `${window.innerWidth}px`
+      canvas.style.height = `${window.innerHeight}px`
+      ctx.scale(dpr, dpr)
     }
 
     resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
+
+    let resizeTimeout
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        resizeCanvas()
+        init()
+      }, 250)
+    })
 
     class Particle {
       constructor() {
-        this.x = Math.random() * canvas.width
-        this.y = Math.random() * canvas.height
-        this.size = Math.random() * 2 + 1
-        this.speedX = Math.random() * 0.5 - 0.25
-        this.speedY = Math.random() * 0.5 - 0.25
-        this.opacity = Math.random() * 0.5 + 0.2
+        this.reset()
+      }
+
+      reset() {
+        this.x = Math.random() * window.innerWidth
+        this.y = Math.random() * window.innerHeight
+        this.size = Math.random() * 2.5 + 1
+        this.speedX = Math.random() * 0.6 - 0.3
+        this.speedY = Math.random() * 0.6 - 0.3
+        this.opacity = Math.random() * 0.6 + 0.3
       }
 
       update() {
         this.x += this.speedX
         this.y += this.speedY
 
-        if (this.x > canvas.width) this.x = 0
-        if (this.x < 0) this.x = canvas.width
-        if (this.y > canvas.height) this.y = 0
-        if (this.y < 0) this.y = canvas.height
+        // Wrap around edges
+        if (this.x > window.innerWidth) this.x = 0
+        if (this.x < 0) this.x = window.innerWidth
+        if (this.y > window.innerHeight) this.y = 0
+        if (this.y < 0) this.y = window.innerHeight
       }
 
       draw() {
-        ctx.fillStyle = `rgba(56, 189, 248, ${this.opacity})`
+        ctx.shadowBlur = 8
+        ctx.shadowColor = `rgba(59, 130, 246, ${this.opacity})`
+        ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
         ctx.fill()
+        ctx.shadowBlur = 0
       }
     }
 
     function init() {
       particles = []
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000)
+      const numberOfParticles = Math.floor((window.innerWidth * window.innerHeight) / 12000)
 
       for (let i = 0; i < numberOfParticles; i++) {
         particles.push(new Particle())
@@ -60,15 +82,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function connectParticles() {
+      const maxDistance = 150
+      const maxDistanceSq = maxDistance * maxDistance
+
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
           const dy = particles[i].y - particles[j].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
+          const distanceSq = dx * dx + dy * dy
 
-          if (distance < 120) {
-            ctx.strokeStyle = `rgba(56, 189, 248, ${0.15 * (1 - distance / 120)})`
-            ctx.lineWidth = 1
+          if (distanceSq < maxDistanceSq) {
+            const opacity = 0.2 * (1 - Math.sqrt(distanceSq) / maxDistance)
+            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
+            ctx.lineWidth = 1.5
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
@@ -79,7 +105,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      if (!isVisible) return
+
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
 
       particles.forEach((particle) => {
         particle.update()
@@ -89,6 +117,15 @@ document.addEventListener("DOMContentLoaded", () => {
       connectParticles()
       animationFrameId = requestAnimationFrame(animate)
     }
+
+    document.addEventListener("visibilitychange", () => {
+      isVisible = !document.hidden
+      if (isVisible) {
+        animate()
+      } else {
+        cancelAnimationFrame(animationFrameId)
+      }
+    })
 
     init()
     animate()
@@ -100,40 +137,36 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     FLOATING NAVIGATION ACTIVE STATE
+     FLOATING NAVIGATION - Active State
   =============================================== */
 
   const navDots = document.querySelectorAll(".nav-dot")
   const sections = document.querySelectorAll("section[id]")
 
-  function updateActiveNav() {
-    const scrollY = window.pageYOffset
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.getAttribute("id")
+          navDots.forEach((dot) => {
+            dot.classList.toggle("active", dot.getAttribute("data-section") === sectionId)
+          })
+        }
+      })
+    },
+    {
+      threshold: 0.5,
+      rootMargin: "-100px 0px -100px 0px",
+    },
+  )
 
-    sections.forEach((section) => {
-      const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 200
-      const sectionId = section.getAttribute("id")
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navDots.forEach((dot) => {
-          dot.classList.remove("active")
-          if (dot.getAttribute("data-section") === sectionId) {
-            dot.classList.add("active")
-          }
-        })
-      }
-    })
-  }
-
-  window.addEventListener("scroll", updateActiveNav)
+  sections.forEach((section) => navObserver.observe(section))
 
   /* ===============================================
-     SMOOTH SCROLL WITH OFFSET
+     SMOOTH SCROLL
   =============================================== */
 
-  const links = document.querySelectorAll('a[href^="#"]')
-
-  links.forEach((link) => {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
       const href = link.getAttribute("href")
 
@@ -157,22 +190,22 @@ document.addEventListener("DOMContentLoaded", () => {
      SCROLL REVEAL ANIMATION
   =============================================== */
 
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show")
+          revealObserver.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    },
+  )
 
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show")
-        revealObserver.unobserve(entry.target)
-      }
-    })
-  }, observerOptions)
-
-  const revealElements = document.querySelectorAll(".section, .card")
-  revealElements.forEach((el) => revealObserver.observe(el))
+  document.querySelectorAll(".section, .card").forEach((el) => revealObserver.observe(el))
 
   /* ===============================================
      BACK TO TOP BUTTON
@@ -181,11 +214,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToTopButton = document.querySelector(".back-to-top")
 
   if (backToTopButton) {
+    let ticking = false
+
     window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 500) {
-        backToTopButton.classList.add("show")
-      } else {
-        backToTopButton.classList.remove("show")
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          backToTopButton.classList.toggle("show", window.pageYOffset > 500)
+          ticking = false
+        })
+        ticking = true
       }
     })
 
@@ -198,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     TYPING EFFECT FOR SUBTITLE
+     TYPING EFFECT
   =============================================== */
 
   const typingElement = document.querySelector(".typing-effect")
@@ -220,60 +257,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     PARALLAX EFFECT FOR HERO
+     PARALLAX EFFECT
   =============================================== */
 
   const heroBackground = document.querySelector(".hero-background")
 
   if (heroBackground) {
+    let ticking = false
+
     window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset
-      const parallaxSpeed = 0.5
-
-      heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset
+          const parallaxSpeed = 0.5
+          heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`
+          ticking = false
+        })
+        ticking = true
+      }
     })
-  }
-
-  /* ===============================================
-     STATS COUNTER ANIMATION
-  =============================================== */
-
-  const statsNumbers = document.querySelectorAll(".stat-number")
-  let hasAnimated = false
-
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          hasAnimated = true
-
-          statsNumbers.forEach((stat) => {
-            const target = Number.parseInt(stat.textContent)
-            const duration = 2000
-            const increment = target / (duration / 16)
-            let current = 0
-
-            const updateCounter = () => {
-              current += increment
-              if (current < target) {
-                stat.textContent = Math.floor(current) + "+"
-                requestAnimationFrame(updateCounter)
-              } else {
-                stat.textContent = target + "+"
-              }
-            }
-
-            updateCounter()
-          })
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const heroStats = document.querySelector(".hero-stats")
-  if (heroStats) {
-    statsObserver.observe(heroStats)
   }
 
   /* ===============================================
@@ -291,46 +293,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const images = document.querySelectorAll("img[data-src]")
 
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target
-        img.src = img.dataset.src
-        img.removeAttribute("data-src")
-        observer.unobserve(img)
-      }
+  if (images.length > 0) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target
+          img.src = img.dataset.src
+          img.removeAttribute("data-src")
+          observer.unobserve(img)
+        }
+      })
     })
-  })
 
-  images.forEach((img) => imageObserver.observe(img))
-
-  /* ===============================================
-     PERFORMANCE OPTIMIZATION
-  =============================================== */
-
-  function debounce(func, wait = 10) {
-    let timeout
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout)
-        func(...args)
-      }
-      clearTimeout(timeout)
-      timeout = setTimeout(later, wait)
-    }
+    images.forEach((img) => imageObserver.observe(img))
   }
 
-  window.addEventListener(
-    "scroll",
-    debounce(() => {
-      // Scroll-dependent functions
-    }, 10),
-  )
-
   /* ===============================================
-     CONSOLE MESSAGE
+     CONSOLE BRANDING
   =============================================== */
 
-  console.log("%c🛡️ Mohamed Mooka Portfolio", "font-size: 20px; font-weight: bold; color: #38bdf8;")
-  console.log("%cLooking for a Cybersecurity Analyst? Let's connect!", "font-size: 14px; color: #9ca3af;")
+  console.log(
+    "%c🛡️ Mohamed Mooka Portfolio",
+    "font-size: 20px; font-weight: bold; color: #3b82f6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);",
+  )
+  console.log("%cCybersecurity Analyst | DFIR & SOC Operations", "font-size: 14px; color: #94a3b8; font-style: italic;")
+  console.log("%cLooking to connect? mohamed.ashraf.abdallah65@gmail.com", "font-size: 12px; color: #60a5fa;")
 })
