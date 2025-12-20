@@ -60,18 +60,13 @@ interactiveElements.forEach((el) => {
 // ==================================================
 
 const navbar = document.getElementById("navbar")
-let lastScroll = 0
 
 window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset
-
-  if (currentScroll > 100) {
+  if (window.pageYOffset > 100) {
     navbar.classList.add("scrolled")
   } else {
     navbar.classList.remove("scrolled")
   }
-
-  lastScroll = currentScroll
 })
 
 // ==================================================
@@ -87,10 +82,10 @@ function animateCounter(element) {
   const timer = setInterval(() => {
     current += increment
     if (current >= target) {
-      element.textContent = target + (element.textContent.includes("%") ? "" : "+")
+      element.textContent = target + "+"
       clearInterval(timer)
     } else {
-      element.textContent = Math.floor(current) + (element.textContent.includes("%") ? "" : "+")
+      element.textContent = Math.floor(current) + "+"
     }
   }, 16)
 }
@@ -99,15 +94,13 @@ function animateCounter(element) {
 // SCROLL REVEAL ANIMATIONS
 // ==================================================
 
-const revealElements = document.querySelectorAll("[data-reveal]")
-
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("revealed")
 
-        // Animate stats when they come into view
+        // Animate stats
         if (entry.target.classList.contains("stats-inline")) {
           const statNumbers = entry.target.querySelectorAll(".stat-number")
           statNumbers.forEach((stat) => {
@@ -120,38 +113,22 @@ const revealObserver = new IntersectionObserver(
       }
     })
   },
-  {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  },
+  { threshold: 0.1 },
 )
 
-revealElements.forEach((el) => revealObserver.observe(el))
-
-// Auto-add reveal animation to sections
 document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll(".section")
-  const cards = document.querySelectorAll(".card, .project-card, .expertise-card, .timeline-item")
+  const revealElements = document.querySelectorAll("[data-reveal]")
+  revealElements.forEach((el) => revealObserver.observe(el))
 
-  sections.forEach((section) => {
-    if (!section.hasAttribute("data-reveal")) {
-      section.setAttribute("data-reveal", "")
+  // Auto-add reveal to elements
+  document.querySelectorAll(".section, .project-card, .skill-category").forEach((el) => {
+    if (!el.hasAttribute("data-reveal")) {
+      el.setAttribute("data-reveal", "")
+      revealObserver.observe(el)
     }
   })
 
-  cards.forEach((card, index) => {
-    if (!card.hasAttribute("data-reveal")) {
-      card.setAttribute("data-reveal", "")
-      card.style.transitionDelay = `${index * 0.1}s`
-    }
-  })
-
-  // Re-observe new elements
-  document.querySelectorAll("[data-reveal]").forEach((el) => {
-    revealObserver.observe(el)
-  })
-
-  // Trigger stats animation when in view
+  // Stats animation
   const statsSection = document.querySelector(".stats-inline")
   if (statsSection) {
     statsSection.setAttribute("data-reveal", "")
@@ -181,18 +158,16 @@ if (typingText) {
 }
 
 // ==================================================
-// SMOOTH SCROLL FOR ANCHOR LINKS
+// SMOOTH SCROLL
 // ==================================================
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault()
     const target = document.querySelector(this.getAttribute("href"))
-
     if (target) {
-      const offsetTop = target.offsetTop - 80
       window.scrollTo({
-        top: offsetTop,
+        top: target.offsetTop - 80,
         behavior: "smooth",
       })
     }
@@ -200,7 +175,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 })
 
 // ==================================================
-// MOBILE MENU TOGGLE
+// MOBILE MENU
 // ==================================================
 
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
@@ -212,25 +187,16 @@ if (mobileMenuToggle) {
     mobileMenuToggle.classList.toggle("active")
   })
 
-  // Close menu when clicking on a link
   document.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("active")
       mobileMenuToggle.classList.remove("active")
     })
   })
-
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-      navLinks.classList.remove("active")
-      mobileMenuToggle.classList.remove("active")
-    }
-  })
 }
 
 // ==================================================
-// ANIMATED PARTICLES BACKGROUND
+// PARTICLES BACKGROUND
 // ==================================================
 
 const canvas = document.getElementById("particles-canvas")
@@ -252,7 +218,6 @@ if (canvas && ctx) {
     update() {
       this.x += this.vx
       this.y += this.vy
-
       if (this.x < 0 || this.x > canvas.width) this.vx *= -1
       if (this.y < 0 || this.y > canvas.height) this.vy *= -1
     }
@@ -266,9 +231,7 @@ if (canvas && ctx) {
   }
 
   const particles = []
-  const particleCount = 80
-
-  for (let i = 0; i < particleCount; i++) {
+  for (let i = 0; i < 80; i++) {
     particles.push(new Particle())
   }
 
@@ -293,14 +256,11 @@ if (canvas && ctx) {
 
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-    particles.forEach((particle) => {
-      particle.update()
-      particle.draw()
+    particles.forEach((p) => {
+      p.update()
+      p.draw()
     })
-
     connectParticles()
-
     requestAnimationFrame(animate)
   }
 
