@@ -1,8 +1,101 @@
 // ==================================================
-// MAIN JAVASCRIPT FILE
+// ULTRA-MODERN PORTFOLIO - MAIN JAVASCRIPT
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  /* ===============================================
+     PARTICLE ANIMATION CANVAS
+  =============================================== */
+
+  const canvas = document.getElementById("particlesCanvas")
+  if (canvas) {
+    const ctx = canvas.getContext("2d")
+    let particles = []
+    const particleCount = 50
+
+    // Resize canvas
+    function resizeCanvas() {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }
+
+    resizeCanvas()
+    window.addEventListener("resize", resizeCanvas)
+
+    // Particle class
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width
+        this.y = Math.random() * canvas.height
+        this.size = Math.random() * 2 + 1
+        this.speedX = Math.random() * 0.5 - 0.25
+        this.speedY = Math.random() * 0.5 - 0.25
+        this.opacity = Math.random() * 0.5 + 0.2
+      }
+
+      update() {
+        this.x += this.speedX
+        this.y += this.speedY
+
+        if (this.x > canvas.width) this.x = 0
+        if (this.x < 0) this.x = canvas.width
+        if (this.y > canvas.height) this.y = 0
+        if (this.y < 0) this.y = canvas.height
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(6, 182, 212, ${this.opacity})`
+        ctx.beginPath()
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+        ctx.fill()
+      }
+    }
+
+    // Initialize particles
+    function initParticles() {
+      particles = []
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle())
+      }
+    }
+
+    // Connect particles
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x
+          const dy = particles[i].y - particles[j].y
+          const distance = Math.sqrt(dx * dx + dy * dy)
+
+          if (distance < 150) {
+            ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance / 150)})`
+            ctx.lineWidth = 0.5
+            ctx.beginPath()
+            ctx.moveTo(particles[i].x, particles[i].y)
+            ctx.lineTo(particles[j].x, particles[j].y)
+            ctx.stroke()
+          }
+        }
+      }
+    }
+
+    // Animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      particles.forEach((particle) => {
+        particle.update()
+        particle.draw()
+      })
+
+      connectParticles()
+      requestAnimationFrame(animate)
+    }
+
+    initParticles()
+    animate()
+  }
+
   /* ===============================================
      MOBILE NAVIGATION TOGGLE
   =============================================== */
@@ -16,16 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileToggle.classList.toggle("active")
     })
 
-    // Close mobile menu when clicking a link
-    const navItems = navLinks.querySelectorAll("a")
-    navItems.forEach((item) => {
-      item.addEventListener("click", () => {
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
         navLinks.classList.remove("active")
         mobileToggle.classList.remove("active")
       })
     })
 
-    // Close mobile menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
         navLinks.classList.remove("active")
@@ -51,23 +141,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     SMOOTH SCROLL WITH OFFSET
+     SMOOTH SCROLL
   =============================================== */
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href")
-
-      // Don't prevent default for empty hash or just "#"
       if (href === "#" || href === "") return
 
       e.preventDefault()
-
       const target = document.querySelector(href)
       if (target) {
-        const offsetTop = target.offsetTop - 80
         window.scrollTo({
-          top: offsetTop,
+          top: target.offsetTop - 80,
           behavior: "smooth",
         })
       }
@@ -75,18 +161,17 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   /* ===============================================
-     ENHANCED SCROLL REVEAL WITH STAGGER
+     INTERSECTION OBSERVER - REVEAL ANIMATIONS
   =============================================== */
 
-  const revealElements = document.querySelectorAll(".experience-card, .project-card, .stat-item, .info-card")
+  const revealElements = document.querySelectorAll(".experience-card, .project-card, .info-card, .stat-card")
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
-            entry.target.classList.add("reveal")
-            entry.target.style.animation = `fadeInUp 0.6s ease-out forwards`
+            entry.target.style.animation = `fadeInUp 0.8s ease-out forwards`
           }, index * 100)
           revealObserver.unobserve(entry.target)
         }
@@ -99,74 +184,8 @@ document.addEventListener("DOMContentLoaded", () => {
   )
 
   revealElements.forEach((el) => {
+    el.style.opacity = "0"
     revealObserver.observe(el)
-  })
-
-  /* ===============================================
-     PARALLAX EFFECT ON HERO
-  =============================================== */
-
-  const hero = document.querySelector(".hero")
-  if (hero) {
-    window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset
-      const heroContent = document.querySelector(".hero-content")
-      if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`
-        heroContent.style.opacity = 1 - scrolled / 700
-      }
-    })
-  }
-
-  /* ===============================================
-     MOUSE TRAIL EFFECT (Optional Premium Feature)
-  =============================================== */
-
-  let mouseX = 0
-  let mouseY = 0
-  let isMoving = false
-
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
-    isMoving = true
-
-    // Create temporary glow element
-    const glow = document.createElement("div")
-    glow.className = "mouse-glow"
-    glow.style.left = mouseX + "px"
-    glow.style.top = mouseY + "px"
-    document.body.appendChild(glow)
-
-    setTimeout(() => {
-      glow.remove()
-    }, 1000)
-  })
-
-  /* ===============================================
-     CARD TILT EFFECT ON HOVER
-  =============================================== */
-
-  const cards = document.querySelectorAll(".experience-card, .project-card, .contact-card")
-
-  cards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-
-      const centerX = rect.width / 2
-      const centerY = rect.height / 2
-
-      const rotateX = (y - centerY) / 20
-      const rotateY = (centerX - x) / 20
-
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.02)`
-    })
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = ""
-    })
   })
 
   /* ===============================================
@@ -174,27 +193,25 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================================== */
 
   const statNumbers = document.querySelectorAll(".stat-number")
+
   const statsObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const target = entry.target
-          const text = target.textContent
-          const number = Number.parseInt(text.replace(/\D/g, ""))
+          const targetValue = Number.parseInt(target.getAttribute("data-target"))
+          let current = 0
+          const increment = targetValue / 60
 
-          if (number) {
-            let current = 0
-            const increment = number / 50
-            const timer = setInterval(() => {
-              current += increment
-              if (current >= number) {
-                target.textContent = text
-                clearInterval(timer)
-              } else {
-                target.textContent = Math.floor(current) + (text.includes("+") ? "+" : "")
-              }
-            }, 30)
-          }
+          const timer = setInterval(() => {
+            current += increment
+            if (current >= targetValue) {
+              target.textContent = targetValue + (targetValue === 100 ? "%" : "+")
+              clearInterval(timer)
+            } else {
+              target.textContent = Math.floor(current) + (targetValue === 100 ? "%" : "+")
+            }
+          }, 30)
 
           statsObserver.unobserve(target)
         }
@@ -206,82 +223,30 @@ document.addEventListener("DOMContentLoaded", () => {
   statNumbers.forEach((stat) => statsObserver.observe(stat))
 
   /* ===============================================
-     SMOOTH SCROLL PROGRESS INDICATOR
+     3D TILT EFFECT ON CARDS
   =============================================== */
 
-  const progressBar = document.createElement("div")
-  progressBar.className = "scroll-progress"
-  progressBar.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-    z-index: 9999;
-    transform-origin: left;
-    transition: transform 0.1s ease;
-  `
-  document.body.appendChild(progressBar)
+  const cards = document.querySelectorAll(".experience-card, .project-card, .contact-card, .info-card")
 
-  window.addEventListener("scroll", () => {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-    const scrolled = (window.pageYOffset / windowHeight) * 100
-    progressBar.style.width = scrolled + "%"
-  })
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
 
-  /* ===============================================
-     TYPING EFFECT FOR HERO SUBTITLE (Optional)
-  =============================================== */
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
 
-  const heroSubtitle = document.querySelector(".hero-description")
-  if (heroSubtitle && heroSubtitle.dataset.typed !== "true") {
-    const originalText = heroSubtitle.textContent
-    heroSubtitle.textContent = ""
-    heroSubtitle.dataset.typed = "true"
+      const rotateX = (y - centerY) / 15
+      const rotateY = (centerX - x) / 15
 
-    let charIndex = 0
-    const typingSpeed = 30
-
-    function type() {
-      if (charIndex < originalText.length) {
-        heroSubtitle.textContent += originalText.charAt(charIndex)
-        charIndex++
-        setTimeout(type, typingSpeed)
-      }
-    }
-
-    // Start typing after page loads
-    setTimeout(type, 500)
-  }
-
-  /* ===============================================
-     ACTIVE NAVIGATION HIGHLIGHTING
-  =============================================== */
-
-  const sections = document.querySelectorAll("section[id]")
-  const navLinksItems = document.querySelectorAll(".nav-links a")
-
-  const highlightNavigation = () => {
-    const scrollY = window.pageYOffset
-
-    sections.forEach((section) => {
-      const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 100
-      const sectionId = section.getAttribute("id")
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLinksItems.forEach((link) => {
-          link.classList.remove("active")
-          if (link.getAttribute("href") === `#${sectionId}`) {
-            link.classList.add("active")
-          }
-        })
-      }
+      card.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
     })
-  }
 
-  window.addEventListener("scroll", highlightNavigation)
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = ""
+    })
+  })
 
   /* ===============================================
      DYNAMIC YEAR IN FOOTER
@@ -293,73 +258,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     PERFORMANCE: PRELOAD CRITICAL RESOURCES
+     PARALLAX EFFECT ON SCROLL
   =============================================== */
 
-  // Add preload hints for better performance
-  const addPreloadHints = () => {
-    const head = document.head
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    const heroContent = document.querySelector(".hero-content")
+    const shapes = document.querySelectorAll(".shape")
 
-    // Preload fonts if using custom fonts
-    // const fontLink = document.createElement("link");
-    // fontLink.rel = "preload";
-    // fontLink.as = "font";
-    // fontLink.type = "font/woff2";
-    // fontLink.href = "/fonts/your-font.woff2";
-    // fontLink.crossOrigin = "anonymous";
-    // head.appendChild(fontLink);
-  }
-
-  addPreloadHints()
-
-  /* ===============================================
-     ACCESSIBILITY: KEYBOARD NAVIGATION
-  =============================================== */
-
-  // Add visible focus indicators for keyboard navigation
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Tab") {
-      document.body.classList.add("keyboard-nav")
+    if (heroContent && scrolled < window.innerHeight) {
+      heroContent.style.transform = `translateY(${scrolled * 0.4}px)`
+      heroContent.style.opacity = 1 - scrolled / 700
     }
-  })
 
-  document.addEventListener("mousedown", () => {
-    document.body.classList.remove("keyboard-nav")
+    shapes.forEach((shape, index) => {
+      if (scrolled < window.innerHeight) {
+        const speed = 0.2 + index * 0.1
+        shape.style.transform = `translate(${scrolled * speed}px, ${scrolled * speed * 0.5}px)`
+      }
+    })
   })
 
   /* ===============================================
-     CONSOLE MESSAGE (Optional)
+     CONSOLE EASTER EGG
   =============================================== */
 
-  console.log("%c👋 Welcome to Mohamed Mooka's Portfolio", "color: #60a5fa; font-size: 16px; font-weight: bold;")
-  console.log("%c🔒 Interested in cybersecurity? Let's connect!", "color: #a8abb5; font-size: 14px;")
+  console.log(
+    "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
+    "color: #06b6d4; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);",
+  )
+  console.log("%c⚡ Built with modern web technologies", "color: #3b82f6; font-size: 14px;")
+  console.log("%c🛡️ Passionate about securing digital systems", "color: #8b5cf6; font-size: 14px;")
 })
-
-// CSS FOR MOUSE GLOW EFFECT
-
-const style = document.createElement("style")
-style.textContent = `
-  .mouse-glow {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent 70%);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    animation: glowFade 1s ease-out forwards;
-    z-index: 9998;
-  }
-
-  @keyframes glowFade {
-    0% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(3);
-    }
-  }
-`
-document.head.appendChild(style)
