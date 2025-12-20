@@ -58,7 +58,8 @@ body {
 
 .floating-nav {
   position: fixed;
-  left: 40px;
+  /* Moving navigation from left to right side */
+  right: 40px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1000;
@@ -92,7 +93,8 @@ body {
 
 .nav-tooltip {
   position: absolute;
-  left: 30px;
+  /* Tooltip now appears on left side of dots */
+  right: 30px;
   top: 50%;
   transform: translateY(-50%);
   background: var(--bg-card);
@@ -112,7 +114,8 @@ body {
 .nav-dot:hover .nav-tooltip {
   opacity: 1;
   visibility: visible;
-  left: 35px;
+  /* Tooltip slides in from right */
+  right: 35px;
 }
 
 /* ==================================================
@@ -881,7 +884,8 @@ footer {
   }
 
   .floating-nav {
-    left: 20px;
+    /* Right positioning for mobile */
+    right: 20px;
   }
 
   .hero {
@@ -958,7 +962,8 @@ footer {
   }
 
   .floating-nav {
-    left: 10px;
+    /* Right positioning for small mobile */
+    right: 10px;
   }
 
   .nav-dot {
