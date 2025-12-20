@@ -41,7 +41,7 @@
   <header class="hero" id="home">
     <div class="hero-background">
       <div class="hero-grid"></div>
-      <div class="particles"></div>
+      <canvas class="particles-canvas"></canvas>
     </div>
     
     <div class="hero-content">
@@ -55,7 +55,6 @@
         <span class="typing-effect">Cybersecurity Analyst | DFIR & SOC Operations</span>
       </p>
 
-      <!-- Simplified intro text to be more direct and professional -->
       <p class="intro">
         Showcasing my cybersecurity portfolio and technical projects
       </p>
@@ -94,6 +93,11 @@
       
       <div class="about-content-simple">
         <div class="card about-card-main">
+          <div class="about-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
           <p>
             I'm Mohamed Mooka, a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations, with hands-on experience in threat detection, log analysis, and incident response through practical labs and security investigations.
           </p>
@@ -104,7 +108,6 @@
     <!-- ================= PROJECTS ================= -->
     <section class="section section-dark" id="projects">
       <div class="section-header">
-        <!-- Simplified and made more professional -->
         <span class="section-tag">Portfolio</span>
         <h2>Projects</h2>
         <p class="section-description">Hands-on cybersecurity projects and investigations</p>
@@ -112,7 +115,9 @@
       
       <div class="projects-grid">
 
+        <!-- Added project numbering badges -->
         <div class="card project-card">
+          <div class="project-number">01</div>
           <div class="project-image">
             <img src="https://placehold.co/600x400?text=DFIR+Investigation+Lab+with+digital+forensics+analysis+dashboard+screens+and+terminal+windows" alt="DFIR Investigation Lab with digital forensics analysis dashboard screens and terminal windows" />
             <div class="project-overlay">
@@ -136,6 +141,7 @@
         </div>
 
         <div class="card project-card">
+          <div class="project-number">02</div>
           <div class="project-image">
             <img src="https://placehold.co/600x400?text=SOC+Monitoring+Dashboard+with+threat+detection+alerts+metrics+and+security+graphs" alt="SOC Monitoring Dashboard with threat detection alerts metrics and security graphs" />
             <div class="project-overlay">
