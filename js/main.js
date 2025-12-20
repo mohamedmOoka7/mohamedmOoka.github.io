@@ -3,7 +3,7 @@
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("[v0] Professional Portfolio Initialized ✨")
+  console.log("[v0] Enhanced Portfolio Initialized ✨")
 
   /* ===============================================
      MOBILE MENU TOGGLE
@@ -261,9 +261,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     SMOOTH SCROLL FOR ANCHOR LINKS
+     ENHANCED SMOOTH READING EXPERIENCE
   =============================================== */
 
+  // Smooth scroll with offset for fixed navbar
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href")
@@ -273,7 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(href)
 
       if (target) {
-        const offsetTop = target.offsetTop - 80
+        const offsetTop = target.offsetTop - 100 // Better offset for readability
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
@@ -392,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     SCROLL PROGRESS INDICATOR - ENHANCED
+     ENHANCED SCROLL PROGRESS INDICATOR
   =============================================== */
 
   const progressBar = document.createElement("div")
@@ -403,9 +404,9 @@ document.addEventListener("DOMContentLoaded", () => {
     height: 3px;
     background: linear-gradient(90deg, #00d9ff, #0099ff, #00f5ff);
     width: 0%;
-    z-index: 9999;
+    z-index: 10000;
     transition: width 0.1s ease;
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.4);
   `
   document.body.appendChild(progressBar)
 
@@ -464,5 +465,5 @@ document.addEventListener("DOMContentLoaded", () => {
     footerYear.textContent = footerYear.textContent.replace("2025", new Date().getFullYear())
   }
 
-  console.log("[v0] All effects initialized successfully ✨")
+  console.log("[v0] Enhanced reading experience activated ✨")
 })
