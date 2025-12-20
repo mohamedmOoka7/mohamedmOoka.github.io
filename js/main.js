@@ -1,58 +1,18 @@
 // ==================================================
-// CUSTOM CURSOR
+// PAGE LOADER
 // ==================================================
 
-const cursor = document.querySelector(".cursor")
-const cursorFollower = document.querySelector(".cursor-follower")
-
-let mouseX = 0
-let mouseY = 0
-let followerX = 0
-let followerY = 0
-
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX
-  mouseY = e.clientY
-
-  if (cursor) {
-    cursor.style.left = mouseX + "px"
-    cursor.style.top = mouseY + "px"
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".page-loader")
+  if (loader) {
+    setTimeout(() => {
+      loader.style.opacity = "0"
+      setTimeout(() => {
+        loader.style.display = "none"
+        document.body.style.overflow = "auto"
+      }, 500)
+    }, 800)
   }
-})
-
-function animateFollower() {
-  const diffX = mouseX - followerX
-  const diffY = mouseY - followerY
-
-  followerX += diffX * 0.1
-  followerY += diffY * 0.1
-
-  if (cursorFollower) {
-    cursorFollower.style.left = followerX + "px"
-    cursorFollower.style.top = followerY + "px"
-  }
-
-  requestAnimationFrame(animateFollower)
-}
-
-animateFollower()
-
-// Cursor hover effects
-const interactiveElements = document.querySelectorAll("a, button, .card, .project-card")
-interactiveElements.forEach((el) => {
-  el.addEventListener("mouseenter", () => {
-    if (cursorFollower) {
-      cursorFollower.style.transform = "translate(-50%, -50%) scale(1.5)"
-      cursorFollower.style.opacity = "0.5"
-    }
-  })
-
-  el.addEventListener("mouseleave", () => {
-    if (cursorFollower) {
-      cursorFollower.style.transform = "translate(-50%, -50%) scale(1)"
-      cursorFollower.style.opacity = "0.3"
-    }
-  })
 })
 
 // ==================================================
@@ -60,14 +20,51 @@ interactiveElements.forEach((el) => {
 // ==================================================
 
 const navbar = document.getElementById("navbar")
+let lastScrollY = window.pageYOffset
 
 window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
+  const currentScrollY = window.pageYOffset
+
+  if (currentScrollY > 100) {
     navbar.classList.add("scrolled")
+
+    // Hide on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > 500) {
+      navbar.style.transform = "translateY(-100%)"
+    } else {
+      navbar.style.transform = "translateY(0)"
+    }
   } else {
     navbar.classList.remove("scrolled")
+    navbar.style.transform = "translateY(0)"
   }
+
+  lastScrollY = currentScrollY
 })
+
+const sections = document.querySelectorAll("section[id]")
+const navLinks = document.querySelectorAll(".nav-links a")
+
+function highlightNavigation() {
+  const scrollPosition = window.pageYOffset + 200
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop
+    const sectionHeight = section.offsetHeight
+    const sectionId = section.getAttribute("id")
+
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      navLinks.forEach((link) => {
+        link.classList.remove("active")
+        if (link.getAttribute("href") === `#${sectionId}`) {
+          link.classList.add("active")
+        }
+      })
+    }
+  })
+}
+
+window.addEventListener("scroll", highlightNavigation)
 
 // ==================================================
 // STATS COUNTER ANIMATION
@@ -98,42 +95,34 @@ const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("revealed")
+        const delay = entry.target.getAttribute("data-delay") || 0
+        setTimeout(() => {
+          entry.target.classList.add("revealed")
+        }, delay)
 
-        // Animate stats
+        // Animate stats on reveal
         if (entry.target.classList.contains("stats-inline")) {
           const statNumbers = entry.target.querySelectorAll(".stat-number")
           statNumbers.forEach((stat) => {
             if (!stat.classList.contains("animated")) {
-              animateCounter(stat)
-              stat.classList.add("animated")
+              setTimeout(() => {
+                animateCounter(stat)
+                stat.classList.add("animated")
+              }, delay)
             }
           })
         }
+
+        revealObserver.unobserve(entry.target)
       }
     })
   },
-  { threshold: 0.1 },
+  { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
 )
 
 document.addEventListener("DOMContentLoaded", () => {
   const revealElements = document.querySelectorAll("[data-reveal]")
   revealElements.forEach((el) => revealObserver.observe(el))
-
-  // Auto-add reveal to elements
-  document.querySelectorAll(".section, .project-card, .skill-category").forEach((el) => {
-    if (!el.hasAttribute("data-reveal")) {
-      el.setAttribute("data-reveal", "")
-      revealObserver.observe(el)
-    }
-  })
-
-  // Stats animation
-  const statsSection = document.querySelector(".stats-inline")
-  if (statsSection) {
-    statsSection.setAttribute("data-reveal", "")
-    revealObserver.observe(statsSection)
-  }
 })
 
 // ==================================================
@@ -150,11 +139,18 @@ if (typingText) {
     if (index < text.length) {
       typingText.textContent += text.charAt(index)
       index++
-      setTimeout(type, 100)
+      setTimeout(type, 80)
+    } else {
+      typingText.style.borderRight = "2px solid var(--primary)"
+      typingText.style.paddingRight = "5px"
+      setInterval(() => {
+        typingText.style.borderRightColor =
+          typingText.style.borderRightColor === "transparent" ? "var(--primary)" : "transparent"
+      }, 530)
     }
   }
 
-  setTimeout(type, 500)
+  setTimeout(type, 1000)
 }
 
 // ==================================================
@@ -166,8 +162,11 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     e.preventDefault()
     const target = document.querySelector(this.getAttribute("href"))
     if (target) {
+      const offset = 80
+      const targetPosition = target.offsetTop - offset
+
       window.scrollTo({
-        top: target.offsetTop - 80,
+        top: targetPosition,
         behavior: "smooth",
       })
     }
@@ -179,19 +178,37 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 // ==================================================
 
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
-const navLinks = document.querySelector(".nav-links")
+const navLinksContainer = document.querySelector(".nav-links")
 
 if (mobileMenuToggle) {
   mobileMenuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active")
+    const isExpanded = mobileMenuToggle.getAttribute("aria-expanded") === "true"
+
+    navLinksContainer.classList.toggle("active")
     mobileMenuToggle.classList.toggle("active")
+
+    mobileMenuToggle.setAttribute("aria-expanded", !isExpanded)
+
+    document.body.style.overflow = isExpanded ? "auto" : "hidden"
   })
 
+  // Close menu on link click
   document.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
-      navLinks.classList.remove("active")
+      navLinksContainer.classList.remove("active")
       mobileMenuToggle.classList.remove("active")
+      mobileMenuToggle.setAttribute("aria-expanded", "false")
+      document.body.style.overflow = "auto"
     })
+  })
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navLinksContainer.classList.contains("active")) {
+      navLinksContainer.classList.remove("active")
+      mobileMenuToggle.classList.remove("active")
+      mobileMenuToggle.setAttribute("aria-expanded", "false")
+      document.body.style.overflow = "auto"
+    }
   })
 }
 
@@ -203,11 +220,19 @@ const canvas = document.getElementById("particles-canvas")
 const ctx = canvas ? canvas.getContext("2d") : null
 
 if (canvas && ctx) {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  function resizeCanvas() {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  }
+
+  resizeCanvas()
 
   class Particle {
     constructor() {
+      this.reset()
+    }
+
+    reset() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
       this.vx = (Math.random() - 0.5) * 0.5
@@ -218,20 +243,24 @@ if (canvas && ctx) {
     update() {
       this.x += this.vx
       this.y += this.vy
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1
+
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+        this.reset()
+      }
     }
 
     draw() {
-      ctx.fillStyle = "rgba(0, 212, 255, 0.5)"
+      ctx.fillStyle = "rgba(0, 212, 255, 0.6)"
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
     }
   }
 
+  const particleCount = window.innerWidth < 768 ? 40 : 80
   const particles = []
-  for (let i = 0; i < 80; i++) {
+
+  for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle())
   }
 
@@ -254,6 +283,7 @@ if (canvas && ctx) {
     }
   }
 
+  let animationId
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     particles.forEach((p) => {
@@ -261,43 +291,91 @@ if (canvas && ctx) {
       p.draw()
     })
     connectParticles()
-    requestAnimationFrame(animate)
+    animationId = requestAnimationFrame(animate)
   }
 
   animate()
 
+  let resizeTimeout
   window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    clearTimeout(resizeTimeout)
+    resizeTimeout = setTimeout(() => {
+      resizeCanvas()
+    }, 250)
+  })
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId)
+    } else {
+      animate()
+    }
   })
 }
 
 // ==================================================
-// PERFORMANCE OPTIMIZATION
+// BACK TO TOP BUTTON
 // ==================================================
 
-// Debounce function for scroll events
-function debounce(func, wait = 10) {
-  let timeout
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout)
-      func(...args)
+const backToTopBtn = document.querySelector(".back-to-top")
+
+if (backToTopBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 500) {
+      backToTopBtn.classList.add("visible")
+    } else {
+      backToTopBtn.classList.remove("visible")
     }
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-  }
+  })
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  })
 }
 
-// Apply debounce to scroll handler
-window.addEventListener(
-  "scroll",
-  debounce(() => {
-    // Your scroll logic here
-  }, 10),
-)
+// ==================================================
+// SCROLL INDICATOR HIDE ON SCROLL
+// ==================================================
 
-// Log page load
-console.log("[v0] Elite portfolio loaded successfully")
-console.log("[v0] All animations and interactions initialized")
-console.log("[v0] Particle system active")
+const scrollIndicator = document.querySelector(".scroll-indicator")
+if (scrollIndicator) {
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 100) {
+      scrollIndicator.style.opacity = "0"
+    } else {
+      scrollIndicator.style.opacity = "1"
+    }
+  })
+}
+
+// ==================================================
+// PERFORMANCE OPTIMIZATIONS
+// ==================================================
+
+if ("loading" in HTMLImageElement.prototype) {
+  const images = document.querySelectorAll('img[loading="lazy"]')
+  images.forEach((img) => {
+    img.src = img.dataset.src
+  })
+} else {
+  // Fallback for browsers that don't support lazy loading
+  const script = document.createElement("script")
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+  document.body.appendChild(script)
+}
+
+document.querySelectorAll('a[href^="project-"]').forEach((link) => {
+  link.addEventListener(
+    "mouseenter",
+    () => {
+      const linkElement = document.createElement("link")
+      linkElement.rel = "prefetch"
+      linkElement.href = link.href
+      document.head.appendChild(linkElement)
+    },
+    { once: true },
+  )
+})
