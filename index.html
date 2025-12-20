@@ -58,7 +58,8 @@
     <div class="hero-content">
       <p class="hero-greeting">Hi, I'm</p>
       
-      <h1 class="hero-title">
+      <!-- Significantly increased name size -->
+      <h1 class="hero-title hero-title-xl">
         Mohamed <span class="highlight">Mooka</span>
       </h1>
 
@@ -94,26 +95,55 @@
 
   <main>
 
-    <!-- Improved about section with better content structure -->
+    <!-- Completely redesigned About section with split layout -->
     <section class="section about-section" id="about" aria-labelledby="about-heading">
       <header class="section-header">
-        <span class="section-tag">Who I Am</span>
+        <span class="section-tag">Introduction</span>
         <h2 id="about-heading">About Me</h2>
-        <p class="section-description">Cybersecurity Analyst</p>
       </header>
       
-      <div class="about-content">
-        <article class="card about-card">
-          <div class="about-icon" aria-hidden="true">
-            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <div class="about-wrapper">
+        <div class="about-visual">
+          <div class="about-avatar">
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              <path d="M12 8v4M12 16h.01"/>
+              <circle cx="12" cy="10" r="3"/>
+              <path d="M8 14v3M16 14v3"/>
             </svg>
           </div>
-          <p>
-            I'm Mohamed Mooka, a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations, with hands-on experience in threat detection, log analysis, and incident response through practical labs and security investigations.
+          <div class="about-decoration"></div>
+        </div>
+        
+        <div class="about-text">
+          <h3>Cybersecurity Analyst</h3>
+          <p class="about-lead">
+            I'm Mohamed Mooka, specializing in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations.
           </p>
-        </article>
+          <p>
+            With hands-on experience in threat detection, log analysis, and incident response through practical labs and security investigations, I focus on identifying security threats and responding to incidents effectively.
+          </p>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Digital Forensics & Incident Response</span>
+            </div>
+            <div class="highlight-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>SOC Operations & Threat Detection</span>
+            </div>
+            <div class="highlight-item">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <span>Log Analysis & Security Monitoring</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
