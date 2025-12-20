@@ -1,224 +1,232 @@
 // ==================================================
-// CYBERSECURITY PORTFOLIO - MAIN JAVASCRIPT
-// Enhanced Interactions & Animations
+// CUSTOM CURSOR
 // ==================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-  /* ===============================================
-     DISABLE ANIMATIONS ON PROJECT PAGES
-  =============================================== */
+const cursor = document.querySelector(".cursor")
+const cursorFollower = document.querySelector(".cursor-follower")
 
-  if (document.body.classList.contains("no-animate")) {
-    return
+let mouseX = 0
+let mouseY = 0
+let followerX = 0
+let followerY = 0
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX
+  mouseY = e.clientY
+
+  if (cursor) {
+    cursor.style.left = mouseX + "px"
+    cursor.style.top = mouseY + "px"
+  }
+})
+
+function animateFollower() {
+  const diffX = mouseX - followerX
+  const diffY = mouseY - followerY
+
+  followerX += diffX * 0.1
+  followerY += diffY * 0.1
+
+  if (cursorFollower) {
+    cursorFollower.style.left = followerX + "px"
+    cursorFollower.style.top = followerY + "px"
   }
 
-  /* ===============================================
-     MOBILE MENU TOGGLE
-  =============================================== */
+  requestAnimationFrame(animateFollower)
+}
 
-  const menuToggle = document.getElementById("menuToggle")
-  const navLinks = document.getElementById("navLinks")
+animateFollower()
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active")
-      navLinks.classList.toggle("active")
-    })
-
-    // Close mobile menu when clicking on a link
-    const navLinkItems = navLinks.querySelectorAll("a")
-    navLinkItems.forEach((link) => {
-      link.addEventListener("click", () => {
-        menuToggle.classList.remove("active")
-        navLinks.classList.remove("active")
-      })
-    })
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        menuToggle.classList.remove("active")
-        navLinks.classList.remove("active")
-      }
-    })
-  }
-
-  /* ===============================================
-     NAVBAR SCROLL EFFECT
-  =============================================== */
-
-  const navbar = document.getElementById("navbar")
-  let lastScroll = 0
-
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset
-
-    // Add scrolled class for styling
-    if (currentScroll > 50) {
-      navbar.classList.add("scrolled")
-    } else {
-      navbar.classList.remove("scrolled")
-    }
-
-    lastScroll = currentScroll
-  })
-
-  /* ===============================================
-     SMOOTH SCROLL FOR ANCHOR LINKS
-  =============================================== */
-
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      const href = this.getAttribute("href")
-
-      // Don't prevent default for hash-only links
-      if (href === "#") return
-
-      e.preventDefault()
-
-      const target = document.querySelector(href)
-      if (target) {
-        const navbarHeight = navbar.offsetHeight
-        const targetPosition = target.offsetTop - navbarHeight - 20
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        })
-      }
-    })
-  })
-
-  /* ===============================================
-     SCROLL REVEAL ANIMATION
-  =============================================== */
-
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show")
-        revealObserver.unobserve(entry.target)
-      }
-    })
-  }, observerOptions)
-
-  // Observe all sections and cards
-  const revealElements = document.querySelectorAll(".section, .card")
-  revealElements.forEach((el) => {
-    revealObserver.observe(el)
-  })
-
-  /* ===============================================
-     DYNAMIC FOOTER YEAR
-  =============================================== */
-
-  const yearElement = document.getElementById("currentYear")
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear()
-  }
-
-  /* ===============================================
-     TYPING EFFECT FOR HERO SUBTITLE (OPTIONAL)
-  =============================================== */
-
-  const subtitle = document.querySelector(".subtitle")
-  if (subtitle && subtitle.dataset.typing === "true") {
-    const text = subtitle.textContent
-    subtitle.textContent = ""
-    subtitle.style.opacity = "1"
-
-    let charIndex = 0
-    const typeSpeed = 50
-
-    function type() {
-      if (charIndex < text.length) {
-        subtitle.textContent += text.charAt(charIndex)
-        charIndex++
-        setTimeout(type, typeSpeed)
-      }
-    }
-
-    setTimeout(type, 500)
-  }
-
-  /* ===============================================
-     PERFORMANCE OPTIMIZATION - LAZY LOADING
-  =============================================== */
-
-  // Lazy load images
-  const lazyImages = document.querySelectorAll("img[data-src]")
-
-  if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target
-          img.src = img.dataset.src
-          img.removeAttribute("data-src")
-          imageObserver.unobserve(img)
-        }
-      })
-    })
-
-    lazyImages.forEach((img) => imageObserver.observe(img))
-  } else {
-    // Fallback for browsers that don't support IntersectionObserver
-    lazyImages.forEach((img) => {
-      img.src = img.dataset.src
-      img.removeAttribute("data-src")
-    })
-  }
-
-  /* ===============================================
-     EXTERNAL LINK SECURITY
-  =============================================== */
-
-  // Add rel="noopener noreferrer" to all external links
-  const externalLinks = document.querySelectorAll('a[href^="http"]')
-  externalLinks.forEach((link) => {
-    if (!link.hostname.includes(window.location.hostname)) {
-      link.setAttribute("rel", "noopener noreferrer")
-      link.setAttribute("target", "_blank")
+// Cursor hover effects
+const interactiveElements = document.querySelectorAll("a, button, .card, .project-card")
+interactiveElements.forEach((el) => {
+  el.addEventListener("mouseenter", () => {
+    if (cursorFollower) {
+      cursorFollower.style.transform = "translate(-50%, -50%) scale(1.5)"
+      cursorFollower.style.opacity = "0.5"
     }
   })
 
-  /* ===============================================
-     KEYBOARD NAVIGATION IMPROVEMENTS
-  =============================================== */
-
-  // Improve focus visibility for keyboard users
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Tab") {
-      document.body.classList.add("keyboard-nav")
+  el.addEventListener("mouseleave", () => {
+    if (cursorFollower) {
+      cursorFollower.style.transform = "translate(-50%, -50%) scale(1)"
+      cursorFollower.style.opacity = "0.3"
     }
   })
-
-  document.addEventListener("mousedown", () => {
-    document.body.classList.remove("keyboard-nav")
-  })
-
-  /* ===============================================
-     CONSOLE EASTER EGG
-  =============================================== */
-
-  console.log("%c🔐 Cybersecurity Portfolio", "font-size: 20px; font-weight: bold; color: #60a5fa;")
-  console.log("%cInterested in security? Let's connect!", "font-size: 14px; color: #9ca3af;")
-  console.log("%cGitHub: https://github.com/mohamedmOoka7", "font-size: 12px; color: #60a5fa;")
 })
 
 // ==================================================
-// UTILITY FUNCTIONS
+// NAVBAR SCROLL EFFECT
 // ==================================================
 
-/**
- * Debounce function for performance optimization
- */
-function debounce(func, wait = 100) {
+const navbar = document.getElementById("navbar")
+let lastScroll = 0
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset
+
+  if (currentScroll > 100) {
+    navbar.classList.add("scrolled")
+  } else {
+    navbar.classList.remove("scrolled")
+  }
+
+  lastScroll = currentScroll
+})
+
+// ==================================================
+// STATS COUNTER ANIMATION
+// ==================================================
+
+function animateCounter(element) {
+  const target = Number.parseInt(element.getAttribute("data-target"))
+  const duration = 2000
+  const increment = target / (duration / 16)
+  let current = 0
+
+  const timer = setInterval(() => {
+    current += increment
+    if (current >= target) {
+      element.textContent = target + (element.textContent.includes("%") ? "" : "+")
+      clearInterval(timer)
+    } else {
+      element.textContent = Math.floor(current) + (element.textContent.includes("%") ? "" : "+")
+    }
+  }, 16)
+}
+
+// ==================================================
+// SCROLL REVEAL ANIMATIONS
+// ==================================================
+
+const revealElements = document.querySelectorAll("[data-reveal]")
+
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("revealed")
+
+        // Animate stats when they come into view
+        if (entry.target.classList.contains("stats-inline")) {
+          const statNumbers = entry.target.querySelectorAll(".stat-number")
+          statNumbers.forEach((stat) => {
+            if (!stat.classList.contains("animated")) {
+              animateCounter(stat)
+              stat.classList.add("animated")
+            }
+          })
+        }
+      }
+    })
+  },
+  {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  },
+)
+
+revealElements.forEach((el) => revealObserver.observe(el))
+
+// Auto-add reveal animation to sections
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(".section")
+  const cards = document.querySelectorAll(".card, .project-card, .expertise-card, .timeline-item")
+
+  sections.forEach((section) => {
+    if (!section.hasAttribute("data-reveal")) {
+      section.setAttribute("data-reveal", "")
+    }
+  })
+
+  cards.forEach((card, index) => {
+    if (!card.hasAttribute("data-reveal")) {
+      card.setAttribute("data-reveal", "")
+      card.style.transitionDelay = `${index * 0.1}s`
+    }
+  })
+
+  // Re-observe new elements
+  document.querySelectorAll("[data-reveal]").forEach((el) => {
+    revealObserver.observe(el)
+  })
+
+  // Trigger stats animation when in view
+  const statsSection = document.querySelector(".stats-inline")
+  if (statsSection) {
+    statsSection.setAttribute("data-reveal", "")
+    revealObserver.observe(statsSection)
+  }
+})
+
+// ==================================================
+// TYPING EFFECT
+// ==================================================
+
+const typingText = document.querySelector(".typing-text")
+if (typingText) {
+  const text = typingText.textContent
+  typingText.textContent = ""
+  let index = 0
+
+  function type() {
+    if (index < text.length) {
+      typingText.textContent += text.charAt(index)
+      index++
+      setTimeout(type, 100)
+    }
+  }
+
+  setTimeout(type, 500)
+}
+
+// ==================================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ==================================================
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+
+    if (target) {
+      const offsetTop = target.offsetTop - 80
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      })
+    }
+  })
+})
+
+// ==================================================
+// MOBILE MENU TOGGLE
+// ==================================================
+
+const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+const navLinks = document.querySelector(".nav-links")
+
+if (mobileMenuToggle) {
+  mobileMenuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active")
+    mobileMenuToggle.classList.toggle("active")
+  })
+
+  // Close menu when clicking on a link
+  document.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active")
+      mobileMenuToggle.classList.remove("active")
+    })
+  })
+}
+
+// ==================================================
+// PERFORMANCE OPTIMIZATION
+// ==================================================
+
+// Debounce function for scroll events
+function debounce(func, wait = 10) {
   let timeout
   return function executedFunction(...args) {
     const later = () => {
@@ -230,15 +238,14 @@ function debounce(func, wait = 100) {
   }
 }
 
-/**
- * Throttle function for scroll events
- */
-function throttle(func, delay = 100) {
-  let lastCall = 0
-  return (...args) => {
-    const now = new Date().getTime()
-    if (now - lastCall < delay) return
-    lastCall = now
-    return func(...args)
-  }
-}
+// Apply debounce to scroll handler
+window.addEventListener(
+  "scroll",
+  debounce(() => {
+    // Your scroll logic here
+  }, 10),
+)
+
+// Log page load
+console.log("[v0] Portfolio loaded successfully")
+console.log("[v0] All animations and interactions initialized")
