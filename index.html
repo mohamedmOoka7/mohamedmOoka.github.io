@@ -3,59 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Enhanced title with better branding -->
   <title>Mohamed Mooka - Cybersecurity Analyst | DFIR & SOC Operations</title>
   
   <!-- SEO Meta -->
-  <!-- Improved meta descriptions for better SEO -->
   <meta name="description" content="Mohamed Mooka - Cybersecurity Analyst specializing in Digital Forensics, Incident Response, and SOC Operations. View portfolio of security investigations and hands-on projects." />
   <meta name="keywords" content="Cybersecurity Analyst, DFIR, Digital Forensics, Incident Response, SOC Operations, Threat Detection, Malware Analysis, Security Investigations, Mohamed Mooka" />
   <meta name="author" content="Mohamed Mooka" />
   
-  <!-- Open Graph for better social sharing -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Mohamed Mooka - Cybersecurity Analyst" />
   <meta property="og:description" content="DFIR & SOC Operations Specialist - Portfolio of security investigations and incident response projects" />
   <meta property="og:type" content="website" />
   
-  <!-- Preconnect to Google Fonts for faster loading -->
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-  <!-- Preload critical CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
 
-  <!-- Added page loader for smooth initial experience -->
-  <div class="page-loader">
+  <!-- Page Loader -->
+  <div class="page-loader" aria-hidden="true">
     <div class="loader-content">
       <div class="loader-spinner"></div>
       <p class="loader-text">Initializing...</p>
     </div>
   </div>
 
-  <!-- Added skip to main content for accessibility -->
+  <!-- Skip to main content -->
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-  <!-- Background -->
+  <!-- Background Canvas -->
   <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
-      <div class="logo">
+      <a href="#" class="logo" aria-label="Mohamed Mooka - Home">
         <span class="logo-icon" aria-hidden="true">⬢</span>
         <span>Mooka</span>
-      </div>
+      </a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" type="button">
         <span></span>
         <span></span>
         <span></span>
@@ -64,7 +61,7 @@
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="home">
     <div class="hero-bg-effect" aria-hidden="true"></div>
     <div class="hero-content">
       <div class="hero-badge" data-reveal>
@@ -78,23 +75,23 @@
       </h1>
 
       <p class="hero-subtitle" data-reveal data-delay="300">
-        <span class="typing-text">Cybersecurity Analyst | DFIR & SOC</span>
+        <span class="typing-text" data-text="Cybersecurity Analyst | DFIR & SOC"></span>
       </p>
 
       <!-- Stats -->
       <div class="stats-inline" data-reveal data-delay="400">
         <div class="stat-item">
-          <span class="stat-number" data-target="150">0</span>
+          <span class="stat-number" data-target="150" aria-label="150 plus incidents resolved">0</span>
           <span class="stat-label">Incidents</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="stat-number" data-target="5">0</span>
+          <span class="stat-number" data-target="5" aria-label="5 plus years experience">0</span>
           <span class="stat-label">Years</span>
         </div>
         <div class="stat-divider" aria-hidden="true"></div>
         <div class="stat-item">
-          <span class="stat-number" data-target="99">0</span>
+          <span class="stat-number" data-target="99" aria-label="99 plus percent success rate">0</span>
           <span class="stat-label">Success Rate</span>
         </div>
       </div>
@@ -134,7 +131,7 @@
         </a>
       </div>
 
-      <!-- Added scroll indicator -->
+      <!-- Scroll indicator -->
       <div class="scroll-indicator" data-reveal data-delay="700" aria-hidden="true">
         <span>Scroll</span>
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -178,49 +175,49 @@
       <div class="skills-compact">
         <div class="skill-category" data-reveal>
           <h3>DFIR</h3>
-          <div class="skill-tags">
-            <span>Volatility</span>
-            <span>Autopsy</span>
-            <span>FTK Imager</span>
-            <span>KAPE</span>
-            <span>Velociraptor</span>
-            <span>Redline</span>
-          </div>
+          <ul class="skill-tags">
+            <li>Volatility</li>
+            <li>Autopsy</li>
+            <li>FTK Imager</li>
+            <li>KAPE</li>
+            <li>Velociraptor</li>
+            <li>Redline</li>
+          </ul>
         </div>
         
         <div class="skill-category" data-reveal>
           <h3>SIEM & Detection</h3>
-          <div class="skill-tags">
-            <span>Splunk</span>
-            <span>ELK Stack</span>
-            <span>QRadar</span>
-            <span>Wazuh</span>
-            <span>Sigma Rules</span>
-            <span>Suricata</span>
-          </div>
+          <ul class="skill-tags">
+            <li>Splunk</li>
+            <li>ELK Stack</li>
+            <li>QRadar</li>
+            <li>Wazuh</li>
+            <li>Sigma Rules</li>
+            <li>Suricata</li>
+          </ul>
         </div>
         
         <div class="skill-category" data-reveal>
           <h3>Analysis</h3>
-          <div class="skill-tags">
-            <span>Python</span>
-            <span>PowerShell</span>
-            <span>Wireshark</span>
-            <span>IDA Pro</span>
-            <span>Ghidra</span>
-            <span>YARA</span>
-          </div>
+          <ul class="skill-tags">
+            <li>Python</li>
+            <li>PowerShell</li>
+            <li>Wireshark</li>
+            <li>IDA Pro</li>
+            <li>Ghidra</li>
+            <li>YARA</li>
+          </ul>
         </div>
         
         <div class="skill-category" data-reveal>
           <h3>Systems</h3>
-          <div class="skill-tags">
-            <span>Linux</span>
-            <span>Windows</span>
-            <span>Kali</span>
-            <span>SIFT</span>
-            <span>REMnux</span>
-          </div>
+          <ul class="skill-tags">
+            <li>Linux</li>
+            <li>Windows</li>
+            <li>Kali</li>
+            <li>SIFT</li>
+            <li>REMnux</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -243,13 +240,13 @@
           <p class="project-description">
             Complete digital forensics case covering memory analysis, disk forensics, and attack timeline reconstruction.
           </p>
-          <div class="project-tags">
-            <span>Memory Forensics</span>
-            <span>Timeline Analysis</span>
-            <span>IOC Extraction</span>
-            <span>Volatility</span>
-            <span>Autopsy</span>
-          </div>
+          <ul class="project-tags">
+            <li>Memory Forensics</li>
+            <li>Timeline Analysis</li>
+            <li>IOC Extraction</li>
+            <li>Volatility</li>
+            <li>Autopsy</li>
+          </ul>
           <a href="project-dfir.html" class="project-link">
             View Case Study
             <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -265,12 +262,12 @@
           <p class="project-description">
             Security operations center simulation with alert triage and incident detection.
           </p>
-          <div class="project-tags">
-            <span>SIEM</span>
-            <span>Log Analysis</span>
-            <span>Alert Triage</span>
-            <span>Splunk</span>
-          </div>
+          <ul class="project-tags">
+            <li>SIEM</li>
+            <li>Log Analysis</li>
+            <li>Alert Triage</li>
+            <li>Splunk</li>
+          </ul>
           <span class="project-link disabled" aria-disabled="true">
             Coming Soon
           </span>
@@ -283,12 +280,12 @@
           <p class="project-description">
             Static and dynamic analysis of malware samples to identify behavior and IOCs.
           </p>
-          <div class="project-tags">
-            <span>Static Analysis</span>
-            <span>Dynamic Analysis</span>
-            <span>IDA Pro</span>
-            <span>Cuckoo</span>
-          </div>
+          <ul class="project-tags">
+            <li>Static Analysis</li>
+            <li>Dynamic Analysis</li>
+            <li>IDA Pro</li>
+            <li>Cuckoo</li>
+          </ul>
           <span class="project-link disabled" aria-disabled="true">
             Coming Soon
           </span>
@@ -301,11 +298,11 @@
           <p class="project-description">
             Proactive threat hunting using behavioral analysis and anomaly detection.
           </p>
-          <div class="project-tags">
-            <span>Threat Intel</span>
-            <span>MITRE ATT&CK</span>
-            <span>Behavioral Analysis</span>
-          </div>
+          <ul class="project-tags">
+            <li>Threat Intel</li>
+            <li>MITRE ATT&CK</li>
+            <li>Behavioral Analysis</li>
+          </ul>
           <span class="project-link disabled" aria-disabled="true">
             Coming Soon
           </span>
@@ -318,12 +315,12 @@
           <p class="project-description">
             Network traffic analysis and packet inspection for incident investigation.
           </p>
-          <div class="project-tags">
-            <span>Wireshark</span>
-            <span>Zeek</span>
-            <span>PCAP Analysis</span>
-            <span>Traffic Analysis</span>
-          </div>
+          <ul class="project-tags">
+            <li>Wireshark</li>
+            <li>Zeek</li>
+            <li>PCAP Analysis</li>
+            <li>Traffic Analysis</li>
+          </ul>
           <span class="project-link disabled" aria-disabled="true">
             Coming Soon
           </span>
@@ -336,11 +333,11 @@
           <p class="project-description">
             Comprehensive IR procedures and automated response workflows.
           </p>
-          <div class="project-tags">
-            <span>IR Procedures</span>
-            <span>Automation</span>
-            <span>Documentation</span>
-          </div>
+          <ul class="project-tags">
+            <li>IR Procedures</li>
+            <li>Automation</li>
+            <li>Documentation</li>
+          </ul>
           <span class="project-link disabled" aria-disabled="true">
             Coming Soon
           </span>
@@ -407,7 +404,7 @@
   </footer>
 
   <!-- Back to top button -->
-  <button class="back-to-top" aria-label="Back to top" title="Back to top">
+  <button class="back-to-top" aria-label="Back to top" title="Back to top" type="button">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
       <path d="M12 19V5m0 0l-7 7m7-7l7 7" stroke-width="2" stroke-linecap="round"/>
     </svg>
