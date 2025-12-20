@@ -1,212 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DFIR Investigation Lab | Mohamed Mooka</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFIR Investigation Lab - Mohamed Mooka</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .project-hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 247, 0.1));
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+    
+    .project-hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .project-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-secondary);
+    }
+    
+    .project-details {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    
+    .project-section {
+      margin-bottom: 3rem;
+    }
+    
+    .project-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-accent);
+    }
+    
+    .project-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--color-text-secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .project-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .project-section ul li {
+      padding-left: 2rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+      color: var(--color-text-secondary);
+    }
+    
+    .project-section ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-size: 1.2rem;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      transition: gap var(--transition-base);
+    }
+    
+    .back-link:hover {
+      gap: 1rem;
+    }
+  </style>
 </head>
-<body class="no-animate">
-
-
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar">
-  <div class="nav-container">
-    <div class="logo">Mooka</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#tools">Tools</a></li>
-      <li><a href="#analysis">Analysis</a></li>
-      <li><a href="#results">Results</a></li>
-    </ul>
+<body>
+  <!-- Background -->
+  <div class="cyber-background">
+    <div class="grid-lines"></div>
+    <canvas id="particles-canvas"></canvas>
   </div>
-</nav>
 
-<!-- ================= HERO ================= -->
-<header class="hero">
-  <h1>DFIR Investigation Lab</h1>
-  <p class="subtitle">Incident Response & Forensics Case Study</p>
-</header>
-
-<main>
-
-<!-- ================= 1. OVERVIEW ================= -->
-<section class="section" id="overview">
-  <h2>1. Project Overview</h2>
-  <div class="card">
-    <p>
-      This project simulates a real-world security incident requiring a full
-      DFIR investigation. The objective was to detect malicious activity,
-      analyze forensic artifacts, and reconstruct the attacker’s timeline.
-    </p>
-  </div>
-</section>
-
-<!-- ================= 2. INCIDENT DETECTION ================= -->
-<section class="section">
-  <h2>2. Incident Detection</h2>
-  <div class="card">
-    <p>
-      The incident was initially detected through abnormal authentication behavior
-      identified in Windows Security Event Logs. Multiple failed login attempts
-      were followed by a successful authentication from an unusual source.
-    </p>
-    <ul>
-      <li>Event ID 4625 – Failed logon attempts</li>
-      <li>Event ID 4624 – Successful logon</li>
-      <li>SIEM correlation rule triggered</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ================= 3. TOOLS ================= -->
-<section class="section" id="tools">
-  <h2>3. Tools & Technologies</h2>
-  <div class="card skills">
-    <span>Splunk SIEM</span>
-    <span>Windows Security Logs</span>
-    <span>Sysmon</span>
-    <span>PowerShell</span>
-    <span>Timeline Analysis</span>
-  </div>
-</section>
-
-<!-- ================= 4. ANALYSIS ================= -->
-<section class="section" id="analysis">
-  <h2>4. Investigation & Analysis</h2>
-  <div class="card">
-    <ol>
-      <li>Reviewed Windows Security logs for abnormal authentication activity</li>
-      <li>Identified multiple failed logons followed by a successful login</li>
-      <li>Analyzed Sysmon logs to detect suspicious PowerShell execution</li>
-      <li>Correlated events to reconstruct the full attack timeline</li>
-    </ol>
-  </div>
-</section>
-
-<!-- ================= 5. TIMELINE ================= -->
-<section class="section">
-  <h2>5. Attack Timeline</h2>
-  <div class="card">
-    <div style="overflow-x:auto;">
-      <table style="width:100%; border-collapse: collapse;">
-        <thead>
-          <tr style="color:#38bdf8; text-align:left;">
-            <th>Step</th>
-            <th>Time</th>
-            <th>Event</th>
-            <th>Log Source</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>09:41</td>
-            <td>Multiple failed login attempts</td>
-            <td>Windows Security (4625)</td>
-            <td><a href="#log1">View Evidence</a></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>09:44</td>
-            <td>Successful login</td>
-            <td>Windows Security (4624)</td>
-            <td><a href="#log2">View Evidence</a></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>09:46</td>
-            <td>Encoded PowerShell execution</td>
-            <td>Sysmon (Event ID 1)</td>
-            <td><a href="#log3">View Evidence</a></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>09:48</td>
-            <td>Privilege escalation attempt</td>
-            <td>Security Logs</td>
-            <td><a href="#log4">View Evidence</a></td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Navigation -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-text">M.Mooka</span>
+        <span class="logo-bracket">/&gt;</span>
+      </div>
+      
+      <div class="nav-menu">
+        <a href="index.html#home" class="nav-link">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="index.html#projects" class="nav-link">
+          <i class="fas fa-folder"></i>
+          <span>Projects</span>
+        </a>
+        <a href="index.html#contact" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </nav>
 
-<!-- ================= 6. LOG EVIDENCE ================= -->
-<section class="section">
-  <h2>6. Log Evidence</h2>
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div>
+      <h1>DFIR Investigation Lab</h1>
+      <p style="font-size: 1.2rem; color: var(--color-text-secondary); max-width: 800px; margin: 0 auto;">
+        Complete digital forensics and incident response case study
+      </p>
+      <div class="project-meta">
+        <div class="meta-item">
+          <i class="fas fa-calendar"></i>
+          <span>2024</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-tag"></i>
+          <span>DFIR</span>
+        </div>
+        <div class="meta-item">
+          <i class="fas fa-tools"></i>
+          <span>Volatility, Autopsy, Wireshark</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="card" id="log1">
-    <h3>6.1 Failed Login Attempts – Event ID 4625</h3>
-    <p>
-      Analysis of Windows Security logs revealed repeated failed authentication
-      attempts from the same source, indicating a brute-force attack.
-    </p>
-    <img src="assets/images/failed-logon.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">
-      Figure 1 – Windows Security Event ID 4625 showing failed logon attempts
-    </p>
-  </div>
+  <!-- Project Details -->
+  <section class="project-details">
+    <a href="index.html#projects" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      <span>Back to Projects</span>
+    </a>
 
-  <div class="card" id="log2">
-    <h3>6.2 Successful Login – Event ID 4624</h3>
-    <p>
-      A successful login occurred shortly after multiple failures,
-      confirming credential compromise.
-    </p>
-    <img src="assets/images/successful-logon.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">
-      Figure 2 – Windows Security Event ID 4624 showing successful authentication
-    </p>
-  </div>
+    <div class="project-section">
+      <h2>Project Overview</h2>
+      <p>
+        This comprehensive DFIR investigation lab demonstrates a complete incident response workflow, 
+        from initial detection to timeline reconstruction and threat attribution. The case study simulates 
+        a real-world security incident involving malware infection and data exfiltration.
+      </p>
+    </div>
 
-  <div class="card" id="log3">
-    <h3>6.3 PowerShell Execution – Sysmon Event ID 1</h3>
-    <p>
-      Sysmon logs showed an encoded PowerShell command execution,
-      a common post-exploitation technique.
-    </p>
-    <img src="assets/images/powershell-encoded.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">
-      Figure 3 – Encoded PowerShell execution detected in Sysmon logs
-    </p>
-  </div>
+    <div class="project-section">
+      <h2>Investigation Methodology</h2>
+      <ul>
+        <li>Initial detection through SIEM alert correlation</li>
+        <li>Memory dump acquisition and analysis using Volatility</li>
+        <li>Disk forensics with Autopsy for artifact recovery</li>
+        <li>Network traffic analysis using Wireshark</li>
+        <li>Timeline reconstruction and IOC identification</li>
+        <li>Malware reverse engineering and behavioral analysis</li>
+      </ul>
+    </div>
 
-  <div class="card" id="log4">
-    <h3>6.4 Privilege Escalation Attempt</h3>
-    <p>
-      Further investigation revealed suspicious activity consistent with
-      a privilege escalation attempt.
-    </p>
-    <img src="assets/images/privilege-escalation.png" style="width:100%; border-radius:12px; margin-top:15px;">
-    <p style="font-size:0.85rem; opacity:0.7;">
-      Figure 4 – Evidence of privilege escalation attempt
-    </p>
-  </div>
+    <div class="project-section">
+      <h2>Key Findings</h2>
+      <ul>
+        <li>Identified APT-style malware with command and control communication</li>
+        <li>Recovered 15+ indicators of compromise (IOCs)</li>
+        <li>Mapped attack to MITRE ATT&CK framework (T1566, T1059, T1041)</li>
+        <li>Documented complete attack timeline spanning 72 hours</li>
+        <li>Discovered evidence of lateral movement and privilege escalation</li>
+      </ul>
+    </div>
 
-</section>
+    <div class="project-section">
+      <h2>Tools & Technologies</h2>
+      <ul>
+        <li><strong>Volatility:</strong> Memory forensics and process analysis</li>
+        <li><strong>Autopsy:</strong> Disk forensics and file recovery</li>
+        <li><strong>Wireshark:</strong> Network traffic analysis and PCAP inspection</li>
+        <li><strong>FTK Imager:</strong> Forensic image acquisition</li>
+        <li><strong>YARA:</strong> Malware signature detection</li>
+        <li><strong>Splunk:</strong> Log correlation and analysis</li>
+      </ul>
+    </div>
 
-<!-- ================= 7. RESULTS ================= -->
-<section class="section" id="results">
-  <h2>7. Results & Outcome</h2>
-  <div class="card">
-    <p>
-      The investigation successfully identified the attack vector,
-      reconstructed the timeline, and extracted relevant indicators of compromise.
-      Recommendations were provided to improve detection and response capabilities.
-    </p>
-  </div>
-</section>
+    <div class="project-section">
+      <h2>Lessons Learned</h2>
+      <p>
+        This investigation highlighted the importance of comprehensive log collection, 
+        proper evidence preservation, and systematic analysis methodology. The case 
+        demonstrated how combining multiple forensic techniques provides a complete 
+        picture of the attack lifecycle.
+      </p>
+    </div>
 
-</main>
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="index.html#contact" class="btn btn-primary">
+        <span>Discuss This Project</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </section>
 
-<footer>
-  <p>© 2025 Mohamed Mooka — Cybersecurity Portfolio</p>
-</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2025</span> Mohamed Mooka. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-<script src="js/main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
