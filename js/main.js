@@ -1,5 +1,5 @@
 // ==================================================
-// MAIN JAVASCRIPT FILE
+// ELITE PORTFOLIO JAVASCRIPT
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,50 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     animateCursor()
-  }
-
-  /* ===============================================
-     MATRIX RAIN ANIMATION
-  =============================================== */
-
-  const canvas = document.getElementById("matrix-canvas")
-  if (canvas) {
-    const ctx = canvas.getContext("2d")
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"
-    const fontSize = 14
-    const columns = canvas.width / fontSize
-    const drops = Array(Math.floor(columns)).fill(0)
-
-    function drawMatrix() {
-      ctx.fillStyle = "rgba(10, 14, 26, 0.05)"
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      ctx.fillStyle = "rgba(0, 245, 255, 0.8)"
-      ctx.font = fontSize + "px monospace"
-
-      drops.forEach((y, i) => {
-        const text = chars[Math.floor(Math.random() * chars.length)]
-        const x = i * fontSize
-
-        ctx.fillText(text, x, y * fontSize)
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0
-        }
-
-        drops[i]++
-      })
-    }
-
-    const matrixInterval = setInterval(drawMatrix, 50)
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    })
   }
 
   /* ===============================================
