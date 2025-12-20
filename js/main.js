@@ -1,5 +1,5 @@
 // ==========================================
-// MODERN PORTFOLIO - MAIN JAVASCRIPT
+// ULTRA-MODERN PORTFOLIO - ENHANCED JAVASCRIPT
 // ==========================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations()
   initCounters()
   initSmoothScroll()
+  initCursorEffect()
+  initParallax()
+  initTextAnimation()
 })
 
 // ==========================================
@@ -54,7 +57,7 @@ function initParticles() {
 
   const ctx = canvas.getContext("2d")
   let particlesArray = []
-  const mouse = { x: null, y: null, radius: 150 }
+  const mouse = { x: null, y: null, radius: 180 }
 
   // Set canvas size
   canvas.width = window.innerWidth
@@ -72,7 +75,6 @@ function initParticles() {
     mouse.y = event.y
   })
 
-  // Particle class
   class Particle {
     constructor(x, y, directionX, directionY, size, color) {
       this.x = x
@@ -81,13 +83,18 @@ function initParticles() {
       this.directionY = directionY
       this.size = size
       this.color = color
+      this.baseX = x
+      this.baseY = y
     }
 
     draw() {
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false)
+      ctx.shadowBlur = 15
+      ctx.shadowColor = this.color
       ctx.fillStyle = this.color
       ctx.fill()
+      ctx.shadowBlur = 0
     }
 
     update() {
@@ -98,23 +105,28 @@ function initParticles() {
         this.directionY = -this.directionY
       }
 
-      // Mouse interaction
       const dx = mouse.x - this.x
       const dy = mouse.y - this.y
       const distance = Math.sqrt(dx * dx + dy * dy)
+      const maxDistance = mouse.radius + this.size
 
-      if (distance < mouse.radius + this.size) {
-        if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-          this.x += 2
+      if (distance < maxDistance) {
+        const force = (maxDistance - distance) / maxDistance
+        const angle = Math.atan2(dy, dx)
+        const moveX = Math.cos(angle) * force * 3
+        const moveY = Math.sin(angle) * force * 3
+
+        this.x -= moveX
+        this.y -= moveY
+      } else {
+        // Return to base position
+        if (this.x !== this.baseX) {
+          const dx = this.baseX - this.x
+          this.x += dx * 0.05
         }
-        if (mouse.x > this.x && this.x > this.size * 10) {
-          this.x -= 2
-        }
-        if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-          this.y += 2
-        }
-        if (mouse.y > this.y && this.y > this.size * 10) {
-          this.y -= 2
+        if (this.y !== this.baseY) {
+          const dy = this.baseY - this.y
+          this.y += dy * 0.05
         }
       }
 
@@ -124,34 +136,49 @@ function initParticles() {
     }
   }
 
-  // Initialize particles
   function init() {
     particlesArray = []
-    const numberOfParticles = (canvas.width * canvas.height) / 15000
+    const numberOfParticles = Math.min((canvas.width * canvas.height) / 12000, 120)
+
+    const colors = [
+      "rgba(0, 245, 255, 0.6)",
+      "rgba(153, 69, 255, 0.5)",
+      "rgba(255, 0, 110, 0.4)",
+      "rgba(0, 255, 148, 0.5)",
+    ]
 
     for (let i = 0; i < numberOfParticles; i++) {
-      const size = Math.random() * 3 + 1
+      const size = Math.random() * 2.5 + 1
       const x = Math.random() * (canvas.width - size * 2) + size
       const y = Math.random() * (canvas.height - size * 2) + size
-      const directionX = Math.random() * 0.4 - 0.2
-      const directionY = Math.random() * 0.4 - 0.2
-      const color = `rgba(0, 212, 255, ${Math.random() * 0.5 + 0.2})`
+      const directionX = Math.random() * 0.6 - 0.3
+      const directionY = Math.random() * 0.6 - 0.3
+      const color = colors[Math.floor(Math.random() * colors.length)]
 
       particlesArray.push(new Particle(x, y, directionX, directionY, size, color))
     }
   }
 
-  // Connect particles
   function connect() {
     for (let a = 0; a < particlesArray.length; a++) {
-      for (let b = a; b < particlesArray.length; b++) {
-        const distance =
-          (particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x) +
-          (particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y)
+      for (let b = a + 1; b < particlesArray.length; b++) {
+        const dx = particlesArray[a].x - particlesArray[b].x
+        const dy = particlesArray[a].y - particlesArray[b].y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        const maxDistance = 120
 
-        if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-          const opacity = 1 - distance / 20000
-          ctx.strokeStyle = `rgba(0, 212, 255, ${opacity * 0.3})`
+        if (distance < maxDistance) {
+          const opacity = (1 - distance / maxDistance) * 0.5
+          const gradient = ctx.createLinearGradient(
+            particlesArray[a].x,
+            particlesArray[a].y,
+            particlesArray[b].x,
+            particlesArray[b].y,
+          )
+          gradient.addColorStop(0, `rgba(0, 245, 255, ${opacity})`)
+          gradient.addColorStop(1, `rgba(153, 69, 255, ${opacity})`)
+
+          ctx.strokeStyle = gradient
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
@@ -264,20 +291,118 @@ function initSmoothScroll() {
 }
 
 // ==========================================
-// CURSOR EFFECT (Optional Enhancement)
+// CUSTOM CURSOR EFFECT
 // ==========================================
 function initCursorEffect() {
   const cursor = document.createElement("div")
   cursor.className = "custom-cursor"
+  cursor.style.cssText = `
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 245, 255, 0.8);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+  `
   document.body.appendChild(cursor)
 
+  const cursorDot = document.createElement("div")
+  cursorDot.style.cssText = `
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0, 245, 255, 1);
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 245, 255, 1);
+  `
+  document.body.appendChild(cursorDot)
+
+  let mouseX = 0,
+    mouseY = 0
+  let cursorX = 0,
+    cursorY = 0
+  let dotX = 0,
+    dotY = 0
+
   document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX + "px"
-    cursor.style.top = e.clientY + "px"
+    mouseX = e.clientX
+    mouseY = e.clientY
   })
 
-  document.querySelectorAll("a, button").forEach((el) => {
-    el.addEventListener("mouseenter", () => cursor.classList.add("cursor-hover"))
-    el.addEventListener("mouseleave", () => cursor.classList.remove("cursor-hover"))
+  function animate() {
+    // Smooth cursor follow
+    cursorX += (mouseX - cursorX) * 0.1
+    cursorY += (mouseY - cursorY) * 0.1
+    dotX += (mouseX - dotX) * 0.15
+    dotY += (mouseY - dotY) * 0.15
+
+    cursor.style.left = cursorX + "px"
+    cursor.style.top = cursorY + "px"
+    cursorDot.style.left = dotX + "px"
+    cursorDot.style.top = dotY + "px"
+
+    requestAnimationFrame(animate)
+  }
+  animate()
+
+  document.querySelectorAll("a, button, .project-card, .expertise-card").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      cursor.style.transform = "translate(-50%, -50%) scale(1.5)"
+      cursor.style.borderColor = "rgba(153, 69, 255, 0.8)"
+      cursor.style.boxShadow = "0 0 30px rgba(153, 69, 255, 0.8)"
+      cursorDot.style.background = "rgba(153, 69, 255, 1)"
+    })
+
+    el.addEventListener("mouseleave", () => {
+      cursor.style.transform = "translate(-50%, -50%) scale(1)"
+      cursor.style.borderColor = "rgba(0, 245, 255, 0.8)"
+      cursor.style.boxShadow = "0 0 20px rgba(0, 245, 255, 0.6)"
+      cursorDot.style.background = "rgba(0, 245, 255, 1)"
+    })
   })
+}
+
+// ==========================================
+// PARALLAX SCROLLING EFFECT
+// ==========================================
+function initParallax() {
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    const parallaxElements = document.querySelectorAll(".floating-card, .hero-content")
+
+    parallaxElements.forEach((el, index) => {
+      const speed = 0.5 + index * 0.1
+      el.style.transform = `translateY(${scrolled * speed}px)`
+    })
+  })
+}
+
+// ==========================================
+// TEXT TYPING ANIMATION
+// ==========================================
+function initTextAnimation() {
+  const subtitle = document.querySelector(".hero-subtitle")
+  if (!subtitle) return
+
+  const text = subtitle.textContent
+  subtitle.textContent = ""
+  let index = 0
+
+  function typeWriter() {
+    if (index < text.length) {
+      subtitle.textContent += text.charAt(index)
+      index++
+      setTimeout(typeWriter, 100)
+    }
+  }
+
+  setTimeout(typeWriter, 500)
 }
