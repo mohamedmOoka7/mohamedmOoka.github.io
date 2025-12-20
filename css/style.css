@@ -1,23 +1,23 @@
 /* ==================================================
-   VARIABLES - Enhanced color system with better contrast and readability
+   CSS VARIABLES - Enhanced color system
 ================================================== */
 
 :root {
-  /* Dark backgrounds with better depth */
+  /* Dark backgrounds */
   --color-bg: #050a1f;
   --color-bg-elevated: #0a1128;
   --color-bg-card: #0f1630;
 
-  /* Primary colors - electric cyan with better visibility */
+  /* Primary colors */
   --color-primary: #00e5ff;
   --color-primary-dark: #00bcd4;
   --color-primary-light: #6ff9ff;
 
-  /* Accent - vibrant purple */
+  /* Accent */
   --color-accent: #8b5cf6;
   --color-accent-light: #a78bfa;
 
-  /* Text with improved contrast ratios */
+  /* Text */
   --color-text: #f8fafc;
   --color-text-muted: #94a3b8;
   --color-text-dim: #64748b;
@@ -34,14 +34,14 @@
   --gradient-primary: linear-gradient(135deg, #00e5ff 0%, #8b5cf6 100%);
   --gradient-card: linear-gradient(135deg, rgba(0, 229, 255, 0.06) 0%, rgba(139, 92, 246, 0.06) 100%);
 
-  /* Shadows with better depth */
+  /* Shadows */
   --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 25px 70px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 50px rgba(0, 229, 255, 0.4);
   --shadow-glow-sm: 0 0 25px rgba(0, 229, 255, 0.25);
 
-  /* Spacing scale */
+  /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
@@ -53,21 +53,14 @@
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
 
-  /* Transitions with better easing */
+  /* Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Increased base font size for better readability */
-  --font-size-base: 15px;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
 }
 
 /* ==================================================
-   RESET - Better base styles
+   RESET
 ================================================== */
 
 *,
@@ -92,17 +85,34 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* Increased base font size from 13px to 15px */
   font-size: 15px;
-  animation: pageLoad 0.6s ease;
 }
 
-/* Better selection styling */
 ::selection {
   background: var(--color-primary);
   color: var(--color-bg);
 }
 
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: 600;
+  border-radius: 8px;
+  z-index: 10000;
+  transition: top var(--transition-base);
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+}
+
+/* Background canvas */
 #particles-canvas {
   position: fixed;
   top: 0;
@@ -111,12 +121,11 @@ body {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  /* Increased opacity for better visibility of new animation */
   opacity: 0.6;
 }
 
 /* ==================================================
-   NAVBAR - Improved contrast and spacing
+   NAVBAR
 ================================================== */
 
 .navbar {
@@ -138,7 +147,6 @@ body {
 .nav-container {
   max-width: 1400px;
   margin: 0 auto;
-  /* Reduced padding for compact navbar */
   padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -150,9 +158,9 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-weight: 700;
-  /* Increased logo size from 0.95rem to 1.05rem */
   font-size: 1.05rem;
   color: var(--color-text);
+  text-decoration: none;
   transition: all var(--transition-base);
 }
 
@@ -162,7 +170,6 @@ body {
 
 .logo-icon {
   color: var(--color-primary);
-  /* Reduced icon from 1.3rem to 1.2rem */
   font-size: 1.2rem;
   filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.7));
 }
@@ -170,7 +177,6 @@ body {
 .nav-links {
   list-style: none;
   display: flex;
-  /* Reduced gap from 1.8rem to 1.6rem */
   gap: 1.6rem;
   align-items: center;
 }
@@ -179,7 +185,6 @@ body {
   position: relative;
   text-decoration: none;
   color: var(--color-text-muted);
-  /* Increased nav links from 0.8rem to 0.9rem */
   font-size: 0.9rem;
   font-weight: 500;
   transition: color var(--transition-base);
@@ -187,7 +192,8 @@ body {
   letter-spacing: 0.01em;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active {
   color: var(--color-primary);
 }
 
@@ -202,21 +208,21 @@ body {
   transition: width var(--transition-base);
 }
 
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
 }
 
 .nav-cta {
   background: var(--gradient-primary);
   color: var(--color-bg) !important;
-  /* Reduced padding for compact CTA button */
   padding: 0.5rem 1.2rem !important;
   border-radius: 100px;
   font-weight: 600;
 }
 
 .nav-cta::after {
-  display: none;
+  display: none !important;
 }
 
 .nav-cta:hover {
@@ -229,6 +235,9 @@ body {
   flex-direction: column;
   gap: 6px;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
 }
 
 .mobile-menu-toggle span {
@@ -239,8 +248,20 @@ body {
   transition: all var(--transition-base);
 }
 
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
+}
+
 /* ==================================================
-   HERO - Enhanced visual hierarchy and spacing
+   HERO
 ================================================== */
 
 .hero {
@@ -249,7 +270,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Reduced padding for less whitespace */
   padding: 7rem 2rem 3.5rem;
   overflow: hidden;
 }
@@ -264,6 +284,7 @@ body {
   background: radial-gradient(circle, rgba(0, 229, 255, 0.18) 0%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
   filter: blur(100px);
   animation: pulse 10s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes pulse {
@@ -281,7 +302,6 @@ body {
 .hero-content {
   position: relative;
   z-index: 1;
-  /* Reduced max-width for tighter content */
   max-width: 800px;
   text-align: center;
 }
@@ -294,18 +314,15 @@ body {
   background: rgba(0, 229, 255, 0.1);
   border: 1px solid var(--color-border-bright);
   border-radius: 100px;
-  /* Increased badge font from 0.7rem to 0.8rem */
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-primary);
   margin-bottom: 1.6rem;
-  animation: fadeInUp 0.8s ease;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
 .pulse-dot {
-  /* Reduced dot from 7px to 6px */
   width: 6px;
   height: 6px;
   background: var(--color-primary);
@@ -327,7 +344,6 @@ body {
 }
 
 .hero-title {
-  /* Increased hero title for better impact */
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 800;
   line-height: 1.1;
@@ -337,11 +353,12 @@ body {
 
 .text-reveal {
   display: inline-block;
-  animation: fadeInUp 0.8s ease backwards;
+  opacity: 0;
+  transform: translateY(40px);
 }
 
-.text-reveal:nth-child(2) {
-  animation-delay: 0.1s;
+.text-reveal.revealed {
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .gradient-text {
@@ -353,10 +370,6 @@ body {
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -364,13 +377,17 @@ body {
 }
 
 .hero-subtitle {
-  /* Increased subtitle size */
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   color: var(--color-text-muted);
   margin-bottom: 2.2rem;
-  animation: fadeInUp 0.8s ease 0.2s backwards;
   font-weight: 500;
   letter-spacing: -0.01em;
+}
+
+.typing-text {
+  display: inline-block;
+  border-right: 2px solid transparent;
+  padding-right: 5px;
 }
 
 .stats-inline {
@@ -379,12 +396,10 @@ body {
   align-items: center;
   gap: 2rem;
   margin: 2.2rem 0;
-  /* Reduced padding */
   padding: 1.6rem 2rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid var(--color-border);
   border-radius: 16px;
-  animation: fadeInUp 0.8s ease 0.4s backwards;
   backdrop-filter: blur(10px);
 }
 
@@ -396,7 +411,6 @@ body {
 }
 
 .stat-number {
-  /* Increased stat numbers */
   font-size: 2.2rem;
   font-weight: 800;
   background: var(--gradient-primary);
@@ -408,7 +422,6 @@ body {
 }
 
 .stat-label {
-  /* Increased stat labels */
   font-size: 0.8rem;
   color: var(--color-text-dim);
   text-transform: uppercase;
@@ -428,18 +441,15 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 2.2rem;
-  animation: fadeInUp 0.8s ease 0.5s backwards;
 }
 
 .hero-social {
   display: flex;
   gap: 0.8rem;
   justify-content: center;
-  animation: fadeInUp 0.8s ease 0.6s backwards;
 }
 
 .hero-social a {
-  /* Reduced from 42px to 38px */
   width: 38px;
   height: 38px;
   display: flex;
@@ -460,16 +470,14 @@ body {
   box-shadow: var(--shadow-glow-sm);
 }
 
-/* Better button design with improved contrast */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  /* Increased button padding */
   padding: 0.85rem 2rem;
   border-radius: 100px;
   font-weight: 600;
-  /* Increased button font size */
   font-size: 0.95rem;
   text-decoration: none;
   transition: all var(--transition-base);
@@ -483,7 +491,6 @@ body {
   background: var(--gradient-primary);
   color: var(--color-bg);
   box-shadow: 0 6px 24px rgba(0, 229, 255, 0.3);
-  border: 2px solid transparent;
 }
 
 .btn-primary:hover {
@@ -504,14 +511,41 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
+/* Scroll indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 2.5rem;
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: opacity var(--transition-base);
+}
+
+.scroll-indicator svg {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
 /* ==================================================
-   SECTIONS - Better spacing and typography
+   SECTIONS
 ================================================== */
 
 .section {
   max-width: 1400px;
   margin: 0 auto;
-  /* Reduced from 5rem to 4.5rem */
   padding: 4.5rem 2rem;
 }
 
@@ -523,13 +557,11 @@ body {
 
 .section-header {
   text-align: center;
-  /* Reduced from 3.5rem to 3rem */
   margin-bottom: 3rem;
 }
 
 .section-label {
   display: inline-block;
-  /* Increased section label */
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -539,7 +571,6 @@ body {
 }
 
 .section-title {
-  /* Increased section titles */
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 800;
   margin-bottom: 0.8rem;
@@ -547,8 +578,20 @@ body {
   line-height: 1.1;
 }
 
+/* Reveal animations */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ==================================================
-   ABOUT - Enhanced readability
+   ABOUT
 ================================================== */
 
 .about-simple {
@@ -558,7 +601,6 @@ body {
 }
 
 .lead-text {
-  /* Increased lead text size */
   font-size: 1.15rem;
   line-height: 1.7;
   color: var(--color-text);
@@ -579,7 +621,6 @@ body {
   background: rgba(0, 229, 255, 0.1);
   border: 1px solid var(--color-border-bright);
   border-radius: 100px;
-  /* Increased tag font size */
   font-size: 0.9rem;
   color: var(--color-primary);
   font-weight: 600;
@@ -594,7 +635,7 @@ body {
 }
 
 /* ==================================================
-   SKILLS - Better visual hierarchy
+   SKILLS
 ================================================== */
 
 .skills-compact {
@@ -606,14 +647,11 @@ body {
 }
 
 .skill-category {
-  /* Reduced from 1.8rem to 1.6rem */
   padding: 1.6rem;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: 16px;
   transition: all var(--transition-base);
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .skill-category:hover {
@@ -623,7 +661,6 @@ body {
 }
 
 .skill-category h3 {
-  /* Increased skill category headings */
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-primary);
@@ -635,21 +672,21 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
+  list-style: none;
 }
 
-.skill-tags span {
+.skill-tags li {
   padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  /* Increased skill tag font size */
   font-size: 0.85rem;
   color: var(--color-text-muted);
   transition: all var(--transition-base);
   font-weight: 500;
 }
 
-.skill-tags span:hover {
+.skill-tags li:hover {
   background: rgba(0, 229, 255, 0.1);
   border-color: var(--color-border-bright);
   color: var(--color-primary);
@@ -658,7 +695,7 @@ body {
 }
 
 /* ==================================================
-   PROJECTS - Enhanced card design and readability
+   PROJECTS
 ================================================== */
 
 .projects-grid {
@@ -669,7 +706,6 @@ body {
 
 .project-card {
   position: relative;
-  /* Reduced from 2.2rem to 2rem */
   padding: 2rem;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -678,8 +714,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.3rem;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .project-card:hover {
@@ -698,12 +732,10 @@ body {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  /* Reduced padding */
   padding: 0.4rem 1rem;
   background: var(--gradient-primary);
   color: var(--color-bg);
   border-radius: 100px;
-  /* Reduced from 0.7rem to 0.65rem */
   font-size: 0.65rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -712,13 +744,11 @@ body {
 }
 
 .project-icon {
-  /* Reduced from 2.6rem to 2.4rem */
   font-size: 2.4rem;
   line-height: 1;
 }
 
 .project-card h3 {
-  /* Increased project card titles */
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--color-text);
@@ -740,7 +770,6 @@ body {
   color: var(--color-text-muted);
   line-height: 1.7;
   flex-grow: 1;
-  /* Increased project description font */
   font-size: 0.95rem;
 }
 
@@ -748,14 +777,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
+  list-style: none;
 }
 
-.project-tags span {
+.project-tags li {
   padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  /* Increased project tag font */
   font-size: 0.8rem;
   color: var(--color-text-dim);
   font-weight: 500;
@@ -767,7 +796,6 @@ body {
   gap: 0.4rem;
   color: var(--color-primary);
   font-weight: 700;
-  /* Increased project link font */
   font-size: 0.9rem;
   text-decoration: none;
   transition: gap var(--transition-base);
@@ -785,7 +813,7 @@ body {
 }
 
 /* ==================================================
-   CONTACT - Better card design
+   CONTACT
 ================================================== */
 
 .contact-grid {
@@ -797,7 +825,6 @@ body {
 }
 
 .contact-card {
-  /* Reduced from 2rem to 1.8rem */
   padding: 1.8rem;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -810,8 +837,6 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.9rem;
-  will-change: transform;
-  transform: translateZ(0);
 }
 
 .contact-card:hover {
@@ -821,7 +846,6 @@ body {
 }
 
 .contact-icon {
-  /* Reduced from 62px to 56px */
   width: 56px;
   height: 56px;
   display: flex;
@@ -840,7 +864,6 @@ body {
 }
 
 .contact-card h3 {
-  /* Increased contact card headings */
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-primary);
@@ -849,14 +872,13 @@ body {
 
 .contact-card p {
   color: var(--color-text-muted);
-  /* Increased contact card text */
   font-size: 0.9rem;
   word-break: break-word;
   font-weight: 500;
 }
 
 /* ==================================================
-   FOOTER - Better spacing
+   FOOTER
 ================================================== */
 
 footer {
@@ -864,41 +886,8 @@ footer {
   padding: 2.5rem 2rem;
   border-top: 1px solid var(--color-border);
   color: var(--color-text-dim);
-  /* Increased footer font */
   font-size: 0.85rem;
   font-weight: 500;
-}
-
-/* ==================================================
-   SCROLL INDICATOR - Added to hero section
-================================================== */
-
-.scroll-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 2.5rem;
-  color: var(--color-text-dim);
-  /* Reduced from 0.75rem to 0.7rem */
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  animation: fadeInUp 0.8s ease 0.7s backwards;
-}
-
-.scroll-indicator svg {
-  animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
 }
 
 /* ==================================================
@@ -909,7 +898,6 @@ footer {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  /* Reduced from 48px to 44px */
   width: 44px;
   height: 44px;
   background: var(--gradient-primary);
@@ -955,18 +943,123 @@ footer {
   transition: opacity 0.5s ease;
 }
 
-/* Completing loader spinner styles */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .loader-spinner {
   width: 50px;
   height: 50px;
-  border: 3px solid rgba(0, 229, 255, 0.2); /* Fixed incomplete rgba */
-  border-top-color: var(--color-primary); /* Adding the spinning part */
+  border: 3px solid rgba(0, 229, 255, 0.2);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+.loader-text {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN
+================================================== */
+
+@media (max-width: 1024px) {
+  .project-card.featured {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: rgba(5, 10, 31, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    gap: 1.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-base);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .stats-inline {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-divider {
+    width: 40px;
+    height: 1px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .nav-container {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
