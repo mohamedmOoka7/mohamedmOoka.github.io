@@ -1,129 +1,56 @@
 // ==================================================
-// ELITE PORTFOLIO JAVASCRIPT
+// MAIN JAVASCRIPT - ENHANCED VERSION
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===============================================
-     DISABLE ANIMATION ON PROJECT PAGES
-  =============================================== */
-
-  if (document.body.classList.contains("no-animate")) {
-    return
-  }
-
-  /* ===============================================
-     CUSTOM CURSOR
-  =============================================== */
-
-  const cursor = document.querySelector(".custom-cursor")
-  const cursorFollower = document.querySelector(".cursor-follower")
-
-  if (cursor && cursorFollower) {
-    let mouseX = 0,
-      mouseY = 0
-    let cursorX = 0,
-      cursorY = 0
-    let followerX = 0,
-      followerY = 0
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-    })
-
-    function animateCursor() {
-      cursorX += (mouseX - cursorX) * 0.3
-      cursorY += (mouseY - cursorY) * 0.3
-      followerX += (mouseX - followerX) * 0.1
-      followerY += (mouseY - followerY) * 0.1
-
-      cursor.style.left = cursorX + "px"
-      cursor.style.top = cursorY + "px"
-      cursorFollower.style.left = followerX + "px"
-      cursorFollower.style.top = followerY + "px"
-
-      requestAnimationFrame(animateCursor)
-    }
-
-    animateCursor()
-  }
-
   /* ===============================================
      MOBILE MENU TOGGLE
   =============================================== */
 
   const menuToggle = document.querySelector(".menu-toggle")
   const navLinks = document.querySelector(".nav-links")
-  const navItems = document.querySelectorAll(".nav-link")
 
   if (menuToggle) {
     menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active")
       navLinks.classList.toggle("active")
-      document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : ""
+      menuToggle.classList.toggle("active")
     })
 
-    navItems.forEach((item) => {
-      item.addEventListener("click", () => {
-        menuToggle.classList.remove("active")
+    // Close menu when clicking on a link
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
         navLinks.classList.remove("active")
-        document.body.style.overflow = ""
+        menuToggle.classList.remove("active")
       })
     })
   }
 
   /* ===============================================
-     TYPING EFFECT
+     NAVBAR SCROLL EFFECT
   =============================================== */
 
-  const typedTextSpan = document.querySelector(".typed-text")
+  const navbar = document.querySelector(".navbar")
+  let lastScroll = 0
 
-  if (typedTextSpan) {
-    const textArray = [
-      "Cybersecurity Analyst",
-      "DFIR Specialist",
-      "SOC Operations Expert",
-      "Incident Response Pro",
-      "Threat Hunter",
-    ]
-    const typingDelay = 100
-    const erasingDelay = 50
-    const newTextDelay = 2000
-    let textArrayIndex = 0
-    let charIndex = 0
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
 
-    function type() {
-      if (charIndex < textArray[textArrayIndex].length) {
-        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex)
-        charIndex++
-        setTimeout(type, typingDelay)
-      } else {
-        setTimeout(erase, newTextDelay)
-      }
+    if (currentScroll > 100) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
     }
 
-    function erase() {
-      if (charIndex > 0) {
-        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1)
-        charIndex--
-        setTimeout(erase, erasingDelay)
-      } else {
-        textArrayIndex++
-        if (textArrayIndex >= textArray.length) textArrayIndex = 0
-        setTimeout(type, typingDelay + 500)
-      }
-    }
-
-    setTimeout(type, 1000)
-  }
+    lastScroll = currentScroll
+  })
 
   /* ===============================================
      SCROLL REVEAL ANIMATION
   =============================================== */
 
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
   }
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -135,122 +62,78 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }, observerOptions)
 
-  const revealElements = document.querySelectorAll(".section")
+  const revealElements = document.querySelectorAll(".section, .card, .skill-category, .project-card")
   revealElements.forEach((el) => revealObserver.observe(el))
 
   /* ===============================================
-     COUNTER ANIMATION FOR STATS
+     MATRIX RAIN EFFECT
   =============================================== */
 
-  const animateCounter = (element) => {
-    const target = Number.parseInt(element.getAttribute("data-target"))
-    const duration = 2000
-    const increment = target / (duration / 16)
-    let current = 0
+  const canvas = document.getElementById("matrix-canvas")
+  if (canvas) {
+    const ctx = canvas.getContext("2d")
 
-    const updateCounter = () => {
-      current += increment
-      if (current < target) {
-        element.textContent = Math.floor(current)
-        requestAnimationFrame(updateCounter)
-      } else {
-        element.textContent = target + "+"
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    const matrix = "01"
+    const fontSize = 14
+    const columns = canvas.width / fontSize
+
+    const drops = []
+    for (let i = 0; i < columns; i++) {
+      drops[i] = Math.random() * canvas.height
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(10, 14, 39, 0.05)"
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      ctx.fillStyle = "#00d9ff"
+      ctx.font = fontSize + "px monospace"
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = matrix[Math.floor(Math.random() * matrix.length)]
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0
+        }
+        drops[i]++
       }
     }
 
-    updateCounter()
-  }
+    setInterval(drawMatrix, 50)
 
-  const heroStatsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const statValues = entry.target.querySelectorAll(".stat-value[data-target]")
-          statValues.forEach((stat) => {
-            if (!stat.classList.contains("counted")) {
-              stat.classList.add("counted")
-              animateCounter(stat)
-            }
-          })
-          heroStatsObserver.unobserve(entry.target)
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const heroStats = document.querySelector(".hero-stats")
-  if (heroStats) {
-    heroStatsObserver.observe(heroStats)
-  }
-
-  /* ===============================================
-     ENHANCED SCROLL EFFECTS
-  =============================================== */
-
-  let ticking = false
-
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const scrolled = window.scrollY
-        const navbar = document.querySelector(".navbar")
-
-        if (scrolled > 50) {
-          navbar.classList.add("scrolled")
-        } else {
-          navbar.classList.remove("scrolled")
-        }
-
-        // Update active nav state
-        const sections = document.querySelectorAll(".section")
-        const navItems = document.querySelectorAll(".nav-link")
-        let current = ""
-
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop
-          if (scrolled >= sectionTop - 200) {
-            current = section.getAttribute("id")
-          }
-        })
-
-        navItems.forEach((item) => {
-          item.classList.remove("active")
-          if (item.getAttribute("href").slice(1) === current) {
-            item.classList.add("active")
-          }
-        })
-
-        // Scroll to top button
-        const scrollTopBtn = document.querySelector(".scroll-top")
-        if (scrollTopBtn) {
-          if (scrolled > 500) {
-            scrollTopBtn.classList.add("visible")
-          } else {
-            scrollTopBtn.classList.remove("visible")
-          }
-        }
-
-        ticking = false
-      })
-
-      ticking = true
-    }
-  })
-
-  /* ===============================================
-     SCROLL TO TOP BUTTON
-  =============================================== */
-
-  const scrollTopBtn = document.querySelector(".scroll-top")
-
-  if (scrollTopBtn) {
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
+    // Resize handler
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
     })
+  }
+
+  /* ===============================================
+     PARTICLES EFFECT
+  =============================================== */
+
+  const particlesContainer = document.getElementById("particles")
+  if (particlesContainer) {
+    const particleCount = 30
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("div")
+      particle.style.position = "absolute"
+      particle.style.width = Math.random() * 3 + 1 + "px"
+      particle.style.height = particle.style.width
+      particle.style.background = "rgba(0, 217, 255, 0.5)"
+      particle.style.borderRadius = "50%"
+      particle.style.left = Math.random() * 100 + "%"
+      particle.style.top = Math.random() * 100 + "%"
+      particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`
+      particle.style.animationDelay = Math.random() * 5 + "s"
+
+      particlesContainer.appendChild(particle)
+    }
   }
 
   /* ===============================================
@@ -261,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault()
       const target = document.querySelector(this.getAttribute("href"))
-
       if (target) {
         const offsetTop = target.offsetTop - 80
         window.scrollTo({
@@ -273,42 +155,69 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   /* ===============================================
-     FOOTER YEAR AUTO UPDATE
+     CARD GLOW EFFECT FOLLOW MOUSE
+  =============================================== */
+
+  const cards = document.querySelectorAll(".card")
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      const glow = card.querySelector(".card-glow")
+      if (glow) {
+        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 217, 255, 0.3) 0%, transparent 50%)`
+      }
+    })
+  })
+
+  /* ===============================================
+     TYPING EFFECT FOR SUBTITLE
+  =============================================== */
+
+  const typingText = document.querySelector(".typing-text")
+  if (typingText) {
+    const text = typingText.textContent
+    typingText.textContent = ""
+    let i = 0
+
+    function type() {
+      if (i < text.length) {
+        typingText.textContent += text.charAt(i)
+        i++
+        setTimeout(type, 50)
+      }
+    }
+
+    setTimeout(type, 1000)
+  }
+
+  /* ===============================================
+     DYNAMIC YEAR IN FOOTER
   =============================================== */
 
   const footerYear = document.querySelector("footer p")
-  if (footerYear) {
-    footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`
+  if (footerYear && footerYear.textContent.includes("2025")) {
+    footerYear.innerHTML = footerYear.innerHTML.replace("2025", new Date().getFullYear())
   }
-})
 
-/* ===============================================
-   PAGE LOADER
-=============================================== */
+  /* ===============================================
+     ADD FLOATING ANIMATION TO CSS
+  =============================================== */
 
-window.addEventListener("load", () => {
-  const pageLoader = document.querySelector(".page-loader")
-
-  setTimeout(() => {
-    if (pageLoader) {
-      pageLoader.classList.add("hidden")
-      setTimeout(() => {
-        pageLoader.style.display = "none"
-      }, 600)
+  const style = document.createElement("style")
+  style.textContent = `
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-20px) translateX(10px);
+        opacity: 0.7;
+      }
     }
-  }, 1200)
-})
-
-/* ===============================================
-   SCROLL PROGRESS BAR
-=============================================== */
-
-window.addEventListener("scroll", () => {
-  const scrollProgress = document.querySelector(".scroll-progress")
-
-  if (scrollProgress) {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-    const scrolled = (window.scrollY / windowHeight) * 100
-    scrollProgress.style.transform = `scaleX(${scrolled / 100})`
-  }
+  `
+  document.head.appendChild(style)
 })
