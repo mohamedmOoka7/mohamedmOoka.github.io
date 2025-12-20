@@ -1,319 +1,373 @@
-// ==================================================
-// MAIN JAVASCRIPT FILE
-// ==================================================
+// ================================================
+// MODERN CYBERSECURITY PORTFOLIO - JAVASCRIPT
+// ================================================
 
+// Wait for DOM to load
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===============================================
-     DARK MODE TOGGLE
-  =============================================== */
+  initNavigation()
+  initScrollAnimations()
+  initTerminal()
+  initCursorGlow()
+  initStatCounters()
+  initSkillBars()
+  initParticles()
+  initContactForm()
+  updateYear()
+})
 
-  const toggleButton = document.getElementById("dark-mode-toggle")
-  const body = document.body
+// ================ NAVIGATION ================
+function initNavigation() {
+  const navbar = document.getElementById("navbar")
+  const mobileToggle = document.getElementById("mobile-toggle")
+  const navMenu = document.getElementById("nav-menu")
+  const navLinks = document.querySelectorAll(".nav-link")
 
-  // Function to toggle theme
-  const toggleTheme = () => {
-    const currentTheme = body.dataset.theme || "dark"
-    const newTheme = currentTheme === "dark" ? "light" : "dark"
-    body.dataset.theme = newTheme
-    toggleButton.innerHTML = newTheme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
-    localStorage.setItem("theme", newTheme)
-  }
-
-  // Set initial theme from localStorage or default to dark
-  const savedTheme = localStorage.getItem("theme") || "dark"
-  body.dataset.theme = savedTheme
-  toggleButton.innerHTML = savedTheme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
-
-  // Add event listener to toggle button
-  toggleButton.addEventListener("click", toggleTheme)
-
-  /* ===============================================
-     MOBILE MENU TOGGLE
-  =============================================== */
-
-  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
-  const navLinks = document.querySelector(".nav-links")
-
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener("click", () => {
-      mobileMenuToggle.classList.toggle("active")
-      navLinks.classList.toggle("active")
-    })
-
-    // Close menu when clicking on a link
-    const navLinksItems = navLinks.querySelectorAll("a")
-    navLinksItems.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenuToggle.classList.remove("active")
-        navLinks.classList.remove("active")
-      })
-    })
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        mobileMenuToggle.classList.remove("active")
-        navLinks.classList.remove("active")
-      }
-    })
-  }
-
-  /* ===============================================
-     NAVBAR SCROLL EFFECT
-  =============================================== */
-
-  const navbar = document.querySelector(".navbar")
-  let lastScroll = 0
-
+  // Navbar scroll effect
   window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset
-
-    if (currentScroll > 100) {
+    if (window.scrollY > 100) {
       navbar.classList.add("scrolled")
     } else {
       navbar.classList.remove("scrolled")
     }
-
-    lastScroll = currentScroll
   })
 
-  /* ===============================================
-     DISABLE ANIMATION ON PROJECT PAGES
-  =============================================== */
+  // Mobile menu toggle
+  mobileToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active")
+    mobileToggle.classList.toggle("active")
+  })
 
-  if (document.body.classList.contains("no-animate")) {
-    return
-  }
+  // Close mobile menu on link click
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active")
+      mobileToggle.classList.remove("active")
+    })
+  })
 
-  /* ===============================================
-     SCROLL REVEAL ANIMATION
-  =============================================== */
+  // Active link on scroll
+  const sections = document.querySelectorAll(".section, .hero")
 
+  window.addEventListener("scroll", () => {
+    let current = ""
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop
+      const sectionHeight = section.clientHeight
+
+      if (window.pageYOffset >= sectionTop - 200) {
+        current = section.getAttribute("id")
+      }
+    })
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active")
+      if (link.getAttribute("href") === `#${current}`) {
+        link.classList.add("active")
+      }
+    })
+  })
+}
+
+// ================ SCROLL ANIMATIONS ================
+function initScrollAnimations() {
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    rootMargin: "0px 0px -100px 0px",
   }
 
-  const revealObserver = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show")
-        revealObserver.unobserve(entry.target)
+        entry.target.classList.add("fade-in")
+        observer.unobserve(entry.target)
       }
     })
   }, observerOptions)
 
-  const revealElements = document.querySelectorAll(".section, .card")
-  revealElements.forEach((el) => revealObserver.observe(el))
+  // Observe all cards and sections
+  const elements = document.querySelectorAll(".project-card, .skill-category, .contact-card, .about-content")
+  elements.forEach((el) => observer.observe(el))
+}
 
-  /* ===============================================
-     TYPING EFFECT FOR SUBTITLE
-  =============================================== */
+// ================ TERMINAL ANIMATION ================
+function initTerminal() {
+  const terminalOutput = document.getElementById("terminal-output")
 
-  const typingText = document.querySelector(".typing-text")
-  if (typingText) {
-    const text = typingText.textContent
-    typingText.textContent = ""
-    let index = 0
+  const commands = [
+    { text: "$ initiating threat detection scan...", delay: 0 },
+    { text: "[+] Loading security modules...", delay: 1000 },
+    { text: "[+] Analyzing network traffic...", delay: 2000 },
+    { text: "[!] Suspicious activity detected at 192.168.1.45", delay: 3500 },
+    { text: "[+] Running DFIR protocols...", delay: 5000 },
+    { text: "[+] Extracting forensic artifacts...", delay: 6500 },
+    { text: "[✓] Timeline reconstruction complete", delay: 8000 },
+    { text: "[✓] IOCs identified: 15", delay: 9000 },
+    { text: "[✓] Malware signature: APT-2024-001", delay: 10000 },
+    { text: "$ Incident contained. Generating report...", delay: 11500 },
+    { text: "", delay: 13000 },
+  ]
 
-    const typeWriter = () => {
-      if (index < text.length) {
-        typingText.textContent += text.charAt(index)
-        index++
-        setTimeout(typeWriter, 100)
-      }
+  let commandIndex = 0
+
+  function typeCommand() {
+    if (commandIndex < commands.length) {
+      setTimeout(
+        () => {
+          const line = document.createElement("div")
+          line.className = "terminal-line"
+          line.textContent = commands[commandIndex].text
+
+          // Add color coding
+          if (line.textContent.includes("[!]")) {
+            line.style.color = "#ff006e"
+          } else if (line.textContent.includes("[✓]")) {
+            line.style.color = "#27c93f"
+          } else if (line.textContent.includes("[+]")) {
+            line.style.color = "#00d4ff"
+          }
+
+          terminalOutput.appendChild(line)
+          terminalOutput.scrollTop = terminalOutput.scrollHeight
+
+          commandIndex++
+          typeCommand()
+        },
+        commands[commandIndex].delay - (commandIndex > 0 ? commands[commandIndex - 1].delay : 0),
+      )
+    } else {
+      // Restart animation after a pause
+      setTimeout(() => {
+        terminalOutput.innerHTML = ""
+        commandIndex = 0
+        typeCommand()
+      }, 5000)
     }
-
-    // Start typing after a delay
-    setTimeout(typeWriter, 1000)
   }
 
-  /* ===============================================
-     SMOOTH SCROLL WITH OFFSET
-  =============================================== */
+  typeCommand()
+}
 
-  const smoothScrollLinks = document.querySelectorAll('a[href^="#"]')
-  smoothScrollLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href")
-      if (href === "#") return
+// ================ CURSOR GLOW EFFECT ================
+function initCursorGlow() {
+  const cursorGlow = document.querySelector(".cursor-glow")
+  let mouseX = 0
+  let mouseY = 0
+  let glowX = 0
+  let glowY = 0
 
-      e.preventDefault()
-      const target = document.querySelector(href)
-      if (target) {
-        const offsetTop = target.offsetTop - 80
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        })
-      }
-    })
+  document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX
+    mouseY = e.clientY
+    cursorGlow.style.opacity = "0.5"
   })
 
-  /* ===============================================
-     COUNTER ANIMATION FOR STATS
-  =============================================== */
+  document.addEventListener("mouseleave", () => {
+    cursorGlow.style.opacity = "0"
+  })
 
-  const statNumbers = document.querySelectorAll(".stat-number")
+  function animateGlow() {
+    glowX += (mouseX - glowX) * 0.1
+    glowY += (mouseY - glowY) * 0.1
 
-  const animateCounter = (element) => {
-    const target = Number.parseInt(element.textContent)
-    const duration = 2000
-    const increment = target / (duration / 16)
-    let current = 0
+    cursorGlow.style.left = `${glowX - 250}px`
+    cursorGlow.style.top = `${glowY - 250}px`
 
-    const updateCounter = () => {
-      current += increment
-      if (current < target) {
-        element.textContent = Math.floor(current) + "+"
-        requestAnimationFrame(updateCounter)
-      } else {
-        element.textContent = target + "+"
-      }
-    }
-
-    updateCounter()
+    requestAnimationFrame(animateGlow)
   }
 
-  const statsObserver = new IntersectionObserver(
+  animateGlow()
+}
+
+// ================ STAT COUNTERS ================
+function initStatCounters() {
+  const statNumbers = document.querySelectorAll(".stat-number")
+  let counted = false
+
+  const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target)
-          statsObserver.unobserve(entry.target)
+        if (entry.isIntersecting && !counted) {
+          counted = true
+          statNumbers.forEach((stat) => {
+            const target = Number.parseInt(stat.getAttribute("data-target"))
+            animateCounter(stat, target)
+          })
         }
       })
     },
     { threshold: 0.5 },
   )
 
-  statNumbers.forEach((stat) => statsObserver.observe(stat))
+  const heroStats = document.querySelector(".hero-stats")
+  if (heroStats) observer.observe(heroStats)
+}
 
-  /* ===============================================
-     PARALLAX EFFECT FOR GRADIENT ORBS
-  =============================================== */
+function animateCounter(element, target) {
+  let current = 0
+  const increment = target / 100
+  const duration = 2000
+  const stepTime = duration / 100
 
-  const orbs = document.querySelectorAll(".gradient-orb")
+  const timer = setInterval(() => {
+    current += increment
+    if (current >= target) {
+      element.textContent = target + "+"
+      clearInterval(timer)
+    } else {
+      element.textContent = Math.floor(current)
+    }
+  }, stepTime)
+}
 
-  window.addEventListener("mousemove", (e) => {
-    const mouseX = e.clientX / window.innerWidth
-    const mouseY = e.clientY / window.innerHeight
+// ================ SKILL BARS ANIMATION ================
+function initSkillBars() {
+  const skillBars = document.querySelectorAll(".skill-progress")
 
-    orbs.forEach((orb, index) => {
-      const speed = (index + 1) * 20
-      const x = (mouseX - 0.5) * speed
-      const y = (mouseY - 0.5) * speed
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const progress = entry.target.getAttribute("data-progress")
+          entry.target.style.width = progress + "%"
+          observer.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.5 },
+  )
 
-      orb.style.transform = `translate(${x}px, ${y}px)`
-    })
-  })
+  skillBars.forEach((bar) => observer.observe(bar))
+}
 
-  /* ===============================================
-     FOOTER YEAR AUTO UPDATE
-  =============================================== */
+// ================ PARTICLES CANVAS ================
+function initParticles() {
+  const canvas = document.getElementById("particles-canvas")
+  if (!canvas) return
 
-  const footerYear = document.querySelector(".footer-year")
-  if (footerYear) {
-    footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`
+  const ctx = canvas.getContext("2d")
+
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width
+      this.y = Math.random() * canvas.height
+      this.size = Math.random() * 2
+      this.speedX = (Math.random() - 0.5) * 0.5
+      this.speedY = (Math.random() - 0.5) * 0.5
+      this.opacity = Math.random() * 0.5
+    }
+
+    update() {
+      this.x += this.speedX
+      this.y += this.speedY
+
+      if (this.x > canvas.width) this.x = 0
+      if (this.x < 0) this.x = canvas.width
+      if (this.y > canvas.height) this.y = 0
+      if (this.y < 0) this.y = canvas.height
+    }
+
+    draw() {
+      ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+      ctx.fill()
+    }
   }
 
-  /* ===============================================
-     PRELOAD CRITICAL IMAGES
-  =============================================== */
+  const particles = []
+  const particleCount = 80
 
-  const criticalImages = document.querySelectorAll(".project-image img, .about-image img")
-  criticalImages.forEach((img) => {
-    const src = img.getAttribute("src")
-    if (src) {
-      const preloadLink = document.createElement("link")
-      preloadLink.rel = "preload"
-      preloadLink.as = "image"
-      preloadLink.href = src
-      document.head.appendChild(preloadLink)
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle())
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    particles.forEach((particle) => {
+      particle.update()
+      particle.draw()
+    })
+
+    // Draw connections
+    particles.forEach((particleA, indexA) => {
+      particles.slice(indexA + 1).forEach((particleB) => {
+        const dx = particleA.x - particleB.x
+        const dy = particleA.y - particleB.y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < 120) {
+          ctx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - distance / 120)})`
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(particleA.x, particleA.y)
+          ctx.lineTo(particleB.x, particleB.y)
+          ctx.stroke()
+        }
+      })
+    })
+
+    requestAnimationFrame(animate)
+  }
+
+  animate()
+
+  // Resize canvas on window resize
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  })
+}
+
+// ================ CONTACT FORM ================
+function initContactForm() {
+  const form = document.getElementById("contact-form")
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault()
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value,
+      }
+
+      // Show success message
+      alert("Thank you for your message! I will get back to you soon.")
+      form.reset()
+
+      // In a real application, you would send this data to a server
+      console.log("Form data:", formData)
+    })
+  }
+}
+
+// ================ UPDATE YEAR ================
+function updateYear() {
+  const yearElement = document.getElementById("current-year")
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
+  }
+}
+
+// ================ SMOOTH SCROLL ================
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+
+    if (target) {
+      const offsetTop = target.offsetTop - 80
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      })
     }
   })
-
-  /* ===============================================
-     ACTIVE NAV LINK INDICATOR
-  =============================================== */
-
-  const sections = document.querySelectorAll("section[id]")
-
-  const highlightNav = () => {
-    const scrollY = window.pageYOffset
-
-    sections.forEach((section) => {
-      const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 100
-      const sectionId = section.getAttribute("id")
-      const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLink?.classList.add("active")
-      } else {
-        navLink?.classList.remove("active")
-      }
-    })
-  }
-
-  window.addEventListener("scroll", highlightNav)
-
-  /* ===============================================
-     COPY EMAIL ON CLICK
-  =============================================== */
-
-  const emailLinks = document.querySelectorAll('a[href^="mailto:"]')
-  emailLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const email = link.getAttribute("href").replace("mailto:", "")
-
-      // Create temporary input
-      const tempInput = document.createElement("input")
-      tempInput.value = email
-      document.body.appendChild(tempInput)
-      tempInput.select()
-
-      try {
-        document.execCommand("copy")
-
-        // Show success message
-        const originalText = link.querySelector("h3")?.textContent || link.textContent
-        if (link.querySelector("h3")) {
-          link.querySelector("h3").textContent = "Email Copied!"
-          setTimeout(() => {
-            link.querySelector("h3").textContent = originalText
-          }, 2000)
-        }
-      } catch (err) {
-        console.error("Failed to copy email:", err)
-      }
-
-      document.body.removeChild(tempInput)
-    })
-  })
-
-  /* ===============================================
-     PERFORMANCE OPTIMIZATION
-  =============================================== */
-
-  // Lazy load images
-  if ("loading" in HTMLImageElement.prototype) {
-    const images = document.querySelectorAll('img[loading="lazy"]')
-    images.forEach((img) => {
-      img.src = img.dataset.src || img.src
-    })
-  } else {
-    // Fallback for browsers that don't support lazy loading
-    const script = document.createElement("script")
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-    document.body.appendChild(script)
-  }
-
-  /* ===============================================
-     CONSOLE EASTER EGG
-  =============================================== */
-
-  console.log("%c🛡️ Cybersecurity Portfolio", "color: #00d9ff; font-size: 20px; font-weight: bold;")
-  console.log("%cInterested in the code? Check out my GitHub!", "color: #7c3aed; font-size: 14px;")
-  console.log("%chttps://github.com/mohamedmOoka7", "color: #00d9ff; font-size: 12px;")
 })
