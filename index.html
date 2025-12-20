@@ -20,6 +20,9 @@
 </head>
 
 <body>
+  <!-- Added custom cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-dot"></div>
 
   <!-- ================= NAVBAR ================= -->
   <nav class="navbar">
@@ -48,22 +51,18 @@
 
   <!-- ================= HERO ================= -->
   <header class="hero">
-    <!-- Enhanced background with animated particles -->
+    <!-- Enhanced background with neural network animation and floating orbs -->
     <div class="hero-bg">
-      <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+      <canvas id="neural-canvas"></canvas>
+      <div class="floating-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
       </div>
       <div class="grid-overlay"></div>
     </div>
     
     <div class="hero-content">
-      <!-- Added availability badge -->
       <div class="hero-badge">
         <span class="pulse-dot"></span>
         Available for Opportunities
@@ -96,7 +95,6 @@
         </a>
       </div>
 
-      <!-- Added social proof links -->
       <div class="hero-social">
         <a href="https://github.com/mohamedmOoka7" target="_blank" aria-label="GitHub">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -149,7 +147,6 @@
           </div>
         </div>
 
-        <!-- Added stats showcase -->
         <div class="stats-container">
           <div class="stat-card">
             <div class="stat-icon">
@@ -196,7 +193,6 @@
         <div class="section-line"></div>
       </div>
 
-      <!-- Organized skills into categories with icons -->
       <div class="skills-grid">
         <div class="skill-category">
           <h3 class="skill-category-title">
@@ -257,7 +253,6 @@
       </div>
 
       <div class="projects-grid">
-        <!-- Enhanced project cards with images and better layout -->
         <div class="project-card featured">
           <div class="card-glow"></div>
           <div class="project-image">
@@ -368,7 +363,6 @@
             I'm always interested in connecting with fellow security professionals, exploring new opportunities in cybersecurity, and contributing to meaningful security projects. Whether you're looking for a dedicated analyst or want to discuss the latest in DFIR, feel free to reach out.
           </p>
           
-          <!-- Added contact methods cards -->
           <div class="contact-methods">
             <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-method">
               <div class="method-icon">
@@ -429,16 +423,13 @@
 
   <!-- ================= FOOTER ================= -->
   <footer>
-    <div class="footer-content">
-      <p>Designed & Built by Mohamed Mooka</p>
-      <p class="footer-year">© 2025 All Rights Reserved</p>
-    </div>
+    <p>© 2025 Mohamed Mooka — Cybersecurity Portfolio</p>
   </footer>
 
   <!-- Added scroll to top button -->
   <button class="scroll-top" aria-label="Scroll to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <polyline points="18 15 12 9 6 15"></polyline>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
     </svg>
   </button>
 
