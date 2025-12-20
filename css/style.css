@@ -6,18 +6,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
-  /* Colors - Simplified Professional Palette */
+  /* Enhanced color palette with better sky blue tones */
   --navy: #0a192f;
   --light-navy: #112240;
   --lightest-navy: #233554;
   --navy-shadow: rgba(2, 12, 27, 0.7);
-  --dark-slate: #495670;
-  --slate: #8892b0;
-  --light-slate: #a8b2d1;
-  --lightest-slate: #ccd6f6;
+  --dark-slate: #8892b0;
+  --slate: #a8b2d1;
+  --light-slate: #ccd6f6;
+  --lightest-slate: #e6f1ff;
   --white: #e6f1ff;
-  --green: #64ffda;
-  --green-tint: rgba(100, 255, 218, 0.1);
+  --primary: #60a5fa;
+  --primary-light: #93c5fd;
+  --primary-dark: #3b82f6;
+  --primary-glow: rgba(96, 165, 250, 0.2);
 
   /* Typography */
   --font-sans: "Inter", -apple-system, system-ui, sans-serif;
@@ -88,14 +90,14 @@ h6 {
 }
 
 a {
-  color: var(--green);
+  color: var(--primary);
   text-decoration: none;
   transition: var(--transition);
 }
 
 a:hover,
 a:focus {
-  color: var(--green);
+  color: var(--primary-light);
 }
 
 /* ==========================================
@@ -111,6 +113,8 @@ a:focus {
   backdrop-filter: blur(10px);
   z-index: 1000;
   transition: var(--transition);
+  /* Added subtle border bottom */
+  border-bottom: 1px solid rgba(96, 165, 250, 0.1);
 }
 
 .nav.scrolled {
@@ -131,13 +135,13 @@ a:focus {
 .logo {
   font-size: var(--fz-xxl);
   font-weight: 700;
-  color: var(--green);
+  color: var(--primary);
   font-family: var(--font-mono);
   letter-spacing: -0.5px;
 }
 
 .logo:hover {
-  color: var(--green);
+  color: var(--primary-light);
 }
 
 .nav-links {
@@ -158,12 +162,12 @@ a:focus {
   content: counter(item) ".";
   counter-increment: item;
   margin-right: 5px;
-  color: var(--green);
+  color: var(--primary);
   font-size: var(--fz-xxs);
 }
 
 .nav-links a:hover {
-  color: var(--green);
+  color: var(--primary);
 }
 
 .nav-toggle {
@@ -179,7 +183,7 @@ a:focus {
 .nav-toggle span {
   width: 30px;
   height: 2px;
-  background: var(--green);
+  background: var(--primary);
   transition: var(--transition);
 }
 
@@ -219,7 +223,7 @@ a:focus {
 
 .section-number {
   margin-right: 10px;
-  color: var(--green);
+  color: var(--primary);
   font-family: var(--font-mono);
   font-size: clamp(var(--fz-md), 3vw, var(--fz-xl));
   font-weight: 400;
@@ -253,7 +257,7 @@ a:focus {
 
 .hero-greeting {
   margin: 0 0 30px 4px;
-  color: var(--green);
+  color: var(--primary);
   font-family: var(--font-mono);
   font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
   font-weight: 400;
@@ -292,9 +296,9 @@ a:focus {
 
 .btn-primary {
   display: inline-block;
-  color: var(--green);
+  color: var(--primary);
   background-color: transparent;
-  border: 1px solid var(--green);
+  border: 1px solid var(--primary);
   border-radius: var(--border-radius);
   padding: 1.25rem 1.75rem;
   font-size: var(--fz-xs);
@@ -303,17 +307,22 @@ a:focus {
   text-decoration: none;
   cursor: pointer;
   transition: var(--transition);
+  /* Added subtle glow effect */
+  box-shadow: 0 0 0 var(--primary-glow);
 }
 
 .btn-primary:hover {
-  background-color: var(--green-tint);
+  background-color: var(--primary-glow);
+  /* Enhanced glow on hover */
+  box-shadow: 0 0 30px var(--primary-glow);
+  transform: translateY(-2px);
 }
 
 .btn-primary-large {
   display: inline-block;
-  color: var(--green);
+  color: var(--primary);
   background-color: transparent;
-  border: 1px solid var(--green);
+  border: 1px solid var(--primary);
   border-radius: var(--border-radius);
   padding: 1.25rem 1.75rem;
   font-size: var(--fz-sm);
@@ -323,10 +332,15 @@ a:focus {
   cursor: pointer;
   transition: var(--transition);
   margin-top: 50px;
+  /* Added subtle glow effect */
+  box-shadow: 0 0 0 var(--primary-glow);
 }
 
 .btn-primary-large:hover {
-  background-color: var(--green-tint);
+  background-color: var(--primary-glow);
+  /* Enhanced glow on hover */
+  box-shadow: 0 0 30px var(--primary-glow);
+  transform: translateY(-2px);
 }
 
 /* ==========================================
@@ -368,7 +382,7 @@ a:focus {
   content: "▹";
   position: absolute;
   left: 0;
-  color: var(--green);
+  color: var(--primary);
   font-size: var(--fz-sm);
   line-height: 12px;
 }
@@ -411,12 +425,12 @@ a:focus {
 .tab-button:hover,
 .tab-button:focus {
   background-color: var(--light-navy);
-  color: var(--green);
+  color: var(--primary);
 }
 
 .tab-button.active {
-  color: var(--green);
-  border-left-color: var(--green);
+  color: var(--primary);
+  border-left-color: var(--primary);
 }
 
 .experience-panels {
@@ -440,7 +454,7 @@ a:focus {
 }
 
 .company {
-  color: var(--green);
+  color: var(--primary);
 }
 
 .duration {
@@ -468,7 +482,7 @@ a:focus {
   content: "▹";
   position: absolute;
   left: 0;
-  color: var(--green);
+  color: var(--primary);
   font-size: var(--fz-lg);
   line-height: 16px;
 }
@@ -518,7 +532,7 @@ a:focus {
 
 .project-overline {
   margin: 10px 0;
-  color: var(--green);
+  color: var(--primary);
   font-family: var(--font-mono);
   font-size: var(--fz-xs);
   font-weight: 400;
@@ -541,6 +555,9 @@ a:focus {
   color: var(--light-slate);
   font-size: var(--fz-lg);
   line-height: 1.5;
+  /* Added subtle border and enhanced shadow */
+  border: 1px solid rgba(96, 165, 250, 0.1);
+  transition: var(--transition);
 }
 
 .project-card:nth-of-type(2n) .project-description {
@@ -587,7 +604,7 @@ a:focus {
 }
 
 .project-links a:hover {
-  color: var(--green);
+  color: var(--primary);
   transform: translateY(-3px);
 }
 
@@ -613,6 +630,12 @@ a:focus {
 .project-card:hover .project-image img {
   filter: grayscale(0%) contrast(1) brightness(100%);
   transform: scale(1.05);
+}
+
+.project-card:hover .project-description {
+  /* Enhanced hover effect */
+  box-shadow: 0 20px 40px -15px var(--navy-shadow);
+  border-color: rgba(96, 165, 250, 0.2);
 }
 
 /* ==========================================
@@ -647,10 +670,15 @@ a:focus {
   background-color: var(--light-navy);
   border-radius: var(--border-radius);
   transition: var(--transition);
+  /* Added subtle border */
+  border: 1px solid rgba(96, 165, 250, 0.1);
 }
 
 .other-project-card:hover {
   transform: translateY(-7px);
+  /* Enhanced hover effect with glow */
+  box-shadow: 0 20px 40px -15px var(--primary-glow);
+  border-color: rgba(96, 165, 250, 0.3);
 }
 
 .project-top {
@@ -662,7 +690,7 @@ a:focus {
 }
 
 .project-top svg {
-  color: var(--green);
+  color: var(--primary);
 }
 
 .project-top a {
@@ -671,7 +699,7 @@ a:focus {
 }
 
 .project-top a:hover {
-  color: var(--green);
+  color: var(--primary);
 }
 
 .other-project-card h4 {
@@ -756,7 +784,7 @@ a:focus {
 }
 
 .footer-links a:hover {
-  color: var(--green);
+  color: var(--primary);
   transform: translateY(-3px);
 }
 
@@ -792,6 +820,17 @@ a:focus {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Added subtle floating animation for project cards */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 
@@ -899,7 +938,7 @@ a:focus {
 
   .tab-button.active {
     border-left: 0;
-    border-bottom-color: var(--green);
+    border-bottom-color: var(--primary);
   }
 
   .project-card {
