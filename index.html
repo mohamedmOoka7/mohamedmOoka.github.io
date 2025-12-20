@@ -16,9 +16,10 @@
 
 <body>
 
-  <!-- Added animated grid background -->
+  <!-- Added enhanced background elements -->
   <div class="grid-background"></div>
   <canvas id="matrix-canvas"></canvas>
+  <div class="cursor-glow"></div>
 
   <!-- ================= NAVBAR ================= -->
   <nav class="navbar">
@@ -45,10 +46,11 @@
   <!-- ================= HERO ================= -->
   <header class="hero">
     <div class="hero-content">
-      <!-- Enhanced badge with pulse animation -->
+      <!-- Enhanced badge with animated border -->
       <div class="hero-badge">
+        <div class="badge-border-animation"></div>
         <span class="status-dot"></span>
-        Available for Opportunities
+        <span>Available for Opportunities</span>
       </div>
       
       <h1 class="glitch" data-text="Mohamed Mooka">
@@ -65,17 +67,20 @@
         Building secure systems through hands-on investigation and analysis.
       </p>
 
-      <!-- Enhanced stats with counter animation -->
+      <!-- Enhanced stats with animated backgrounds -->
       <div class="hero-stats">
         <div class="stat-item">
+          <div class="stat-bg-glow"></div>
           <div class="stat-number" data-count="50">0</div>
           <div class="stat-label">Projects Completed</div>
         </div>
         <div class="stat-item">
+          <div class="stat-bg-glow"></div>
           <div class="stat-number" data-count="100">0</div>
           <div class="stat-label">Threats Analyzed</div>
         </div>
         <div class="stat-item">
+          <div class="stat-bg-glow"></div>
           <div class="stat-number">24/7</div>
           <div class="stat-label">Security Mindset</div>
         </div>
@@ -83,25 +88,27 @@
 
       <div class="contact-links">
         <a href="#projects" class="btn-primary">
+          <span class="btn-shine"></span>
           <span>View Projects</span>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M7 13L13 7M13 7H7M13 7V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
         <a href="https://github.com/mohamedmOoka7" target="_blank" class="btn-secondary">
+          <span class="btn-border-glow"></span>
           <span>GitHub</span>
         </a>
       </div>
     </div>
 
-    <!-- Enhanced particles container -->
+    <!-- Enhanced particles and floating orbs -->
     <div class="particles" id="particles"></div>
     
-    <!-- Added floating orbs -->
     <div class="floating-orbs">
       <div class="orb orb-1"></div>
       <div class="orb orb-2"></div>
       <div class="orb orb-3"></div>
+      <div class="orb orb-4"></div>
     </div>
   </header>
 
@@ -112,10 +119,12 @@
       <div class="section-header">
         <span class="section-number">01</span>
         <h2>About Me</h2>
+        <div class="section-line"></div>
       </div>
       
       <div class="card about-card">
         <div class="card-glow"></div>
+        <div class="card-border-glow"></div>
         <div class="terminal-header">
           <div class="terminal-dots">
             <span></span>
@@ -123,6 +132,11 @@
             <span></span>
           </div>
           <div class="terminal-title">profile.sh</div>
+          <!-- Added terminal status indicator -->
+          <div class="terminal-status">
+            <span class="status-icon"></span>
+            <span class="status-text">Connected</span>
+          </div>
         </div>
         <div class="terminal-content">
           <p class="terminal-line">
@@ -146,6 +160,11 @@
           <p class="terminal-output">
             threat_detection/ incident_response/ log_analysis/ malware_analysis/ network_forensics/
           </p>
+          <!-- Added blinking cursor -->
+          <p class="terminal-line">
+            <span class="terminal-prompt">$</span> 
+            <span class="terminal-cursor">_</span>
+          </p>
         </div>
       </div>
     </section>
@@ -155,26 +174,34 @@
       <div class="section-header">
         <span class="section-number">02</span>
         <h2>Technical Arsenal</h2>
+        <div class="section-line"></div>
       </div>
       
       <div class="skills-grid">
+        <!-- Added card-border-glow to each skill category -->
         <div class="skill-category">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="category-icon">
+            <div class="icon-glow"></div>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
           </div>
           <h3>Security Operations</h3>
           <ul>
-            <li>SIEM Management</li>
-            <li>Threat Detection</li>
-            <li>Alert Triage</li>
-            <li>SOC Analysis</li>
+            <li><span class="skill-bullet">▸</span>SIEM Management</li>
+            <li><span class="skill-bullet">▸</span>Threat Detection</li>
+            <li><span class="skill-bullet">▸</span>Alert Triage</li>
+            <li><span class="skill-bullet">▸</span>SOC Analysis</li>
           </ul>
         </div>
 
         <div class="skill-category">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="category-icon">
+            <div class="icon-glow"></div>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
               <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
@@ -183,15 +210,18 @@
           </div>
           <h3>Incident Response</h3>
           <ul>
-            <li>DFIR Analysis</li>
-            <li>Forensic Investigation</li>
-            <li>Timeline Reconstruction</li>
-            <li>Threat Containment</li>
+            <li><span class="skill-bullet">▸</span>DFIR Analysis</li>
+            <li><span class="skill-bullet">▸</span>Forensic Investigation</li>
+            <li><span class="skill-bullet">▸</span>Timeline Reconstruction</li>
+            <li><span class="skill-bullet">▸</span>Threat Containment</li>
           </ul>
         </div>
 
         <div class="skill-category">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="category-icon">
+            <div class="icon-glow"></div>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
               <line x1="8" y1="21" x2="16" y2="21"/>
@@ -200,15 +230,18 @@
           </div>
           <h3>Forensics & Analysis</h3>
           <ul>
-            <li>Log Analysis</li>
-            <li>Memory Forensics</li>
-            <li>Network Analysis</li>
-            <li>Malware Analysis</li>
+            <li><span class="skill-bullet">▸</span>Log Analysis</li>
+            <li><span class="skill-bullet">▸</span>Memory Forensics</li>
+            <li><span class="skill-bullet">▸</span>Network Analysis</li>
+            <li><span class="skill-bullet">▸</span>Malware Analysis</li>
           </ul>
         </div>
 
         <div class="skill-category">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="category-icon">
+            <div class="icon-glow"></div>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"/>
               <line x1="2" y1="12" x2="22" y2="12"/>
@@ -217,23 +250,24 @@
           </div>
           <h3>Tools & Platforms</h3>
           <ul>
-            <li>Splunk / ELK</li>
-            <li>Wireshark</li>
-            <li>Volatility</li>
-            <li>FTK / Autopsy</li>
+            <li><span class="skill-bullet">▸</span>Splunk / ELK</li>
+            <li><span class="skill-bullet">▸</span>Wireshark</li>
+            <li><span class="skill-bullet">▸</span>Volatility</li>
+            <li><span class="skill-bullet">▸</span>FTK / Autopsy</li>
           </ul>
         </div>
       </div>
 
+      <!-- Enhanced tech badges with hover animation -->
       <div class="tech-badges">
-        <span class="tech-badge">Linux</span>
-        <span class="tech-badge">Windows Server</span>
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">Bash</span>
-        <span class="tech-badge">PowerShell</span>
-        <span class="tech-badge">MITRE ATT&CK</span>
-        <span class="tech-badge">NIST Framework</span>
-        <span class="tech-badge">ISO 27001</span>
+        <span class="tech-badge"><span class="badge-glow"></span>Linux</span>
+        <span class="tech-badge"><span class="badge-glow"></span>Windows Server</span>
+        <span class="tech-badge"><span class="badge-glow"></span>Python</span>
+        <span class="tech-badge"><span class="badge-glow"></span>Bash</span>
+        <span class="tech-badge"><span class="badge-glow"></span>PowerShell</span>
+        <span class="tech-badge"><span class="badge-glow"></span>MITRE ATT&CK</span>
+        <span class="tech-badge"><span class="badge-glow"></span>NIST Framework</span>
+        <span class="tech-badge"><span class="badge-glow"></span>ISO 27001</span>
       </div>
     </section>
 
@@ -242,11 +276,18 @@
       <div class="section-header">
         <span class="section-number">03</span>
         <h2>Featured Projects</h2>
+        <div class="section-line"></div>
       </div>
       
       <div class="projects-grid">
+        <!-- Enhanced project cards with animated elements -->
         <div class="project-card featured">
-          <div class="project-label">Featured Project</div>
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
+          <div class="project-label">
+            <span class="label-glow"></span>
+            Featured Project
+          </div>
           <div class="project-number">01</div>
           <h3>
             <a href="project-dfir.html">Advanced DFIR Investigation Lab</a>
@@ -255,12 +296,13 @@
             Comprehensive digital forensics and incident response investigation covering the complete attack lifecycle - from initial compromise detection through forensic analysis to complete timeline reconstruction.
           </p>
           <div class="project-tags">
-            <span>DFIR</span>
-            <span>Forensics</span>
-            <span>Timeline Analysis</span>
-            <span>Threat Hunting</span>
+            <span><span class="tag-glow"></span>DFIR</span>
+            <span><span class="tag-glow"></span>Forensics</span>
+            <span><span class="tag-glow"></span>Timeline Analysis</span>
+            <span><span class="tag-glow"></span>Threat Hunting</span>
           </div>
           <a href="project-dfir.html" class="project-link">
+            <span class="link-glow"></span>
             View Case Study
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -269,17 +311,20 @@
         </div>
 
         <div class="project-card">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="project-number">02</div>
           <h3>SOC Monitoring & Detection</h3>
           <p>
             Real-world SOC scenarios featuring advanced alert triage, log correlation analysis, and threat detection using enterprise SIEM platforms.
           </p>
           <div class="project-tags">
-            <span>SOC</span>
-            <span>SIEM</span>
-            <span>Detection</span>
+            <span><span class="tag-glow"></span>SOC</span>
+            <span><span class="tag-glow"></span>SIEM</span>
+            <span><span class="tag-glow"></span>Detection</span>
           </div>
           <a href="#" class="project-link">
+            <span class="link-glow"></span>
             Explore Project
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -288,17 +333,20 @@
         </div>
 
         <div class="project-card">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="project-number">03</div>
           <h3>Malware Analysis Framework</h3>
           <p>
             Static and dynamic malware analysis laboratory demonstrating reverse engineering techniques and behavioral analysis of malicious samples.
           </p>
           <div class="project-tags">
-            <span>Malware</span>
-            <span>Reverse Engineering</span>
-            <span>Analysis</span>
+            <span><span class="tag-glow"></span>Malware</span>
+            <span><span class="tag-glow"></span>Reverse Engineering</span>
+            <span><span class="tag-glow"></span>Analysis</span>
           </div>
           <a href="#" class="project-link">
+            <span class="link-glow"></span>
             View Analysis
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -307,17 +355,20 @@
         </div>
 
         <div class="project-card">
+          <div class="card-glow"></div>
+          <div class="card-border-glow"></div>
           <div class="project-number">04</div>
           <h3>Network Traffic Analysis</h3>
           <p>
             Deep packet inspection and network forensics analysis identifying malicious traffic patterns and C2 communications.
           </p>
           <div class="project-tags">
-            <span>Network Forensics</span>
-            <span>Wireshark</span>
-            <span>Traffic Analysis</span>
+            <span><span class="tag-glow"></span>Network Forensics</span>
+            <span><span class="tag-glow"></span>Wireshark</span>
+            <span><span class="tag-glow"></span>Traffic Analysis</span>
           </div>
           <a href="#" class="project-link">
+            <span class="link-glow"></span>
             See Details
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -332,6 +383,7 @@
       <div class="section-header">
         <span class="section-number">04</span>
         <h2>Let's Connect</h2>
+        <div class="section-line"></div>
       </div>
       
       <div class="contact-content">
@@ -344,9 +396,13 @@
           </p>
         </div>
 
+        <!-- Enhanced contact cards with animated borders -->
         <div class="contact-grid">
           <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card">
+            <div class="card-glow"></div>
+            <div class="card-border-glow"></div>
             <div class="contact-icon">
+              <div class="icon-glow"></div>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
@@ -359,7 +415,10 @@
           </a>
 
           <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card">
+            <div class="card-glow"></div>
+            <div class="card-border-glow"></div>
             <div class="contact-icon">
+              <div class="icon-glow"></div>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                 <rect x="2" y="9" width="4" height="12"/>
@@ -373,7 +432,10 @@
           </a>
 
           <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card">
+            <div class="card-glow"></div>
+            <div class="card-border-glow"></div>
             <div class="contact-icon">
+              <div class="icon-glow"></div>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
               </svg>
@@ -385,7 +447,10 @@
           </a>
 
           <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-card">
+            <div class="card-glow"></div>
+            <div class="card-border-glow"></div>
             <div class="contact-icon">
+              <div class="icon-glow"></div>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                 <polyline points="14,2 14,8 20,8"/>
