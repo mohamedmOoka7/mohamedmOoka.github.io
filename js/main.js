@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const bars = menuToggle.querySelectorAll("span")
       if (navLinks.classList.contains("active")) {
-        bars[0].style.transform = "rotate(45deg) translateY(8px)"
+        bars[0].style.transform = "rotate(45deg) translateY(10px)"
         bars[1].style.opacity = "0"
-        bars[2].style.transform = "rotate(-45deg) translateY(-8px)"
+        bars[2].style.transform = "rotate(-45deg) translateY(-10px)"
       } else {
         bars.forEach((bar) => {
           bar.style.transform = ""
@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-    // Close menu when clicking on a link
     document.querySelectorAll(".nav-links a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("active")
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset
 
-    if (currentScroll > 100) {
+    if (currentScroll > 80) {
       navbar.classList.add("scrolled")
     } else {
       navbar.classList.remove("scrolled")
@@ -74,15 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    rootMargin: "0px 0px -50px 0px",
   }
 
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add("show")
-        }, index * 120)
+        entry.target.classList.add("show")
         revealObserver.unobserve(entry.target)
       }
     })
@@ -103,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight
 
     const matrix = "01アイウエオカキクケコサシスセソタチツテト"
-    const fontSize = 16
+    const fontSize = 14
     const columns = canvas.width / fontSize
 
     const drops = []
@@ -112,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function drawMatrix() {
-      ctx.fillStyle = "rgba(5, 10, 20, 0.05)"
+      ctx.fillStyle = "rgba(0, 0, 0, 0.04)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       ctx.font = fontSize + "px monospace"
@@ -121,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const text = matrix[Math.floor(Math.random() * matrix.length)]
 
         const brightness = Math.random() * 0.5 + 0.5
-        ctx.fillStyle = `rgba(0, 217, 255, ${brightness})`
+        ctx.fillStyle = `rgba(0, 217, 255, ${brightness * 0.5})`
 
         ctx.fillText(text, i * fontSize, drops[i] * fontSize)
 
@@ -132,9 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    const matrixInterval = setInterval(drawMatrix, 45)
+    setInterval(drawMatrix, 50)
 
-    // Resize handler
     window.addEventListener("resize", () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
@@ -147,34 +143,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const particlesContainer = document.getElementById("particles")
   if (particlesContainer) {
-    const particleCount = 60
+    const particleCount = 40
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement("div")
-      const size = Math.random() * 5 + 2
+      const size = Math.random() * 4 + 1
 
       particle.style.position = "absolute"
       particle.style.width = size + "px"
       particle.style.height = size + "px"
-
-      const colorVariant = Math.random()
-      if (colorVariant > 0.7) {
-        particle.style.background = `rgba(0, 245, 255, ${Math.random() * 0.6 + 0.4})`
-      } else if (colorVariant > 0.4) {
-        particle.style.background = `rgba(0, 217, 255, ${Math.random() * 0.6 + 0.4})`
-      } else {
-        particle.style.background = `rgba(0, 153, 255, ${Math.random() * 0.6 + 0.4})`
-      }
-
+      particle.style.background = `rgba(0, 217, 255, ${Math.random() * 0.5 + 0.3})`
       particle.style.borderRadius = "50%"
       particle.style.left = Math.random() * 100 + "%"
       particle.style.top = Math.random() * 100 + "%"
 
-      const duration = Math.random() * 12 + 6
-      const delay = Math.random() * 6
+      const duration = Math.random() * 15 + 10
+      const delay = Math.random() * 5
 
       particle.style.animation = `floatParticle ${duration}s ease-in-out infinite ${delay}s`
-      particle.style.boxShadow = `0 0 ${size * 4}px rgba(0, 217, 255, 0.7), 0 0 ${size * 8}px rgba(0, 217, 255, 0.4)`
+      particle.style.boxShadow = `0 0 ${size * 3}px rgba(0, 217, 255, 0.5)`
 
       particlesContainer.appendChild(particle)
     }
@@ -183,20 +170,20 @@ document.addEventListener("DOMContentLoaded", () => {
     style.textContent = `
       @keyframes floatParticle {
         0%, 100% {
-          transform: translate(0, 0) scale(1);
-          opacity: 0.4;
+          transform: translate(0, 0);
+          opacity: 0.3;
         }
         25% {
-          transform: translate(30px, -40px) scale(1.2);
-          opacity: 0.8;
-        }
-        50% {
-          transform: translate(-20px, -80px) scale(0.9);
+          transform: translate(20px, -30px);
           opacity: 0.6;
         }
+        50% {
+          transform: translate(-15px, -60px);
+          opacity: 0.4;
+        }
         75% {
-          transform: translate(40px, -120px) scale(1.1);
-          opacity: 0.7;
+          transform: translate(25px, -90px);
+          opacity: 0.5;
         }
       }
     `
@@ -216,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(href)
 
       if (target) {
-        const offsetTop = target.offsetTop - 90
+        const offsetTop = target.offsetTop - 80
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
@@ -239,21 +226,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const glow = card.querySelector(".card-glow")
       if (glow) {
-        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 212, 255, 0.6) 0%, transparent 60%)`
+        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 217, 255, 0.4) 0%, transparent 60%)`
       }
-
-      const centerX = rect.width / 2
-      const centerY = rect.height / 2
-      const rotateX = ((y - centerY) / centerY) * 5
-      const rotateY = ((x - centerX) / centerX) * 5
-
-      card.style.transform = `perspective(1200px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`
-      card.style.transition = "transform 0.1s ease"
-    })
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = ""
-      card.style.transition = "all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
     })
   })
 
@@ -271,12 +245,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i < text.length) {
         typingText.textContent += text.charAt(i)
         i++
-        const speed = Math.random() * 50 + 30
-        setTimeout(type, speed)
+        setTimeout(type, Math.random() * 50 + 30)
       }
     }
 
-    setTimeout(type, 1200)
+    setTimeout(type, 1000)
   }
 
   /* ===============================================
@@ -287,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const animateCounter = (element) => {
     const target = Number.parseInt(element.getAttribute("data-count"))
-    const duration = 2500
+    const duration = 2000
     const increment = target / (duration / 16)
     let current = 0
 
@@ -298,10 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(updateCounter)
       } else {
         element.textContent = target + "+"
-        element.style.transform = "scale(1.1)"
-        setTimeout(() => {
-          element.style.transform = ""
-        }, 300)
       }
     }
 
@@ -320,10 +289,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.5 },
   )
 
-  statNumbers.forEach((stat) => {
-    stat.style.transition = "transform 0.3s ease"
-    statsObserver.observe(stat)
-  })
+  statNumbers.forEach((stat) => statsObserver.observe(stat))
 
   /* ===============================================
      PARALLAX EFFECT FOR HERO ORBS
@@ -342,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function animateOrbs() {
       orbs.forEach((orb, index) => {
-        const speed = (index + 1) * 20
+        const speed = (index + 1) * 15
         const x = (mouseX - 0.5) * speed
         const y = (mouseY - 0.5) * speed
 
@@ -369,15 +335,16 @@ document.addEventListener("DOMContentLoaded", () => {
   =============================================== */
 
   const progressBar = document.createElement("div")
-  progressBar.style.position = "fixed"
-  progressBar.style.top = "0"
-  progressBar.style.left = "0"
-  progressBar.style.height = "3px"
-  progressBar.style.background = "linear-gradient(90deg, #00d9ff, #0099ff, #0066ff)"
-  progressBar.style.width = "0%"
-  progressBar.style.zIndex = "9999"
-  progressBar.style.transition = "width 0.1s ease"
-  progressBar.style.boxShadow = "0 0 20px rgba(0, 217, 255, 0.8)"
+  progressBar.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #00d9ff, #0099ff);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease;
+  `
   document.body.appendChild(progressBar)
 
   window.addEventListener("scroll", () => {
@@ -427,6 +394,5 @@ document.addEventListener("DOMContentLoaded", () => {
     animateCursor()
   }
 
-  console.log("[v0] Elite Blue Team Portfolio initialized successfully")
-  console.log("[v0] All animations and effects loaded")
+  console.log("[v0] DarkEntry-inspired portfolio initialized")
 })
