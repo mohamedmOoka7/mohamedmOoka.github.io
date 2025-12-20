@@ -16,7 +16,8 @@
 
 <body>
 
-  <!-- Matrix Canvas Background -->
+  <!-- Added animated grid background -->
+  <div class="grid-background"></div>
   <canvas id="matrix-canvas"></canvas>
 
   <!-- ================= NAVBAR ================= -->
@@ -44,6 +45,7 @@
   <!-- ================= HERO ================= -->
   <header class="hero">
     <div class="hero-content">
+      <!-- Enhanced badge with pulse animation -->
       <div class="hero-badge">
         <span class="status-dot"></span>
         Available for Opportunities
@@ -63,13 +65,14 @@
         Building secure systems through hands-on investigation and analysis.
       </p>
 
+      <!-- Enhanced stats with counter animation -->
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-number">50+</div>
+          <div class="stat-number" data-count="50">0</div>
           <div class="stat-label">Projects Completed</div>
         </div>
         <div class="stat-item">
-          <div class="stat-number">100+</div>
+          <div class="stat-number" data-count="100">0</div>
           <div class="stat-label">Threats Analyzed</div>
         </div>
         <div class="stat-item">
@@ -91,8 +94,15 @@
       </div>
     </div>
 
-    <!-- Particle Container -->
+    <!-- Enhanced particles container -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Added floating orbs -->
+    <div class="floating-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
   </header>
 
   <main>
