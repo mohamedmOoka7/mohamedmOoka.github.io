@@ -529,81 +529,25 @@ body {
    ABOUT SECTION
 ================================================== */
 
-.about-content {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 40px;
-  align-items: start;
+/* Replaced complex grid layout with simple centered layout */
+.about-content-simple {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.about-card {
-  height: 100%;
+.about-card-main {
+  text-align: center;
+  padding: 40px;
 }
 
-.feature-list {
-  margin-top: 30px;
-}
-
-.feature-list li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 15px;
-  background: rgba(56, 189, 248, 0.05);
-  border-radius: 10px;
-  margin-bottom: 12px;
-  transition: all var(--transition-fast);
-}
-
-.feature-list li:hover {
-  background: rgba(56, 189, 248, 0.1);
-  transform: translateX(5px);
-}
-
-.feature-list li::before {
-  display: none;
-}
-
-.feature-list svg {
-  flex-shrink: 0;
-  stroke: var(--primary);
-  stroke-width: 2;
-}
-
-/* Replaced timeline styles with learning-focus styles */
-.learning-focus {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.focus-item {
-  padding: 25px;
-  background: var(--bg-card);
-  border-radius: 15px;
-  border: 1px solid var(--border-soft);
-  transition: all var(--transition-normal);
-}
-
-.focus-item:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
-}
-
-.focus-item h4 {
-  color: var(--primary);
+.about-card-main p {
   font-size: 1.1rem;
-  margin-bottom: 12px;
-  font-weight: 700;
-}
-
-.focus-item p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.8;
+  color: var(--text-main);
   margin: 0;
 }
+
+/* Removed old about-content grid, feature-list, learning-focus, focus-item styles */
 
 /* ==================================================
    PROJECTS SECTION
