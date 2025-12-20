@@ -1,4 +1,29 @@
 // ==================================================
+// UTILITY FUNCTIONS
+// ==================================================
+
+// Debounce function for performance
+const debounce = (fn, delay = 100) => {
+  let timeoutId
+  return (...args) => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => fn(...args), delay)
+  }
+}
+
+// Throttle function for scroll events
+const throttle = (fn, limit = 100) => {
+  let inThrottle
+  return (...args) => {
+    if (!inThrottle) {
+      fn(...args)
+      inThrottle = true
+      setTimeout(() => (inThrottle = false), limit)
+    }
+  }
+}
+
+// ==================================================
 // PAGE LOADER
 // ==================================================
 
@@ -8,48 +33,47 @@ window.addEventListener("load", () => {
     setTimeout(() => {
       loader.style.opacity = "0"
       setTimeout(() => {
-        loader.style.display = "none"
-        document.body.style.overflow = "auto"
+        loader.remove()
       }, 500)
     }, 800)
   }
 })
 
 // ==================================================
-// NAVBAR SCROLL EFFECT
+// NAVBAR FUNCTIONALITY
 // ==================================================
 
 const navbar = document.getElementById("navbar")
+const navLinks = document.querySelectorAll(".nav-links a")
+const sections = document.querySelectorAll("section[id]")
 let lastScrollY = window.pageYOffset
 
-let scrollTimeout
-window.addEventListener("scroll", () => {
-  clearTimeout(scrollTimeout)
-  scrollTimeout = setTimeout(() => {
-    const currentScrollY = window.pageYOffset
+// Navbar scroll effect with throttling
+const handleNavbarScroll = throttle(() => {
+  const currentScrollY = window.pageYOffset
 
-    if (currentScrollY > 100) {
-      navbar.classList.add("scrolled")
+  // Add/remove scrolled class
+  if (currentScrollY > 100) {
+    navbar.classList.add("scrolled")
 
-      // Improved scroll direction detection with smoother threshold
-      if (currentScrollY > lastScrollY && currentScrollY > 400) {
-        navbar.style.transform = "translateY(-100%)"
-      } else {
-        navbar.style.transform = "translateY(0)"
-      }
+    // Hide navbar on scroll down, show on scroll up
+    if (currentScrollY > lastScrollY && currentScrollY > 400) {
+      navbar.style.transform = "translateY(-100%)"
     } else {
-      navbar.classList.remove("scrolled")
       navbar.style.transform = "translateY(0)"
     }
+  } else {
+    navbar.classList.remove("scrolled")
+    navbar.style.transform = "translateY(0)"
+  }
 
-    lastScrollY = currentScrollY
-  }, 10)
-})
+  lastScrollY = currentScrollY
+}, 100)
 
-const sections = document.querySelectorAll("section[id]")
-const navLinks = document.querySelectorAll(".nav-links a")
+window.addEventListener("scroll", handleNavbarScroll)
 
-function highlightNavigation() {
+// Active nav link highlighting
+const highlightNavigation = throttle(() => {
   const scrollPosition = window.pageYOffset + 200
 
   sections.forEach((section) => {
@@ -66,7 +90,7 @@ function highlightNavigation() {
       })
     }
   })
-}
+}, 100)
 
 window.addEventListener("scroll", highlightNavigation)
 
@@ -74,7 +98,7 @@ window.addEventListener("scroll", highlightNavigation)
 // STATS COUNTER ANIMATION
 // ==================================================
 
-function animateCounter(element) {
+const animateCounter = (element) => {
   const target = Number.parseInt(element.getAttribute("data-target"))
   const duration = 2000
   const increment = target / (duration / 16)
@@ -99,7 +123,8 @@ const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const delay = entry.target.getAttribute("data-delay") || 0
+        const delay = Number.parseInt(entry.target.getAttribute("data-delay")) || 0
+
         setTimeout(() => {
           entry.target.classList.add("revealed")
         }, delay)
@@ -124,32 +149,34 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
 )
 
-document.addEventListener("DOMContentLoaded", () => {
+// Initialize reveal animations
+const initRevealAnimations = () => {
   const revealElements = document.querySelectorAll("[data-reveal]")
   revealElements.forEach((el) => revealObserver.observe(el))
-})
+}
 
 // ==================================================
 // TYPING EFFECT
 // ==================================================
 
-const typingText = document.querySelector(".typing-text")
-if (typingText) {
-  const text = typingText.textContent
+const initTypingEffect = () => {
+  const typingText = document.querySelector(".typing-text")
+  if (!typingText) return
+
+  const text = typingText.getAttribute("data-text") || typingText.textContent
   typingText.textContent = ""
   let index = 0
 
-  function type() {
+  const type = () => {
     if (index < text.length) {
       typingText.textContent += text.charAt(index)
       index++
       setTimeout(type, 80)
     } else {
-      typingText.style.borderRight = "2px solid var(--primary)"
-      typingText.style.paddingRight = "5px"
+      // Add blinking cursor
       setInterval(() => {
-        typingText.style.borderRightColor =
-          typingText.style.borderRightColor === "transparent" ? "var(--primary)" : "transparent"
+        const currentColor = typingText.style.borderRightColor
+        typingText.style.borderRightColor = currentColor === "transparent" ? "var(--color-primary)" : "transparent"
       }, 530)
     }
   }
@@ -161,21 +188,28 @@ if (typingText) {
 // SMOOTH SCROLL
 // ==================================================
 
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
-    if (target) {
-      const offset = 80
-      const targetPosition = target.offsetTop - offset
+const initSmoothScroll = () => {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault()
+      const targetId = this.getAttribute("href")
+      const target = document.querySelector(targetId)
 
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      })
-    }
+      if (target) {
+        const offset = 80
+        const targetPosition = target.offsetTop - offset
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        })
+
+        // Close mobile menu if open
+        closeMobileMenu()
+      }
+    })
   })
-})
+}
 
 // ==================================================
 // MOBILE MENU
@@ -184,47 +218,52 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
 const navLinksContainer = document.querySelector(".nav-links")
 
-if (mobileMenuToggle) {
+const closeMobileMenu = () => {
+  if (navLinksContainer && mobileMenuToggle) {
+    navLinksContainer.classList.remove("active")
+    mobileMenuToggle.classList.remove("active")
+    mobileMenuToggle.setAttribute("aria-expanded", "false")
+    document.body.style.overflow = "auto"
+  }
+}
+
+const initMobileMenu = () => {
+  if (!mobileMenuToggle || !navLinksContainer) return
+
   mobileMenuToggle.addEventListener("click", () => {
     const isExpanded = mobileMenuToggle.getAttribute("aria-expanded") === "true"
 
     navLinksContainer.classList.toggle("active")
     mobileMenuToggle.classList.toggle("active")
-
     mobileMenuToggle.setAttribute("aria-expanded", !isExpanded)
-
     document.body.style.overflow = isExpanded ? "auto" : "hidden"
   })
 
   // Close menu on link click
-  document.querySelectorAll(".nav-links a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinksContainer.classList.remove("active")
-      mobileMenuToggle.classList.remove("active")
-      mobileMenuToggle.setAttribute("aria-expanded", "false")
-      document.body.style.overflow = "auto"
-    })
+  navLinks.forEach((link) => {
+    link.addEventListener("click", closeMobileMenu)
   })
 
+  // Close menu on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && navLinksContainer.classList.contains("active")) {
-      navLinksContainer.classList.remove("active")
-      mobileMenuToggle.classList.remove("active")
-      mobileMenuToggle.setAttribute("aria-expanded", "false")
-      document.body.style.overflow = "auto"
+      closeMobileMenu()
     }
   })
 }
 
 // ==================================================
-// HEXAGONAL GRID BACKGROUND - PROFESSIONAL CYBERSECURITY THEME
+// HEXAGONAL GRID BACKGROUND ANIMATION
 // ==================================================
 
-const canvas = document.getElementById("particles-canvas")
-const ctx = canvas ? canvas.getContext("2d") : null
+const initParticlesCanvas = () => {
+  const canvas = document.getElementById("particles-canvas")
+  if (!canvas) return
 
-if (canvas && ctx) {
-  function resizeCanvas() {
+  const ctx = canvas.getContext("2d")
+  if (!ctx) return
+
+  const resizeCanvas = () => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
   }
@@ -242,6 +281,7 @@ if (canvas && ctx) {
     }
 
     init() {
+      this.hexagons = []
       for (let row = 0; row < this.rows; row++) {
         for (let col = 0; col < this.cols; col++) {
           const x = col * this.hexSize * Math.sqrt(3) + ((row % 2) * this.hexSize * Math.sqrt(3)) / 2
@@ -267,7 +307,6 @@ if (canvas && ctx) {
       }
       ctx.closePath()
 
-      // Gradient stroke for depth
       const gradient = ctx.createRadialGradient(x, y, 0, x, y, size)
       gradient.addColorStop(0, `rgba(0, 229, 255, ${opacity * 0.8})`)
       gradient.addColorStop(1, `rgba(139, 92, 246, ${opacity * 0.3})`)
@@ -276,7 +315,6 @@ if (canvas && ctx) {
       ctx.lineWidth = 1.5
       ctx.stroke()
 
-      // Glow effect for highlighted hexagons
       if (opacity > 0.3) {
         ctx.shadowBlur = 15
         ctx.shadowColor = `rgba(0, 229, 255, ${opacity * 0.6})`
@@ -287,28 +325,22 @@ if (canvas && ctx) {
 
     update() {
       this.time += 0.01
-
       this.hexagons.forEach((hex) => {
         hex.phase += hex.speed
       })
     }
 
     draw() {
-      this.hexagons.forEach((hex, index) => {
-        // Create wave effect based on position and time
+      this.hexagons.forEach((hex) => {
         const wave1 = Math.sin(hex.x * 0.005 + this.time) * 0.5 + 0.5
         const wave2 = Math.cos(hex.y * 0.005 + this.time * 0.8) * 0.5 + 0.5
         const wave3 = Math.sin(hex.phase) * 0.5 + 0.5
-
-        // Combine waves for complex pattern
         const opacity = (wave1 * 0.4 + wave2 * 0.3 + wave3 * 0.3) * 0.4
-
         this.drawHexagon(hex.x, hex.y, this.hexSize - 3, opacity)
       })
     }
   }
 
-  // Floating particles for additional depth
   class FloatingParticle {
     constructor() {
       this.reset()
@@ -321,7 +353,7 @@ if (canvas && ctx) {
       this.vy = (Math.random() - 0.5) * 0.5
       this.size = Math.random() * 3 + 1
       this.opacity = Math.random() * 0.6 + 0.2
-      this.hue = Math.random() > 0.5 ? 180 : 270 // Cyan or Purple
+      this.hue = Math.random() > 0.5 ? 180 : 270
     }
 
     update() {
@@ -334,7 +366,6 @@ if (canvas && ctx) {
     }
 
     draw() {
-      // Draw particle with glow
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
 
@@ -349,23 +380,16 @@ if (canvas && ctx) {
 
   const hexGrid = new HexagonGrid()
   const particleCount = window.innerWidth < 768 ? 30 : 60
-  const particles = []
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new FloatingParticle())
-  }
+  const particles = Array.from({ length: particleCount }, () => new FloatingParticle())
 
   let animationId
-  function animate() {
-    // Clear with slight fade for trail effect
+  const animate = () => {
     ctx.fillStyle = "rgba(5, 10, 31, 0.15)"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    // Update and draw hexagonal grid
     hexGrid.update()
     hexGrid.draw()
 
-    // Update and draw floating particles
     particles.forEach((particle) => {
       particle.update()
       particle.draw()
@@ -376,18 +400,17 @@ if (canvas && ctx) {
 
   animate()
 
-  let resizeTimeout
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout)
-    resizeTimeout = setTimeout(() => {
-      resizeCanvas()
-      hexGrid.hexagons = []
-      hexGrid.rows = Math.ceil(canvas.height / (hexGrid.hexSize * 1.5)) + 2
-      hexGrid.cols = Math.ceil(canvas.width / (hexGrid.hexSize * Math.sqrt(3))) + 2
-      hexGrid.init()
-    }, 200)
-  })
+  // Handle resize with debouncing
+  const handleResize = debounce(() => {
+    resizeCanvas()
+    hexGrid.rows = Math.ceil(canvas.height / (hexGrid.hexSize * 1.5)) + 2
+    hexGrid.cols = Math.ceil(canvas.width / (hexGrid.hexSize * Math.sqrt(3))) + 2
+    hexGrid.init()
+  }, 200)
 
+  window.addEventListener("resize", handleResize)
+
+  // Pause animation when page is hidden
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       cancelAnimationFrame(animationId)
@@ -401,16 +424,19 @@ if (canvas && ctx) {
 // BACK TO TOP BUTTON
 // ==================================================
 
-const backToTopBtn = document.querySelector(".back-to-top")
+const initBackToTop = () => {
+  const backToTopBtn = document.querySelector(".back-to-top")
+  if (!backToTopBtn) return
 
-if (backToTopBtn) {
-  window.addEventListener("scroll", () => {
+  const handleScroll = throttle(() => {
     if (window.pageYOffset > 500) {
       backToTopBtn.classList.add("visible")
     } else {
       backToTopBtn.classList.remove("visible")
     }
-  })
+  }, 100)
+
+  window.addEventListener("scroll", handleScroll)
 
   backToTopBtn.addEventListener("click", () => {
     window.scrollTo({
@@ -421,45 +447,50 @@ if (backToTopBtn) {
 }
 
 // ==================================================
-// SCROLL INDICATOR HIDE ON SCROLL
+// SCROLL INDICATOR
 // ==================================================
 
-const scrollIndicator = document.querySelector(".scroll-indicator")
-if (scrollIndicator) {
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 100) {
-      scrollIndicator.style.opacity = "0"
-    } else {
-      scrollIndicator.style.opacity = "1"
-    }
+const initScrollIndicator = () => {
+  const scrollIndicator = document.querySelector(".scroll-indicator")
+  if (!scrollIndicator) return
+
+  const handleScroll = throttle(() => {
+    scrollIndicator.style.opacity = window.pageYOffset > 100 ? "0" : "1"
+  }, 100)
+
+  window.addEventListener("scroll", handleScroll)
+}
+
+// ==================================================
+// LINK PREFETCHING
+// ==================================================
+
+const initLinkPrefetching = () => {
+  document.querySelectorAll('a[href^="project-"]').forEach((link) => {
+    link.addEventListener(
+      "mouseenter",
+      () => {
+        const linkElement = document.createElement("link")
+        linkElement.rel = "prefetch"
+        linkElement.href = link.href
+        document.head.appendChild(linkElement)
+      },
+      { once: true },
+    )
   })
 }
 
 // ==================================================
-// PERFORMANCE OPTIMIZATIONS
+// INITIALIZE ALL
 // ==================================================
 
-if ("loading" in HTMLImageElement.prototype) {
-  const images = document.querySelectorAll('img[loading="lazy"]')
-  images.forEach((img) => {
-    img.src = img.dataset.src
-  })
-} else {
-  // Fallback for browsers that don't support lazy loading
-  const script = document.createElement("script")
-  script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-  document.body.appendChild(script)
-}
-
-document.querySelectorAll('a[href^="project-"]').forEach((link) => {
-  link.addEventListener(
-    "mouseenter",
-    () => {
-      const linkElement = document.createElement("link")
-      linkElement.rel = "prefetch"
-      linkElement.href = link.href
-      document.head.appendChild(linkElement)
-    },
-    { once: true },
-  )
+document.addEventListener("DOMContentLoaded", () => {
+  initRevealAnimations()
+  initTypingEffect()
+  initSmoothScroll()
+  initMobileMenu()
+  initParticlesCanvas()
+  initBackToTop()
+  initScrollIndicator()
+  initLinkPrefetching()
 })
