@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation()
   initExperienceTabs()
   initScrollReveal()
+  initCursorEffect()
 })
 
 // ==========================================
@@ -107,4 +108,39 @@ function initScrollReveal() {
     section.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
     observer.observe(section)
   })
+}
+
+// ==========================================
+// CURSOR EFFECT
+// ==========================================
+function initCursorEffect() {
+  const interactiveElements = document.querySelectorAll("a, button, .project-card, .other-project-card")
+
+  interactiveElements.forEach((element) => {
+    element.addEventListener("mouseenter", (e) => {
+      element.style.transition = "all 0.3s ease"
+    })
+  })
+
+  const createScrollIndicator = () => {
+    const indicator = document.createElement("div")
+    indicator.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #60a5fa, #93c5fd);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    `
+    document.body.appendChild(indicator)
+
+    window.addEventListener("scroll", () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+      const scrolled = (window.scrollY / windowHeight) * 100
+      indicator.style.width = scrolled + "%"
+    })
+  }
+
+  createScrollIndicator()
 }
