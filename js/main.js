@@ -1,195 +1,163 @@
-// ================================================
-// MAIN JAVASCRIPT - ENHANCED VERSION
-// ================================================
+// ==================================================
+// MAIN JAVASCRIPT FILE
+// ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ================================================
-  // NAVIGATION FUNCTIONALITY
-  // ================================================
+  /* ===============================================
+     DARK MODE TOGGLE
+  =============================================== */
 
-  const navbar = document.getElementById("navbar")
-  const mobileToggle = document.getElementById("mobileToggle")
-  const navLinks = document.getElementById("navLinks")
-  const navLinkElements = document.querySelectorAll(".nav-link")
+  const toggleButton = document.getElementById("dark-mode-toggle")
+  const body = document.body
 
-  let lastScroll = 0
-  window.addEventListener(
-    "scroll",
-    throttle(() => {
-      const currentScroll = window.pageYOffset
+  // Function to toggle theme
+  const toggleTheme = () => {
+    const currentTheme = body.dataset.theme || "dark"
+    const newTheme = currentTheme === "dark" ? "light" : "dark"
+    body.dataset.theme = newTheme
+    toggleButton.innerHTML = newTheme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
+    localStorage.setItem("theme", newTheme)
+  }
 
-      if (currentScroll > 120) {
-        navbar.classList.add("scrolled")
-      } else {
-        navbar.classList.remove("scrolled")
-      }
+  // Set initial theme from localStorage or default to dark
+  const savedTheme = localStorage.getItem("theme") || "dark"
+  body.dataset.theme = savedTheme
+  toggleButton.innerHTML = savedTheme === "light" ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'
 
-      if (currentScroll > lastScroll && currentScroll > 300) {
-        navbar.style.transform = "translateY(-100%)"
-      } else {
-        navbar.style.transform = "translateY(0)"
-      }
+  // Add event listener to toggle button
+  toggleButton.addEventListener("click", toggleTheme)
 
-      lastScroll = currentScroll
-    }, 100),
-  )
+  /* ===============================================
+     MOBILE MENU TOGGLE
+  =============================================== */
 
-  // Mobile menu toggle with enhanced animations
-  if (mobileToggle && navLinks) {
-    mobileToggle.addEventListener("click", () => {
-      mobileToggle.classList.toggle("active")
+  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+  const navLinks = document.querySelector(".nav-links")
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", () => {
+      mobileMenuToggle.classList.toggle("active")
       navLinks.classList.toggle("active")
-      document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : ""
     })
 
-    // Close mobile menu when clicking on a link
-    navLinkElements.forEach((link) => {
+    // Close menu when clicking on a link
+    const navLinksItems = navLinks.querySelectorAll("a")
+    navLinksItems.forEach((link) => {
       link.addEventListener("click", () => {
-        mobileToggle.classList.remove("active")
+        mobileMenuToggle.classList.remove("active")
         navLinks.classList.remove("active")
-        document.body.style.overflow = ""
       })
     })
 
-    // Close mobile menu when clicking outside
+    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
-      if (!navbar.contains(e.target) && navLinks.classList.contains("active")) {
-        mobileToggle.classList.remove("active")
+      if (!mobileMenuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        mobileMenuToggle.classList.remove("active")
         navLinks.classList.remove("active")
-        document.body.style.overflow = ""
       }
     })
   }
 
-  // ================================================
-  // ACTIVE NAVIGATION HIGHLIGHT
-  // ================================================
+  /* ===============================================
+     NAVBAR SCROLL EFFECT
+  =============================================== */
 
-  const sections = document.querySelectorAll("section[id], header[id]")
+  const navbar = document.querySelector(".navbar")
+  let lastScroll = 0
 
-  const observerOptions = {
-    root: null,
-    rootMargin: "-20% 0px -70% 0px",
-    threshold: 0,
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
+
+    if (currentScroll > 100) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
+    }
+
+    lastScroll = currentScroll
+  })
+
+  /* ===============================================
+     DISABLE ANIMATION ON PROJECT PAGES
+  =============================================== */
+
+  if (document.body.classList.contains("no-animate")) {
+    return
   }
 
-  const navigationObserver = new IntersectionObserver((entries) => {
+  /* ===============================================
+     SCROLL REVEAL ANIMATION
+  =============================================== */
+
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  }
+
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const id = entry.target.getAttribute("id")
-
-        navLinkElements.forEach((link) => {
-          link.classList.remove("active")
-          if (link.getAttribute("href") === `#${id}`) {
-            link.classList.add("active")
-          }
-        })
+        entry.target.classList.add("show")
+        revealObserver.unobserve(entry.target)
       }
     })
   }, observerOptions)
 
-  sections.forEach((section) => {
-    navigationObserver.observe(section)
-  })
+  const revealElements = document.querySelectorAll(".section, .card")
+  revealElements.forEach((el) => revealObserver.observe(el))
 
-  // ================================================
-  // SMOOTH SCROLL WITH OFFSET
-  // ================================================
+  /* ===============================================
+     TYPING EFFECT FOR SUBTITLE
+  =============================================== */
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
+  const typingText = document.querySelector(".typing-text")
+  if (typingText) {
+    const text = typingText.textContent
+    typingText.textContent = ""
+    let index = 0
+
+    const typeWriter = () => {
+      if (index < text.length) {
+        typingText.textContent += text.charAt(index)
+        index++
+        setTimeout(typeWriter, 100)
+      }
+    }
+
+    // Start typing after a delay
+    setTimeout(typeWriter, 1000)
+  }
+
+  /* ===============================================
+     SMOOTH SCROLL WITH OFFSET
+  =============================================== */
+
+  const smoothScrollLinks = document.querySelectorAll('a[href^="#"]')
+  smoothScrollLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")
+      if (href === "#") return
+
       e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
-
+      const target = document.querySelector(href)
       if (target) {
-        const offset = 90
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset
-
+        const offsetTop = target.offsetTop - 80
         window.scrollTo({
-          top: targetPosition,
+          top: offsetTop,
           behavior: "smooth",
         })
       }
     })
   })
 
-  // ================================================
-  // SCROLL REVEAL ANIMATION - ENHANCED
-  // ================================================
+  /* ===============================================
+     COUNTER ANIMATION FOR STATS
+  =============================================== */
 
-  const revealElements = document.querySelectorAll(
-    ".expertise-card, .project-card, .skill-category, .contact-method, .quality-item, .about-content, .about-image",
-  )
+  const statNumbers = document.querySelectorAll(".stat-number")
 
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add("reveal", "active")
-          }, index * 120)
-          revealObserver.unobserve(entry.target)
-        }
-      })
-    },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -80px 0px",
-    },
-  )
-
-  revealElements.forEach((element) => {
-    revealObserver.observe(element)
-  })
-
-  // ================================================
-  // ================================================
-
-  const hero = document.querySelector(".hero")
-  if (hero) {
-    window.addEventListener(
-      "scroll",
-      throttle(() => {
-        const scrolled = window.pageYOffset
-        const heroContent = hero.querySelector(".hero-content")
-        if (heroContent && scrolled < window.innerHeight) {
-          heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
-          heroContent.style.opacity = 1 - scrolled / 700
-        }
-      }, 16),
-    )
-  }
-
-  // ================================================
-  // ================================================
-
-  const heroTagline = document.querySelector(".hero-tagline")
-  if (heroTagline) {
-    const text = heroTagline.textContent
-    heroTagline.textContent = ""
-    heroTagline.style.borderLeft = "2px solid var(--color-primary)"
-    heroTagline.style.paddingRight = "5px"
-    let i = 0
-
-    const typeWriter = () => {
-      if (i < text.length) {
-        heroTagline.textContent += text.charAt(i)
-        i++
-        setTimeout(typeWriter, 40)
-      } else {
-        heroTagline.style.borderLeft = "none"
-      }
-    }
-
-    setTimeout(typeWriter, 2000)
-  }
-
-  // ================================================
-  // ================================================
-
-  const statValues = document.querySelectorAll(".stat-value")
   const animateCounter = (element) => {
-    const target = Number.parseInt(element.textContent.replace(/\D/g, ""))
+    const target = Number.parseInt(element.textContent)
     const duration = 2000
     const increment = target / (duration / 16)
     let current = 0
@@ -197,10 +165,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const updateCounter = () => {
       current += increment
       if (current < target) {
-        element.textContent = "+" + Math.ceil(current)
+        element.textContent = Math.floor(current) + "+"
         requestAnimationFrame(updateCounter)
       } else {
-        element.textContent = "+" + target
+        element.textContent = target + "+"
       }
     }
 
@@ -219,124 +187,133 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.5 },
   )
 
-  statValues.forEach((stat) => {
-    statsObserver.observe(stat)
+  statNumbers.forEach((stat) => statsObserver.observe(stat))
+
+  /* ===============================================
+     PARALLAX EFFECT FOR GRADIENT ORBS
+  =============================================== */
+
+  const orbs = document.querySelectorAll(".gradient-orb")
+
+  window.addEventListener("mousemove", (e) => {
+    const mouseX = e.clientX / window.innerWidth
+    const mouseY = e.clientY / window.innerHeight
+
+    orbs.forEach((orb, index) => {
+      const speed = (index + 1) * 20
+      const x = (mouseX - 0.5) * speed
+      const y = (mouseY - 0.5) * speed
+
+      orb.style.transform = `translate(${x}px, ${y}px)`
+    })
   })
 
-  // ================================================
-  // LAZY LOAD IMAGES
-  // ================================================
+  /* ===============================================
+     FOOTER YEAR AUTO UPDATE
+  =============================================== */
 
-  if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const img = entry.target
-          if (img.dataset.src) {
-            img.src = img.dataset.src
-            img.removeAttribute("data-src")
-            img.classList.add("loaded")
-          }
-          imageObserver.unobserve(img)
+  const footerYear = document.querySelector(".footer-year")
+  if (footerYear) {
+    footerYear.innerHTML = `© ${new Date().getFullYear()} Mohamed Mooka — Cybersecurity Portfolio`
+  }
+
+  /* ===============================================
+     PRELOAD CRITICAL IMAGES
+  =============================================== */
+
+  const criticalImages = document.querySelectorAll(".project-image img, .about-image img")
+  criticalImages.forEach((img) => {
+    const src = img.getAttribute("src")
+    if (src) {
+      const preloadLink = document.createElement("link")
+      preloadLink.rel = "preload"
+      preloadLink.as = "image"
+      preloadLink.href = src
+      document.head.appendChild(preloadLink)
+    }
+  })
+
+  /* ===============================================
+     ACTIVE NAV LINK INDICATOR
+  =============================================== */
+
+  const sections = document.querySelectorAll("section[id]")
+
+  const highlightNav = () => {
+    const scrollY = window.pageYOffset
+
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight
+      const sectionTop = section.offsetTop - 100
+      const sectionId = section.getAttribute("id")
+      const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLink?.classList.add("active")
+      } else {
+        navLink?.classList.remove("active")
+      }
+    })
+  }
+
+  window.addEventListener("scroll", highlightNav)
+
+  /* ===============================================
+     COPY EMAIL ON CLICK
+  =============================================== */
+
+  const emailLinks = document.querySelectorAll('a[href^="mailto:"]')
+  emailLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const email = link.getAttribute("href").replace("mailto:", "")
+
+      // Create temporary input
+      const tempInput = document.createElement("input")
+      tempInput.value = email
+      document.body.appendChild(tempInput)
+      tempInput.select()
+
+      try {
+        document.execCommand("copy")
+
+        // Show success message
+        const originalText = link.querySelector("h3")?.textContent || link.textContent
+        if (link.querySelector("h3")) {
+          link.querySelector("h3").textContent = "Email Copied!"
+          setTimeout(() => {
+            link.querySelector("h3").textContent = originalText
+          }, 2000)
         }
-      })
-    })
+      } catch (err) {
+        console.error("Failed to copy email:", err)
+      }
 
-    document.querySelectorAll("img[data-src]").forEach((img) => {
-      imageObserver.observe(img)
+      document.body.removeChild(tempInput)
     })
+  })
+
+  /* ===============================================
+     PERFORMANCE OPTIMIZATION
+  =============================================== */
+
+  // Lazy load images
+  if ("loading" in HTMLImageElement.prototype) {
+    const images = document.querySelectorAll('img[loading="lazy"]')
+    images.forEach((img) => {
+      img.src = img.dataset.src || img.src
+    })
+  } else {
+    // Fallback for browsers that don't support lazy loading
+    const script = document.createElement("script")
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+    document.body.appendChild(script)
   }
 
-  // ================================================
-  // ================================================
+  /* ===============================================
+     CONSOLE EASTER EGG
+  =============================================== */
 
-  const createCursorTrail = () => {
-    const trail = document.createElement("div")
-    trail.className = "cursor-trail"
-    document.body.appendChild(trail)
-
-    let mouseX = 0
-    let mouseY = 0
-    let trailX = 0
-    let trailY = 0
-
-    document.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-    })
-
-    const animateTrail = () => {
-      trailX += (mouseX - trailX) * 0.15
-      trailY += (mouseY - trailY) * 0.15
-
-      trail.style.left = trailX + "px"
-      trail.style.top = trailY + "px"
-
-      requestAnimationFrame(animateTrail)
-    }
-
-    animateTrail()
-  }
-
-  // Uncomment to enable cursor trail
-  // createCursorTrail()
-
-  // ================================================
-  // CONSOLE GREETING
-  // ================================================
-
-  console.log("%c محمد موكا | Mohamed Mooka", "color: #3b82f6; font-size: 24px; font-weight: bold;")
-  console.log("%c محلل أمن سيبراني | Cybersecurity Analyst", "color: #22d3ee; font-size: 16px; font-weight: bold;")
-  console.log("%c متخصص DFIR وعمليات SOC | DFIR & SOC Operations Specialist", "color: #8b5cf6; font-size: 14px;")
-  console.log("%c GitHub: https://github.com/mohamedmOoka7", "color: #64748b; font-size: 12px;")
-  console.log("%c LinkedIn: https://www.linkedin.com/in/mohamed-mooka/", "color: #64748b; font-size: 12px;")
+  console.log("%c🛡️ Cybersecurity Portfolio", "color: #00d9ff; font-size: 20px; font-weight: bold;")
+  console.log("%cInterested in the code? Check out my GitHub!", "color: #7c3aed; font-size: 14px;")
+  console.log("%chttps://github.com/mohamedmOoka7", "color: #00d9ff; font-size: 12px;")
 })
-
-// ================================================
-// UTILITY FUNCTIONS
-// ================================================
-
-// Throttle function for performance optimization
-function throttle(func, wait) {
-  let timeout
-  let lastRun = 0
-
-  return function executedFunction(...args) {
-    const now = Date.now()
-
-    if (now - lastRun >= wait) {
-      func(...args)
-      lastRun = now
-    } else {
-      clearTimeout(timeout)
-      timeout = setTimeout(
-        () => {
-          func(...args)
-          lastRun = Date.now()
-        },
-        wait - (now - lastRun),
-      )
-    }
-  }
-}
-
-// Debounce function for performance optimization
-function debounce(func, wait) {
-  let timeout
-
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout)
-      func(...args)
-    }
-
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-  }
-}
-
-if (!("scrollBehavior" in document.documentElement.style)) {
-  const script = document.createElement("script")
-  script.src = "https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
-  document.head.appendChild(script)
-}
