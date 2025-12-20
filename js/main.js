@@ -1,66 +1,35 @@
-// ==================================================
-// MAIN JAVASCRIPT - ENHANCED
-// ==================================================
-
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===============================================
-     DISABLE ANIMATION ON PROJECT PAGES
-  =============================================== */
-
   if (document.body.classList.contains("no-animate")) {
     return
   }
 
   /* ===============================================
-     NAVBAR SCROLL EFFECT
+     FLOATING NAVIGATION ACTIVE STATE
   =============================================== */
 
-  const navbar = document.querySelector(".navbar")
-  let lastScroll = 0
+  const navDots = document.querySelectorAll(".nav-dot")
+  const sections = document.querySelectorAll("section[id]")
 
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset
+  function updateActiveNav() {
+    const scrollY = window.pageYOffset
 
-    // Add scrolled class for styling
-    if (currentScroll > 100) {
-      navbar.classList.add("scrolled")
-    } else {
-      navbar.classList.remove("scrolled")
-    }
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight
+      const sectionTop = section.offsetTop - 200
+      const sectionId = section.getAttribute("id")
 
-    lastScroll = currentScroll
-  })
-
-  /* ===============================================
-     MOBILE MENU TOGGLE
-  =============================================== */
-
-  const mobileToggle = document.querySelector(".mobile-toggle")
-  const navLinks = document.querySelector(".nav-links")
-
-  if (mobileToggle) {
-    mobileToggle.addEventListener("click", () => {
-      mobileToggle.classList.toggle("active")
-      navLinks.classList.toggle("active")
-    })
-
-    // Close menu when clicking on a link
-    const navLinksItems = document.querySelectorAll(".nav-links a")
-    navLinksItems.forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileToggle.classList.remove("active")
-        navLinks.classList.remove("active")
-      })
-    })
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!mobileToggle.contains(e.target) && !navLinks.contains(e.target)) {
-        mobileToggle.classList.remove("active")
-        navLinks.classList.remove("active")
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navDots.forEach((dot) => {
+          dot.classList.remove("active")
+          if (dot.getAttribute("data-section") === sectionId) {
+            dot.classList.add("active")
+          }
+        })
       }
     })
   }
+
+  window.addEventListener("scroll", updateActiveNav)
 
   /* ===============================================
      SMOOTH SCROLL WITH OFFSET
@@ -77,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const target = document.querySelector(href)
         if (target) {
-          const offsetTop = target.offsetTop - 80 // navbar height
+          const offsetTop = target.offsetTop - 50
 
           window.scrollTo({
             top: offsetTop,
@@ -151,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Start typing after a small delay
     setTimeout(type, 1000)
   }
 
@@ -213,77 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     ACTIVE NAVIGATION HIGHLIGHT
-  =============================================== */
-
-  const sections = document.querySelectorAll("section[id]")
-
-  window.addEventListener("scroll", () => {
-    const scrollY = window.pageYOffset
-
-    sections.forEach((section) => {
-      const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 100
-      const sectionId = section.getAttribute("id")
-
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        document.querySelectorAll(".nav-links a").forEach((link) => {
-          link.classList.remove("active")
-          if (link.getAttribute("href") === `#${sectionId}`) {
-            link.classList.add("active")
-          }
-        })
-      }
-    })
-  })
-
-  /* ===============================================
-     CURSOR TRAIL EFFECT (OPTIONAL)
-  =============================================== */
-
-  const createCursorTrail = () => {
-    const coords = { x: 0, y: 0 }
-    const circles = document.querySelectorAll(".cursor-circle")
-
-    if (circles.length === 0) return
-
-    circles.forEach((circle) => {
-      circle.x = 0
-      circle.y = 0
-    })
-
-    window.addEventListener("mousemove", (e) => {
-      coords.x = e.clientX
-      coords.y = e.clientY
-    })
-
-    function animateCircles() {
-      let x = coords.x
-      let y = coords.y
-
-      circles.forEach((circle, index) => {
-        circle.style.left = x - 12 + "px"
-        circle.style.top = y - 12 + "px"
-        circle.style.transform = `scale(${(circles.length - index) / circles.length})`
-
-        circle.x = x
-        circle.y = y
-
-        const nextCircle = circles[index + 1] || circles[0]
-        x += (nextCircle.x - x) * 0.3
-        y += (nextCircle.y - y) * 0.3
-      })
-
-      requestAnimationFrame(animateCircles)
-    }
-
-    animateCircles()
-  }
-
-  // Uncomment to enable cursor trail
-  // createCursorTrail();
-
-  /* ===============================================
      FOOTER YEAR AUTO UPDATE
   =============================================== */
 
@@ -315,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
      PERFORMANCE OPTIMIZATION
   =============================================== */
 
-  // Debounce function for scroll events
   function debounce(func, wait = 10) {
     let timeout
     return function executedFunction(...args) {
@@ -328,11 +224,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Apply debounce to scroll-heavy functions
   window.addEventListener(
     "scroll",
     debounce(() => {
-      // Any scroll-dependent functions can go here
+      // Scroll-dependent functions
     }, 10),
   )
 
