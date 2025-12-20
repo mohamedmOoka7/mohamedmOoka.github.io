@@ -1,8 +1,10 @@
 // ==================================================
-// MAIN JAVASCRIPT - MASTERPIECE EDITION
+// MAIN JAVASCRIPT - ULTIMATE BLUE TEAM PORTFOLIO EDITION
 // ==================================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("[v0] Ultimate Blue Team Portfolio Initialized ✨")
+
   /* ===============================================
      MOBILE MENU TOGGLE
   =============================================== */
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    rootMargin: "0px 0px -80px 0px",
   }
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -85,83 +87,149 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }, observerOptions)
 
-  const revealElements = document.querySelectorAll(".section, .card, .skill-category, .project-card")
-  revealElements.forEach((el) => revealObserver.observe(el))
+  document.querySelectorAll(".section, .card, .expertise-card, .project-card, .contact-card").forEach((el) => {
+    revealObserver.observe(el)
+  })
 
   /* ===============================================
      MATRIX RAIN EFFECT - ENHANCED
   =============================================== */
 
-  const canvas = document.getElementById("matrix-canvas")
-  if (canvas) {
-    const ctx = canvas.getContext("2d")
+  const matrixCanvas = document.getElementById("matrix-canvas")
+  if (matrixCanvas) {
+    const ctx = matrixCanvas.getContext("2d")
+    matrixCanvas.width = window.innerWidth
+    matrixCanvas.height = window.innerHeight
 
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
-
-    const matrix = "01アイウエオカキクケコサシスセソタチツテト"
+    const chars = "01アイウエオカキクケコサシスセソ"
     const fontSize = 14
-    const columns = canvas.width / fontSize
-
-    const drops = []
-    for (let i = 0; i < columns; i++) {
-      drops[i] = Math.random() * canvas.height
-    }
+    const columns = matrixCanvas.width / fontSize
+    const drops = Array(Math.floor(columns)).fill(1)
 
     function drawMatrix() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.04)"
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)"
+      ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height)
 
       ctx.font = fontSize + "px monospace"
 
-      for (let i = 0; i < drops.length; i++) {
-        const text = matrix[Math.floor(Math.random() * matrix.length)]
+      drops.forEach((y, i) => {
+        const char = chars[Math.floor(Math.random() * chars.length)]
+        const x = i * fontSize
 
-        const brightness = Math.random() * 0.5 + 0.5
-        ctx.fillStyle = `rgba(0, 217, 255, ${brightness * 0.5})`
+        ctx.fillStyle = `rgba(0, 217, 255, ${Math.random() * 0.5 + 0.3})`
+        ctx.fillText(char, x, y * fontSize)
 
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize)
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (y * fontSize > matrixCanvas.height && Math.random() > 0.975) {
           drops[i] = 0
         }
         drops[i]++
-      }
+      })
     }
 
     setInterval(drawMatrix, 50)
 
     window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      matrixCanvas.width = window.innerWidth
+      matrixCanvas.height = window.innerHeight
     })
   }
 
   /* ===============================================
-     PARTICLES EFFECT - ENHANCED WITH MORE VARIETY
+     NEURAL NETWORK CANVAS EFFECT
+  =============================================== */
+
+  const neuralCanvas = document.getElementById("neural-network")
+  if (neuralCanvas) {
+    const ctx = neuralCanvas.getContext("2d")
+    neuralCanvas.width = window.innerWidth
+    neuralCanvas.height = window.innerHeight
+
+    const nodes = []
+    const nodeCount = 50
+
+    // Create nodes
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * neuralCanvas.width,
+        y: Math.random() * neuralCanvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: 2,
+      })
+    }
+
+    function drawNeuralNetwork() {
+      ctx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height)
+
+      // Update and draw nodes
+      nodes.forEach((node, i) => {
+        node.x += node.vx
+        node.y += node.vy
+
+        // Bounce off edges
+        if (node.x < 0 || node.x > neuralCanvas.width) node.vx *= -1
+        if (node.y < 0 || node.y > neuralCanvas.height) node.vy *= -1
+
+        // Draw connections
+        nodes.forEach((otherNode, j) => {
+          if (i !== j) {
+            const dx = node.x - otherNode.x
+            const dy = node.y - otherNode.y
+            const distance = Math.sqrt(dx * dx + dy * dy)
+
+            if (distance < 150) {
+              const opacity = 1 - distance / 150
+              ctx.strokeStyle = `rgba(0, 217, 255, ${opacity * 0.3})`
+              ctx.lineWidth = 0.5
+              ctx.beginPath()
+              ctx.moveTo(node.x, node.y)
+              ctx.lineTo(otherNode.x, otherNode.y)
+              ctx.stroke()
+            }
+          }
+        })
+
+        // Draw node
+        ctx.fillStyle = "rgba(0, 217, 255, 0.6)"
+        ctx.beginPath()
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2)
+        ctx.fill()
+      })
+
+      requestAnimationFrame(drawNeuralNetwork)
+    }
+
+    drawNeuralNetwork()
+
+    window.addEventListener("resize", () => {
+      neuralCanvas.width = window.innerWidth
+      neuralCanvas.height = window.innerHeight
+    })
+  }
+
+  /* ===============================================
+     ENHANCED PARTICLES
   =============================================== */
 
   const particlesContainer = document.getElementById("particles")
   if (particlesContainer) {
-    const particleCount = 40
+    const particleCount = 60
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement("div")
-      const size = Math.random() * 4 + 1
+      const size = Math.random() * 5 + 2
 
-      particle.style.position = "absolute"
-      particle.style.width = size + "px"
-      particle.style.height = size + "px"
-      particle.style.background = `rgba(0, 217, 255, ${Math.random() * 0.5 + 0.3})`
-      particle.style.borderRadius = "50%"
-      particle.style.left = Math.random() * 100 + "%"
-      particle.style.top = Math.random() * 100 + "%"
-
-      const duration = Math.random() * 15 + 10
-      const delay = Math.random() * 5
-
-      particle.style.animation = `floatParticle ${duration}s ease-in-out infinite ${delay}s`
-      particle.style.boxShadow = `0 0 ${size * 3}px rgba(0, 217, 255, 0.5)`
+      particle.style.cssText = `
+        position: absolute;
+        width: ${size}px;
+        height: ${size}px;
+        background: rgba(0, 217, 255, ${Math.random() * 0.6 + 0.2});
+        border-radius: 50%;
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        box-shadow: 0 0 ${size * 4}px rgba(0, 217, 255, 0.6);
+        animation: floatParticle ${Math.random() * 20 + 15}s ease-in-out infinite ${Math.random() * 5}s;
+      `
 
       particlesContainer.appendChild(particle)
     }
@@ -171,19 +239,19 @@ document.addEventListener("DOMContentLoaded", () => {
       @keyframes floatParticle {
         0%, 100% {
           transform: translate(0, 0);
-          opacity: 0.3;
-        }
-        25% {
-          transform: translate(20px, -30px);
-          opacity: 0.6;
-        }
-        50% {
-          transform: translate(-15px, -60px);
           opacity: 0.4;
         }
-        75% {
-          transform: translate(25px, -90px);
+        25% {
+          transform: translate(30px, -40px);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translate(-20px, -80px);
           opacity: 0.5;
+        }
+        75% {
+          transform: translate(40px, -120px);
+          opacity: 0.7;
         }
       }
     `
@@ -203,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(href)
 
       if (target) {
-        const offsetTop = target.offsetTop - 80
+        const offsetTop = target.offsetTop - 100
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
@@ -216,17 +284,17 @@ document.addEventListener("DOMContentLoaded", () => {
      CARD GLOW EFFECT FOLLOW MOUSE - ENHANCED
   =============================================== */
 
-  const cards = document.querySelectorAll(".card, .skill-category, .project-card, .contact-card")
+  const glowCards = document.querySelectorAll(".card, .expertise-card, .project-card, .contact-card, .stat-card")
 
-  cards.forEach((card) => {
+  glowCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect()
       const x = e.clientX - rect.left
       const y = e.clientY - rect.top
 
-      const glow = card.querySelector(".card-glow")
-      if (glow) {
-        glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(0, 217, 255, 0.4) 0%, transparent 60%)`
+      const ambientGlow = card.querySelector(".card-ambient-glow, .stat-glow")
+      if (ambientGlow) {
+        ambientGlow.style.background = `radial-gradient(circle 400px at ${x}px ${y}px, rgba(0, 217, 255, 0.4) 0%, transparent 60%)`
       }
     })
   })
@@ -237,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const typingText = document.querySelector(".typing-text")
   if (typingText) {
-    const text = typingText.textContent
+    const text = typingText.getAttribute("data-text")
     typingText.textContent = ""
     let i = 0
 
@@ -245,11 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i < text.length) {
         typingText.textContent += text.charAt(i)
         i++
-        setTimeout(type, Math.random() * 50 + 30)
+        setTimeout(type, Math.random() * 60 + 30)
       }
     }
 
-    setTimeout(type, 1000)
+    setTimeout(type, 1500)
   }
 
   /* ===============================================
@@ -260,17 +328,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const animateCounter = (element) => {
     const target = Number.parseInt(element.getAttribute("data-count"))
-    const duration = 2000
+    const duration = 2500
     const increment = target / (duration / 16)
     let current = 0
 
     const updateCounter = () => {
       current += increment
       if (current < target) {
-        element.textContent = Math.floor(current) + "+"
+        element.textContent = Math.floor(current)
         requestAnimationFrame(updateCounter)
       } else {
-        element.textContent = target + "+"
+        element.textContent = target
       }
     }
 
@@ -292,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
   statNumbers.forEach((stat) => statsObserver.observe(stat))
 
   /* ===============================================
-     PARALLAX EFFECT FOR HERO ORBS
+     PARALLAX EFFECT FOR HERO ORBS - ENHANCED
   =============================================== */
 
   const orbs = document.querySelectorAll(".orb")
@@ -308,7 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function animateOrbs() {
       orbs.forEach((orb, index) => {
-        const speed = (index + 1) * 15
+        const speed = (index + 1) * 20
         const x = (mouseX - 0.5) * speed
         const y = (mouseY - 0.5) * speed
 
@@ -322,16 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ===============================================
-     DYNAMIC YEAR IN FOOTER
-  =============================================== */
-
-  const footerYear = document.querySelector("footer .footer-right p")
-  if (footerYear && footerYear.textContent.includes("2025")) {
-    footerYear.innerHTML = footerYear.innerHTML.replace("2025", new Date().getFullYear())
-  }
-
-  /* ===============================================
-     SCROLL PROGRESS INDICATOR
+     SCROLL PROGRESS INDICATOR - ENHANCED
   =============================================== */
 
   const progressBar = document.createElement("div")
@@ -339,11 +398,12 @@ document.addEventListener("DOMContentLoaded", () => {
     position: fixed;
     top: 0;
     left: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #00d9ff, #0099ff);
+    height: 3px;
+    background: linear-gradient(90deg, #00d9ff, #0099ff, #00f5ff);
     width: 0%;
     z-index: 9999;
     transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.8);
   `
   document.body.appendChild(progressBar)
 
@@ -351,31 +411,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrollTop = window.pageYOffset
     const docHeight = document.documentElement.scrollHeight - window.innerHeight
     const scrollPercent = (scrollTop / docHeight) * 100
-
     progressBar.style.width = scrollPercent + "%"
   })
 
   /* ===============================================
-     CURSOR GLOW EFFECT
+     CURSOR GLOW EFFECT - ENHANCED
   =============================================== */
 
-  const cursorGlow = document.querySelector(".cursor-glow")
+  const cursorTrail = document.querySelector(".cursor-trail")
 
-  if (cursorGlow) {
+  if (cursorTrail) {
     let mouseX = 0
     let mouseY = 0
     let cursorX = 0
     let cursorY = 0
-    const speed = 0.15
+    const speed = 0.12
 
     document.addEventListener("mousemove", (e) => {
       mouseX = e.clientX
       mouseY = e.clientY
-      cursorGlow.style.opacity = "1"
+      cursorTrail.style.opacity = "1"
     })
 
     document.addEventListener("mouseleave", () => {
-      cursorGlow.style.opacity = "0"
+      cursorTrail.style.opacity = "0"
     })
 
     function animateCursor() {
@@ -385,8 +444,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cursorX += distX * speed
       cursorY += distY * speed
 
-      cursorGlow.style.left = cursorX + "px"
-      cursorGlow.style.top = cursorY + "px"
+      cursorTrail.style.left = cursorX + "px"
+      cursorTrail.style.top = cursorY + "px"
 
       requestAnimationFrame(animateCursor)
     }
@@ -394,5 +453,14 @@ document.addEventListener("DOMContentLoaded", () => {
     animateCursor()
   }
 
-  console.log("[v0] DarkEntry-inspired portfolio initialized")
+  /* ===============================================
+     DYNAMIC YEAR IN FOOTER
+  =============================================== */
+
+  const footerYear = document.querySelector(".footer-copyright")
+  if (footerYear && footerYear.textContent.includes("2025")) {
+    footerYear.textContent = footerYear.textContent.replace("2025", new Date().getFullYear())
+  }
+
+  console.log("[v0] All effects initialized successfully ✨")
 })
