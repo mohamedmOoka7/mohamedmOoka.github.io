@@ -18,11 +18,19 @@
 </head>
 
 <body>
+  <!-- Added 3D floating particles background canvas -->
+  <canvas id="particlesCanvas"></canvas>
+  
+  <!-- Added mesh gradient background for ultra-modern look -->
+  <div class="mesh-gradient"></div>
 
   <!-- ================= NAVIGATION ================= -->
-  <nav class="navbar" id="navbar">
+  <nav class="navbar glass-effect" id="navbar">
     <div class="nav-container">
-      <div class="logo">Mohamed Mooka</div>
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        Mohamed Mooka
+      </div>
       
       <button class="mobile-toggle" aria-label="Toggle navigation" id="mobileToggle">
         <span></span>
@@ -42,33 +50,56 @@
   <!-- ================= HERO SECTION ================= -->
   <header class="hero">
     <div class="hero-content">
-      <div class="hero-label">Cybersecurity Professional</div>
-      <h1>
+      <div class="hero-badge glass-effect">
+        <span class="badge-dot"></span>
+        Cybersecurity Professional
+      </div>
+      <h1 class="hero-title">
         Investigating threats.<br>
-        <span class="gradient-text">Securing systems.</span>
+        <span class="gradient-text-animated">Securing systems.</span>
       </h1>
-      <p class="hero-description">
+      <p class="hero-description typewriter">
         I'm a Cybersecurity Analyst specializing in Digital Forensics & Incident Response (DFIR) and Security Operations Center (SOC) analysis. I investigate security incidents, analyze threat patterns, and reconstruct attack timelines.
       </p>
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-secondary">Download Resume</a>
+        <a href="#projects" class="btn btn-primary">
+          <span>View Projects</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+        <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-secondary glass-effect">
+          <span>Download Resume</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </a>
       </div>
       
       <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-number">50+</div>
+        <div class="stat-card glass-effect">
+          <div class="stat-number" data-target="50">0</div>
           <div class="stat-label">Security Investigations</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number">15+</div>
+        <div class="stat-card glass-effect">
+          <div class="stat-number" data-target="15">0</div>
           <div class="stat-label">DFIR Projects</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number">100%</div>
+        <div class="stat-card glass-effect">
+          <div class="stat-number" data-target="100">0</div>
           <div class="stat-label">Incident Resolution</div>
         </div>
       </div>
+    </div>
+    
+    <!-- Added floating 3D shapes for modern aesthetic -->
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
     </div>
   </header>
 
@@ -78,7 +109,11 @@
     <section class="section" id="about">
       <div class="section-container">
         <div class="section-header">
-          <h2>About Me</h2>
+          <h2 class="section-title">
+            <span class="title-line"></span>
+            About Me
+            <span class="title-line"></span>
+          </h2>
           <p class="section-subtitle">Background & expertise in cybersecurity operations</p>
         </div>
         
@@ -99,8 +134,14 @@
           </div>
           
           <div class="about-sidebar">
-            <div class="info-card">
-              <h3>Technical Focus</h3>
+            <div class="info-card glass-effect">
+              <div class="card-glow"></div>
+              <h3>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                </svg>
+                Technical Focus
+              </h3>
               <ul class="focus-list">
                 <li>Digital Forensics & Incident Response</li>
                 <li>Security Operations (SOC)</li>
@@ -111,8 +152,16 @@
               </ul>
             </div>
             
-            <div class="info-card">
-              <h3>Tools & Platforms</h3>
+            <div class="info-card glass-effect">
+              <div class="card-glow"></div>
+              <h3>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+                Tools & Platforms
+              </h3>
               <div class="tools-grid">
                 <span class="tool-tag">Splunk</span>
                 <span class="tool-tag">Wireshark</span>
@@ -133,14 +182,20 @@
     <section class="section section-dark" id="experience">
       <div class="section-container">
         <div class="section-header">
-          <h2>Experience & Skills</h2>
+          <h2 class="section-title">
+            <span class="title-line"></span>
+            Experience & Skills
+            <span class="title-line"></span>
+          </h2>
           <p class="section-subtitle">Core competencies in cybersecurity operations</p>
         </div>
         
         <div class="experience-grid">
-          <div class="experience-card">
+          
+          <div class="experience-card glass-effect">
+            <div class="card-glow"></div>
             <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
               </svg>
             </div>
@@ -148,9 +203,10 @@
             <p>Rapid detection, investigation, and containment of security incidents. Experience handling malware infections, data breaches, and unauthorized access cases.</p>
           </div>
           
-          <div class="experience-card">
+          <div class="experience-card glass-effect">
+            <div class="card-glow"></div>
             <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                 <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
                 <line x1="12" y1="22.08" x2="12" y2="12"/>
@@ -160,9 +216,10 @@
             <p>Forensic analysis of compromised systems, memory dumps, and disk images. Skilled in artifact analysis, timeline reconstruction, and evidence collection.</p>
           </div>
           
-          <div class="experience-card">
+          <div class="experience-card glass-effect">
+            <div class="card-glow"></div>
             <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                 <line x1="8" y1="21" x2="16" y2="21"/>
                 <line x1="12" y1="17" x2="12" y2="21"/>
@@ -172,9 +229,10 @@
             <p>Security monitoring and alert triage in SOC environments. Proficient in SIEM platforms, log correlation, and threat detection rule creation.</p>
           </div>
           
-          <div class="experience-card">
+          <div class="experience-card glass-effect">
+            <div class="card-glow"></div>
             <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/>
                 <line x1="12" y1="16" x2="12" y2="12"/>
                 <line x1="12" y1="8" x2="12.01" y2="8"/>
@@ -184,9 +242,10 @@
             <p>Identifying malicious activity through log analysis, network traffic inspection, and behavioral anomaly detection using various security tools.</p>
           </div>
           
-          <div class="experience-card">
+          <div class="experience-card glass-effect">
+            <div class="card-glow"></div>
             <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                 <polyline points="14 2 14 8 20 8"/>
                 <line x1="12" y1="18" x2="12" y2="12"/>
@@ -197,9 +256,10 @@
             <p>Static and dynamic analysis of malware samples. Experience in identifying indicators of compromise (IOCs) and understanding malware behavior.</p>
           </div>
           
-          <div class="experience-card">
+          <div class="experience-card glass-effect">
+            <div class="card-glow"></div>
             <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"/>
                 <polyline points="12 6 12 12 16 14"/>
               </svg>
@@ -215,14 +275,18 @@
     <section class="section" id="projects">
       <div class="section-container">
         <div class="section-header">
-          <h2>Featured Projects</h2>
+          <h2 class="section-title">
+            <span class="title-line"></span>
+            Featured Projects
+            <span class="title-line"></span>
+          </h2>
           <p class="section-subtitle">Real-world cybersecurity investigations and labs</p>
         </div>
         
         <div class="projects-grid">
           
-          <!-- Project 1 -->
-          <article class="project-card">
+          <article class="project-card glass-effect">
+            <div class="card-glow"></div>
             <div class="project-header">
               <div class="project-label">DFIR Investigation</div>
               <div class="project-tags">
@@ -242,15 +306,15 @@
             </div>
             <a href="project-apt-investigation.html" class="project-link">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
             </a>
           </article>
           
-          <!-- Project 2 -->
-          <article class="project-card">
+          <article class="project-card glass-effect">
+            <div class="card-glow"></div>
             <div class="project-header">
               <div class="project-label">SOC Analysis</div>
               <div class="project-tags">
@@ -270,15 +334,15 @@
             </div>
             <a href="project-soc-lab.html" class="project-link">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
             </a>
           </article>
           
-          <!-- Project 3 -->
-          <article class="project-card">
+          <article class="project-card glass-effect">
+            <div class="card-glow"></div>
             <div class="project-header">
               <div class="project-label">Malware Analysis</div>
               <div class="project-tags">
@@ -298,15 +362,15 @@
             </div>
             <a href="project-ransomware.html" class="project-link">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
             </a>
           </article>
           
-          <!-- Project 4 -->
-          <article class="project-card">
+          <article class="project-card glass-effect">
+            <div class="card-glow"></div>
             <div class="project-header">
               <div class="project-label">Network Forensics</div>
               <div class="project-tags">
@@ -326,15 +390,15 @@
             </div>
             <a href="project-network-forensics.html" class="project-link">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
             </a>
           </article>
           
-          <!-- Project 5 -->
-          <article class="project-card">
+          <article class="project-card glass-effect">
+            <div class="card-glow"></div>
             <div class="project-header">
               <div class="project-label">Threat Intelligence</div>
               <div class="project-tags">
@@ -354,15 +418,15 @@
             </div>
             <a href="project-threat-intel.html" class="project-link">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
             </a>
           </article>
           
-          <!-- Project 6 -->
-          <article class="project-card">
+          <article class="project-card glass-effect">
+            <div class="card-glow"></div>
             <div class="project-header">
               <div class="project-label">Memory Forensics</div>
               <div class="project-tags">
@@ -382,7 +446,7 @@
             </div>
             <a href="project-memory-forensics.html" class="project-link">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="5" y1="12" x2="19" y2="12"/>
                 <polyline points="12 5 19 12 12 19"/>
               </svg>
@@ -398,67 +462,50 @@
       <div class="section-container">
         <div class="contact-content">
           <div class="contact-text">
-            <h2>Let's Connect</h2>
+            <h2 class="section-title">
+              <span class="title-line"></span>
+              Let's Connect
+            </h2>
             <p class="contact-description">
               Interested in collaboration, discussing cybersecurity projects, or exploring opportunities? I'm always open to connecting with fellow security professionals and organizations.
             </p>
-            <div class="contact-info">
-              <div class="contact-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          </div>
+          
+          <div class="contact-cards">
+            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card glass-effect">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                   <polyline points="22,6 12,13 2,6"/>
                 </svg>
-                <a href="mailto:mohamed.ashraf.abdallah65@gmail.com">mohamed.ashraf.abdallah65@gmail.com</a>
               </div>
-              <div class="contact-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <h3>Email</h3>
+              <p>mohamed.ashraf.abdallah65@gmail.com</p>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card glass-effect">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                   <rect x="2" y="9" width="4" height="12"/>
                   <circle cx="4" cy="4" r="2"/>
                 </svg>
-                <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohamed-mooka</a>
               </div>
-              <div class="contact-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <h3>LinkedIn</h3>
+              <p>mohamed-mooka</p>
+            </a>
+            
+            <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card glass-effect">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                 </svg>
-                <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer">github.com/mohamedmOoka7</a>
               </div>
-            </div>
-          </div>
-          
-          <div class="contact-links-grid">
-            <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-card">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-              <span>Download Resume</span>
-            </a>
-            
-            <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" class="contact-card">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-              <span>LinkedIn Profile</span>
-            </a>
-            
-            <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" class="contact-card">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-              <span>GitHub Projects</span>
-            </a>
-            
-            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              <span>Send Email</span>
+              <h3>GitHub</h3>
+              <p>mohamedmOoka7</p>
             </a>
           </div>
         </div>
@@ -469,15 +516,18 @@
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-main">
+    <div class="footer-container">
+      <div class="footer-content">
         <div class="footer-brand">
-          <div class="footer-logo">Mohamed Mooka</div>
-          <p>Cybersecurity Analyst specializing in DFIR and SOC operations</p>
+          <div class="logo">
+            <span class="logo-icon">⚡</span>
+            Mohamed Mooka
+          </div>
+          <p>Cybersecurity Analyst focused on DFIR & SOC Operations</p>
         </div>
         
         <div class="footer-links">
-          <div class="footer-column">
+          <div class="footer-col">
             <h4>Navigation</h4>
             <ul>
               <li><a href="#about">About</a></li>
@@ -487,23 +537,12 @@
             </ul>
           </div>
           
-          <div class="footer-column">
-            <h4>Projects</h4>
-            <ul>
-              <li><a href="project-apt-investigation.html">APT Investigation</a></li>
-              <li><a href="project-soc-lab.html">SOC Lab</a></li>
-              <li><a href="project-ransomware.html">Malware Analysis</a></li>
-              <li><a href="project-network-forensics.html">Network Forensics</a></li>
-            </ul>
-          </div>
-          
-          <div class="footer-column">
+          <div class="footer-col">
             <h4>Connect</h4>
             <ul>
-              <li><a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank">LinkedIn</a></li>
+              <li><a href="https://github.com/mohamedmOoka7" target="_blank">GitHub</a></li>
               <li><a href="mailto:mohamed.ashraf.abdallah65@gmail.com">Email</a></li>
-              <li><a href="assets/Mohamed_Mooka_CV.pdf" download>Resume</a></li>
             </ul>
           </div>
         </div>
@@ -511,12 +550,11 @@
       
       <div class="footer-bottom">
         <p>&copy; <span id="year">2025</span> Mohamed Mooka. All rights reserved.</p>
-        <p class="footer-tagline">Securing the digital frontier through investigation and defense</p>
+        <p>Built with passion for cybersecurity</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
-
 </body>
 </html>
