@@ -217,7 +217,7 @@ if (mobileMenuToggle) {
 }
 
 // ==================================================
-// PARTICLES BACKGROUND
+// HEXAGONAL GRID BACKGROUND - PROFESSIONAL CYBERSECURITY THEME
 // ==================================================
 
 const canvas = document.getElementById("particles-canvas")
@@ -231,7 +231,85 @@ if (canvas && ctx) {
 
   resizeCanvas()
 
-  class Particle {
+  class HexagonGrid {
+    constructor() {
+      this.hexSize = 30
+      this.rows = Math.ceil(canvas.height / (this.hexSize * 1.5)) + 2
+      this.cols = Math.ceil(canvas.width / (this.hexSize * Math.sqrt(3))) + 2
+      this.hexagons = []
+      this.time = 0
+      this.init()
+    }
+
+    init() {
+      for (let row = 0; row < this.rows; row++) {
+        for (let col = 0; col < this.cols; col++) {
+          const x = col * this.hexSize * Math.sqrt(3) + ((row % 2) * this.hexSize * Math.sqrt(3)) / 2
+          const y = row * this.hexSize * 1.5
+          this.hexagons.push({
+            x,
+            y,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.002 + Math.random() * 0.003,
+          })
+        }
+      }
+    }
+
+    drawHexagon(x, y, size, opacity) {
+      ctx.beginPath()
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i
+        const hx = x + size * Math.cos(angle)
+        const hy = y + size * Math.sin(angle)
+        if (i === 0) ctx.moveTo(hx, hy)
+        else ctx.lineTo(hx, hy)
+      }
+      ctx.closePath()
+
+      // Gradient stroke for depth
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, size)
+      gradient.addColorStop(0, `rgba(0, 229, 255, ${opacity * 0.8})`)
+      gradient.addColorStop(1, `rgba(139, 92, 246, ${opacity * 0.3})`)
+
+      ctx.strokeStyle = gradient
+      ctx.lineWidth = 1.5
+      ctx.stroke()
+
+      // Glow effect for highlighted hexagons
+      if (opacity > 0.3) {
+        ctx.shadowBlur = 15
+        ctx.shadowColor = `rgba(0, 229, 255, ${opacity * 0.6})`
+        ctx.stroke()
+        ctx.shadowBlur = 0
+      }
+    }
+
+    update() {
+      this.time += 0.01
+
+      this.hexagons.forEach((hex) => {
+        hex.phase += hex.speed
+      })
+    }
+
+    draw() {
+      this.hexagons.forEach((hex, index) => {
+        // Create wave effect based on position and time
+        const wave1 = Math.sin(hex.x * 0.005 + this.time) * 0.5 + 0.5
+        const wave2 = Math.cos(hex.y * 0.005 + this.time * 0.8) * 0.5 + 0.5
+        const wave3 = Math.sin(hex.phase) * 0.5 + 0.5
+
+        // Combine waves for complex pattern
+        const opacity = (wave1 * 0.4 + wave2 * 0.3 + wave3 * 0.3) * 0.4
+
+        this.drawHexagon(hex.x, hex.y, this.hexSize - 3, opacity)
+      })
+    }
+  }
+
+  // Floating particles for additional depth
+  class FloatingParticle {
     constructor() {
       this.reset()
     }
@@ -239,9 +317,11 @@ if (canvas && ctx) {
     reset() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
-      this.vx = (Math.random() - 0.5) * 0.4
-      this.vy = (Math.random() - 0.5) * 0.4
-      this.size = Math.random() * 1.5 + 0.8
+      this.vx = (Math.random() - 0.5) * 0.5
+      this.vy = (Math.random() - 0.5) * 0.5
+      this.size = Math.random() * 3 + 1
+      this.opacity = Math.random() * 0.6 + 0.2
+      this.hue = Math.random() > 0.5 ? 180 : 270 // Cyan or Purple
     }
 
     update() {
@@ -254,50 +334,43 @@ if (canvas && ctx) {
     }
 
     draw() {
-      ctx.fillStyle = "rgba(0, 229, 255, 0.7)"
-      ctx.shadowBlur = 5
-      ctx.shadowColor = "rgba(0, 229, 255, 0.5)"
+      // Draw particle with glow
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3)
+      gradient.addColorStop(0, `hsla(${this.hue}, 100%, 60%, ${this.opacity})`)
+      gradient.addColorStop(1, `hsla(${this.hue}, 100%, 60%, 0)`)
+
+      ctx.fillStyle = gradient
       ctx.fill()
-      ctx.shadowBlur = 0
     }
   }
 
-  const particleCount = window.innerWidth < 768 ? 35 : window.innerWidth < 1024 ? 60 : 75
+  const hexGrid = new HexagonGrid()
+  const particleCount = window.innerWidth < 768 ? 30 : 60
   const particles = []
 
   for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle())
-  }
-
-  function connectParticles() {
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x
-        const dy = particles[i].y - particles[j].y
-        const distance = Math.sqrt(dx * dx + dy * dy)
-
-        if (distance < 140) {
-          ctx.strokeStyle = `rgba(0, 229, 255, ${0.25 * (1 - distance / 140)})`
-          ctx.lineWidth = 0.8
-          ctx.beginPath()
-          ctx.moveTo(particles[i].x, particles[i].y)
-          ctx.lineTo(particles[j].x, particles[j].y)
-          ctx.stroke()
-        }
-      }
-    }
+    particles.push(new FloatingParticle())
   }
 
   let animationId
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    particles.forEach((p) => {
-      p.update()
-      p.draw()
+    // Clear with slight fade for trail effect
+    ctx.fillStyle = "rgba(5, 10, 31, 0.15)"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    // Update and draw hexagonal grid
+    hexGrid.update()
+    hexGrid.draw()
+
+    // Update and draw floating particles
+    particles.forEach((particle) => {
+      particle.update()
+      particle.draw()
     })
-    connectParticles()
+
     animationId = requestAnimationFrame(animate)
   }
 
@@ -308,6 +381,10 @@ if (canvas && ctx) {
     clearTimeout(resizeTimeout)
     resizeTimeout = setTimeout(() => {
       resizeCanvas()
+      hexGrid.hexagons = []
+      hexGrid.rows = Math.ceil(canvas.height / (hexGrid.hexSize * 1.5)) + 2
+      hexGrid.cols = Math.ceil(canvas.width / (hexGrid.hexSize * Math.sqrt(3))) + 2
+      hexGrid.init()
     }, 200)
   })
 
