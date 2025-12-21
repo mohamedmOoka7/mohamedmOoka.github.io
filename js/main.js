@@ -87,8 +87,8 @@ const typingElement = document.querySelector(".typing-effect")
 const phrases = [
   "Cybersecurity Analyst | DFIR & SOC Operations",
   "Digital Forensics Specialist",
-  "Incident Response Expert",
-  "Threat Hunter & Malware Analyst",
+  "Incident Response Handler",
+  "SOC Analyst",
 ]
 
 let phraseIndex = 0
@@ -135,11 +135,11 @@ function updateParallax() {
   const particles = document.querySelector(".particles")
 
   if (heroGrid) {
-    heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`
+    heroGrid.style.transform = `translateY(${scrolled * 0.5}px)`
   }
 
   if (particles) {
-    particles.style.transform = `translateY(${scrolled * 0.2}px)`
+    particles.style.transform = `translateY(${scrolled * 0.4}px) scale(${1 + scrolled * 0.0002})`
   }
 
   ticking = false
@@ -199,29 +199,6 @@ function animateCursor() {
 
 animateCursor()
 
-// ==================== ENHANCED CARD INTERACTIONS ====================
-const projectCards = document.querySelectorAll(".project-card")
-
-projectCards.forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const rotateX = (y - centerY) / 20
-    const rotateY = (centerX - x) / 20
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
-  })
-
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)"
-  })
-})
-
 // ==================== UPDATE YEAR IN FOOTER ====================
 const yearElement = document.getElementById("year")
 if (yearElement) {
@@ -247,5 +224,5 @@ window.addEventListener("scroll", debouncedUpdateNav)
 
 // ==================== CONSOLE SIGNATURE ====================
 console.log("%c🔒 Mohamed Mooka - Cybersecurity Portfolio", "color: #00d9ff; font-size: 20px; font-weight: bold;")
-console.log("%cDFIR Specialist | SOC Analyst", "color: #0066ff; font-size: 14px;")
+console.log("%cDFIR Specialist | SOC Analyst | Incident Handler", "color: #0066ff; font-size: 14px;")
 console.log("%cBuilt with passion for security 🛡️", "color: #6b7a8f; font-size: 12px;")
