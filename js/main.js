@@ -1,61 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ===== NAVIGATION =====
-  const navLinks = document.querySelectorAll(".nav-link")
+  const nav = document.querySelector(".nav")
+  const navItems = document.querySelectorAll(".nav-item")
   const sections = document.querySelectorAll("section[id]")
-  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
-  const sidebarNav = document.querySelector(".sidebar-nav")
+  const mobileToggle = document.querySelector(".mobile-toggle")
 
-  function updateActiveNav() {
+  // Scroll effect on navigation
+  let lastScroll = 0
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
+
+    // Add shadow on scroll
+    if (currentScroll > 100) {
+      nav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.3)"
+    } else {
+      nav.style.boxShadow = "none"
+    }
+
+    lastScroll = currentScroll
+
+    // Update active nav item
+    updateActiveNavItem()
+  })
+
+  function updateActiveNavItem() {
     const scrollY = window.pageYOffset
 
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 200
+      const sectionTop = section.offsetTop - 150
       const sectionId = section.getAttribute("id")
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLinks.forEach((link) => {
-          link.classList.remove("active")
-          if (link.getAttribute("data-section") === sectionId) {
-            link.classList.add("active")
+        navItems.forEach((item) => {
+          item.classList.remove("active")
+          if (item.getAttribute("data-section") === sectionId) {
+            item.classList.add("active")
           }
         })
       }
     })
   }
 
-  window.addEventListener("scroll", updateActiveNav)
-
-  // Mobile menu toggle
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener("click", () => {
-      sidebarNav.classList.toggle("active")
-      mobileMenuToggle.classList.toggle("active")
-    })
-
-    // Close mobile menu when clicking nav links
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        sidebarNav.classList.remove("active")
-        mobileMenuToggle.classList.remove("active")
-      })
-    })
-  }
-
-  // ===== SMOOTH SCROLL =====
-  const links = document.querySelectorAll('a[href^="#"]')
-
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href")
+  // Smooth scroll to sections
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href")
 
       if (href !== "#" && href.length > 1) {
         e.preventDefault()
-
         const target = document.querySelector(href)
-        if (target) {
-          const offsetTop = target.offsetTop - 60
 
+        if (target) {
+          const offsetTop = target.offsetTop - 80
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -65,72 +62,63 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== STATS COUNTER =====
-  const statsNumbers = document.querySelectorAll(".stat-number")
-  let hasAnimatedStats = false
-
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimatedStats) {
-          hasAnimatedStats = true
-          animateStats()
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const aboutSection = document.getElementById("about")
-  if (aboutSection) {
-    statsObserver.observe(aboutSection)
-  }
-
-  function animateStats() {
-    statsNumbers.forEach((stat) => {
-      const target = Number.parseInt(stat.getAttribute("data-target"))
-      const duration = 2000
-      const increment = target / (duration / 16)
-      let current = 0
-
-      const updateCounter = () => {
-        current += increment
-        if (current < target) {
-          stat.textContent = Math.floor(current)
-          requestAnimationFrame(updateCounter)
-        } else {
-          stat.textContent = target
-        }
-      }
-
-      updateCounter()
-    })
-  }
-
-  // ===== INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS =====
+  // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+    rootMargin: "0px 0px -100px 0px",
   }
 
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
+        setTimeout(() => {
+          entry.target.style.opacity = "1"
+          entry.target.style.transform = "translateY(0)"
+        }, index * 100)
+        observer.unobserve(entry.target)
       }
     })
   }, observerOptions)
 
-  const cards = document.querySelectorAll(".expertise-card, .project-card, .contact-method, .stat-box")
-  cards.forEach((card, index) => {
-    card.style.opacity = "0"
-    card.style.transform = "translateY(30px)"
-    card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
-    fadeInObserver.observe(card)
+  // Observe all cards and sections
+  const animatedElements = document.querySelectorAll(
+    ".expertise-card, .project-card, .contact-card, .highlight-card, .about-text, .about-highlights",
+  )
+
+  animatedElements.forEach((el) => {
+    el.style.opacity = "0"
+    el.style.transform = "translateY(40px)"
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+    observer.observe(el)
   })
 
-  // ===== CONSOLE MESSAGE =====
-  console.log("%cMohamed Mooka - Cybersecurity Portfolio", "font-size: 18px; font-weight: 700; color: #3B82F6;")
-  console.log("%cMinimal & Modern Design", "font-size: 13px; color: #A0A0A0;")
+  // ===== TERMINAL TYPING EFFECT =====
+  const terminalLines = document.querySelectorAll(".terminal-line")
+  terminalLines.forEach((line, index) => {
+    line.style.opacity = "0"
+    setTimeout(
+      () => {
+        line.style.transition = "opacity 0.3s ease"
+        line.style.opacity = "1"
+      },
+      500 + index * 200,
+    )
+  })
+
+  // ===== PARALLAX EFFECT ON HERO =====
+  const hero = document.querySelector(".hero")
+  if (hero) {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset
+      const parallax = scrolled * 0.3
+      hero.style.transform = `translateY(${parallax}px)`
+    })
+  }
+
+  // ===== CONSOLE BRANDING =====
+  console.log(
+    "%cMohamed Mooka - Cybersecurity Portfolio",
+    "font-size: 20px; font-weight: 800; color: #6366f1; text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);",
+  )
+  console.log("%cPremium Design • Modern UI/UX", "font-size: 14px; color: #a1a1aa;")
 })
