@@ -1,53 +1,87 @@
-document.addEventListener("DOMContentLoaded", () => {
-  if (document.body.classList.contains("no-animate")) {
-    return
-  }
+// ==================================================
+// MAIN JAVASCRIPT FILE - ENHANCED VERSION
+// ==================================================
 
+document.addEventListener("DOMContentLoaded", () => {
   /* ===============================================
-     FLOATING NAVIGATION ACTIVE STATE
+     LOADING OVERLAY
   =============================================== */
 
-  const navDots = document.querySelectorAll(".nav-dot")
-  const sections = document.querySelectorAll("section[id]")
+  const loadingOverlay = document.querySelector(".loading-overlay")
 
-  function updateActiveNav() {
-    const scrollY = window.pageYOffset
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      loadingOverlay.classList.add("hidden")
+      setTimeout(() => {
+        loadingOverlay.style.display = "none"
+      }, 500)
+    }, 800)
+  })
 
-    sections.forEach((section) => {
-      const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 200
-      const sectionId = section.getAttribute("id")
+  /* ===============================================
+     NAVBAR SCROLL EFFECT
+  =============================================== */
 
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navDots.forEach((dot) => {
-          dot.classList.remove("active")
-          if (dot.getAttribute("data-section") === sectionId) {
-            dot.classList.add("active")
-          }
-        })
+  const navbar = document.querySelector(".navbar")
+  let lastScroll = 0
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
+
+    if (currentScroll > 100) {
+      navbar.classList.add("scrolled")
+    } else {
+      navbar.classList.remove("scrolled")
+    }
+
+    lastScroll = currentScroll
+  })
+
+  /* ===============================================
+     MOBILE MENU TOGGLE
+  =============================================== */
+
+  const menuToggle = document.getElementById("menuToggle")
+  const navLinks = document.getElementById("navLinks")
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active")
+      navLinks.classList.toggle("active")
+      document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : ""
+    })
+
+    // Close menu when clicking on a link
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active")
+        navLinks.classList.remove("active")
+        document.body.style.overflow = ""
+      })
+    })
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        menuToggle.classList.remove("active")
+        navLinks.classList.remove("active")
+        document.body.style.overflow = ""
       }
     })
   }
 
-  window.addEventListener("scroll", updateActiveNav)
-
   /* ===============================================
-     SMOOTH SCROLL WITH OFFSET
+     SMOOTH SCROLL FOR ANCHOR LINKS
   =============================================== */
 
-  const links = document.querySelectorAll('a[href^="#"]')
-
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href")
-
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const href = this.getAttribute("href")
       if (href !== "#" && href.length > 1) {
         e.preventDefault()
-
         const target = document.querySelector(href)
         if (target) {
-          const offsetTop = target.offsetTop - 50
-
+          const offsetTop = target.offsetTop - 80
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -58,7 +92,38 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   /* ===============================================
-     SCROLL REVEAL ANIMATION
+     SCROLL TO TOP BUTTON
+  =============================================== */
+
+  const scrollTopBtn = document.getElementById("scrollTop")
+
+  if (scrollTopBtn) {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 500) {
+        scrollTopBtn.classList.add("visible")
+      } else {
+        scrollTopBtn.classList.remove("visible")
+      }
+    })
+
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    })
+  }
+
+  /* ===============================================
+     DISABLE ANIMATION ON PROJECT PAGES
+  =============================================== */
+
+  if (document.body.classList.contains("no-animate")) {
+    return
+  }
+
+  /* ===============================================
+     SCROLL REVEAL ANIMATION (IMPROVED)
   =============================================== */
 
   const observerOptions = {
@@ -67,9 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("show")
+        // Add staggered delay for cards in grid
+        setTimeout(() => {
+          entry.target.classList.add("show")
+        }, index * 100)
+
         revealObserver.unobserve(entry.target)
       }
     })
@@ -79,113 +148,135 @@ document.addEventListener("DOMContentLoaded", () => {
   revealElements.forEach((el) => revealObserver.observe(el))
 
   /* ===============================================
-     BACK TO TOP BUTTON
+     FOOTER YEAR AUTO UPDATE
   =============================================== */
 
-  const backToTopButton = document.querySelector(".back-to-top")
-
-  if (backToTopButton) {
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 500) {
-        backToTopButton.classList.add("show")
-      } else {
-        backToTopButton.classList.remove("show")
-      }
-    })
-
-    backToTopButton.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      })
-    })
-  }
-
-  /* ===============================================
-     TYPING EFFECT FOR SUBTITLE
-  =============================================== */
-
-  const typingElement = document.querySelector(".typing-effect")
-
-  if (typingElement) {
-    const text = typingElement.textContent
-    typingElement.textContent = ""
-    let charIndex = 0
-
-    function type() {
-      if (charIndex < text.length) {
-        typingElement.textContent += text.charAt(charIndex)
-        charIndex++
-        setTimeout(type, 100)
-      }
-    }
-
-    setTimeout(type, 1000)
+  const footerYear = document.querySelector("footer p")
+  if (footerYear) {
+    const currentYear = new Date().getFullYear()
+    footerYear.innerHTML = `© ${currentYear} Mohamed Mooka — Cybersecurity Portfolio`
   }
 
   /* ===============================================
      PARALLAX EFFECT FOR HERO
   =============================================== */
 
-  const heroBackground = document.querySelector(".hero-background")
-
-  if (heroBackground) {
+  const hero = document.querySelector(".hero")
+  if (hero) {
     window.addEventListener("scroll", () => {
       const scrolled = window.pageYOffset
-      const parallaxSpeed = 0.5
-
-      heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`
+      const parallax = scrolled * 0.5
+      hero.style.transform = `translateY(${parallax}px)`
     })
   }
 
   /* ===============================================
-     FOOTER YEAR AUTO UPDATE
+     TYPING EFFECT FOR SUBTITLE (OPTIONAL)
   =============================================== */
 
-  const yearElement = document.getElementById("year")
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear()
+  const subtitle = document.querySelector(".subtitle")
+  if (subtitle && !document.body.classList.contains("no-animate")) {
+    const originalText = subtitle.textContent
+    subtitle.textContent = ""
+    let charIndex = 0
+
+    function typeWriter() {
+      if (charIndex < originalText.length) {
+        subtitle.textContent += originalText.charAt(charIndex)
+        charIndex++
+        setTimeout(typeWriter, 50)
+      }
+    }
+
+    setTimeout(typeWriter, 1000)
   }
 
   /* ===============================================
-     LAZY LOADING IMAGES
+     CARD TILT EFFECT (SUBTLE 3D)
   =============================================== */
 
-  const images = document.querySelectorAll("img[data-src]")
+  const cards = document.querySelectorAll(".card")
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
 
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target
-        img.src = img.dataset.src
-        img.removeAttribute("data-src")
-        observer.unobserve(img)
-      }
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = (y - centerY) / 20
+      const rotateY = (centerX - x) / 20
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`
+    })
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = ""
     })
   })
 
-  images.forEach((img) => imageObserver.observe(img))
-
   /* ===============================================
-     PERFORMANCE OPTIMIZATION
+     ACTIVE NAV LINK HIGHLIGHTING
   =============================================== */
 
-  function debounce(func, wait = 10) {
-    let timeout
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout)
-        func(...args)
+  const sections = document.querySelectorAll("section[id]")
+  const navLinksAll = document.querySelectorAll(".nav-links a")
+
+  function highlightNavLink() {
+    const scrollPosition = window.pageYOffset + 150
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop
+      const sectionHeight = section.offsetHeight
+      const sectionId = section.getAttribute("id")
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navLinksAll.forEach((link) => {
+          link.style.color = ""
+          if (link.getAttribute("href") === `#${sectionId}`) {
+            link.style.color = "var(--primary)"
+          }
+        })
       }
-      clearTimeout(timeout)
-      timeout = setTimeout(later, wait)
-    }
+    })
   }
 
-  window.addEventListener(
-    "scroll",
-    debounce(() => {
-      // Scroll-dependent functions
-    }, 10),
-  )
+  window.addEventListener("scroll", highlightNavLink)
+
+  /* ===============================================
+     CONSOLE EASTER EGG
+  =============================================== */
+
+  console.log("%c👋 Hello, Security Professional!", "color: #38bdf8; font-size: 20px; font-weight: bold;")
+  console.log("%cInterested in the code? Check out the GitHub repo!", "color: #94a3b8; font-size: 14px;")
+  console.log("%c🔒 Stay secure!", "color: #38bdf8; font-size: 16px; font-weight: bold;")
 })
+
+/* ===============================================
+   PERFORMANCE: DEBOUNCE UTILITY
+=============================================== */
+
+function debounce(func, wait = 20, immediate = true) {
+  let timeout
+  return function () {
+    
+    const args = arguments
+    const later = () => {
+      timeout = null
+      if (!immediate) func.apply(this, args)
+    }
+    const callNow = immediate && !timeout
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+    if (callNow) func.apply(this, args)
+  }
+}
+
+// Apply debounce to scroll events if needed
+window.addEventListener(
+  "scroll",
+  debounce(() => {
+    // Optimized scroll handler
+  }, 10),
+)
