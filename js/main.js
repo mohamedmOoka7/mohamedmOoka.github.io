@@ -1,346 +1,215 @@
-// ==================== CONFIGURATION ====================
-const CONFIG = {
-  scrollOffset: 80,
-  backToTopThreshold: 400,
-  animationDelay: 100,
-  animationDuration: 800,
-  animationStagger: 150,
-}
+// ============================================
+// CYBERSECURITY PORTFOLIO - INTERACTIVE JS
+// Mohamed Mooka
+// ============================================
 
-// ==================== UTILITY FUNCTIONS ====================
-const Utils = {
-  // Debounce function for performance
-  debounce(func, wait) {
-    let timeout
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout)
-        func(...args)
-      }
-      clearTimeout(timeout)
-      timeout = setTimeout(later, wait)
-    }
-  },
+// ==================== SMOOTH SCROLL ====================
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      const offsetTop = target.offsetTop - 80
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      })
 
-  // Throttle function for scroll events
-  throttle(func, limit) {
-    let inThrottle
-    return function (...args) {
-      if (!inThrottle) {
-        func.apply(this, args)
-        inThrottle = true
-        setTimeout(() => (inThrottle = false), limit)
+      // Close mobile menu if open
+      const mobileMenu = document.querySelector(".mobile-menu")
+      if (mobileMenu.classList.contains("active")) {
+        mobileMenu.classList.remove("active")
       }
     }
-  },
+  })
+})
 
-  // Check if element is in viewport
-  isInViewport(element, offset = 0) {
-    const rect = element.getBoundingClientRect()
-    return rect.top <= (window.innerHeight || document.documentElement.clientHeight) - offset && rect.bottom >= 0
-  },
+// ==================== MOBILE MENU TOGGLE ====================
+const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
+const mobileMenu = document.querySelector(".mobile-menu")
 
-  // Smooth scroll to element
-  scrollToElement(element, offset = CONFIG.scrollOffset) {
-    const targetPosition = element.offsetTop - offset
-    window.scrollTo({
-      top: targetPosition,
-      behavior: "smooth",
-    })
-  },
-}
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active")
 
-// ==================== SMOOTH SCROLL NAVIGATION ====================
-const SmoothScroll = {
-  init() {
-    const links = document.querySelectorAll('a[href^="#"]')
-
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const href = link.getAttribute("href")
-
-        // Skip empty hash
-        if (href === "#" || href === "#!") return
-
-        e.preventDefault()
-        const targetId = href.substring(1)
-        const targetElement = document.getElementById(targetId)
-
-        if (targetElement) {
-          Utils.scrollToElement(targetElement)
-
-          // Update URL without jumping
-          if (history.pushState) {
-            history.pushState(null, null, href)
-          }
-        }
-      })
-    })
-  },
-}
-
-// ==================== SCROLL ANIMATIONS ====================
-const ScrollAnimations = {
-  elements: null,
-  observer: null,
-
-  init() {
-    this.elements = document.querySelectorAll(
-      ".hero-content, .about-content, .about-visual, .project-card, .contact-card, .stat-card",
-    )
-
-    if (!this.elements.length) return
-
-    const options = {
-      root: null,
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
+    // Animate hamburger icon
+    const spans = mobileMenuBtn.querySelectorAll("span")
+    if (mobileMenu.classList.contains("active")) {
+      spans[0].style.transform = "rotate(45deg) translateY(10px)"
+      spans[1].style.opacity = "0"
+      spans[2].style.transform = "rotate(-45deg) translateY(-10px)"
+    } else {
+      spans[0].style.transform = "none"
+      spans[1].style.opacity = "1"
+      spans[2].style.transform = "none"
     }
-
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = "1"
-            entry.target.style.transform = "translateY(0)"
-          }, index * 50)
-
-          this.observer.unobserve(entry.target)
-        }
-      })
-    }, options)
-
-    this.setupElements()
-  },
-
-  setupElements() {
-    this.elements.forEach((element) => {
-      element.style.opacity = "0"
-      element.style.transform = "translateY(40px)"
-      element.style.transition = `opacity ${CONFIG.animationDuration}ms cubic-bezier(0.16, 1, 0.3, 1), transform ${CONFIG.animationDuration}ms cubic-bezier(0.16, 1, 0.3, 1)`
-
-      this.observer.observe(element)
-    })
-  },
+  })
 }
+
+// ==================== NAVBAR SCROLL EFFECT ====================
+const navbar = document.querySelector(".top-nav")
+let lastScroll = 0
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset
+
+  if (currentScroll > 100) {
+    navbar.classList.add("scrolled")
+  } else {
+    navbar.classList.remove("scrolled")
+  }
+
+  lastScroll = currentScroll
+})
 
 // ==================== BACK TO TOP BUTTON ====================
-const BackToTop = {
-  button: null,
-  isVisible: false,
+const backToTopBtn = document.querySelector(".back-to-top")
 
-  init() {
-    this.button = document.querySelector(".back-to-top")
-    if (!this.button) return
+window.addEventListener("scroll", () => {
+  if (window.pageYOffset > 500) {
+    backToTopBtn.classList.add("visible")
+  } else {
+    backToTopBtn.classList.remove("visible")
+  }
+})
 
-    this.button.addEventListener("click", () => this.scrollToTop())
-    window.addEventListener(
-      "scroll",
-      Utils.throttle(() => this.handleScroll(), 100),
-    )
-  },
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  })
+})
 
-  handleScroll() {
-    const shouldShow = window.pageYOffset > CONFIG.backToTopThreshold
+// ==================== INTERSECTION OBSERVER - ANIMATIONS ====================
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: "0px 0px -50px 0px",
+}
 
-    if (shouldShow && !this.isVisible) {
-      this.show()
-    } else if (!shouldShow && this.isVisible) {
-      this.hide()
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = "1"
+      entry.target.style.transform = "translateY(0)"
     }
-  },
+  })
+}, observerOptions)
 
-  show() {
-    this.button.classList.add("visible")
-    this.isVisible = true
-  },
+// Observe all sections
+document.querySelectorAll(".section").forEach((section) => {
+  section.style.opacity = "0"
+  section.style.transform = "translateY(30px)"
+  section.style.transition = "opacity 0.8s ease, transform 0.8s ease"
+  observer.observe(section)
+})
 
-  hide() {
-    this.button.classList.remove("visible")
-    this.isVisible = false
-  },
+// ==================== TERMINAL TYPING EFFECT ====================
+const terminalCommands = [
+  "investigate --threat-hunting",
+  "analyze --malware-sample",
+  "hunt --advanced-threats",
+  "forensics --memory-dump",
+]
 
-  scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  },
+let commandIndex = 0
+let charIndex = 0
+let isDeleting = false
+let typingSpeed = 100
+
+const typingElement = document.querySelector(".typing-animation")
+
+function typeCommand() {
+  if (!typingElement) return
+
+  const currentCommand = terminalCommands[commandIndex]
+
+  if (isDeleting) {
+    typingElement.textContent = currentCommand.substring(0, charIndex - 1)
+    charIndex--
+    typingSpeed = 50
+  } else {
+    typingElement.textContent = currentCommand.substring(0, charIndex + 1)
+    charIndex++
+    typingSpeed = 100
+  }
+
+  if (!isDeleting && charIndex === currentCommand.length) {
+    // Pause at end
+    typingSpeed = 2000
+    isDeleting = true
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false
+    commandIndex = (commandIndex + 1) % terminalCommands.length
+    typingSpeed = 500
+  }
+
+  setTimeout(typeCommand, typingSpeed)
 }
 
-// ==================== PROJECT CARDS ====================
-const ProjectCards = {
-  init() {
-    const cards = document.querySelectorAll(".project-card")
+// Start typing effect
+setTimeout(typeCommand, 1000)
 
-    cards.forEach((card) => {
-      // Add 3D tilt effect on mouse move
-      card.addEventListener("mousemove", (e) => this.handleMouseMove(e, card))
-      card.addEventListener("mouseleave", () => this.handleMouseLeave(card))
-    })
-  },
-
-  handleMouseMove(e, card) {
-    // Only apply to non-disabled cards
-    if (card.classList.contains("project-card-disabled")) return
-
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const rotateX = (y - centerY) / 30
-    const rotateY = (centerX - x) / 30
-
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`
-  },
-
-  handleMouseLeave(card) {
-    card.style.transform = ""
-  },
+// ==================== UPDATE YEAR IN FOOTER ====================
+const yearElement = document.getElementById("year")
+if (yearElement) {
+  yearElement.textContent = new Date().getFullYear()
 }
 
-// ==================== CONTACT CARDS ====================
-const ContactCards = {
-  init() {
-    const cards = document.querySelectorAll(".contact-card")
+// ==================== ACTIVE NAV LINK ON SCROLL ====================
+window.addEventListener("scroll", () => {
+  const sections = document.querySelectorAll("section[id]")
+  const scrollY = window.pageYOffset
 
-    cards.forEach((card) => {
-      card.addEventListener("mouseenter", () => this.handleHover(card))
-      card.addEventListener("mouseleave", () => this.handleLeave(card))
-    })
-  },
+  sections.forEach((section) => {
+    const sectionHeight = section.offsetHeight
+    const sectionTop = section.offsetTop - 150
+    const sectionId = section.getAttribute("id")
+    const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
 
-  handleHover(card) {
-    const icon = card.querySelector(".contact-icon")
-    if (icon) {
-      icon.style.transform = "scale(1.1) rotate(5deg)"
-    }
-  },
-
-  handleLeave(card) {
-    const icon = card.querySelector(".contact-icon")
-    if (icon) {
-      icon.style.transform = "scale(1) rotate(0deg)"
-    }
-  },
-}
-
-// ==================== GRADIENT ORBS ANIMATION ====================
-const GradientOrbs = {
-  init() {
-    const orbs = document.querySelectorAll(".gradient-orb")
-
-    orbs.forEach((orb, index) => {
-      this.animateOrb(orb, index)
-    })
-  },
-
-  animateOrb(orb, index) {
-    const duration = 20000 + index * 5000
-    const offset = index * 7000
-
-    orb.style.animationDuration = `${duration}ms`
-    orb.style.animationDelay = `${offset}ms`
-  },
-}
-
-// ==================== FOOTER YEAR ====================
-const Footer = {
-  init() {
-    const yearElement = document.getElementById("year")
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear()
-    }
-  },
-}
-
-// ==================== PERFORMANCE MONITORING ====================
-const Performance = {
-  init() {
-    // Use passive event listeners for better performance
-    this.addPassiveListeners()
-
-    // Prefetch links on hover
-    this.setupPrefetch()
-  },
-
-  addPassiveListeners() {
-    const passiveEvents = ["scroll", "touchstart", "touchmove", "wheel"]
-
-    passiveEvents.forEach((event) => {
-      document.addEventListener(event, () => {}, { passive: true })
-    })
-  },
-
-  setupPrefetch() {
-    const links = document.querySelectorAll('a[href^="project-"]')
-
-    links.forEach((link) => {
-      link.addEventListener("mouseenter", function () {
-        const href = this.getAttribute("href")
-        if (href && !document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
-          const prefetchLink = document.createElement("link")
-          prefetchLink.rel = "prefetch"
-          prefetchLink.href = href
-          document.head.appendChild(prefetchLink)
-        }
+    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.style.color = ""
       })
-    })
-  },
-}
-
-// ==================== INITIALIZE APPLICATION ====================
-class App {
-  constructor() {
-    this.init()
-  }
-
-  init() {
-    // Wait for DOM to be fully loaded
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", () => this.setup())
-    } else {
-      this.setup()
+      if (navLink) {
+        navLink.style.color = "var(--color-primary-light)"
+      }
     }
+  })
+})
+
+// ==================== PARALLAX EFFECT FOR ORBS ====================
+window.addEventListener("mousemove", (e) => {
+  const orbs = document.querySelectorAll(".gradient-orb")
+  const x = e.clientX / window.innerWidth
+  const y = e.clientY / window.innerHeight
+
+  orbs.forEach((orb, index) => {
+    const speed = (index + 1) * 20
+    const xMove = (x - 0.5) * speed
+    const yMove = (y - 0.5) * speed
+
+    orb.style.transform = `translate(${xMove}px, ${yMove}px)`
+  })
+})
+
+// ==================== CONSOLE LOG ====================
+console.log("%c🔒 Mohamed Mooka - Cybersecurity Portfolio", "color: #3b82f6; font-size: 20px; font-weight: bold;")
+console.log("%cSpecializing in DFIR & SOC Operations", "color: #06b6d4; font-size: 14px;")
+console.log("%cInterested in collaboration? Reach out!", "color: #94a3b8; font-size: 12px;")
+
+// ==================== PREVENT INSPECT ELEMENT (Optional) ====================
+// Uncomment if you want to add basic protection
+/*
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.keyCode === 123 || // F12
+      (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+      (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+      (e.ctrlKey && e.keyCode === 85)) { // Ctrl+U
+    e.preventDefault();
   }
-
-  setup() {
-    // Initialize all modules
-    SmoothScroll.init()
-    ScrollAnimations.init()
-    BackToTop.init()
-    ProjectCards.init()
-    ContactCards.init()
-    GradientOrbs.init()
-    Footer.init()
-    Performance.init()
-
-    // Add loaded class for transitions
-    setTimeout(() => {
-      document.body.classList.add("loaded")
-    }, CONFIG.animationDelay)
-
-    // Log successful initialization
-    console.log("[v0] Portfolio initialized successfully")
-  }
-}
-
-// ==================== START APPLICATION ====================
-new App()
-
-// ==================== EXPORTS (for testing) ====================
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    Utils,
-    SmoothScroll,
-    ScrollAnimations,
-    BackToTop,
-    ProjectCards,
-    ContactCards,
-    GradientOrbs,
-    Footer,
-  }
-}
+});
+*/
