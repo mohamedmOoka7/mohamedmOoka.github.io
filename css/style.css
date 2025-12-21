@@ -205,6 +205,34 @@ nav.scrolled {
   animation: fadeInUp 0.8s ease 0.6s both;
 }
 
+/* Re-added hero stats styling */
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 4rem;
+  animation: fadeInUp 0.8s ease 0.8s both;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -522,6 +550,16 @@ footer {
 
   .hero-cta {
     flex-direction: column;
+  }
+
+  /* Added responsive styling for stats */
+  .hero-stats {
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
   }
 
   .section {
