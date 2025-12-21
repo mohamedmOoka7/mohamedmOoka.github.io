@@ -111,29 +111,25 @@ const Navigation = {
 }
 
 // ================= SMOOTH SCROLL =================
-const SmoothScroll = {
-  init() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        const href = this.getAttribute("href")
-        if (href === "#") return
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    const href = this.getAttribute("href")
+    if (href === "#") return
 
-        e.preventDefault()
-        const target = document.querySelector(href)
+    e.preventDefault()
+    const target = document.querySelector(href)
 
-        if (target) {
-          const offset = 80
-          const targetPosition = target.offsetTop - offset
+    if (target) {
+      const offset = 80
+      const targetPosition = target.offsetTop - offset
 
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          })
-        }
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
       })
-    })
-  },
-}
+    }
+  })
+})
 
 // ================= BACK TO TOP =================
 const BackToTop = {
@@ -284,48 +280,40 @@ const Performance = {
 }
 
 // ================= YEAR UPDATE =================
-const YearUpdate = {
-  init() {
-    const yearElement = document.getElementById("year")
-    if (yearElement) {
-      yearElement.textContent = new Date().getFullYear()
-    }
-  },
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const yearElement = document.getElementById("year")
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
+  }
+})
 
 // ================= HEADER HIDE ON SCROLL =================
-const HeaderScroll = {
-  lastScroll: 0,
+let lastScroll = 0
+const nav = document.querySelector(".nav")
 
-  init() {
-    window.addEventListener(
-      "scroll",
-      () => {
-        const currentScroll = window.scrollY
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset
 
-        // You can add header hide/show logic here if needed
+  if (currentScroll > 100) {
+    nav.style.background = "rgba(10, 15, 30, 0.95)"
+  } else {
+    nav.style.background = "rgba(10, 15, 30, 0.8)"
+  }
 
-        this.lastScroll = currentScroll
-      },
-      { passive: true },
-    )
-  },
-}
+  lastScroll = currentScroll
+})
 
 // ================= INITIALIZE ALL =================
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize all modules
   MatrixRain.init()
   Navigation.init()
-  SmoothScroll.init()
   BackToTop.init()
   ScrollAnimations.init()
   CursorEffects.init()
   TypingEffect.init()
   ProjectParallax.init()
   Performance.init()
-  YearUpdate.init()
-  HeaderScroll.init()
 
   // Add loaded class to body
   document.body.classList.add("loaded")
