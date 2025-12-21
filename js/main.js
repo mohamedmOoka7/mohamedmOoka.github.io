@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.requestAnimationFrame(() => {
         const currentScroll = window.pageYOffset
 
+        // Navigation shadow
         if (currentScroll > 100) {
           nav.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.4)"
         } else {
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           entry.target.style.opacity = "1"
           entry.target.style.transform = "translateY(0)"
-        }, index * 120)
+        }, index * 100)
         observer.unobserve(entry.target)
       }
     })
@@ -84,8 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animatedElements.forEach((el) => {
     el.style.opacity = "0"
-    el.style.transform = "translateY(50px)"
-    el.style.transition = "opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+    el.style.transform = "translateY(40px)"
+    el.style.transition = "opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
     observer.observe(el)
   })
 
@@ -94,36 +95,26 @@ document.addEventListener("DOMContentLoaded", () => {
     line.style.opacity = "0"
     setTimeout(
       () => {
-        line.style.transition = "opacity 0.4s ease"
+        line.style.transition = "opacity 0.3s ease"
         line.style.opacity = "1"
       },
-      600 + index * 250,
+      500 + index * 200,
     )
   })
 
   const heroTitle = document.querySelector(".hero-title")
   const heroDescription = document.querySelector(".hero-description")
+  const heroVisual = document.querySelector(".hero-visual")
 
-  if (heroTitle && heroDescription) {
+  if (heroTitle && heroDescription && heroVisual) {
     window.addEventListener("scroll", () => {
       const scrolled = window.pageYOffset
-      const parallaxTitle = scrolled * 0.15
-      const parallaxDesc = scrolled * 0.25
-
-      heroTitle.style.transform = `translateY(${parallaxTitle}px)`
-      heroDescription.style.transform = `translateY(${parallaxDesc}px)`
+      // Golden ratio-based parallax speeds
+      heroTitle.style.transform = `translateY(${scrolled * 0.118}px)`
+      heroDescription.style.transform = `translateY(${scrolled * 0.191}px)`
+      heroVisual.style.transform = `translateY(${scrolled * -0.073}px)`
     })
   }
-
-  console.log(
-    "%c🛡️ Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 22px; font-weight: 900; color: #6366f1; text-shadow: 0 0 20px rgba(99, 102, 241, 0.6);",
-  )
-  console.log(
-    "%cDigital Forensics • Incident Response • SOC Operations",
-    "font-size: 14px; color: #22d3ee; font-weight: 600;",
-  )
-  console.log("%cBuilt with modern web standards • Optimized for performance", "font-size: 12px; color: #a1a1aa;")
 
   const profileImages = document.querySelectorAll(".logo-photo")
   profileImages.forEach((img) => {
@@ -135,9 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const fallback = this.nextElementSibling
       if (fallback && fallback.classList.contains("logo-icon")) {
         fallback.style.display = "flex"
-        fallback.style.opacity = "0"
         setTimeout(() => {
-          fallback.style.transition = "opacity 0.5s ease"
           fallback.style.opacity = "1"
         }, 50)
       }
@@ -154,22 +143,27 @@ document.addEventListener("DOMContentLoaded", () => {
         if (entry.isIntersecting) {
           const statNumbers = entry.target.querySelectorAll(".stat-number")
           statNumbers.forEach((stat) => {
-            const finalValue = stat.textContent
-            const numericValue = Number.parseInt(finalValue)
+            const target = Number.parseInt(stat.getAttribute("data-target"))
+            let current = 0
+            const duration = 2000
+            const startTime = performance.now()
 
-            if (!isNaN(numericValue)) {
-              let currentValue = 0
-              const increment = numericValue / 50
-              const timer = setInterval(() => {
-                currentValue += increment
-                if (currentValue >= numericValue) {
-                  stat.textContent = finalValue
-                  clearInterval(timer)
-                } else {
-                  stat.textContent = Math.floor(currentValue) + "+"
-                }
-              }, 30)
+            const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4)
+
+            const animate = (currentTime) => {
+              const elapsed = currentTime - startTime
+              const progress = Math.min(elapsed / duration, 1)
+              const easedProgress = easeOutQuart(progress)
+
+              current = Math.floor(easedProgress * target)
+              stat.textContent = current + "+"
+
+              if (progress < 1) {
+                requestAnimationFrame(animate)
+              }
             }
+
+            requestAnimationFrame(animate)
           })
           statsObserver.unobserve(entry.target)
         }
@@ -182,4 +176,45 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroStats) {
     statsObserver.observe(heroStats)
   }
+
+  const mobileToggle = document.querySelector(".mobile-toggle")
+  const navMenu = document.querySelector(".nav-menu")
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active")
+      mobileToggle.classList.toggle("active")
+    })
+  }
+
+  const cards = document.querySelectorAll(".expertise-card, .project-card, .contact-card")
+
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = ((y - centerY) / centerY) * -3
+      const rotateY = ((x - centerX) / centerX) * 3
+
+      card.style.transform = `
+        translateY(-28px)
+        scale(1.03)
+        perspective(1000px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+      `
+    })
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = ""
+    })
+  })
+
+  console.log("%c🛡️ Mohamed Mooka", "font-size: 20px; font-weight: bold; color: #6366f1;")
+  console.log("%cCybersecurity Portfolio", "font-size: 14px; color: #22d3ee;")
 })
