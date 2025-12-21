@@ -1,6 +1,6 @@
 // ============================================
 // CYBERSECURITY PORTFOLIO - INTERACTIVE JS
-// Mohamed Mooka
+// Mohamed Mooka - Enhanced Version
 // ============================================
 
 // ==================== SMOOTH SCROLL ====================
@@ -9,58 +9,40 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     e.preventDefault()
     const target = document.querySelector(this.getAttribute("href"))
     if (target) {
-      const offsetTop = target.offsetTop - 80
-      window.scrollTo({
-        top: offsetTop,
+      target.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       })
-
-      // Close mobile menu if open
-      const mobileMenu = document.querySelector(".mobile-menu")
-      if (mobileMenu.classList.contains("active")) {
-        mobileMenu.classList.remove("active")
-      }
     }
   })
 })
 
-// ==================== MOBILE MENU TOGGLE ====================
-const mobileMenuBtn = document.querySelector(".mobile-menu-btn")
-const mobileMenu = document.querySelector(".mobile-menu")
+// ==================== FLOATING NAV ACTIVE STATE ====================
+const sections = document.querySelectorAll("section[id]")
+const navDots = document.querySelectorAll(".nav-dot")
 
-if (mobileMenuBtn) {
-  mobileMenuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("active")
+function updateActiveNav() {
+  let current = ""
+  const scrollY = window.pageYOffset
 
-    // Animate hamburger icon
-    const spans = mobileMenuBtn.querySelectorAll("span")
-    if (mobileMenu.classList.contains("active")) {
-      spans[0].style.transform = "rotate(45deg) translateY(10px)"
-      spans[1].style.opacity = "0"
-      spans[2].style.transform = "rotate(-45deg) translateY(-10px)"
-    } else {
-      spans[0].style.transform = "none"
-      spans[1].style.opacity = "1"
-      spans[2].style.transform = "none"
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 200
+    const sectionHeight = section.offsetHeight
+
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute("id")
+    }
+  })
+
+  navDots.forEach((dot) => {
+    dot.classList.remove("active")
+    if (dot.getAttribute("data-section") === current) {
+      dot.classList.add("active")
     }
   })
 }
 
-// ==================== NAVBAR SCROLL EFFECT ====================
-const navbar = document.querySelector(".top-nav")
-let lastScroll = 0
-
-window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset
-
-  if (currentScroll > 100) {
-    navbar.classList.add("scrolled")
-  } else {
-    navbar.classList.remove("scrolled")
-  }
-
-  lastScroll = currentScroll
-})
+window.addEventListener("scroll", updateActiveNav)
 
 // ==================== BACK TO TOP BUTTON ====================
 const backToTopBtn = document.querySelector(".back-to-top")
@@ -80,74 +62,165 @@ backToTopBtn.addEventListener("click", () => {
   })
 })
 
-// ==================== INTERSECTION OBSERVER - ANIMATIONS ====================
+// ==================== SCROLL REVEAL ANIMATIONS ====================
 const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
+  threshold: 0.15,
+  rootMargin: "0px 0px -100px 0px",
 }
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = "1"
-      entry.target.style.transform = "translateY(0)"
+      entry.target.classList.add("active")
     }
   })
 }, observerOptions)
 
-// Observe all sections
-document.querySelectorAll(".section").forEach((section) => {
-  section.style.opacity = "0"
-  section.style.transform = "translateY(30px)"
-  section.style.transition = "opacity 0.8s ease, transform 0.8s ease"
-  observer.observe(section)
+// Observe all cards and sections
+document.querySelectorAll(".card, .project-card, .contact-card").forEach((el) => {
+  el.classList.add("reveal")
+  observer.observe(el)
 })
 
-// ==================== TERMINAL TYPING EFFECT ====================
-const terminalCommands = [
-  "investigate --threat-hunting",
-  "analyze --malware-sample",
-  "hunt --advanced-threats",
-  "forensics --memory-dump",
+// ==================== TYPING EFFECT ENHANCEMENT ====================
+const typingElement = document.querySelector(".typing-effect")
+const phrases = [
+  "Cybersecurity Analyst | DFIR & SOC Operations",
+  "Digital Forensics Specialist",
+  "Incident Response Expert",
+  "Threat Hunter & Malware Analyst",
 ]
 
-let commandIndex = 0
+let phraseIndex = 0
 let charIndex = 0
 let isDeleting = false
-let typingSpeed = 100
+let typingDelay = 100
 
-const typingElement = document.querySelector(".typing-animation")
-
-function typeCommand() {
+function typeEffect() {
   if (!typingElement) return
 
-  const currentCommand = terminalCommands[commandIndex]
+  const currentPhrase = phrases[phraseIndex]
 
   if (isDeleting) {
-    typingElement.textContent = currentCommand.substring(0, charIndex - 1)
+    typingElement.textContent = currentPhrase.substring(0, charIndex - 1)
     charIndex--
-    typingSpeed = 50
+    typingDelay = 50
   } else {
-    typingElement.textContent = currentCommand.substring(0, charIndex + 1)
+    typingElement.textContent = currentPhrase.substring(0, charIndex + 1)
     charIndex++
-    typingSpeed = 100
+    typingDelay = 100
   }
 
-  if (!isDeleting && charIndex === currentCommand.length) {
-    // Pause at end
-    typingSpeed = 2000
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    typingDelay = 2500
     isDeleting = true
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false
-    commandIndex = (commandIndex + 1) % terminalCommands.length
-    typingSpeed = 500
+    phraseIndex = (phraseIndex + 1) % phrases.length
+    typingDelay = 500
   }
 
-  setTimeout(typeCommand, typingSpeed)
+  setTimeout(typeEffect, typingDelay)
 }
 
-// Start typing effect
-setTimeout(typeCommand, 1000)
+// Start typing effect after page load
+setTimeout(typeEffect, 1000)
+
+// ==================== PARALLAX EFFECT ====================
+let ticking = false
+
+function updateParallax() {
+  const scrolled = window.pageYOffset
+  const heroGrid = document.querySelector(".hero-grid")
+  const particles = document.querySelector(".particles")
+
+  if (heroGrid) {
+    heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`
+  }
+
+  if (particles) {
+    particles.style.transform = `translateY(${scrolled * 0.2}px)`
+  }
+
+  ticking = false
+}
+
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(updateParallax)
+    ticking = true
+  }
+})
+
+// ==================== CURSOR GLOW EFFECT ====================
+const cursorGlow = document.createElement("div")
+cursorGlow.className = "cursor-glow"
+cursorGlow.style.cssText = `
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+`
+document.body.appendChild(cursorGlow)
+
+let mouseX = 0
+let mouseY = 0
+let cursorX = 0
+let cursorY = 0
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX
+  mouseY = e.clientY
+  cursorGlow.style.opacity = "1"
+})
+
+document.addEventListener("mouseleave", () => {
+  cursorGlow.style.opacity = "0"
+})
+
+function animateCursor() {
+  const dx = mouseX - cursorX
+  const dy = mouseY - cursorY
+
+  cursorX += dx * 0.1
+  cursorY += dy * 0.1
+
+  cursorGlow.style.left = cursorX + "px"
+  cursorGlow.style.top = cursorY + "px"
+
+  requestAnimationFrame(animateCursor)
+}
+
+animateCursor()
+
+// ==================== ENHANCED CARD INTERACTIONS ====================
+const projectCards = document.querySelectorAll(".project-card")
+
+projectCards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rotateX = (y - centerY) / 20
+    const rotateY = (centerX - x) / 20
+
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
+  })
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)"
+  })
+})
 
 // ==================== UPDATE YEAR IN FOOTER ====================
 const yearElement = document.getElementById("year")
@@ -155,61 +228,24 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear()
 }
 
-// ==================== ACTIVE NAV LINK ON SCROLL ====================
-window.addEventListener("scroll", () => {
-  const sections = document.querySelectorAll("section[id]")
-  const scrollY = window.pageYOffset
-
-  sections.forEach((section) => {
-    const sectionHeight = section.offsetHeight
-    const sectionTop = section.offsetTop - 150
-    const sectionId = section.getAttribute("id")
-    const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`)
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.style.color = ""
-      })
-      if (navLink) {
-        navLink.style.color = "var(--color-primary-light)"
-      }
+// ==================== PERFORMANCE OPTIMIZATION ====================
+// Debounce scroll events
+function debounce(func, wait) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
     }
-  })
-})
-
-// ==================== PARALLAX EFFECT FOR ORBS ====================
-window.addEventListener("mousemove", (e) => {
-  const orbs = document.querySelectorAll(".gradient-orb")
-  const x = e.clientX / window.innerWidth
-  const y = e.clientY / window.innerHeight
-
-  orbs.forEach((orb, index) => {
-    const speed = (index + 1) * 20
-    const xMove = (x - 0.5) * speed
-    const yMove = (y - 0.5) * speed
-
-    orb.style.transform = `translate(${xMove}px, ${yMove}px)`
-  })
-})
-
-// ==================== CONSOLE LOG ====================
-console.log("%c🔒 Mohamed Mooka - Cybersecurity Portfolio", "color: #3b82f6; font-size: 20px; font-weight: bold;")
-console.log("%cSpecializing in DFIR & SOC Operations", "color: #06b6d4; font-size: 14px;")
-console.log("%cInterested in collaboration? Reach out!", "color: #94a3b8; font-size: 12px;")
-
-// ==================== PREVENT INSPECT ELEMENT (Optional) ====================
-// Uncomment if you want to add basic protection
-/*
-document.addEventListener('contextmenu', (e) => {
-  e.preventDefault();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.keyCode === 123 || // F12
-      (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
-      (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
-      (e.ctrlKey && e.keyCode === 85)) { // Ctrl+U
-    e.preventDefault();
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
   }
-});
-*/
+}
+
+const debouncedUpdateNav = debounce(updateActiveNav, 100)
+window.addEventListener("scroll", debouncedUpdateNav)
+
+// ==================== CONSOLE SIGNATURE ====================
+console.log("%c🔒 Mohamed Mooka - Cybersecurity Portfolio", "color: #00d9ff; font-size: 20px; font-weight: bold;")
+console.log("%cDFIR Specialist | SOC Analyst", "color: #0066ff; font-size: 14px;")
+console.log("%cBuilt with passion for security 🛡️", "color: #6b7a8f; font-size: 12px;")
