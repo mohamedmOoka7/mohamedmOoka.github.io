@@ -121,4 +121,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "font-size: 20px; font-weight: 800; color: #6366f1; text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);",
   )
   console.log("%cPremium Design • Modern UI/UX", "font-size: 14px; color: #a1a1aa;")
+
+  // ===== IMAGE ERROR HANDLING =====
+  const profileImages = document.querySelectorAll(".logo-photo")
+  profileImages.forEach((img) => {
+    img.addEventListener("error", function () {
+      console.log("[v0] Profile image failed to load from:", this.src)
+      // Fallback to placeholder if image fails
+      this.style.display = "none"
+      const placeholder = document.createElement("div")
+      placeholder.className = "logo-icon"
+      placeholder.textContent = "MM"
+      this.parentNode.insertBefore(placeholder, this)
+    })
+  })
 })
