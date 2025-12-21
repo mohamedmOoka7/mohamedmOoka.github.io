@@ -1,53 +1,62 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Mohamed Mooka | Cybersecurity Portfolio</title>
-
-  <!-- SEO Meta -->
-  <meta name="description" content="Cybersecurity Analyst specialized in DFIR, SOC operations, and incident response" />
-  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Portfolio" />
-  <meta name="author" content="Mohamed Mooka" />
-
-  <!-- Fonts -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mohamed Mooka | Cybersecurity Analyst & DFIR Specialist</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Mohamed Mooka - Cybersecurity Analyst specialized in Digital Forensics, Incident Response, and SOC Operations. Expert in threat detection and security analysis.">
+  <meta name="keywords" content="Cybersecurity, DFIR, Digital Forensics, Incident Response, SOC Analyst, Threat Detection, Security Analysis">
+  <meta name="author" content="Mohamed Mooka">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Mohamed Mooka | Cybersecurity Analyst">
+  <meta property="og:description" content="Specialized in Digital Forensics, Incident Response, and SOC Operations">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts - Premium Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
-  <!-- Canvas for Advanced Particle System -->
-  <canvas id="particle-canvas"></canvas>
+  <!-- Matrix Rain Canvas Background -->
+  <canvas id="matrix-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Particle System Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-bar"></div>
+  </div>
 
-  <!-- Added Matrix Rain Canvas for cybersecurity theme -->
-  <canvas id="matrix-canvas"></canvas>
-
-  <!-- ================= FLOATING NAVIGATION ================= -->
-  <nav class="floating-nav" aria-label="Page Navigation">
-    <a href="#home" class="nav-dot active" data-section="home" aria-label="Home">
+  <!-- Floating Navigation -->
+  <nav class="floating-nav" aria-label="Page navigation">
+    <a href="#home" class="nav-dot active" data-section="home" aria-label="Navigate to home section">
       <span class="nav-tooltip">Home</span>
     </a>
-    <a href="#about" class="nav-dot" data-section="about" aria-label="About">
+    <a href="#about" class="nav-dot" data-section="about" aria-label="Navigate to about section">
       <span class="nav-tooltip">About</span>
     </a>
-    <a href="#projects" class="nav-dot" data-section="projects" aria-label="Projects">
+    <a href="#projects" class="nav-dot" data-section="projects" aria-label="Navigate to projects section">
       <span class="nav-tooltip">Projects</span>
     </a>
-    <a href="#contact" class="nav-dot" data-section="contact" aria-label="Contact">
+    <a href="#contact" class="nav-dot" data-section="contact" aria-label="Navigate to contact section">
       <span class="nav-tooltip">Contact</span>
     </a>
   </nav>
 
-  <!-- ================= HERO ================= -->
+  <!-- Hero Section -->
   <header class="hero" id="home">
     <div class="hero-background">
-      <div class="hero-grid"></div>
-      <div class="glow-orbs">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="glow-orbs" aria-hidden="true">
         <div class="glow-orb glow-orb-1"></div>
         <div class="glow-orb glow-orb-2"></div>
         <div class="glow-orb glow-orb-3"></div>
@@ -55,258 +64,400 @@
     </div>
     
     <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span>Cybersecurity Professional</span>
+      </div>
       
-      <!-- Enhanced title with glitch effect data attributes -->
-      <h1 class="hero-title" data-text="Mohamed Mooka">
-        <span class="hero-greeting">Welcome — I'm</span>
+      <h1 class="hero-title">
+        <span class="hero-greeting">Hello, I'm</span>
         <span class="hero-name">Mohamed <span class="highlight glitch-text">Mooka</span></span>
       </h1>
 
-      <p class="subtitle">
-        <span class="typing-effect">Cybersecurity Analyst | DFIR & SOC Operations Specialist</span>
-      </p>
+      <div class="hero-subtitle">
+        <span class="gradient-text">Cybersecurity Analyst</span>
+        <span class="separator">•</span>
+        <span class="gradient-text">DFIR Specialist</span>
+        <span class="separator">•</span>
+        <span class="gradient-text">SOC Operations</span>
+      </div>
 
-      <p class="intro">
-        Specialized in digital forensics, incident response, and threat detection. Turning security challenges into actionable intelligence through systematic analysis and investigation.
+      <p class="hero-description">
+        Transforming security incidents into actionable intelligence through systematic digital forensics, threat detection, and incident response. Specialized in uncovering the truth behind cyber attacks and building resilient security operations.
       </p>
 
       <div class="hero-cta">
         <a href="#projects" class="btn btn-primary">
-          <span>View Projects</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"/>
+          <span>Explore Projects</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="https://github.com/mohamedmOoka7" target="_blank" class="btn btn-secondary">
+        <a href="#contact" class="btn btn-secondary">
+          <span>Get in Touch</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-social">
+        <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile" class="social-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>
-          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" aria-label="Send email" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </div>
 
     <div class="scroll-indicator">
-      <div class="mouse"></div>
-      <span>Scroll Down</span>
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span>Scroll to explore</span>
     </div>
   </header>
 
+  <!-- Main Content -->
   <main>
 
-    <!-- ================= ABOUT ================= -->
-    <section class="section" id="about">
-      <div class="section-header">
-        <span class="section-tag">Introduction</span>
-        <h2>About Me</h2>
-        <!-- More professional section description -->
-        <p class="section-description">Specialized Cybersecurity Professional</p>
-      </div>
-      
-      <div class="about-content-simple">
-        <div class="card about-card-main">
-          <!-- Enhanced about text with better flow and professionalism -->
-          <p>
-            I'm a dedicated Cybersecurity Analyst with specialized expertise in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations. Through extensive hands-on experience in threat detection, log analysis, and incident response, I've developed a methodical approach to investigating security incidents and reconstructing attack timelines.
-          </p>
-          <p class="about-focus">
-            My work focuses on transforming complex security events into clear, actionable insights — enabling organizations to understand threats, respond effectively, and strengthen their security posture.
-          </p>
-          
-          <div class="skills-section">
-            <!-- More professional heading -->
-            <h3>Technical Expertise</h3>
-            <div class="skill-bars">
-              <div class="skill-item">
-                <div class="skill-header">
-                  <span class="skill-name">Digital Forensics & Incident Response</span>
-                  <span class="skill-percentage">90%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" data-progress="90"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-header">
-                  <span class="skill-name">SOC Operations & Threat Detection</span>
-                  <span class="skill-percentage">85%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" data-progress="85"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-header">
-                  <span class="skill-name">Log Analysis & SIEM</span>
-                  <span class="skill-percentage">80%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" data-progress="80"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="skill-header">
-                  <span class="skill-name">Malware Analysis & Threat Hunting</span>
-                  <span class="skill-percentage">75%</span>
-                </div>
-                <div class="skill-bar">
-                  <div class="skill-progress" data-progress="75"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROJECTS ================= -->
-    <section class="section section-dark" id="projects">
-      <div class="section-header">
-        <!-- Better section tag wording -->
-        <span class="section-tag">Case Studies</span>
-        <h2>Featured Projects</h2>
-        <!-- More compelling description -->
-        <p class="section-description">Real-world cybersecurity investigations and technical implementations</p>
-      </div>
-      
-      <div class="projects-grid">
-
-        <div class="card project-card">
-          <div class="project-image">
-            <img src="https://placehold.co/600x400?text=DFIR+Investigation+Lab+with+digital+forensics+analysis+dashboard+screens+and+terminal+windows" alt="DFIR Investigation Lab with digital forensics analysis dashboard screens and terminal windows" />
-            <div class="project-overlay">
-              <a href="project-dfir.html" class="project-link">View Project →</a>
-            </div>
-          </div>
-          <div class="project-content">
-            <h3>
-              <a href="project-dfir.html">DFIR Investigation Lab</a>
-            </h3>
-            <!-- More professional project description -->
-            <p>
-              End-to-end digital forensics investigation demonstrating threat detection, evidence collection, forensic analysis, and complete attacker timeline reconstruction using industry-standard tools and methodologies.
-            </p>
-            <div class="project-tech">
-              <span>Volatility</span>
-              <span>Autopsy</span>
-              <span>Wireshark</span>
-              <span>SIFT</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card project-card">
-          <div class="project-image">
-            <img src="https://placehold.co/600x400?text=SOC+Monitoring+Dashboard+with+threat+detection+alerts+metrics+and+security+graphs" alt="SOC Monitoring Dashboard with threat detection alerts metrics and security graphs" />
-            <div class="project-overlay">
-              <span class="project-link">Coming Soon →</span>
-            </div>
-          </div>
-          <div class="project-content">
-            <!-- Added more descriptive title -->
-            <h3>SOC Monitoring & Threat Detection</h3>
-            <!-- Enhanced description with more detail -->
-            <p>
-              Comprehensive SOC operations project featuring real-time monitoring, security alert triage, log correlation, and threat detection using SIEM platforms and detection engineering principles.
-            </p>
-            <div class="project-tech">
-              <span>Splunk</span>
-              <span>Sigma Rules</span>
-              <span>MITRE ATT&CK</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ================= CONTACT ================= -->
-    <section class="section contact-section" id="contact">
-      <div class="contact-wrapper">
+    <!-- About Section -->
+    <section class="section section-about" id="about">
+      <div class="container">
         <div class="section-header">
-          <!-- Better tag and heading -->
+          <span class="section-tag">Introduction</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-description">Dedicated to uncovering digital evidence and defending against cyber threats</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-main">
+            <div class="card about-card">
+              <div class="card-glow"></div>
+              <p class="about-intro">
+                I'm a dedicated <strong>Cybersecurity Analyst</strong> specializing in <strong>Digital Forensics and Incident Response (DFIR)</strong> and <strong>Security Operations Center (SOC)</strong> operations.
+              </p>
+              <p class="about-detail">
+                Through extensive hands-on experience in threat detection, log analysis, and security investigations, I've developed a systematic approach to identifying threats, analyzing attack patterns, and reconstructing complete incident timelines. My expertise lies in transforming complex security events into clear, actionable intelligence that enables organizations to respond effectively and strengthen their defensive posture.
+              </p>
+              <p class="about-focus">
+                Every security incident tells a story. My role is to uncover that narrative through meticulous forensic analysis, helping organizations understand not just what happened, but why it happened and how to prevent it from happening again.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-skills">
+            <div class="card skills-card">
+              <div class="card-glow"></div>
+              <h3 class="skills-title">Technical Expertise</h3>
+              
+              <div class="skills-section">
+                <div class="skill-bars">
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Digital Forensics & Incident Response</span>
+                      <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-progress="90"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">SOC Operations & Threat Detection</span>
+                      <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-progress="85"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Log Analysis & SIEM Platforms</span>
+                      <span class="skill-percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-progress="80"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-item">
+                    <div class="skill-header">
+                      <span class="skill-name">Malware Analysis & Threat Hunting</span>
+                      <span class="skill-percentage">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                      <div class="skill-progress" data-progress="75"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tools-section">
+                <h4 class="tools-title">Tools & Technologies</h4>
+                <div class="tools-grid">
+                  <div class="tool-badge">Volatility</div>
+                  <div class="tool-badge">Autopsy</div>
+                  <div class="tool-badge">Wireshark</div>
+                  <div class="tool-badge">SIFT</div>
+                  <div class="tool-badge">Splunk</div>
+                  <div class="tool-badge">Sigma Rules</div>
+                  <div class="tool-badge">MITRE ATT&CK</div>
+                  <div class="tool-badge">Python</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section section-projects" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Portfolio</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-description">Real-world cybersecurity investigations and technical implementations</p>
+        </div>
+
+        <div class="projects-grid">
+          
+          <!-- Project 1: DFIR Investigation Lab -->
+          <article class="card project-card">
+            <div class="card-glow"></div>
+            <div class="project-image">
+              <img src="https://placehold.co/800x500?text=DFIR+Investigation+Lab+showing+forensic+analysis+dashboard+with+terminal+windows+and+digital+evidence+visualization" alt="DFIR Investigation Lab showing forensic analysis dashboard with terminal windows and digital evidence visualization" loading="lazy">
+              <div class="project-overlay">
+                <a href="project-dfir.html" class="project-link">
+                  <span>View Case Study</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-header">
+                <h3 class="project-title">
+                  <a href="project-dfir.html">DFIR Investigation Lab</a>
+                </h3>
+                <span class="project-status">Completed</span>
+              </div>
+              <p class="project-description">
+                Comprehensive digital forensics case study demonstrating end-to-end incident response workflow. Features threat detection, memory forensics, network traffic analysis, and complete attacker timeline reconstruction using industry-standard DFIR tools and methodologies.
+              </p>
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Memory & Disk Forensics</span>
+                </div>
+                <div class="highlight-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Network Traffic Analysis</span>
+                </div>
+                <div class="highlight-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Timeline Reconstruction</span>
+                </div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">Volatility</span>
+                <span class="tech-tag">Autopsy</span>
+                <span class="tech-tag">Wireshark</span>
+                <span class="tech-tag">SIFT</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: SOC Monitoring & Detection -->
+          <article class="card project-card">
+            <div class="card-glow"></div>
+            <div class="project-image">
+              <img src="https://placehold.co/800x500?text=SOC+Monitoring+Dashboard+displaying+real+time+security+alerts+threat+detection+metrics+and+analytical+graphs" alt="SOC Monitoring Dashboard displaying real time security alerts threat detection metrics and analytical graphs" loading="lazy">
+              <div class="project-overlay">
+                <span class="project-link coming-soon">
+                  <span>Coming Soon</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="project-header">
+                <h3 class="project-title">SOC Monitoring & Threat Detection</h3>
+                <span class="project-status status-progress">In Development</span>
+              </div>
+              <p class="project-description">
+                Advanced SOC operations project featuring real-time security monitoring, intelligent alert triage, log correlation analysis, and threat detection using enterprise SIEM platforms. Demonstrates detection engineering principles and security operations best practices.
+              </p>
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Real-time Monitoring</span>
+                </div>
+                <div class="highlight-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Detection Engineering</span>
+                </div>
+                <div class="highlight-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>MITRE ATT&CK Mapping</span>
+                </div>
+              </div>
+              <div class="project-tech">
+                <span class="tech-tag">Splunk</span>
+                <span class="tech-tag">Sigma Rules</span>
+                <span class="tech-tag">MITRE ATT&CK</span>
+                <span class="tech-tag">Python</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-contact" id="contact">
+      <div class="container">
+        <div class="section-header">
           <span class="section-tag">Let's Connect</span>
-          <h2>Get in Touch</h2>
-          <!-- More professional invitation -->
+          <h2 class="section-title">Get in Touch</h2>
           <p class="section-description">Open to cybersecurity opportunities, collaboration, and professional networking</p>
         </div>
-        
-        <div class="contact-grid">
-          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </div>
-            <h3>Email</h3>
-            <p>mohamed.ashraf.abdallah65@gmail.com</p>
-          </a>
 
-          <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </div>
-            <h3>LinkedIn</h3>
-            <p>mohamed-mooka</p>
-          </a>
+        <div class="contact-content">
+          <div class="contact-grid">
+            
+            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="card contact-card">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="contact-title">Email</h3>
+              <p class="contact-detail">mohamed.ashraf.abdallah65@gmail.com</p>
+              <span class="contact-cta">Send a message →</span>
+            </a>
 
-          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </div>
-            <h3>GitHub</h3>
-            <p>mohamedmOoka7</p>
-          </a>
+            <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" class="card contact-card">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </div>
+              <h3 class="contact-title">LinkedIn</h3>
+              <p class="contact-detail">mohamed-mooka</p>
+              <span class="contact-cta">Connect with me →</span>
+            </a>
 
-          <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-card contact-card-cta">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-              </svg>
-            </div>
-            <h3>Download CV</h3>
-            <p>View my resume</p>
-          </a>
+            <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" class="card contact-card">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </div>
+              <h3 class="contact-title">GitHub</h3>
+              <p class="contact-detail">mohamedmOoka7</p>
+              <span class="contact-cta">View repositories →</span>
+            </a>
+
+            <a href="assets/Mohamed_Mooka_CV.pdf" download class="card contact-card contact-card-cta">
+              <div class="card-glow"></div>
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="contact-title">Download CV</h3>
+              <p class="contact-detail">View my resume</p>
+              <span class="contact-cta">Download PDF →</span>
+            </a>
+
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-        Mohamed Mooka
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Mohamed Mooka</span>
+        </div>
+        <p class="footer-description">Cybersecurity Analyst | DFIR & SOC Operations</p>
+        <div class="footer-social">
+          <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" aria-label="Email">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      <!-- Enhanced footer description -->
-      <p class="footer-description">Cybersecurity Analyst | Digital Forensics & Incident Response Specialist</p>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; <span id="year">2025</span> Mohamed Mooka. All rights reserved.</p>
+      
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2025</span> Mohamed Mooka. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
   <!-- Back to Top Button -->
   <button class="back-to-top" aria-label="Back to Top">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path d="M18 15l-6-6-6 6" stroke-width="2" stroke-linecap="round"/>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </button>
-
-  <!-- Added scroll progress indicator -->
-  <div class="scroll-progress">
-    <div class="scroll-progress-bar"></div>
-  </div>
 
   <script src="js/main.js"></script>
 
