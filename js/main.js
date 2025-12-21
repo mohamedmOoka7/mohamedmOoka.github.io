@@ -139,7 +139,7 @@ function updateParallax() {
   }
 
   if (particles) {
-    particles.style.transform = `translateY(${scrolled * 0.4}px) scale(${1 + scrolled * 0.0002})`
+    particles.style.transform = `translateY(${scrolled * 0.3}px) scale(${1 + scrolled * 0.0003})`
   }
 
   ticking = false
@@ -151,53 +151,6 @@ window.addEventListener("scroll", () => {
     ticking = true
   }
 })
-
-// ==================== CURSOR GLOW EFFECT ====================
-const cursorGlow = document.createElement("div")
-cursorGlow.className = "cursor-glow"
-cursorGlow.style.cssText = `
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 217, 255, 0.15), transparent 70%);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-`
-document.body.appendChild(cursorGlow)
-
-let mouseX = 0
-let mouseY = 0
-let cursorX = 0
-let cursorY = 0
-
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX
-  mouseY = e.clientY
-  cursorGlow.style.opacity = "1"
-})
-
-document.addEventListener("mouseleave", () => {
-  cursorGlow.style.opacity = "0"
-})
-
-function animateCursor() {
-  const dx = mouseX - cursorX
-  const dy = mouseY - cursorY
-
-  cursorX += dx * 0.1
-  cursorY += dy * 0.1
-
-  cursorGlow.style.left = cursorX + "px"
-  cursorGlow.style.top = cursorY + "px"
-
-  requestAnimationFrame(animateCursor)
-}
-
-animateCursor()
 
 // ==================== UPDATE YEAR IN FOOTER ====================
 const yearElement = document.getElementById("year")
