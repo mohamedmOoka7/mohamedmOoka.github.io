@@ -119,6 +119,15 @@ body {
   color: white;
 }
 
+/* Added styles for profile photo logo */
+.logo-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 2px solid var(--color-primary);
+}
+
 .nav-logo:hover {
   color: var(--color-primary-light);
 }
