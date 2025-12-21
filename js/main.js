@@ -1,201 +1,191 @@
-// Navbar scroll effect
-const navbar = document.getElementById("navbar")
-const navLinks = document.querySelectorAll(".nav-link")
-const menuToggle = document.getElementById("menuToggle")
-const navMenu = document.getElementById("navMenu")
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add("scrolled")
-  } else {
-    navbar.classList.remove("scrolled")
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.classList.contains("no-animate")) {
+    return
   }
-})
 
-// Mobile menu toggle
-menuToggle.addEventListener("click", () => {
-  menuToggle.classList.toggle("active")
-  navMenu.classList.toggle("active")
-})
+  /* ===============================================
+     FLOATING NAVIGATION ACTIVE STATE
+  =============================================== */
 
-// Close mobile menu when clicking a link
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    menuToggle.classList.remove("active")
-    navMenu.classList.remove("active")
-  })
-})
+  const navDots = document.querySelectorAll(".nav-dot")
+  const sections = document.querySelectorAll("section[id]")
 
-// Smooth scrolling for navigation links
-navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault()
-    const targetId = link.getAttribute("href")
-    const targetSection = document.querySelector(targetId)
-    const offsetTop = targetSection.offsetTop - 80
+  function updateActiveNav() {
+    const scrollY = window.pageYOffset
 
-    window.scrollTo({
-      top: offsetTop,
-      behavior: "smooth",
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight
+      const sectionTop = section.offsetTop - 200
+      const sectionId = section.getAttribute("id")
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navDots.forEach((dot) => {
+          dot.classList.remove("active")
+          if (dot.getAttribute("data-section") === sectionId) {
+            dot.classList.add("active")
+          }
+        })
+      }
+    })
+  }
+
+  window.addEventListener("scroll", updateActiveNav)
+
+  /* ===============================================
+     SMOOTH SCROLL WITH OFFSET
+  =============================================== */
+
+  const links = document.querySelectorAll('a[href^="#"]')
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")
+
+      if (href !== "#" && href.length > 1) {
+        e.preventDefault()
+
+        const target = document.querySelector(href)
+        if (target) {
+          const offsetTop = target.offsetTop - 50
+
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          })
+        }
+      }
     })
   })
-})
 
-// Particles animation in hero section
-function createParticles() {
-  const particlesContainer = document.getElementById("particles")
-  const particleCount = 50
+  /* ===============================================
+     SCROLL REVEAL ANIMATION
+  =============================================== */
 
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement("div")
-    particle.style.position = "absolute"
-    particle.style.width = Math.random() * 3 + "px"
-    particle.style.height = particle.style.width
-    particle.style.background = "rgba(0, 255, 136, 0.5)"
-    particle.style.borderRadius = "50%"
-    particle.style.left = Math.random() * 100 + "%"
-    particle.style.top = Math.random() * 100 + "%"
-    particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`
-    particle.style.animationDelay = Math.random() * 5 + "s"
-    particlesContainer.appendChild(particle)
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
   }
-}
 
-createParticles()
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show")
+        revealObserver.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -100px 0px",
-}
+  const revealElements = document.querySelectorAll(".section, .card")
+  revealElements.forEach((el) => revealObserver.observe(el))
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = "1"
-      entry.target.style.transform = "translateY(0)"
+  /* ===============================================
+     BACK TO TOP BUTTON
+  =============================================== */
+
+  const backToTopButton = document.querySelector(".back-to-top")
+
+  if (backToTopButton) {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 500) {
+        backToTopButton.classList.add("show")
+      } else {
+        backToTopButton.classList.remove("show")
+      }
+    })
+
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    })
+  }
+
+  /* ===============================================
+     TYPING EFFECT FOR SUBTITLE
+  =============================================== */
+
+  const typingElement = document.querySelector(".typing-effect")
+
+  if (typingElement) {
+    const text = typingElement.textContent
+    typingElement.textContent = ""
+    let charIndex = 0
+
+    function type() {
+      if (charIndex < text.length) {
+        typingElement.textContent += text.charAt(charIndex)
+        charIndex++
+        setTimeout(type, 100)
+      }
     }
-  })
-}, observerOptions)
 
-// Observe all sections and cards
-document.querySelectorAll("section, .skill-category, .project-card, .cert-card, .timeline-item").forEach((el) => {
-  el.style.opacity = "0"
-  el.style.transform = "translateY(50px)"
-  el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
-  observer.observe(el)
-})
-
-// Contact form handling
-const contactForm = document.getElementById("contactForm")
-
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault()
-
-  const name = document.getElementById("name").value
-  const email = document.getElementById("email").value
-  const subject = document.getElementById("subject").value
-  const message = document.getElementById("message").value
-
-  // Here you would normally send the data to a server
-  // For now, we'll just show an alert
-  alert(`Thank you ${name}!\n\nYour message has been received and I will reply to you soon at ${email}`)
-
-  // Reset form
-  contactForm.reset()
-})
-
-// Typing effect for hero subtitle
-const typingText = document.querySelector(".typing-text")
-const text = typingText.textContent
-typingText.textContent = ""
-let charIndex = 0
-
-function typeWriter() {
-  if (charIndex < text.length) {
-    typingText.textContent += text.charAt(charIndex)
-    charIndex++
-    setTimeout(typeWriter, 100)
+    setTimeout(type, 1000)
   }
-}
 
-// Start typing effect when page loads
-window.addEventListener("load", () => {
-  setTimeout(typeWriter, 500)
-})
+  /* ===============================================
+     PARALLAX EFFECT FOR HERO
+  =============================================== */
 
-// Add active class to current navigation item
-window.addEventListener("scroll", () => {
-  let current = ""
-  const sections = document.querySelectorAll("section")
+  const heroBackground = document.querySelector(".hero-background")
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop
-    const sectionHeight = section.clientHeight
-    if (scrollY >= sectionTop - 100) {
-      current = section.getAttribute("id")
+  if (heroBackground) {
+    window.addEventListener("scroll", () => {
+      const scrolled = window.pageYOffset
+      const parallaxSpeed = 0.5
+
+      heroBackground.style.transform = `translateY(${scrolled * parallaxSpeed}px)`
+    })
+  }
+
+  /* ===============================================
+     FOOTER YEAR AUTO UPDATE
+  =============================================== */
+
+  const yearElement = document.getElementById("year")
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear()
+  }
+
+  /* ===============================================
+     LAZY LOADING IMAGES
+  =============================================== */
+
+  const images = document.querySelectorAll("img[data-src]")
+
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target
+        img.src = img.dataset.src
+        img.removeAttribute("data-src")
+        observer.unobserve(img)
+      }
+    })
+  })
+
+  images.forEach((img) => imageObserver.observe(img))
+
+  /* ===============================================
+     PERFORMANCE OPTIMIZATION
+  =============================================== */
+
+  function debounce(func, wait = 10) {
+    let timeout
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout)
+        func(...args)
+      }
+      clearTimeout(timeout)
+      timeout = setTimeout(later, wait)
     }
-  })
-
-  navLinks.forEach((link) => {
-    link.classList.remove("active")
-    if (link.getAttribute("href") === `#${current}`) {
-      link.classList.add("active")
-    }
-  })
-})
-
-// Scroll to top button functionality
-const scrollIndicator = document.querySelector(".scroll-indicator")
-scrollIndicator.addEventListener("click", () => {
-  const aboutSection = document.getElementById("about")
-  aboutSection.scrollIntoView({ behavior: "smooth" })
-})
-
-// Add parallax effect to hero section
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const heroContent = document.querySelector(".hero-content")
-  const securityShield = document.querySelector(".security-shield")
-
-  if (heroContent) {
-    heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
   }
 
-  if (securityShield) {
-    securityShield.style.transform = `translateY(${scrolled * 0.2}px) rotate(${scrolled * 0.1}deg)`
-  }
+  window.addEventListener(
+    "scroll",
+    debounce(() => {
+      // Scroll-dependent functions
+    }, 10),
+  )
 })
-
-// Add hover effect to skill tags
-document.querySelectorAll(".skill-tag").forEach((tag) => {
-  tag.addEventListener("mouseenter", function () {
-    this.style.transform = "scale(1.1) rotate(2deg)"
-  })
-
-  tag.addEventListener("mouseleave", function () {
-    this.style.transform = "scale(1) rotate(0deg)"
-  })
-})
-
-// Dynamic year in footer
-const currentYear = new Date().getFullYear()
-document.querySelector(".footer-text p").innerHTML = `&copy; ${currentYear} Mohamed Mooka. All Rights Reserved.`
-
-// Add loading animation
-window.addEventListener("load", () => {
-  document.body.style.opacity = "0"
-  setTimeout(() => {
-    document.body.style.transition = "opacity 0.5s ease"
-    document.body.style.opacity = "1"
-  }, 100)
-})
-
-console.log(
-  "%c🔒 Portfolio by Mohamed Mooka - Cybersecurity Analyst & DFIR Specialist",
-  "color: #00ff88; font-size: 16px; font-weight: bold;",
-)
-console.log(
-  "%c⚠️ Warning: This is a browser console. Pasting code here can be dangerous!",
-  "color: #ff0055; font-size: 14px; font-weight: bold;",
-)
