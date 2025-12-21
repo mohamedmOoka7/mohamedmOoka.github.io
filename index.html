@@ -3,221 +3,501 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>DFIR Investigation Lab | Mohamed Mooka</title>
-
-  <meta name="description" content="Comprehensive DFIR case study covering detection, forensic analysis, and attacker timeline reconstruction" />
-
+  <title>Mohamed Mooka - Cybersecurity Analyst | DFIR & SOC Operations</title>
+  <meta name="description" content="Professional cybersecurity analyst specializing in Digital Forensics, Incident Response, and Security Operations" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+  
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/project.css" />
 </head>
 
 <body>
 
-  <nav class="project-nav">
-    <a href="index.html" class="back-link">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M19 12H5M12 19l-7-7 7-7"/>
-      </svg>
-      Back to Portfolio
+  <!-- Floating Navigation Dots -->
+  <nav class="floating-nav" aria-label="Page Navigation">
+    <a href="#hero" class="nav-dot" data-section="hero" aria-label="Home">
+      <span class="nav-tooltip">Home</span>
+    </a>
+    <a href="#about" class="nav-dot" data-section="about" aria-label="About">
+      <span class="nav-tooltip">About</span>
+    </a>
+    <a href="#skills" class="nav-dot" data-section="skills" aria-label="Skills">
+      <span class="nav-tooltip">Skills</span>
+    </a>
+    <a href="#projects" class="nav-dot" data-section="projects" aria-label="Projects">
+      <span class="nav-tooltip">Projects</span>
+    </a>
+    <a href="#contact" class="nav-dot" data-section="contact" aria-label="Contact">
+      <span class="nav-tooltip">Contact</span>
     </a>
   </nav>
 
-  <main class="project-detail">
+  <!-- Hero Section -->
+  <header class="hero" id="hero">
+    <canvas id="matrix-canvas" aria-hidden="true"></canvas>
     
-    <header class="project-hero">
-      <div class="project-hero-content">
-        <h1>DFIR Investigation Lab</h1>
-        <p class="project-subtitle">Comprehensive digital forensics investigation and incident response case study</p>
-        
-        <div class="project-meta">
-          <div class="meta-item">
-            <span class="meta-label">Category</span>
-            <span class="meta-value">Digital Forensics & Incident Response</span>
+    <div class="hero-background">
+      <div class="hero-grid" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="terminal-greeting">
+        <div class="terminal-header">
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+          <span class="terminal-dot"></span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="terminal-prompt">$</span>
+            <span class="terminal-output">whoami</span>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Duration</span>
-            <span class="meta-value">3 Weeks</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Tools</span>
-            <span class="meta-value">Volatility, Autopsy, Wireshark, SIFT</span>
+          <div class="terminal-line">
+            <span class="terminal-output">cybersecurity_analyst</span>
           </div>
         </div>
       </div>
-    </header>
 
-    <section class="project-section">
-      <div class="section-content">
-        <h2>Project Overview</h2>
-        <p>This comprehensive DFIR investigation simulates a real-world security incident, covering the complete investigation lifecycle from initial detection through forensic analysis to final reporting. The project demonstrates practical skills in memory forensics, disk analysis, network traffic investigation, and timeline reconstruction.</p>
+      <h1 class="hero-title">
+        Hi, I'm <span class="highlight glitch" data-text="Mohamed Mooka">Mohamed Mooka</span>
+      </h1>
+      
+      <p class="subtitle typing-effect">Cybersecurity Analyst | DFIR Specialist | SOC Operations</p>
+
+      <div class="hero-about">
+        <p>
+          Passionate about <strong>cybersecurity</strong>, specializing in <strong>Digital Forensics & Incident Response (DFIR)</strong>. 
+          I investigate security incidents, analyze threats, and help organizations strengthen their security posture through comprehensive forensic analysis and proactive threat hunting.
+        </p>
       </div>
-    </section>
 
-    <section class="project-section">
-      <div class="section-content">
-        <h2>Investigation Phases</h2>
-        
-        <div class="phase-grid">
-          <div class="phase-card">
-            <div class="phase-number">01</div>
-            <h3>Initial Detection</h3>
-            <p>Identified suspicious system behavior through anomalous network connections and unusual process execution patterns in system logs.</p>
-          </div>
-          
-          <div class="phase-card">
-            <div class="phase-number">02</div>
-            <h3>Memory Forensics</h3>
-            <p>Analyzed memory dump using Volatility framework to extract running processes, network connections, and loaded drivers.</p>
-          </div>
-          
-          <div class="phase-card">
-            <div class="phase-number">03</div>
-            <h3>Disk Analysis</h3>
-            <p>Performed deep disk forensics with Autopsy to recover deleted files, analyze file system artifacts, and identify malicious payloads.</p>
-          </div>
-          
-          <div class="phase-card">
-            <div class="phase-number">04</div>
-            <h3>Network Investigation</h3>
-            <p>Examined network traffic captures using Wireshark to identify command and control communications and data exfiltration attempts.</p>
-          </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"/>
+            <rect x="14" y="3" width="7" height="7"/>
+            <rect x="14" y="14" width="7" height="7"/>
+            <rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          View Projects
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Get In Touch
+        </a>
+      </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <div class="mouse"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section class="section section-about" id="about">
+    <div class="section-header">
+      <span class="section-tag">About Me</span>
+      <h2>Professional Background</h2>
+      <p class="section-description">
+        Dedicated cybersecurity professional with expertise in forensic investigation, incident response, and security analysis
+      </p>
+    </div>
+
+    <div class="about-content">
+      <div class="about-card">
+        <div class="about-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Security Analysis</h3>
+        <p>Expert in threat detection, vulnerability assessment, and security monitoring using industry-leading SIEM platforms and analysis tools.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+        </div>
+        <h3>Incident Response</h3>
+        <p>Rapid incident response capabilities with experience in containment, eradication, and recovery procedures following NIST frameworks.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <h3>Digital Forensics</h3>
+        <p>Comprehensive forensic investigation skills including memory forensics, disk analysis, and network traffic examination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section section-skills" id="skills">
+    <div class="section-header">
+      <span class="section-tag">Expertise</span>
+      <h2>Technical Skills</h2>
+      <p class="section-description">
+        Specialized tools and technologies for comprehensive cybersecurity operations
+      </p>
+    </div>
+
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+          </svg>
+          DFIR Tools
+        </h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Volatility</span>
+          <span class="skill-tag">Autopsy</span>
+          <span class="skill-tag">FTK Imager</span>
+          <span class="skill-tag">SIFT Workstation</span>
+          <span class="skill-tag">Redline</span>
+          <span class="skill-tag">X-Ways</span>
         </div>
       </div>
-    </section>
 
-    <section class="project-section section-dark">
-      <div class="section-content">
-        <h2>Key Findings</h2>
-        
-        <div class="findings-list">
-          <div class="finding-item">
-            <div class="finding-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <line x1="12" y1="9" x2="12" y2="13"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
+      <div class="skill-category">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Network Analysis
+        </h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">tcpdump</span>
+          <span class="skill-tag">NetworkMiner</span>
+          <span class="skill-tag">Zeek</span>
+          <span class="skill-tag">Snort</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          SIEM & Monitoring
+        </h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">ELK Stack</span>
+          <span class="skill-tag">QRadar</span>
+          <span class="skill-tag">ArcSight</span>
+          <span class="skill-tag">Wazuh</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          Operating Systems
+        </h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Windows</span>
+          <span class="skill-tag">Kali Linux</span>
+          <span class="skill-tag">Ubuntu</span>
+          <span class="skill-tag">CentOS</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Security Frameworks
+        </h3>
+        <div class="skill-tags">
+          <span class="skill-tag">NIST</span>
+          <span class="skill-tag">MITRE ATT&CK</span>
+          <span class="skill-tag">ISO 27001</span>
+          <span class="skill-tag">SANS</span>
+          <span class="skill-tag">CIS</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+          </svg>
+          Scripting & Automation
+        </h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PowerShell</span>
+          <span class="skill-tag">Bash</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Regex</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="section section-projects" id="projects">
+    <div class="section-header">
+      <span class="section-tag">Portfolio</span>
+      <h2>Featured Projects</h2>
+      <p class="section-description">
+        Real-world cybersecurity projects demonstrating practical DFIR and security analysis skills
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      
+      <!-- Project 1 -->
+      <article class="card project-card">
+        <span class="project-status-badge live">Live Case</span>
+        <div class="project-image">
+          <img src="https://placehold.co/600x400?text=DFIR+Investigation+Lab+with+Forensic+Tools+and+Terminal+Windows" alt="DFIR Investigation Lab with Forensic Tools and Terminal Windows" />
+          <div class="project-overlay">
+            <a href="project-dfir.html" class="project-link">
+              View Case Study
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
               </svg>
-            </div>
-            <div class="finding-content">
-              <h4>Malicious Process Injection</h4>
-              <p>Discovered process hollowing technique used to inject malicious code into legitimate system process (svchost.exe)</p>
-            </div>
-          </div>
-          
-          <div class="finding-item">
-            <div class="finding-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-            </div>
-            <div class="finding-content">
-              <h4>Command & Control Communication</h4>
-              <p>Identified encrypted C2 traffic to external IP addresses using custom protocol over port 443</p>
-            </div>
-          </div>
-          
-          <div class="finding-item">
-            <div class="finding-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                <line x1="12" y1="22.08" x2="12" y2="12"/>
-              </svg>
-            </div>
-            <div class="finding-content">
-              <h4>Data Exfiltration</h4>
-              <p>Detected unauthorized data transfer of sensitive documents totaling 250MB to attacker-controlled server</p>
-            </div>
-          </div>
-          
-          <div class="finding-item">
-            <div class="finding-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-            </div>
-            <div class="finding-content">
-              <h4>Persistence Mechanism</h4>
-              <p>Uncovered registry modifications and scheduled tasks created for maintaining persistent access</p>
-            </div>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="project-content">
+          <h3><a href="project-dfir.html">DFIR Investigation Lab</a></h3>
+          <p>Comprehensive digital forensics investigation simulating real-world security incident. Performed memory forensics, disk analysis, and network traffic examination to reconstruct attacker timeline.</p>
+          <div class="project-tech">
+            <span>Volatility</span>
+            <span>Autopsy</span>
+            <span>Wireshark</span>
+            <span>SIFT</span>
+          </div>
+        </div>
+      </article>
 
-    <section class="project-section">
-      <div class="section-content">
-        <h2>Technical Skills Demonstrated</h2>
+      <!-- Project 2 -->
+      <article class="card project-card">
+        <span class="project-status-badge live">Completed</span>
+        <div class="project-image">
+          <img src="https://placehold.co/600x400?text=SOC+Monitoring+Dashboard+with+Security+Alerts+and+Incident+Logs" alt="SOC Monitoring Dashboard with Security Alerts and Incident Logs" />
+          <div class="project-overlay">
+            <a href="#projects" class="project-link">
+              View Details
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>SOC Monitoring Lab</h3>
+          <p>Built and configured Security Operations Center environment with SIEM integration. Implemented custom detection rules, automated alerting, and incident response playbooks.</p>
+          <div class="project-tech">
+            <span>Splunk</span>
+            <span>Wazuh</span>
+            <span>ELK Stack</span>
+            <span>Suricata</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="card project-card">
+        <span class="project-status-badge live">Completed</span>
+        <div class="project-image">
+          <img src="https://placehold.co/600x400?text=Malware+Analysis+Lab+with+Sandbox+Environment+and+Reverse+Engineering+Tools" alt="Malware Analysis Lab with Sandbox Environment and Reverse Engineering Tools" />
+          <div class="project-overlay">
+            <a href="#projects" class="project-link">
+              View Analysis
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Malware Analysis Project</h3>
+          <p>Deep dive malware analysis including static and dynamic analysis techniques. Reverse engineered malicious payloads and documented TTPs mapped to MITRE ATT&CK framework.</p>
+          <div class="project-tech">
+            <span>IDA Pro</span>
+            <span>Ghidra</span>
+            <span>Cuckoo</span>
+            <span>REMnux</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="card project-card">
+        <span class="project-status-badge live">Completed</span>
+        <div class="project-image">
+          <img src="https://placehold.co/600x400?text=Network+Traffic+Analysis+with+Packet+Captures+and+Protocol+Dissection" alt="Network Traffic Analysis with Packet Captures and Protocol Dissection" />
+          <div class="project-overlay">
+            <a href="#projects" class="project-link">
+              View Report
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Network Threat Hunting</h3>
+          <p>Proactive threat hunting exercise analyzing network traffic for IOCs and suspicious patterns. Identified and documented multiple attack vectors and C2 communications.</p>
+          <div class="project-tech">
+            <span>Wireshark</span>
+            <span>Zeek</span>
+            <span>NetworkMiner</span>
+            <span>tcpdump</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="card project-card">
+        <span class="project-status-badge live">Completed</span>
+        <div class="project-image">
+          <img src="https://placehold.co/600x400?text=Incident+Response+Playbook+with+Timeline+and+Evidence+Documentation" alt="Incident Response Playbook with Timeline and Evidence Documentation" />
+          <div class="project-overlay">
+            <a href="#projects" class="project-link">
+              View Playbook
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Incident Response Automation</h3>
+          <p>Developed automated incident response playbooks and scripts for common security scenarios. Reduced response time and improved consistency in incident handling.</p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>PowerShell</span>
+            <span>SOAR</span>
+            <span>TheHive</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 6 -->
+      <article class="card project-card">
+        <span class="project-status-badge soon">In Progress</span>
+        <div class="project-image">
+          <img src="https://placehold.co/600x400?text=Threat+Intelligence+Platform+with+IOC+Feeds+and+Analysis+Dashboard" alt="Threat Intelligence Platform with IOC Feeds and Analysis Dashboard" />
+          <div class="project-overlay">
+            <a href="#projects" class="project-link">
+              Coming Soon
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3>Threat Intelligence Platform</h3>
+          <p>Building custom threat intelligence aggregation platform. Integrates multiple OSINT feeds and provides automated IOC enrichment and correlation.</p>
+          <div class="project-tech">
+            <span>MISP</span>
+            <span>OpenCTI</span>
+            <span>Python</span>
+            <span>APIs</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section-contact" id="contact">
+    <div class="section-header">
+      <span class="section-tag">Get In Touch</span>
+      <h2>Contact Me</h2>
+      <p class="section-description">
+        Let's discuss cybersecurity opportunities, collaborations, or projects
+      </p>
+    </div>
+
+    <div class="contact-wrapper">
+      <div class="contact-grid">
         
-        <div class="skills-grid">
-          <div class="skill-category">
-            <h3>Memory Forensics</h3>
-            <ul>
-              <li>Memory dump acquisition and analysis</li>
-              <li>Process and DLL enumeration</li>
-              <li>Network connection extraction</li>
-              <li>Registry hive analysis</li>
-            </ul>
+        <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
           </div>
-          
-          <div class="skill-category">
-            <h3>Disk Forensics</h3>
-            <ul>
-              <li>File system artifact analysis</li>
-              <li>Deleted file recovery</li>
-              <li>Timeline generation</li>
-              <li>Hash verification and comparison</li>
-            </ul>
+          <h3>Email</h3>
+          <p>mohamed.ashraf.abdallah65@gmail.com</p>
+        </a>
+
+        <a href="https://linkedin.com/in/mohamed-mooka" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
           </div>
-          
-          <div class="skill-category">
-            <h3>Network Analysis</h3>
-            <ul>
-              <li>Packet capture analysis</li>
-              <li>Protocol dissection</li>
-              <li>Malicious traffic identification</li>
-              <li>Network IOC extraction</li>
-            </ul>
+          <h3>LinkedIn</h3>
+          <p>Connect with me professionally</p>
+        </a>
+
+        <a href="https://github.com/mohamedmooka" target="_blank" rel="noopener noreferrer" class="contact-card">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
           </div>
-          
-          <div class="skill-category">
-            <h3>Incident Response</h3>
-            <ul>
-              <li>Attack timeline reconstruction</li>
-              <li>IOC documentation</li>
-              <li>Evidence preservation</li>
-              <li>Technical report writing</li>
-            </ul>
+          <h3>GitHub</h3>
+          <p>Check out my code repositories</p>
+        </a>
+
+        <a href="#contact" class="contact-card contact-card-cta">
+          <div class="contact-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
           </div>
-        </div>
+          <h3>Let's Talk</h3>
+          <p>Start a conversation today</p>
+        </a>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="project-section section-cta">
-      <div class="section-content">
-        <h2>Interested in the Full Report?</h2>
-        <p>The complete investigation report includes detailed analysis, screenshots, IOCs, and recommendations.</p>
-        <div class="cta-buttons">
-          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="btn btn-primary">
-            Request Full Report
-          </a>
-          <a href="index.html#projects" class="btn btn-secondary">
-            View More Projects
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
+  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-logo">
@@ -227,6 +507,7 @@
         Mohamed Mooka
       </div>
       <p class="footer-description">Cybersecurity Analyst | DFIR & SOC Operations</p>
+      <p class="handcrafted-note">Handcrafted with dedication and passion for cybersecurity</p>
     </div>
     
     <div class="footer-bottom">
@@ -234,6 +515,7 @@
     </div>
   </footer>
 
+  <!-- Back to Top Button -->
   <button class="back-to-top" aria-label="Back to Top">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
       <path d="M18 15l-6-6-6 6" stroke-width="2" stroke-linecap="round"/>
