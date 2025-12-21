@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>DFIR Investigation Lab | Mohamed Mooka</title>
+  <title>Mohamed Mooka | Cybersecurity Portfolio</title>
 
   <!-- SEO Meta -->
-  <meta name="description" content="Comprehensive DFIR case study covering detection, forensic analysis, and attacker timeline reconstruction" />
-  <meta name="keywords" content="DFIR, Digital Forensics, Incident Response, Malware Analysis, Volatility, Autopsy" />
+  <meta name="description" content="Cybersecurity Analyst specialized in DFIR, SOC operations, and incident response" />
+  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Portfolio" />
   <meta name="author" content="Mohamed Mooka" />
 
   <!-- Fonts -->
@@ -17,302 +17,196 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/project-detail.css" />
 </head>
 
 <body>
 
-  <!-- ================= NAVIGATION BAR ================= -->
-  <nav class="project-nav">
-    <div class="project-nav-container">
-      <a href="index.html" class="nav-back">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round"/>
-        </svg>
-        Back to Portfolio
-      </a>
-    </div>
+  <!-- ================= FLOATING NAVIGATION ================= -->
+  <nav class="floating-nav" aria-label="Page Navigation">
+    <a href="#home" class="nav-dot active" data-section="home" aria-label="Home">
+      <span class="nav-tooltip">Home</span>
+    </a>
+    <a href="#about" class="nav-dot" data-section="about" aria-label="About">
+      <span class="nav-tooltip">About</span>
+    </a>
+    <a href="#projects" class="nav-dot" data-section="projects" aria-label="Projects">
+      <span class="nav-tooltip">Projects</span>
+    </a>
+    <a href="#contact" class="nav-dot" data-section="contact" aria-label="Contact">
+      <span class="nav-tooltip">Contact</span>
+    </a>
   </nav>
 
-  <!-- ================= PROJECT HERO ================= -->
-  <header class="project-hero">
-    <div class="project-hero-content">
-      <span class="project-category">Digital Forensics & Incident Response</span>
-      <h1 class="project-title">DFIR Investigation Lab</h1>
-      <p class="project-subtitle">
-        Comprehensive incident response case study analyzing a security breach from initial detection through forensic analysis and attacker timeline reconstruction
-      </p>
+  <!-- ================= HERO ================= -->
+  <header class="hero" id="home">
+    <div class="hero-background">
+      <div class="hero-grid"></div>
+      <div class="particles"></div>
+    </div>
+    
+    <div class="hero-content">
       
-      <div class="project-meta">
-        <div class="meta-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-          <span>2024</span>
-        </div>
-        <div class="meta-item">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="12 6 12 12 16 14"/>
-          </svg>
-          <span>4 Week Project</span>
-        </div>
-      </div>
+      <h1 class="hero-title">
+        <span class="hero-greeting">Hi, I'm</span>
+        Mohamed <span class="highlight">Mooka</span>
+      </h1>
 
-      <div class="project-tech-hero">
-        <span>Volatility 3</span>
-        <span>Autopsy</span>
-        <span>Wireshark</span>
-        <span>SIFT Workstation</span>
-        <span>FTK Imager</span>
+      <p class="subtitle">
+        <span class="typing-effect">Cybersecurity Analyst | DFIR & SOC Operations</span>
+      </p>
+
+      <p class="intro">
+        Showcasing my cybersecurity portfolio and technical projects
+      </p>
+
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">
+          <span>View Projects</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="https://github.com/mohamedmOoka7" target="_blank" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
       </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="mouse"></div>
+      <span>Scroll Down</span>
     </div>
   </header>
 
-  <main class="project-content">
+  <main>
 
-    <!-- ================= OVERVIEW ================= -->
-    <section class="content-section">
-      <h2 class="section-title">Project Overview</h2>
-      <div class="content-card">
-        <p>
-          This comprehensive DFIR investigation simulates a real-world security incident where an enterprise network was compromised. The project demonstrates end-to-end incident response capabilities including initial detection, evidence acquisition, memory forensics, disk analysis, network traffic examination, and detailed timeline reconstruction of attacker activities.
-        </p>
+    <!-- ================= ABOUT ================= -->
+    <section class="section" id="about">
+      <div class="section-header">
+        <span class="section-tag">Who I Am</span>
+        <h2>About Me</h2>
+        <p class="section-description">Cybersecurity Analyst</p>
       </div>
-    </section>
-
-    <!-- ================= OBJECTIVES ================= -->
-    <section class="content-section">
-      <h2 class="section-title">Investigation Objectives</h2>
-      <div class="objectives-grid">
-        <div class="objective-card">
-          <div class="objective-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.35-4.35"/>
-            </svg>
-          </div>
-          <h3>Initial Detection</h3>
-          <p>Identify indicators of compromise through log analysis and anomaly detection</p>
-        </div>
-
-        <div class="objective-card">
-          <div class="objective-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            </svg>
-          </div>
-          <h3>Memory Analysis</h3>
-          <p>Extract running processes, network connections, and malicious artifacts from RAM</p>
-        </div>
-
-        <div class="objective-card">
-          <div class="objective-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-          </div>
-          <h3>Disk Forensics</h3>
-          <p>Recover deleted files, analyze file system artifacts, and examine persistence mechanisms</p>
-        </div>
-
-        <div class="objective-card">
-          <div class="objective-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-          </div>
-          <h3>Timeline Reconstruction</h3>
-          <p>Build comprehensive attack timeline from initial access to data exfiltration</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= METHODOLOGY ================= -->
-    <section class="content-section section-dark">
-      <h2 class="section-title">Investigation Methodology</h2>
       
-      <div class="methodology-timeline">
-        <div class="timeline-item">
-          <div class="timeline-marker">1</div>
-          <div class="timeline-content">
-            <h3>Evidence Acquisition</h3>
-            <p>Acquired memory dump using FTK Imager and created forensic images of compromised systems following proper chain of custody procedures</p>
-          </div>
+      <div class="about-content-simple">
+        <div class="card about-card-main">
+          <p>
+            I'm Mohamed Mooka, a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations, with hands-on experience in threat detection, log analysis, and incident response through practical labs and security investigations.
+          </p>
         </div>
+      </div>
+    </section>
 
-        <div class="timeline-item">
-          <div class="timeline-marker">2</div>
-          <div class="timeline-content">
-            <h3>Memory Forensics</h3>
-            <p>Analyzed memory dump with Volatility 3 to identify malicious processes, injected code, and network connections</p>
-            <div class="code-snippet">
-              <code>vol.py -f memory.dmp windows.pslist<br>
-              vol.py -f memory.dmp windows.netscan<br>
-              vol.py -f memory.dmp windows.malfind</code>
+    <!-- ================= PROJECTS ================= -->
+    <section class="section section-dark" id="projects">
+      <div class="section-header">
+        <span class="section-tag">Portfolio</span>
+        <h2>Projects</h2>
+        <p class="section-description">Hands-on cybersecurity projects and investigations</p>
+      </div>
+      
+      <div class="projects-grid">
+
+        <div class="card project-card">
+          <div class="project-image">
+            <img src="https://placehold.co/600x400?text=DFIR+Investigation+Lab+with+digital+forensics+analysis+dashboard+screens+and+terminal+windows" alt="DFIR Investigation Lab with digital forensics analysis dashboard screens and terminal windows" />
+            <div class="project-overlay">
+              <a href="project-dfir.html" class="project-link">View Project →</a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>
+              <a href="project-dfir.html">DFIR Investigation Lab</a>
+            </h3>
+            <p>
+              Comprehensive DFIR case study covering detection, forensic analysis, and attacker timeline reconstruction
+            </p>
+            <div class="project-tech">
+              <span>Volatility</span>
+              <span>Autopsy</span>
+              <span>Wireshark</span>
+              <span>SIFT</span>
             </div>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-marker">3</div>
-          <div class="timeline-content">
-            <h3>Disk Analysis</h3>
-            <p>Used Autopsy to examine file system, recover deleted files, and analyze browser history, registry entries, and user activities</p>
+        <div class="card project-card">
+          <div class="project-image">
+            <img src="https://placehold.co/600x400?text=SOC+Monitoring+Dashboard+with+threat+detection+alerts+metrics+and+security+graphs" alt="SOC Monitoring Dashboard with threat detection alerts metrics and security graphs" />
+            <div class="project-overlay">
+              <span class="project-link">Coming Soon →</span>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3>SOC Monitoring & Detection</h3>
+            <p>
+              SOC-focused monitoring and alert triage scenarios using log analysis techniques
+            </p>
+            <div class="project-tech">
+              <span>Splunk</span>
+              <span>Sigma Rules</span>
+              <span>MITRE ATT&CK</span>
+            </div>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-marker">4</div>
-          <div class="timeline-content">
-            <h3>Network Analysis</h3>
-            <p>Examined PCAP files with Wireshark to identify C2 communications, data exfiltration attempts, and lateral movement</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">5</div>
-          <div class="timeline-content">
-            <h3>Timeline Creation</h3>
-            <p>Correlated artifacts from multiple sources to build comprehensive attack timeline using SIFT Workstation tools</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- ================= KEY FINDINGS ================= -->
-    <section class="content-section">
-      <h2 class="section-title">Key Findings</h2>
-      
-      <div class="findings-grid">
-        <div class="finding-card finding-critical">
-          <div class="finding-header">
-            <span class="finding-badge">Critical</span>
-            <h3>Initial Access Vector</h3>
-          </div>
-          <p>
-            Spear-phishing email with malicious macro-enabled document. Victim opened attachment leading to execution of PowerShell payload.
-          </p>
+    <!-- ================= CONTACT ================= -->
+    <section class="section contact-section" id="contact">
+      <div class="contact-wrapper">
+        <div class="section-header">
+          <span class="section-tag">Get In Touch</span>
+          <h2>Contact</h2>
+          <p class="section-description">Feel free to reach out for opportunities or collaborations</p>
         </div>
+        
+        <div class="contact-grid">
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <h3>Email</h3>
+            <p>mohamed.ashraf.abdallah65@gmail.com</p>
+          </a>
 
-        <div class="finding-card finding-high">
-          <div class="finding-header">
-            <span class="finding-badge">High</span>
-            <h3>Persistence Mechanism</h3>
-          </div>
-          <p>
-            Registry Run key modification and scheduled task creation for maintaining access. Identified through registry analysis and Windows event logs.
-          </p>
+          <a href="https://www.linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <h3>LinkedIn</h3>
+            <p>mohamed-mooka</p>
+          </a>
+
+          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <h3>GitHub</h3>
+            <p>mohamedmOoka7</p>
+          </a>
+
+          <a href="assets/Mohamed_Mooka_CV.pdf" download class="contact-card contact-card-cta">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+            </div>
+            <h3>Download CV</h3>
+            <p>View my resume</p>
+          </a>
         </div>
-
-        <div class="finding-card finding-high">
-          <div class="finding-header">
-            <span class="finding-badge">High</span>
-            <h3>Lateral Movement</h3>
-          </div>
-          <p>
-            Pass-the-hash attacks using compromised credentials. Network logs revealed RDP connections to multiple internal systems.
-          </p>
-        </div>
-
-        <div class="finding-card finding-critical">
-          <div class="finding-header">
-            <span class="finding-badge">Critical</span>
-            <h3>Data Exfiltration</h3>
-          </div>
-          <p>
-            Sensitive documents compressed and exfiltrated via HTTPS to external IP. Total of 2.3 GB of data transferred over 48-hour period.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TOOLS & TECHNIQUES ================= -->
-    <section class="content-section section-dark">
-      <h2 class="section-title">Tools & Techniques</h2>
-      
-      <div class="tools-grid">
-        <div class="tool-card">
-          <h3>Volatility 3</h3>
-          <p>Memory forensics framework for extracting digital artifacts from RAM dumps</p>
-          <ul class="tool-features">
-            <li>Process analysis and malware detection</li>
-            <li>Network connection enumeration</li>
-            <li>Code injection identification</li>
-          </ul>
-        </div>
-
-        <div class="tool-card">
-          <h3>Autopsy</h3>
-          <p>Digital forensics platform for disk image analysis</p>
-          <ul class="tool-features">
-            <li>File system timeline generation</li>
-            <li>Deleted file recovery</li>
-            <li>Keyword searching and data carving</li>
-          </ul>
-        </div>
-
-        <div class="tool-card">
-          <h3>Wireshark</h3>
-          <p>Network protocol analyzer for traffic inspection</p>
-          <ul class="tool-features">
-            <li>PCAP file analysis</li>
-            <li>Protocol dissection</li>
-            <li>C2 communication detection</li>
-          </ul>
-        </div>
-
-        <div class="tool-card">
-          <h3>SIFT Workstation</h3>
-          <p>Ubuntu-based forensics distribution with pre-installed tools</p>
-          <ul class="tool-features">
-            <li>Timeline analysis with log2timeline</li>
-            <li>File system examination</li>
-            <li>Memory analysis utilities</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= LESSONS LEARNED ================= -->
-    <section class="content-section">
-      <h2 class="section-title">Lessons Learned</h2>
-      <div class="content-card">
-        <ul class="lessons-list">
-          <li>
-            <strong>Chain of Custody:</strong> Maintaining proper documentation and evidence handling procedures is critical for forensic integrity
-          </li>
-          <li>
-            <strong>Multi-Source Correlation:</strong> Combining evidence from memory, disk, and network sources provides comprehensive incident understanding
-          </li>
-          <li>
-            <strong>Timeline Reconstruction:</strong> Accurate timeline creation requires careful correlation of timestamps across different artifact types
-          </li>
-          <li>
-            <strong>Tool Proficiency:</strong> Deep understanding of forensic tools and their capabilities is essential for effective investigation
-          </li>
-          <li>
-            <strong>Documentation:</strong> Detailed note-taking and screenshot capture throughout the investigation supports accurate reporting
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ================= CONCLUSION ================= -->
-    <section class="content-section section-dark">
-      <h2 class="section-title">Conclusion</h2>
-      <div class="content-card">
-        <p>
-          This DFIR investigation demonstrated comprehensive incident response capabilities from initial detection through forensic analysis and timeline reconstruction. The project successfully identified the attack vector, documented persistence mechanisms, traced lateral movement, and confirmed data exfiltration activities. The findings were compiled into a detailed forensic report suitable for legal proceedings and organizational security improvements.
-        </p>
-        <p style="margin-top: 1rem;">
-          The investigation reinforced the importance of systematic evidence collection, proper tool usage, and thorough documentation in digital forensics work. These skills are directly applicable to real-world SOC and incident response scenarios.
-        </p>
       </div>
     </section>
 
