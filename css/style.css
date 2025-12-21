@@ -119,13 +119,21 @@ body {
   color: white;
 }
 
-/* Added styles for profile photo logo */
+/* Enhanced profile photo styling with better shadow and hover effect */
 .logo-photo {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 12px;
   object-fit: cover;
   border: 2px solid var(--color-primary);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  transition: all var(--transition-base);
+}
+
+.nav-logo:hover .logo-photo {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  transform: scale(1.05);
 }
 
 .nav-logo:hover {
