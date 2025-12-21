@@ -120,14 +120,16 @@ cards.forEach((card) => {
 })
 
 // ================= SCROLL REVEAL ANIMATION =================
-const revealElements = document.querySelectorAll(".card, .section-header")
+const revealElements = document.querySelectorAll(".card, .section-header, .skill-category")
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
-    entries.forEach((entry) => {
+    entries.forEach((entry, index) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
+        setTimeout(() => {
+          entry.target.style.opacity = "1"
+          entry.target.style.transform = "translateY(0)"
+        }, index * 100)
       }
     })
   },
@@ -176,3 +178,64 @@ window.addEventListener(
   },
   { passive: true },
 )
+
+// ================= MATRIX RAIN EFFECT =================
+function initMatrixEffect() {
+  const canvas = document.getElementById("matrix-canvas")
+  if (!canvas) return
+
+  const ctx = canvas.getContext("2d")
+
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-={}[]|:;<>?/~"
+  const charArray = chars.split("")
+
+  const fontSize = 14
+  const columns = canvas.width / fontSize
+
+  const drops = []
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * -100
+  }
+
+  function draw() {
+    ctx.fillStyle = "rgba(6, 9, 17, 0.05)"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    ctx.fillStyle = "#00d9ff"
+    ctx.font = fontSize + "px monospace"
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = charArray[Math.floor(Math.random() * charArray.length)]
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0
+      }
+
+      drops[i]++
+    }
+  }
+
+  const matrixInterval = setInterval(draw, 50)
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  })
+
+  // Stop animation when user scrolls away from hero
+  let lastScrollTop = 0
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    if (scrollTop > window.innerHeight * 0.8 && scrollTop > lastScrollTop) {
+      clearInterval(matrixInterval)
+    }
+    lastScrollTop = scrollTop
+  })
+}
+
+// Initialize matrix effect
+initMatrixEffect()
