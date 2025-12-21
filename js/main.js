@@ -1,34 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== NAVIGATION =====
   const nav = document.querySelector(".nav")
   const navItems = document.querySelectorAll(".nav-item")
   const sections = document.querySelectorAll("section[id]")
-  const mobileToggle = document.querySelector(".mobile-toggle")
 
-  // Scroll effect on navigation
-  let lastScroll = 0
+  let ticking = false
+
   window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const currentScroll = window.pageYOffset
 
-    // Add shadow on scroll
-    if (currentScroll > 100) {
-      nav.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.3)"
-    } else {
-      nav.style.boxShadow = "none"
+        if (currentScroll > 100) {
+          nav.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.4)"
+        } else {
+          nav.style.boxShadow = "none"
+        }
+
+        updateActiveNavItem()
+        ticking = false
+      })
+      ticking = true
     }
-
-    lastScroll = currentScroll
-
-    // Update active nav item
-    updateActiveNavItem()
   })
 
   function updateActiveNavItem() {
-    const scrollY = window.pageYOffset
+    const scrollY = window.pageYOffset + 200
 
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 150
+      const sectionTop = section.offsetTop
       const sectionId = section.getAttribute("id")
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Smooth scroll to sections
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href")
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const target = document.querySelector(href)
 
         if (target) {
-          const offsetTop = target.offsetTop - 80
+          const offsetTop = target.offsetTop - 100
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -62,10 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.15,
+    rootMargin: "0px 0px -80px 0px",
   }
 
   const observer = new IntersectionObserver((entries) => {
@@ -74,63 +72,74 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           entry.target.style.opacity = "1"
           entry.target.style.transform = "translateY(0)"
-        }, index * 100)
+        }, index * 120)
         observer.unobserve(entry.target)
       }
     })
   }, observerOptions)
 
-  // Observe all cards and sections
   const animatedElements = document.querySelectorAll(
     ".expertise-card, .project-card, .contact-card, .highlight-card, .about-text, .about-highlights",
   )
 
   animatedElements.forEach((el) => {
     el.style.opacity = "0"
-    el.style.transform = "translateY(40px)"
-    el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+    el.style.transform = "translateY(50px)"
+    el.style.transition = "opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
     observer.observe(el)
   })
 
-  // ===== TERMINAL TYPING EFFECT =====
   const terminalLines = document.querySelectorAll(".terminal-line")
   terminalLines.forEach((line, index) => {
     line.style.opacity = "0"
     setTimeout(
       () => {
-        line.style.transition = "opacity 0.3s ease"
+        line.style.transition = "opacity 0.4s ease"
         line.style.opacity = "1"
       },
-      500 + index * 200,
+      600 + index * 250,
     )
   })
 
-  // ===== PARALLAX EFFECT ON HERO =====
-  const hero = document.querySelector(".hero")
-  if (hero) {
+  const heroTitle = document.querySelector(".hero-title")
+  const heroDescription = document.querySelector(".hero-description")
+
+  if (heroTitle && heroDescription) {
     window.addEventListener("scroll", () => {
       const scrolled = window.pageYOffset
-      const parallax = scrolled * 0.3
-      hero.style.transform = `translateY(${parallax}px)`
+      const parallaxTitle = scrolled * 0.15
+      const parallaxDesc = scrolled * 0.25
+
+      heroTitle.style.transform = `translateY(${parallaxTitle}px)`
+      heroDescription.style.transform = `translateY(${parallaxDesc}px)`
     })
   }
 
-  // ===== CONSOLE BRANDING =====
   console.log(
-    "%cMohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #6366f1; text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);",
+    "%c🛡️ Mohamed Mooka - Cybersecurity Portfolio",
+    "font-size: 22px; font-weight: 900; color: #6366f1; text-shadow: 0 0 20px rgba(99, 102, 241, 0.6);",
   )
-  console.log("%cPremium Design • Modern UI/UX", "font-size: 14px; color: #a1a1aa;")
+  console.log(
+    "%cDigital Forensics • Incident Response • SOC Operations",
+    "font-size: 14px; color: #22d3ee; font-weight: 600;",
+  )
+  console.log("%cBuilt with modern web standards • Optimized for performance", "font-size: 12px; color: #a1a1aa;")
 
-  // ===== IMAGE ERROR HANDLING =====
   const profileImages = document.querySelectorAll(".logo-photo")
   profileImages.forEach((img) => {
+    img.style.opacity = "0"
+    img.style.transition = "opacity 0.5s ease"
+
     img.addEventListener("error", function () {
-      console.log("[v0] Profile image failed to load, using fallback icon")
       this.style.display = "none"
       const fallback = this.nextElementSibling
       if (fallback && fallback.classList.contains("logo-icon")) {
         fallback.style.display = "flex"
+        fallback.style.opacity = "0"
+        setTimeout(() => {
+          fallback.style.transition = "opacity 0.5s ease"
+          fallback.style.opacity = "1"
+        }, 50)
       }
     })
 
@@ -138,4 +147,39 @@ document.addEventListener("DOMContentLoaded", () => {
       this.style.opacity = "1"
     })
   })
+
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const statNumbers = entry.target.querySelectorAll(".stat-number")
+          statNumbers.forEach((stat) => {
+            const finalValue = stat.textContent
+            const numericValue = Number.parseInt(finalValue)
+
+            if (!isNaN(numericValue)) {
+              let currentValue = 0
+              const increment = numericValue / 50
+              const timer = setInterval(() => {
+                currentValue += increment
+                if (currentValue >= numericValue) {
+                  stat.textContent = finalValue
+                  clearInterval(timer)
+                } else {
+                  stat.textContent = Math.floor(currentValue) + "+"
+                }
+              }, 30)
+            }
+          })
+          statsObserver.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.5 },
+  )
+
+  const heroStats = document.querySelector(".hero-stats")
+  if (heroStats) {
+    statsObserver.observe(heroStats)
+  }
 })
