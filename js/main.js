@@ -189,10 +189,10 @@ function initMatrixEffect() {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-={}[]|:;<>?/~"
+  const chars = "01"
   const charArray = chars.split("")
 
-  const fontSize = 14
+  const fontSize = 16
   const columns = canvas.width / fontSize
 
   const drops = []
@@ -201,17 +201,17 @@ function initMatrixEffect() {
   }
 
   function draw() {
-    ctx.fillStyle = "rgba(6, 9, 17, 0.05)"
+    ctx.fillStyle = "rgba(5, 8, 16, 0.04)"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-    ctx.fillStyle = "#00d9ff"
+    ctx.fillStyle = "#3b82f6"
     ctx.font = fontSize + "px monospace"
 
     for (let i = 0; i < drops.length; i++) {
       const text = charArray[Math.floor(Math.random() * charArray.length)]
       ctx.fillText(text, i * fontSize, drops[i] * fontSize)
 
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
         drops[i] = 0
       }
 
@@ -219,14 +219,13 @@ function initMatrixEffect() {
     }
   }
 
-  const matrixInterval = setInterval(draw, 50)
+  const matrixInterval = setInterval(draw, 60)
 
   window.addEventListener("resize", () => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
   })
 
-  // Stop animation when user scrolls away from hero
   let lastScrollTop = 0
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
@@ -237,5 +236,4 @@ function initMatrixEffect() {
   })
 }
 
-// Initialize matrix effect
 initMatrixEffect()
