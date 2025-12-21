@@ -126,13 +126,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileImages = document.querySelectorAll(".logo-photo")
   profileImages.forEach((img) => {
     img.addEventListener("error", function () {
-      console.log("[v0] Profile image failed to load from:", this.src)
-      // Fallback to placeholder if image fails
+      console.log("[v0] Profile image failed to load, using fallback icon")
       this.style.display = "none"
-      const placeholder = document.createElement("div")
-      placeholder.className = "logo-icon"
-      placeholder.textContent = "MM"
-      this.parentNode.insertBefore(placeholder, this)
+      const fallback = this.nextElementSibling
+      if (fallback && fallback.classList.contains("logo-icon")) {
+        fallback.style.display = "flex"
+      }
+    })
+
+    img.addEventListener("load", function () {
+      this.style.opacity = "1"
     })
   })
 })
