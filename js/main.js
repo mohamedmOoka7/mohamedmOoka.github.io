@@ -1,22 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== LOADING SCREEN =====
-  const loadingScreen = document.querySelector(".loading-screen")
-
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      loadingScreen.classList.add("hidden")
-      // Trigger hero animations after loading
-      setTimeout(() => {
-        const heroElements = document.querySelectorAll(".hero [data-animate]")
-        heroElements.forEach((element, index) => {
-          setTimeout(() => {
-            element.classList.add("animated")
-          }, index * 100)
-        })
-      }, 200)
-    }, 1500)
-  })
-
   // ===== CUSTOM CURSOR =====
   const cursorDot = document.querySelector("[data-cursor-dot]")
   const cursorOutline = document.querySelector("[data-cursor-outline]")
@@ -35,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
       cursorDot.style.top = `${mouseY}px`
     })
 
-    // Smooth cursor outline follow
     function animateCursor() {
       cursorX += (mouseX - cursorX) * 0.15
       cursorY += (mouseY - cursorY) * 0.15
@@ -49,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Cursor hover effects
     const interactiveElements = document.querySelectorAll(
-      "a, button, .btn, .nav-link, .work-card, .skill-item, .stat, .contact-card, .tool-tag",
+      "a, button, .btn, .nav-link, .work-card, .skill-item, .contact-card, .tool-tag",
     )
 
     interactiveElements.forEach((el) => {
@@ -67,25 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // ===== SCROLL PROGRESS =====
-  const scrollProgress = document.querySelector(".scroll-progress")
-
-  window.addEventListener("scroll", () => {
-    const windowHeight = window.innerHeight
-    const documentHeight = document.documentElement.scrollHeight - windowHeight
-    const scrolled = window.scrollY
-    const progress = (scrolled / documentHeight) * 100
-
-    scrollProgress.style.transform = `scaleX(${progress / 100})`
-  })
-
   // ===== NAVIGATION =====
   const nav = document.querySelector(".nav")
   const navLinks = document.querySelectorAll(".nav-link")
   const sections = document.querySelectorAll("section[id]")
   const menuBtn = document.querySelector(".menu-btn")
 
-  // Active nav on scroll
   function updateActiveNav() {
     const scrollY = window.pageYOffset
 
@@ -115,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
       menuBtn.classList.toggle("active")
     })
 
-    // Close mobile menu when clicking nav links
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("active")
@@ -123,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
 
-    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
         nav.classList.remove("active")
@@ -155,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== SCROLL ANIMATIONS =====
   const animatedElements = document.querySelectorAll("[data-animate]")
 
   const observerOptions = {
@@ -179,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollObserver.observe(element)
   })
 
-  // ===== PARALLAX EFFECT FOR BACKGROUND ORBS =====
   const orbs = document.querySelectorAll(".gradient-orb")
 
   window.addEventListener("scroll", () => {
@@ -191,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== WORK CARD MOUSE EFFECT =====
   const workCards = document.querySelectorAll(".work-card")
 
   workCards.forEach((card) => {
@@ -205,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== MAGNETIC BUTTON EFFECT =====
   const magneticButtons = document.querySelectorAll(".btn-primary, .btn-secondary")
 
   magneticButtons.forEach((button) => {
@@ -222,19 +184,12 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== TOOL TAGS ANIMATION =====
-  const toolTags = document.querySelectorAll(".tool-tag")
-
-  toolTags.forEach((tag, index) => {
-    tag.style.animationDelay = `${index * 0.05}s`
-  })
-
   // ===== CONSOLE MESSAGE =====
   console.log(
     "%cMohamed Mooka | Cybersecurity Portfolio",
     "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);",
   )
-  console.log("%cEnhanced with Advanced Animations", "font-size: 14px; color: #8b5cf6; font-weight: 600;")
+  console.log("%cEnhanced Professional Design", "font-size: 14px; color: #8b5cf6; font-weight: 600;")
 
   // ===== PERFORMANCE: REDUCE MOTION =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
