@@ -1,272 +1,381 @@
-// Mobile Navigation Toggle
-const mobileToggle = document.getElementById("mobileToggle")
-const navMenu = document.getElementById("navMenu")
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== NAVIGATION =====
+  const navLinks = document.querySelectorAll(".nav-link")
+  const sections = document.querySelectorAll("section[id]")
+  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
+  const sidebarNav = document.querySelector(".sidebar-nav")
 
-mobileToggle.addEventListener("click", () => {
-  navMenu.classList.toggle("active")
-  mobileToggle.classList.toggle("active")
-})
+  function updateActiveNav() {
+    const scrollY = window.pageYOffset
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll(".nav-link").forEach((link) => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("active")
-    mobileToggle.classList.remove("active")
-  })
-})
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight
+      const sectionTop = section.offsetTop - 200
+      const sectionId = section.getAttribute("id")
 
-// Navbar scroll effect
-const nav = document.getElementById("nav")
-let lastScroll = 0
-
-window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset
-
-  if (currentScroll > 100) {
-    nav.classList.add("scrolled")
-  } else {
-    nav.classList.remove("scrolled")
-  }
-
-  lastScroll = currentScroll
-})
-
-// Animated counter for stats
-function animateCounter(element, target, duration = 2000) {
-  const start = 0
-  const increment = target / (duration / 16)
-  let current = start
-
-  const timer = setInterval(() => {
-    current += increment
-    if (current >= target) {
-      element.textContent = target + "+"
-      clearInterval(timer)
-    } else {
-      element.textContent = Math.floor(current) + "+"
-    }
-  }, 16)
-}
-
-// Intersection Observer for counter animation
-const observerOptions = {
-  threshold: 0.5,
-  rootMargin: "0px",
-}
-
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const statValue = entry.target
-      const target = Number.parseInt(statValue.getAttribute("data-target"))
-      animateCounter(statValue, target)
-      statsObserver.unobserve(statValue)
-    }
-  })
-}, observerOptions)
-
-// Observe all stat values
-document.querySelectorAll(".stat-value").forEach((stat) => {
-  statsObserver.observe(stat)
-})
-
-// Smooth scroll with offset for fixed nav
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
-    if (target) {
-      const offsetTop = target.offsetTop - 80
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      })
-    }
-  })
-})
-
-// Intersection Observer for fade-in animations
-const fadeObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active")
+          if (link.getAttribute("data-section") === sectionId) {
+            link.classList.add("active")
+          }
+        })
       }
     })
-  },
-  {
+  }
+
+  // ===== LOADING OVERLAY =====
+  const loadingOverlay = document.getElementById("loadingOverlay")
+  if (loadingOverlay) {
+    setTimeout(() => {
+      loadingOverlay.classList.add("hidden")
+      setTimeout(() => loadingOverlay.remove(), 500)
+    }, 800)
+  }
+
+  // ===== SMOOTH SCROLL =====
+  const links = document.querySelectorAll('a[href^="#"]')
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href")
+
+      if (href !== "#" && href.length > 1) {
+        e.preventDefault()
+
+        const target = document.querySelector(href)
+        if (target) {
+          const offsetTop = target.offsetTop - 60
+
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth",
+          })
+        }
+      }
+    })
+  })
+
+  // ===== STATS COUNTER =====
+  const statsNumbers = document.querySelectorAll(".stat-number")
+  let hasAnimatedStats = false
+
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasAnimatedStats) {
+          hasAnimatedStats = true
+          animateStats()
+        }
+      })
+    },
+    { threshold: 0.5 },
+  )
+
+  const aboutSection = document.getElementById("about")
+  if (aboutSection) {
+    statsObserver.observe(aboutSection)
+  }
+
+  function animateStats() {
+    statsNumbers.forEach((stat) => {
+      const target = Number.parseInt(stat.getAttribute("data-target"))
+      const duration = 2000
+      const increment = target / (duration / 16)
+      let current = 0
+
+      const updateCounter = () => {
+        current += increment
+        if (current < target) {
+          stat.textContent = Math.floor(current)
+          requestAnimationFrame(updateCounter)
+        } else {
+          stat.textContent = target
+        }
+      }
+
+      updateCounter()
+    })
+  }
+
+  // ===== INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS =====
+  const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
-  },
-)
-
-// Add fade-in animation to sections
-document.querySelectorAll(".about-card, .skill-category, .project-card, .contact-card").forEach((el) => {
-  el.style.opacity = "0"
-  el.style.transform = "translateY(20px)"
-  el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
-  fadeObserver.observe(el)
-})
-
-// Terminal typing animation (enhanced)
-const terminalCommands = document.querySelectorAll(".typing-animation")
-terminalCommands.forEach((cmd, cmdIndex) => {
-  const text = cmd.textContent
-  cmd.textContent = ""
-  let i = 0
-
-  setTimeout(() => {
-    const typing = setInterval(
-      () => {
-        if (i < text.length) {
-          cmd.textContent += text.charAt(i)
-          i++
-        } else {
-          clearInterval(typing)
-        }
-      },
-      80 + Math.random() * 40,
-    )
-  }, cmdIndex * 500)
-})
-
-// Add keyboard navigation support
-document.addEventListener("keydown", (e) => {
-  // Escape key closes mobile menu
-  if (e.key === "Escape" && navMenu.classList.contains("active")) {
-    navMenu.classList.remove("active")
-    mobileToggle.classList.remove("active")
   }
 
-  // Alt + number keys for quick navigation
-  if (e.altKey) {
-    switch (e.key) {
-      case "1":
-        document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })
-        break
-      case "2":
-        document.querySelector("#skills")?.scrollIntoView({ behavior: "smooth" })
-        break
-      case "3":
-        document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })
-        break
-      case "4":
-        document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
-        break
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = "1"
+          entry.target.style.transform = "translateY(0)"
+        }, index * 50)
+        fadeInObserver.unobserve(entry.target)
+      }
+    })
+  }, observerOptions)
+
+  const cards = document.querySelectorAll(".expertise-card, .project-card, .contact-method, .stat-box")
+  cards.forEach((card, index) => {
+    card.style.opacity = "0"
+    card.style.transform = "translateY(30px)"
+    card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
+    fadeInObserver.observe(card)
+  })
+
+  // ===== SCROLL TO TOP BUTTON =====
+  const scrollToTopBtn = document.getElementById("scrollToTop")
+
+  function updateScrollToTop() {
+    if (window.pageYOffset > 500) {
+      scrollToTopBtn.classList.add("visible")
+    } else {
+      scrollToTopBtn.classList.remove("visible")
     }
   }
-})
 
-// Parallax effect for hero section
-let ticking = false
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    })
+  }
 
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.pageYOffset
-      const heroContent = document.querySelector(".hero-content")
-      const heroTerminal = document.querySelector(".hero-terminal")
+  // ===== KEYBOARD NAVIGATION =====
+  document.addEventListener("keydown", (e) => {
+    // ESC key closes mobile menu
+    if (e.key === "Escape" && sidebarNav.classList.contains("active")) {
+      sidebarNav.classList.remove("active")
+      mobileMenuToggle.classList.remove("active")
+    }
 
-      if (heroContent && window.innerWidth > 768) {
-        heroContent.style.transform = `translateY(${scrolled * 0.15}px)`
-        if (heroTerminal) {
-          heroTerminal.style.transform = `translateY(${scrolled * 0.25}px)`
+    // Arrow keys for navigation between sections
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      const currentSection = document.querySelector(".nav-link.active")
+      if (currentSection) {
+        const allLinks = Array.from(navLinks)
+        const currentIndex = allLinks.indexOf(currentSection)
+        let nextIndex
+
+        if (e.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % allLinks.length
+        } else {
+          nextIndex = (currentIndex - 1 + allLinks.length) % allLinks.length
+        }
+
+        const nextLink = allLinks[nextIndex]
+        const targetId = nextLink.getAttribute("href")
+        if (targetId && targetId.startsWith("#")) {
+          e.preventDefault()
+          const targetSection = document.querySelector(targetId)
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: "smooth" })
+          }
         }
       }
+    }
+  })
 
-      ticking = false
+  // ===== DEBOUNCED SCROLL HANDLER =====
+  let scrollTimeout
+  const debounceScroll = (callback, delay = 100) => {
+    return () => {
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(callback, delay)
+    }
+  }
+
+  const handleScroll = debounceScroll(() => {
+    updateActiveNav()
+    updateScrollToTop()
+  })
+
+  window.addEventListener("scroll", handleScroll)
+
+  // Mobile menu toggle
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener("click", () => {
+      sidebarNav.classList.toggle("active")
+      mobileMenuToggle.classList.toggle("active")
     })
 
-    ticking = true
-  }
-})
+    // Close mobile menu when clicking nav links
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebarNav.classList.remove("active")
+        mobileMenuToggle.classList.remove("active")
+      })
+    })
 
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-  let timeout
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout)
-      func(...args)
+    document.addEventListener("click", (e) => {
+      if (
+        sidebarNav.classList.contains("active") &&
+        !sidebarNav.contains(e.target) &&
+        !mobileMenuToggle.contains(e.target)
+      ) {
+        sidebarNav.classList.remove("active")
+        mobileMenuToggle.classList.remove("active")
+      }
+    })
+  }
+
+  // ===== PARALLAX EFFECT =====
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    const parallaxElements = document.querySelectorAll(".hero-section::before")
+
+    if (window.innerWidth > 768) {
+      const heroSection = document.querySelector(".hero-section")
+      if (heroSection && scrolled < window.innerHeight) {
+        heroSection.style.transform = `translateY(${scrolled * 0.3}px)`
+      }
     }
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
+  })
+
+  const heroTitle = document.querySelector(".hero-title")
+  if (heroTitle) {
+    const text = heroTitle.innerHTML
+    heroTitle.innerHTML = ""
+    heroTitle.style.opacity = "1"
+
+    let charIndex = 0
+    const typingSpeed = 50
+
+    function typeText() {
+      if (charIndex < text.length) {
+        heroTitle.innerHTML = text.substring(0, charIndex + 1)
+        charIndex++
+        setTimeout(typeText, typingSpeed)
+      }
+    }
+
+    // Start typing after a short delay
+    setTimeout(typeText, 500)
   }
-}
 
-// Active nav link on scroll
-const sections = document.querySelectorAll("section[id]")
-const navLinks = document.querySelectorAll(".nav-link")
-
-const highlightNav = debounce(() => {
-  const scrollY = window.pageYOffset
-
-  sections.forEach((section) => {
-    const sectionHeight = section.offsetHeight
-    const sectionTop = section.offsetTop - 150
-    const sectionId = section.getAttribute("id")
-
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      navLinks.forEach((link) => {
-        link.classList.remove("active")
-        if (link.getAttribute("href") === `#${sectionId}`) {
-          link.classList.add("active")
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-visible")
         }
       })
+    },
+    { threshold: 0.2 },
+  )
+
+  document.querySelectorAll(".section").forEach((section) => {
+    section.style.opacity = "0"
+    section.style.transform = "translateY(20px)"
+    section.style.transition = "opacity 0.8s ease, transform 0.8s ease"
+    sectionObserver.observe(section)
+  })
+
+  // Add class for visible sections
+  const style = document.createElement("style")
+  style.textContent = `
+    .section-visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  `
+  document.head.appendChild(style)
+
+  const cursorTrail = []
+  const maxTrailLength = 20
+
+  document.addEventListener("mousemove", (e) => {
+    if (window.innerWidth > 1024) {
+      cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() })
+
+      if (cursorTrail.length > maxTrailLength) {
+        cursorTrail.shift()
+      }
     }
   })
-}, 50)
 
-window.addEventListener("scroll", highlightNav)
+  // ===== CONTACT FORM HANDLING =====
+  const contactForm = document.getElementById("contactForm")
+  const formMessage = document.getElementById("formMessage")
 
-// Lazy loading for images (if any additional images are added)
-if ("loading" in HTMLImageElement.prototype) {
-  const images = document.querySelectorAll('img[loading="lazy"]')
-  images.forEach((img) => {
-    img.src = img.dataset.src
-  })
-} else {
-  // Fallback for browsers that don't support lazy loading
-  const script = document.createElement("script")
-  script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-  document.body.appendChild(script)
-}
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault()
 
-// Cursor trail effect (subtle)
-let mouseX = 0
-let mouseY = 0
-const cursorX = 0
-const cursorY = 0
+      const submitButton = contactForm.querySelector('button[type="submit"]')
+      const formData = new FormData(contactForm)
+      const data = Object.fromEntries(formData.entries())
 
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX
-  mouseY = e.clientY
+      // Show loading state
+      submitButton.classList.add("loading")
+      submitButton.disabled = true
+      formMessage.style.display = "none"
+      formMessage.classList.remove("success", "error")
+
+      try {
+        // Simulate form submission (replace with actual backend endpoint)
+        await new Promise((resolve) => setTimeout(resolve, 1500))
+
+        // For demo purposes, we'll use mailto as fallback
+        const mailtoLink = `mailto:mohamed.ashraf.abdallah65@gmail.com?subject=${encodeURIComponent(
+          data.subject,
+        )}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`
+
+        // Show success message
+        formMessage.textContent = "Message sent successfully! I'll get back to you soon."
+        formMessage.classList.add("success")
+        formMessage.style.display = "block"
+
+        // Reset form
+        contactForm.reset()
+
+        // Open mailto link
+        window.location.href = mailtoLink
+      } catch (error) {
+        // Show error message
+        formMessage.textContent = "Sorry, there was an error sending your message. Please try again."
+        formMessage.classList.add("error")
+        formMessage.style.display = "block"
+      } finally {
+        // Remove loading state
+        submitButton.classList.remove("loading")
+        submitButton.disabled = false
+
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessage.style.display = "none"
+        }, 5000)
+      }
+    })
+
+    // Form field validation feedback
+    const formInputs = contactForm.querySelectorAll(".form-input, .form-textarea")
+    formInputs.forEach((input) => {
+      input.addEventListener("blur", () => {
+        if (input.value.trim() === "" && input.hasAttribute("required")) {
+          input.style.borderColor = "var(--color-error)"
+        } else {
+          input.style.borderColor = "var(--color-border)"
+        }
+      })
+
+      input.addEventListener("input", () => {
+        if (input.style.borderColor === "var(--color-error)") {
+          input.style.borderColor = "var(--color-border)"
+        }
+      })
+    })
+  }
+
+  // ===== CONSOLE MESSAGE =====
+  console.log(
+    "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
+    "font-size: 18px; font-weight: 700; color: #3B82F6; text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);",
+  )
+  console.log("%c✨ Enhanced with Modern Animations & Interactions", "font-size: 13px; color: #A0A0A0;")
+  console.log("%c🚀 Performance Optimized | Fully Responsive", "font-size: 13px; color: #10B981;")
+  console.log("%c📱 Mobile-First Design | Accessibility Ready", "font-size: 13px; color: #F59E0B;")
 })
-
-// Performance optimization for animations
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-
-if (prefersReducedMotion.matches) {
-  document.querySelectorAll("*").forEach((el) => {
-    el.style.animation = "none"
-    el.style.transition = "none"
-  })
-}
-
-console.clear()
-console.log(
-  "%c🔒 Security Portfolio",
-  "font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;",
-)
-console.log("%c👋 Hello, fellow developer!", "font-size: 16px; font-weight: bold; color: #3b82f6;")
-console.log("%c💼 Interested in cybersecurity and digital forensics?", "font-size: 14px; color: #cbd5e1;")
-console.log("%c🔗 Check out the projects and connect!", "font-size: 14px; color: #10b981;")
-console.log("%c📧 mohamed.ashraf.abdallah65@gmail.com", "font-size: 14px; color: #06b6d4;")
-
-// Dynamic year to footer if needed
-const currentYear = new Date().getFullYear()
-const footerYear = document.querySelector(".footer-content p")
-if (footerYear && !footerYear.textContent.includes(currentYear)) {
-  footerYear.textContent = `© ${currentYear} Mohamed Mooka. All rights reserved.`
-}
