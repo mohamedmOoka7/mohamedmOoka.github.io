@@ -51,6 +51,42 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
+  // ===== TYPING EFFECT =====
+  const typingText = document.querySelector(".typing-text")
+  const texts = ["Cybersecurity Analyst", "DFIR Specialist", "SOC Analyst", "Threat Hunter", "Incident Responder"]
+  let textIndex = 0
+  let charIndex = 0
+  let isDeleting = false
+
+  function type() {
+    const currentText = texts[textIndex]
+
+    if (isDeleting) {
+      typingText.textContent = currentText.substring(0, charIndex - 1)
+      charIndex--
+    } else {
+      typingText.textContent = currentText.substring(0, charIndex + 1)
+      charIndex++
+    }
+
+    let typeSpeed = isDeleting ? 50 : 100
+
+    if (!isDeleting && charIndex === currentText.length) {
+      typeSpeed = 2000
+      isDeleting = true
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false
+      textIndex = (textIndex + 1) % texts.length
+      typeSpeed = 500
+    }
+
+    setTimeout(type, typeSpeed)
+  }
+
+  if (typingText) {
+    setTimeout(type, 1000)
+  }
+
   // ===== SCROLL PROGRESS =====
   const scrollProgress = document.querySelector(".scroll-progress")
 
@@ -114,6 +150,43 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
+
+  // ===== MOBILE MENU =====
+  const menuToggle = document.querySelector(".menu-toggle")
+  const nav = document.querySelector(".nav")
+
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      nav.classList.toggle("active")
+      menuToggle.classList.toggle("active")
+
+      // Animate menu toggle
+      const spans = menuToggle.querySelectorAll("span")
+      if (menuToggle.classList.contains("active")) {
+        spans[0].style.transform = "rotate(45deg) translateY(8px)"
+        spans[1].style.opacity = "0"
+      } else {
+        spans[0].style.transform = "none"
+        spans[1].style.opacity = "1"
+      }
+    })
+  }
+
+  // ===== HEADER SCROLL EFFECT =====
+  const header = document.querySelector(".header")
+  let lastScroll = 0
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset
+
+    if (currentScroll > 100) {
+      header.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.05)"
+    } else {
+      header.style.boxShadow = "none"
+    }
+
+    lastScroll = currentScroll
+  })
 
   // ===== SMOOTH SCROLL =====
   const links = document.querySelectorAll('a[href^="#"]')
@@ -265,6 +338,16 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // ===== PARALLAX SCROLL =====
+  const hero = document.querySelector(".hero-visual")
+
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    if (hero && scrolled < window.innerHeight) {
+      hero.style.transform = `translateY(${scrolled * 0.3}px)`
+    }
+  })
+
   // ===== BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll(".btn")
 
@@ -308,18 +391,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.head.appendChild(style)
 
   // ===== CONSOLE MESSAGE =====
-  const consoleStyles = [
-    "font-size: 20px",
-    "font-weight: 800",
-    "color: #3b82f6",
-    "text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.3)",
-  ].join(";")
-
-  const consoleStyles2 = ["font-size: 14px", "color: #a8a8a8"].join(";")
-
-  console.log("%cMohamed Mooka - Cybersecurity Portfolio", consoleStyles)
-  console.log("%cEnhanced Modern Design 2025", consoleStyles2)
-  console.log("%cInterested in the code? Let's connect!", "font-size: 12px; color: #6b6b6b;")
+  console.log("%cMohamed Mooka — Cybersecurity Portfolio", "font-size: 20px; font-weight: 800; color: #0066ff;")
+  console.log("%cModern Professional Design", "font-size: 14px; color: #737373;")
 
   // ===== ACCESSIBILITY: KEYBOARD NAVIGATION =====
   document.addEventListener("keydown", (e) => {
