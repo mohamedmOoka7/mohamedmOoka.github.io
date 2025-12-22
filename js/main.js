@@ -131,20 +131,74 @@ document.addEventListener("DOMContentLoaded", () => {
       const x = e.clientX - rect.left - rect.width / 2
       const y = e.clientY - rect.top - rect.height / 2
 
-      button.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`
+      button.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`
     })
 
     button.addEventListener("mouseleave", () => {
-      button.style.transform = "translate(0, 0)"
+      button.style.transform = "translate(0, 0) scale(1)"
     })
   })
 
+  let particles = []
+  const particleCount = 20
+
+  document.addEventListener("mousemove", (e) => {
+    if (particles.length < particleCount) {
+      createParticle(e.clientX, e.clientY)
+    }
+  })
+
+  function createParticle(x, y) {
+    const particle = document.createElement("div")
+    particle.className = "cursor-particle"
+    particle.style.cssText = `
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: linear-gradient(135deg, #00d4ff, #7c3aed);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      left: ${x}px;
+      top: ${y}px;
+      animation: particle-fade 1s ease-out forwards;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+    `
+
+    document.body.appendChild(particle)
+    particles.push(particle)
+
+    setTimeout(() => {
+      particle.remove()
+      particles = particles.filter((p) => p !== particle)
+    }, 1000)
+  }
+
+  // Add particle animation
+  const style = document.createElement("style")
+  style.textContent = `
+    @keyframes particle-fade {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px) scale(0);
+      }
+    }
+  `
+  document.head.appendChild(style)
+
   // ===== CONSOLE MESSAGE =====
   console.log(
-    "%cMohamed Mooka | Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);",
+    "%c🔐 Mohamed Mooka | Cybersecurity Portfolio",
+    "font-size: 20px; font-weight: 900; color: #00d4ff; text-shadow: 0 0 20px rgba(0, 212, 255, 0.5); font-family: 'Space Grotesk', sans-serif;",
   )
-  console.log("%cEnhanced Professional Design", "font-size: 14px; color: #8b5cf6; font-weight: 600;")
+  console.log(
+    "%c⚡ Unique Premium Design with Cyber Aesthetics",
+    "font-size: 14px; color: #7c3aed; font-weight: 700; font-family: 'Inter', sans-serif;",
+  )
 
   // ===== PERFORMANCE: REDUCE MOTION =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
