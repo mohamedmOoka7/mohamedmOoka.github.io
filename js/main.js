@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       )
     })
 
-    // Cursor hover effects
     const interactiveElements = document.querySelectorAll(
       "a, button, .btn, .nav-link, .project-card, .expertise-card, .stat-box",
     )
@@ -116,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
         navLinks.forEach((link) => {
           link.classList.remove("active")
-          if (link.getAttribute("data-section") === sectionId) {
+          if (link.getAttribute("href") === `#${sectionId}`) {
             link.classList.add("active")
           }
         })
@@ -134,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileMenuToggle.classList.toggle("active")
     })
 
-    // Close mobile menu when clicking nav links
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         sidebarNav.classList.remove("active")
@@ -142,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
 
-    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!sidebarNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
         sidebarNav.classList.remove("active")
@@ -152,17 +149,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ===== MOBILE MENU =====
-  const menuToggle = document.querySelector(".menu-toggle")
+  const menuBtn = document.querySelector(".menu-btn")
   const nav = document.querySelector(".nav")
 
-  if (menuToggle) {
-    menuToggle.addEventListener("click", () => {
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
       nav.classList.toggle("active")
-      menuToggle.classList.toggle("active")
+      menuBtn.classList.toggle("active")
 
-      // Animate menu toggle
-      const spans = menuToggle.querySelectorAll("span")
-      if (menuToggle.classList.contains("active")) {
+      const spans = menuBtn.querySelectorAll("span")
+      if (menuBtn.classList.contains("active")) {
         spans[0].style.transform = "rotate(45deg) translateY(8px)"
         spans[1].style.opacity = "0"
       } else {
@@ -171,22 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
-
-  // ===== HEADER SCROLL EFFECT =====
-  const header = document.querySelector(".header")
-  let lastScroll = 0
-
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset
-
-    if (currentScroll > 100) {
-      header.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.05)"
-    } else {
-      header.style.boxShadow = "none"
-    }
-
-    lastScroll = currentScroll
-  })
 
   // ===== SMOOTH SCROLL =====
   const links = document.querySelectorAll('a[href^="#"]')
@@ -211,52 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== STATS COUNTER =====
-  const statsNumbers = document.querySelectorAll(".stat-number")
-  let hasAnimatedStats = false
-
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimatedStats) {
-          hasAnimatedStats = true
-          animateStats()
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const aboutSection = document.getElementById("about")
-  if (aboutSection) {
-    statsObserver.observe(aboutSection)
-  }
-
-  function animateStats() {
-    statsNumbers.forEach((stat) => {
-      const target = Number.parseInt(stat.getAttribute("data-target"))
-      const duration = 2000
-      const increment = target / (duration / 16)
-      let current = 0
-
-      const updateCounter = () => {
-        current += increment
-        if (current < target) {
-          stat.textContent = Math.floor(current)
-          requestAnimationFrame(updateCounter)
-        } else {
-          stat.textContent = target + (target >= 100 ? "+" : "")
-        }
-      }
-
-      updateCounter()
-    })
-  }
-
-  // ===== INTERSECTION OBSERVER FOR SECTIONS =====
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.05,
+    rootMargin: "0px 0px -50px 0px",
   }
 
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -271,7 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionObserver.observe(section)
   })
 
-  // ===== CARD ANIMATIONS =====
   const cards = document.querySelectorAll(".expertise-card, .project-card, .contact-method, .stat-box")
 
   const cardObserver = new IntersectionObserver(
@@ -281,50 +217,37 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
             entry.target.style.opacity = "1"
             entry.target.style.transform = "translateY(0)"
-          }, index * 100)
+          }, index * 50)
         }
       })
     },
-    { threshold: 0.1 },
+    { threshold: 0.05 },
   )
 
   cards.forEach((card) => {
     card.style.opacity = "0"
-    card.style.transform = "translateY(40px)"
-    card.style.transition = "opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
+    card.style.transform = "translateY(20px)"
+    card.style.transition = "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
     cardObserver.observe(card)
   })
 
-  // ===== CODE TYPING EFFECT =====
-  const codeLines = document.querySelectorAll(".code-line")
-  let codeAnimated = false
-
-  const codeObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !codeAnimated) {
-          codeAnimated = true
-          animateCode()
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const codeWindow = document.querySelector(".code-window")
-  if (codeWindow) {
-    codeObserver.observe(codeWindow)
-  }
-
-  function animateCode() {
-    codeLines.forEach((line, index) => {
-      line.style.opacity = "0"
-      setTimeout(() => {
-        line.style.transition = "opacity 0.3s ease"
-        line.style.opacity = "1"
-      }, index * 150)
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+      }
     })
-  }
+  }, observerOptions)
+
+  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .stat, .contact-card")
+
+  animatedElements.forEach((element, index) => {
+    element.style.opacity = "0"
+    element.style.transform = "translateY(20px)"
+    element.style.transition = `opacity 0.3s ease ${index * 0.05}s, transform 0.3s ease ${index * 0.05}s`
+    fadeInObserver.observe(element)
+  })
 
   // ===== PARALLAX EFFECT FOR BACKGROUND ORBS =====
   const orbs = document.querySelectorAll(".gradient-orb")
@@ -336,16 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const speed = (index + 1) * 0.05
       orb.style.transform = `translateY(${scrolled * speed}px)`
     })
-  })
-
-  // ===== PARALLAX SCROLL =====
-  const hero = document.querySelector(".hero-visual")
-
-  window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset
-    if (hero && scrolled < window.innerHeight) {
-      hero.style.transform = `translateY(${scrolled * 0.3}px)`
-    }
   })
 
   // ===== BUTTON RIPPLE EFFECT =====
@@ -377,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Add ripple animation
   const style = document.createElement("style")
   style.textContent = `
     @keyframes ripple {
@@ -390,16 +302,11 @@ document.addEventListener("DOMContentLoaded", () => {
   `
   document.head.appendChild(style)
 
-  // ===== CONSOLE MESSAGE =====
-  console.log("%cMohamed Mooka — Cybersecurity Portfolio", "font-size: 20px; font-weight: 800; color: #0066ff;")
-  console.log("%cModern Professional Design", "font-size: 14px; color: #737373;")
-
   // ===== ACCESSIBILITY: KEYBOARD NAVIGATION =====
   document.addEventListener("keydown", (e) => {
-    // Press 'Esc' to close mobile menu
-    if (e.key === "Escape" && sidebarNav.classList.contains("active")) {
+    if (e.key === "Escape" && sidebarNav && sidebarNav.classList.contains("active")) {
       sidebarNav.classList.remove("active")
-      mobileMenuToggle.classList.remove("active")
+      if (mobileMenuToggle) mobileMenuToggle.classList.remove("active")
     }
   })
 
@@ -413,65 +320,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // ===== MOBILE MENU TOGGLE =====
-  const menuBtn = document.querySelector(".menu-btn")
-
-  if (menuBtn) {
-    menuBtn.addEventListener("click", () => {
-      nav.classList.toggle("active")
-      menuBtn.classList.toggle("active")
-    })
-
-    // Close menu when clicking nav links
-    const navLinks = document.querySelectorAll(".nav-link")
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("active")
-        menuBtn.classList.remove("active")
-      })
-    })
-
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
-        nav.classList.remove("active")
-        menuBtn.classList.remove("active")
-      }
-    })
-  }
-
-  // ===== INTERSECTION OBSERVER FOR FADE IN ANIMATIONS =====
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
-      }
-    })
-  }, observerOptions)
-
-  // Animate cards and elements on scroll
-  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .stat, .contact-card")
-
-  animatedElements.forEach((element, index) => {
-    element.style.opacity = "0"
-    element.style.transform = "translateY(30px)"
-    element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
-    fadeInObserver.observe(element)
-  })
-
-  // ===== PARALLAX EFFECT FOR BACKGROUND =====
-  window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset
-    const parallaxElements = document.querySelectorAll(".hero::before")
-
-    parallaxElements.forEach((el) => {
-      const speed = 0.5
-      el.style.transform = `translateY(${scrolled * speed}px)`
-    })
-  })
-
-  // ===== UPDATED CONSOLE MESSAGE =====
   console.log("%cMohamed Mooka | Cybersecurity Portfolio", "font-size: 18px; font-weight: 700; color: #3b82f6;")
   console.log("%cMinimal Modern Design", "font-size: 13px; color: #a3a3a3;")
 })
