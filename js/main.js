@@ -1,13 +1,11 @@
-// Enhanced JavaScript with smooth animations and interactions
-
 document.addEventListener("DOMContentLoaded", () => {
   // ===== LOADING SCREEN =====
   const loadingScreen = document.querySelector(".loading-screen")
 
   window.addEventListener("load", () => {
     setTimeout(() => {
-      loadingScreen.classList.add("hidden")
-    }, 1000)
+      loadingScreen?.classList.add("hidden")
+    }, 800) // Reduced from 1000ms to 800ms
   })
 
   // ===== CUSTOM CURSOR =====
@@ -27,12 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
           left: `${posX}px`,
           top: `${posY}px`,
         },
-        { duration: 500, fill: "forwards" },
+        { duration: 300, fill: "forwards" }, // Reduced from 500ms to 300ms
       )
     })
 
+    // Cursor hover effects
     const interactiveElements = document.querySelectorAll(
-      "a, button, .btn, .nav-link, .project-card, .expertise-card, .stat-box",
+      "a, button, .btn, .nav-link, .work-card, .skill-item, .contact-card",
     )
 
     interactiveElements.forEach((el) => {
@@ -50,42 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // ===== TYPING EFFECT =====
-  const typingText = document.querySelector(".typing-text")
-  const texts = ["Cybersecurity Analyst", "DFIR Specialist", "SOC Analyst", "Threat Hunter", "Incident Responder"]
-  let textIndex = 0
-  let charIndex = 0
-  let isDeleting = false
-
-  function type() {
-    const currentText = texts[textIndex]
-
-    if (isDeleting) {
-      typingText.textContent = currentText.substring(0, charIndex - 1)
-      charIndex--
-    } else {
-      typingText.textContent = currentText.substring(0, charIndex + 1)
-      charIndex++
-    }
-
-    let typeSpeed = isDeleting ? 50 : 100
-
-    if (!isDeleting && charIndex === currentText.length) {
-      typeSpeed = 2000
-      isDeleting = true
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false
-      textIndex = (textIndex + 1) % texts.length
-      typeSpeed = 500
-    }
-
-    setTimeout(type, typeSpeed)
-  }
-
-  if (typingText) {
-    setTimeout(type, 1000)
-  }
-
   // ===== SCROLL PROGRESS =====
   const scrollProgress = document.querySelector(".scroll-progress")
 
@@ -95,14 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const scrolled = window.scrollY
     const progress = (scrolled / documentHeight) * 100
 
-    scrollProgress.style.transform = `scaleX(${progress / 100})`
+    if (scrollProgress) {
+      scrollProgress.style.transform = `scaleX(${progress / 100})`
+    }
   })
 
   // ===== NAVIGATION =====
   const navLinks = document.querySelectorAll(".nav-link")
   const sections = document.querySelectorAll("section[id]")
-  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
-  const sidebarNav = document.querySelector(".sidebar-nav")
 
   function updateActiveNav() {
     const scrollY = window.pageYOffset
@@ -115,7 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
         navLinks.forEach((link) => {
           link.classList.remove("active")
-          if (link.getAttribute("href") === `#${sectionId}`) {
+          const linkHref = link.getAttribute("href")
+          if (linkHref === `#${sectionId}`) {
             link.classList.add("active")
           }
         })
@@ -126,28 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateActiveNav)
   updateActiveNav()
 
-  // Mobile menu toggle
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener("click", () => {
-      sidebarNav.classList.toggle("active")
-      mobileMenuToggle.classList.toggle("active")
-    })
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        sidebarNav.classList.remove("active")
-        mobileMenuToggle.classList.remove("active")
-      })
-    })
-
-    document.addEventListener("click", (e) => {
-      if (!sidebarNav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-        sidebarNav.classList.remove("active")
-        mobileMenuToggle.classList.remove("active")
-      }
-    })
-  }
-
   // ===== MOBILE MENU =====
   const menuBtn = document.querySelector(".menu-btn")
   const nav = document.querySelector(".nav")
@@ -156,14 +98,21 @@ document.addEventListener("DOMContentLoaded", () => {
     menuBtn.addEventListener("click", () => {
       nav.classList.toggle("active")
       menuBtn.classList.toggle("active")
+    })
 
-      const spans = menuBtn.querySelectorAll("span")
-      if (menuBtn.classList.contains("active")) {
-        spans[0].style.transform = "rotate(45deg) translateY(8px)"
-        spans[1].style.opacity = "0"
-      } else {
-        spans[0].style.transform = "none"
-        spans[1].style.opacity = "1"
+    // Close menu when clicking nav links
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("active")
+        menuBtn.classList.remove("active")
+      })
+    })
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+        nav.classList.remove("active")
+        menuBtn.classList.remove("active")
       }
     })
   }
@@ -191,9 +140,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // ===== INTERSECTION OBSERVER FOR SECTIONS =====
   const observerOptions = {
-    threshold: 0.05,
-    rootMargin: "0px 0px -50px 0px",
+    threshold: 0.1, // Reduced from 0.15
+    rootMargin: "0px 0px -80px 0px", // Reduced from -100px
   }
 
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -208,7 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
     sectionObserver.observe(section)
   })
 
-  const cards = document.querySelectorAll(".expertise-card, .project-card, .contact-method, .stat-box")
+  // ===== CARD ANIMATIONS =====
+  const cards = document.querySelectorAll(".work-card, .skill-item, .contact-card")
 
   const cardObserver = new IntersectionObserver(
     (entries) => {
@@ -217,36 +168,18 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
             entry.target.style.opacity = "1"
             entry.target.style.transform = "translateY(0)"
-          }, index * 50)
+          }, index * 60) // Reduced from 100ms to 60ms
         }
       })
     },
-    { threshold: 0.05 },
+    { threshold: 0.1 },
   )
 
   cards.forEach((card) => {
     card.style.opacity = "0"
-    card.style.transform = "translateY(20px)"
-    card.style.transition = "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+    card.style.transform = "translateY(30px)" // Reduced from 40px
+    card.style.transition = "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)" // Reduced from 0.6s
     cardObserver.observe(card)
-  })
-
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
-      }
-    })
-  }, observerOptions)
-
-  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .stat, .contact-card")
-
-  animatedElements.forEach((element, index) => {
-    element.style.opacity = "0"
-    element.style.transform = "translateY(20px)"
-    element.style.transition = `opacity 0.3s ease ${index * 0.05}s, transform 0.3s ease ${index * 0.05}s`
-    fadeInObserver.observe(element)
   })
 
   // ===== PARALLAX EFFECT FOR BACKGROUND ORBS =====
@@ -279,17 +212,18 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.borderRadius = "50%"
       ripple.style.background = "rgba(255, 255, 255, 0.3)"
       ripple.style.transform = "translate(-50%, -50%)"
-      ripple.style.animation = "ripple 0.6s ease-out"
+      ripple.style.animation = "ripple 0.5s ease-out" // Reduced from 0.6s
       ripple.style.pointerEvents = "none"
 
       button.appendChild(ripple)
 
       setTimeout(() => {
         ripple.remove()
-      }, 600)
+      }, 500) // Reduced from 600ms
     })
   })
 
+  // Add ripple animation
   const style = document.createElement("style")
   style.textContent = `
     @keyframes ripple {
@@ -302,11 +236,16 @@ document.addEventListener("DOMContentLoaded", () => {
   `
   document.head.appendChild(style)
 
+  // ===== CONSOLE MESSAGE =====
+  console.log("%cMohamed Mooka — Cybersecurity Portfolio", "font-size: 20px; font-weight: 800; color: #3b82f6;")
+  console.log("%cModern Professional Design", "font-size: 14px; color: #737373;")
+
   // ===== ACCESSIBILITY: KEYBOARD NAVIGATION =====
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && sidebarNav && sidebarNav.classList.contains("active")) {
-      sidebarNav.classList.remove("active")
-      if (mobileMenuToggle) mobileMenuToggle.classList.remove("active")
+    // Press 'Esc' to close mobile menu
+    if (e.key === "Escape" && nav?.classList.contains("active")) {
+      nav.classList.remove("active")
+      menuBtn?.classList.remove("active")
     }
   })
 
@@ -320,6 +259,37 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  console.log("%cMohamed Mooka | Cybersecurity Portfolio", "font-size: 18px; font-weight: 700; color: #3b82f6;")
-  console.log("%cMinimal Modern Design", "font-size: 13px; color: #a3a3a3;")
+  // ===== INTERSECTION OBSERVER FOR FADE IN ANIMATIONS =====
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+      }
+    })
+  }, observerOptions)
+
+  // Animate elements on scroll
+  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .contact-card")
+
+  animatedElements.forEach((element, index) => {
+    element.style.opacity = "0"
+    element.style.transform = "translateY(20px)" // Reduced from 30px
+    element.style.transition = `opacity 0.4s ease ${index * 0.06}s, transform 0.4s ease ${index * 0.06}s` // Reduced timing
+    fadeInObserver.observe(element)
+  })
+
+  // ===== PARALLAX EFFECT FOR HERO BACKGROUND =====
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    const hero = document.querySelector(".hero")
+
+    if (hero && scrolled < window.innerHeight) {
+      const parallaxElements = hero.querySelectorAll("::before")
+      parallaxElements.forEach((el) => {
+        const speed = 0.3 // Reduced from 0.5
+        el.style.transform = `translateY(${scrolled * speed}px)`
+      })
+    }
+  })
 })
