@@ -5,7 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     setTimeout(() => {
       loadingScreen.classList.add("hidden")
-    }, 1200)
+      // Trigger hero animations after loading
+      setTimeout(() => {
+        const heroElements = document.querySelectorAll(".hero [data-animate]")
+        heroElements.forEach((element, index) => {
+          setTimeout(() => {
+            element.classList.add("animated")
+          }, index * 100)
+        })
+      }, 200)
+    }, 1500)
   })
 
   // ===== CUSTOM CURSOR =====
@@ -146,48 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== STATS COUNTER =====
-  const statsNumbers = document.querySelectorAll(".stat-number")
-  let hasAnimatedStats = false
-
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimatedStats) {
-          hasAnimatedStats = true
-          animateStats()
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const aboutSection = document.getElementById("about")
-  if (aboutSection) {
-    statsObserver.observe(aboutSection)
-  }
-
-  function animateStats() {
-    statsNumbers.forEach((stat) => {
-      const target = Number.parseInt(stat.getAttribute("data-target"))
-      const duration = 2000
-      const increment = target / (duration / 16)
-      let current = 0
-
-      const updateCounter = () => {
-        current += increment
-        if (current < target) {
-          stat.textContent = Math.floor(current)
-          requestAnimationFrame(updateCounter)
-        } else {
-          stat.textContent = target + (target >= 100 ? "+" : "")
-        }
-      }
-
-      updateCounter()
-    })
-  }
-
   // ===== SCROLL ANIMATIONS =====
   const animatedElements = document.querySelectorAll("[data-animate]")
 
@@ -286,14 +253,4 @@ document.addEventListener("DOMContentLoaded", () => {
       menuBtn.classList.remove("active")
     }
   })
-
-  // ===== HERO ANIMATIONS ON LOAD =====
-  setTimeout(() => {
-    const heroElements = document.querySelectorAll(".hero [data-animate]")
-    heroElements.forEach((element, index) => {
-      setTimeout(() => {
-        element.classList.add("animated")
-      }, index * 100)
-    })
-  }, 300)
 })
