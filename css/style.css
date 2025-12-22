@@ -5,21 +5,44 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
+/* Enhanced color palette with richer, more vibrant professional colors */
 /* Enhanced CSS Variables with more design tokens */
 :root {
-  /* Colors - Distinctive cyan palette */
-  --color-bg: #000000;
-  --color-surface: #0a0a0a;
-  --color-surface-elevated: #111111;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a1a1aa;
-  --color-text-tertiary: #52525b;
-  --color-accent: #06b6d4;
-  --color-accent-hover: #0891b2;
-  --color-accent-dark: #0e7490;
-  --color-accent-glow: rgba(6, 182, 212, 0.4);
-  --color-border: #18181b;
-  --color-border-light: #27272a;
+  /* Background colors - Deep elegant dark with subtle blue undertone */
+  --color-bg: #0b0d17;
+  --color-surface: #151824;
+  --color-surface-elevated: #1d2031;
+
+  /* Text colors - Crystal clear hierarchy */
+  --color-text-primary: #f0f4f8;
+  --color-text-secondary: #b4c6db;
+  --color-text-tertiary: #6b7a94;
+
+  /* Primary accent - Electric cyan with energy */
+  --color-accent: #00e5ff;
+  --color-accent-hover: #00c3e6;
+  --color-accent-dark: #00a1cc;
+  --color-accent-light: #4dffff;
+  --color-accent-glow: rgba(0, 229, 255, 0.6);
+
+  /* Secondary accent - Vibrant purple for depth */
+  --color-secondary: #b794f6;
+  --color-secondary-dark: #9370db;
+  --color-secondary-glow: rgba(183, 148, 246, 0.5);
+
+  /* Tertiary accent - Subtle pink for highlights */
+  --color-tertiary: #ff6bd6;
+  --color-tertiary-glow: rgba(255, 107, 214, 0.4);
+
+  /* Border colors - Refined and visible */
+  --color-border: #252b3f;
+  --color-border-light: #363d5a;
+  --color-border-accent: rgba(0, 229, 255, 0.35);
+
+  /* Status colors - Professional and clear */
+  --color-success: #00ff88;
+  --color-warning: #ffb800;
+  --color-error: #ff4757;
 
   /* Typography */
   --font-primary: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -58,16 +81,18 @@
   --transition-base: 0.4s var(--ease-out-expo);
   --transition-slow: 0.6s var(--ease-out-expo);
 
-  /* Effects */
+  /* Effects - More dramatic and visible */
   --blur-sm: 8px;
   --blur-md: 16px;
   --blur-lg: 24px;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.3);
-  --glow-cyan: 0 0 20px var(--color-accent-glow);
-  --glow-cyan-lg: 0 0 40px var(--color-accent-glow);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 30px 80px rgba(0, 0, 0, 0.6);
+  --glow-cyan: 0 0 25px var(--color-accent-glow), 0 0 50px rgba(0, 229, 255, 0.3);
+  --glow-cyan-lg: 0 0 50px var(--color-accent-glow), 0 0 100px rgba(0, 229, 255, 0.4);
+  --glow-purple: 0 0 25px var(--color-secondary-glow), 0 0 50px rgba(183, 148, 246, 0.3);
+  --glow-pink: 0 0 20px var(--color-tertiary-glow);
 }
 
 /* Base reset and improved defaults */
@@ -103,13 +128,14 @@ body {
   color: var(--color-bg);
 }
 
+/* Enhanced animated grid with better color and visibility */
 /* Animated grid background - distinctive signature */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: linear-gradient(rgba(6, 182, 212, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(0, 229, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
@@ -176,9 +202,10 @@ body.cursor-hover .cursor-outline {
   z-index: 1000;
 }
 
+/* Updated scroll progress with enhanced gradient */
 .scroll-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
   width: 0%;
   transition: width 0.1s ease-out;
   box-shadow: var(--glow-cyan);
@@ -267,6 +294,7 @@ body.cursor-hover .cursor-outline {
   justify-content: center;
 }
 
+/* Enhanced navigation hover effects */
 .nav-item {
   display: flex;
   align-items: center;
@@ -286,7 +314,7 @@ body.cursor-hover .cursor-outline {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(6, 182, 212, 0.1);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.05) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
   border-radius: 10px;
@@ -300,6 +328,24 @@ body.cursor-hover .cursor-outline {
 .nav-item:hover,
 .nav-item.active {
   color: var(--color-accent);
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-accent) 50%, transparent 100%);
+  border-radius: 2px;
+  transition: transform var(--transition-base);
+}
+
+.nav-item.active::after,
+.nav-item:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
 .nav-number {
@@ -320,13 +366,14 @@ body.cursor-hover .cursor-outline {
   gap: var(--spacing-sm);
 }
 
+/* Enhanced button download with better hover effect */
 .btn-download {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.08) 0%, rgba(183, 148, 246, 0.08) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.4);
   border-radius: 10px;
   color: var(--color-accent);
   font-size: var(--font-size-sm);
@@ -336,8 +383,10 @@ body.cursor-hover .cursor-outline {
 }
 
 .btn-download:hover {
-  background: rgba(6, 182, 212, 0.2);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.15) 0%, rgba(183, 148, 246, 0.15) 100%);
+  border-color: var(--color-accent);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.3);
 }
 
 /* Mobile menu button */
@@ -423,11 +472,18 @@ body.cursor-hover .cursor-outline {
   font-size: var(--font-size-2xl);
   font-weight: 600;
   transition: all var(--transition-base);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.mobile-menu-overlay.active .mobile-nav-item {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mobile-nav-item:hover {
   color: var(--color-accent);
-  background: rgba(6, 182, 212, 0.1);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.05) 100%);
 }
 
 .mobile-nav-number {
@@ -496,11 +552,12 @@ body.cursor-hover .cursor-outline {
   margin-bottom: var(--spacing-3xl);
 }
 
+/* Enhanced section tag with gradient background */
 .section-tag {
   display: inline-block;
   padding: 8px 16px;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.08) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.3);
   border-radius: 24px;
   color: var(--color-accent);
   font-size: var(--font-size-sm);
@@ -536,15 +593,17 @@ body.cursor-hover .cursor-outline {
   pointer-events: none;
 }
 
+/* Updated hero grid for better visibility with new colors */
 .hero-grid {
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(6, 182, 212, 0.03) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 2px, transparent 2px);
+  background-image: linear-gradient(rgba(0, 229, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.05) 2px, transparent 2px);
   background-size: 100px 100px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 80%);
 }
 
+/* Improved hero gradient with richer color blend */
 .hero-gradient {
   position: absolute;
   top: 20%;
@@ -552,7 +611,13 @@ body.cursor-hover .cursor-outline {
   transform: translate(-50%, -50%);
   width: 1000px;
   height: 1000px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 229, 255, 0.25) 0%,
+    rgba(183, 148, 246, 0.15) 40%,
+    rgba(255, 107, 214, 0.08) 60%,
+    transparent 75%
+  );
   animation: heroGlow 8s ease-in-out infinite;
 }
 
@@ -574,17 +639,18 @@ body.cursor-hover .cursor-outline {
   max-width: 600px;
 }
 
-/* Animated badge */
+/* Enhanced hero badge with better glow effect */
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 12px 20px;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.12) 0%, rgba(183, 148, 246, 0.08) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.5);
   border-radius: 30px;
   margin-bottom: var(--spacing-lg);
   animation: badgeFloat 3s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
 }
 
 @keyframes badgeFloat {
@@ -754,20 +820,23 @@ body.cursor-hover .cursor-outline {
   color: var(--color-text-secondary);
 }
 
+/* Enhanced code syntax colors for better readability and aesthetics */
 .code-keyword {
-  color: #ff6ac1;
+  color: #ff6bd6;
+  font-weight: 600;
 }
 .code-variable {
-  color: #5ccfe6;
+  color: #00e5ff;
+  font-weight: 500;
 }
 .code-property {
-  color: #ffcb8b;
+  color: #ffd666;
 }
 .code-string {
-  color: #bae67e;
+  color: #95f0b4;
 }
 
-/* Scroll indicator */
+/* Enhanced scroll indicator with better fade animation */
 .scroll-indicator {
   position: absolute;
   bottom: var(--spacing-xl);
@@ -783,6 +852,7 @@ body.cursor-hover .cursor-outline {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   animation: scrollBounce 2s ease-in-out infinite;
+  transition: opacity var(--transition-base);
 }
 
 @keyframes scrollBounce {
@@ -806,6 +876,17 @@ body.cursor-hover .cursor-outline {
    =========================================== */
 
 /* Enhanced magnetic buttons */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
 .btn-primary,
 .btn-secondary {
   display: inline-flex;
@@ -849,6 +930,25 @@ body.cursor-hover .cursor-outline {
   box-shadow: 0 8px 32px var(--color-accent-glow);
 }
 
+.btn-primary::after,
+.btn-secondary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.btn-primary:active::after,
+.btn-secondary:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
 .btn-secondary {
   background: transparent;
   color: var(--color-text-primary);
@@ -856,7 +956,7 @@ body.cursor-hover .cursor-outline {
 }
 
 .btn-secondary:hover {
-  background: rgba(6, 182, 212, 0.1);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.05) 100%);
   border-color: var(--color-accent);
   transform: translateY(-3px);
 }
@@ -865,7 +965,6 @@ body.cursor-hover .cursor-outline {
   width: 100%;
 }
 
-/* Magnetic button effect */
 .magnetic-btn {
   transition: transform 0.15s ease-out;
 }
@@ -901,7 +1000,6 @@ body.cursor-hover .cursor-outline {
   color: var(--color-text-secondary);
 }
 
-/* Enhanced stat cards with tilt effect */
 .stats-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -925,7 +1023,7 @@ body.cursor-hover .cursor-outline {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.05) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -937,13 +1035,13 @@ body.cursor-hover .cursor-outline {
 .stat-card:hover {
   border-color: var(--color-accent);
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 229, 255, 0.3);
 }
 
 .stat-number {
   font-size: var(--font-size-6xl);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -959,7 +1057,7 @@ body.cursor-hover .cursor-outline {
 
 .stat-bar {
   height: 4px;
-  background: rgba(6, 182, 212, 0.2);
+  background: rgba(0, 229, 255, 0.2);
   border-radius: 2px;
   margin-top: var(--spacing-md);
   position: relative;
@@ -973,7 +1071,7 @@ body.cursor-hover .cursor-outline {
   top: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
   border-radius: 2px;
   animation: statBarFill 2s var(--ease-out-expo) forwards;
   animation-delay: calc(var(--delay, 0) * 0.2s);
@@ -995,7 +1093,6 @@ body.cursor-hover .cursor-outline {
   gap: var(--spacing-lg);
 }
 
-/* Enhanced expertise cards */
 .expertise-card {
   padding: var(--spacing-2xl);
   background: var(--color-surface);
@@ -1013,7 +1110,7 @@ body.cursor-hover .cursor-outline {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--transition-slow);
@@ -1030,7 +1127,7 @@ body.cursor-hover .cursor-outline {
   font-family: var(--font-mono);
   font-size: var(--font-size-5xl);
   font-weight: 800;
-  color: rgba(6, 182, 212, 0.05);
+  color: rgba(0, 229, 255, 0.06);
   line-height: 1;
 }
 
@@ -1040,8 +1137,8 @@ body.cursor-hover .cursor-outline {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.08) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.4);
   border-radius: 18px;
   color: var(--color-accent);
   margin-bottom: var(--spacing-lg);
@@ -1076,8 +1173,8 @@ body.cursor-hover .cursor-outline {
 
 .tag {
   padding: 8px 14px;
-  background: rgba(6, 182, 212, 0.05);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   border-radius: 8px;
   font-size: var(--font-size-xs);
   font-weight: 600;
@@ -1086,11 +1183,11 @@ body.cursor-hover .cursor-outline {
 }
 
 .tag:hover {
-  background: rgba(6, 182, 212, 0.15);
+  background: rgba(0, 229, 255, 0.15);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
 }
 
-/* Hover lift animation */
 .hover-lift {
   transition: all var(--transition-slow);
   animation: fadeInUp 0.8s var(--ease-out-expo) both;
@@ -1123,7 +1220,6 @@ body.cursor-hover .cursor-outline {
   gap: var(--spacing-3xl);
 }
 
-/* Enhanced project items */
 .project-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1140,7 +1236,7 @@ body.cursor-hover .cursor-outline {
   content: "";
   position: absolute;
   inset: -2px;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
   opacity: 0;
   z-index: -1;
   border-radius: 26px;
@@ -1207,8 +1303,8 @@ body.cursor-hover .cursor-outline {
 
 .project-status {
   padding: 12px 24px;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.4);
   border-radius: 24px;
   color: var(--color-accent);
   font-size: var(--font-size-sm);
@@ -1240,8 +1336,8 @@ body.cursor-hover .cursor-outline {
 }
 
 .project-tag {
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.4);
   color: var(--color-accent);
 }
 
@@ -1284,15 +1380,14 @@ body.cursor-hover .cursor-outline {
 
 .project-stack span {
   padding: 6px 12px;
-  background: rgba(6, 182, 212, 0.05);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: rgba(0, 229, 255, 0.06);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   border-radius: 6px;
   font-size: var(--font-size-xs);
   font-weight: 500;
   color: var(--color-accent);
 }
 
-/* Hover scale animation */
 .hover-scale {
   animation: fadeInUp 0.8s var(--ease-out-expo) both;
   animation-delay: calc(var(--delay, 0) + 0.2s);
@@ -1326,7 +1421,6 @@ body.cursor-hover .cursor-outline {
   gap: var(--spacing-md);
 }
 
-/* Enhanced contact cards with tilt */
 .contact-card {
   display: flex;
   align-items: center;
@@ -1347,7 +1441,7 @@ body.cursor-hover .cursor-outline {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.05) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -1368,8 +1462,8 @@ body.cursor-hover .cursor-outline {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(183, 148, 246, 0.08) 100%);
+  border: 1px solid rgba(0, 229, 255, 0.4);
   border-radius: 14px;
   color: var(--color-accent);
   flex-shrink: 0;
@@ -1399,7 +1493,6 @@ body.cursor-hover .cursor-outline {
   color: var(--color-text-primary);
 }
 
-/* CTA box */
 .contact-cta {
   padding: var(--spacing-2xl);
   background: var(--color-surface);
@@ -1418,7 +1511,7 @@ body.cursor-hover .cursor-outline {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at top, rgba(0, 229, 255, 0.12) 0%, rgba(183, 148, 246, 0.06) 50%, transparent 80%);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
@@ -1497,6 +1590,7 @@ body.cursor-hover .cursor-outline {
   color: var(--color-accent);
   border-color: var(--color-accent);
   transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
 }
 
 /* ===========================================
