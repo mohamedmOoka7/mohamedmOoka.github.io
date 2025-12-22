@@ -81,7 +81,7 @@ body {
 .nav-logo {
   width: 48px;
   height: 48px;
-  /* Making container perfectly circular */
+  /* Making container perfectly circular with proper overflow */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -91,9 +91,10 @@ body {
   background: var(--color-surface);
   text-decoration: none;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
-/* Profile image to fill container properly */
+/* Profile image to fill container and be cropped circularly */
 .nav-logo-img {
   width: 100%;
   height: 100%;
