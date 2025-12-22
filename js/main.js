@@ -412,4 +412,66 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.transition = "none"
     })
   }
+
+  // ===== MOBILE MENU TOGGLE =====
+  const menuBtn = document.querySelector(".menu-btn")
+
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      nav.classList.toggle("active")
+      menuBtn.classList.toggle("active")
+    })
+
+    // Close menu when clicking nav links
+    const navLinks = document.querySelectorAll(".nav-link")
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("active")
+        menuBtn.classList.remove("active")
+      })
+    })
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
+        nav.classList.remove("active")
+        menuBtn.classList.remove("active")
+      }
+    })
+  }
+
+  // ===== INTERSECTION OBSERVER FOR FADE IN ANIMATIONS =====
+  const fadeInObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
+      }
+    })
+  }, observerOptions)
+
+  // Animate cards and elements on scroll
+  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .stat, .contact-card")
+
+  animatedElements.forEach((element, index) => {
+    element.style.opacity = "0"
+    element.style.transform = "translateY(30px)"
+    element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
+    fadeInObserver.observe(element)
+  })
+
+  // ===== PARALLAX EFFECT FOR BACKGROUND =====
+  window.addEventListener("scroll", () => {
+    const scrolled = window.pageYOffset
+    const parallaxElements = document.querySelectorAll(".hero::before")
+
+    parallaxElements.forEach((el) => {
+      const speed = 0.5
+      el.style.transform = `translateY(${scrolled * speed}px)`
+    })
+  })
+
+  // ===== UPDATED CONSOLE MESSAGE =====
+  console.log("%cMohamed Mooka | Cybersecurity Portfolio", "font-size: 18px; font-weight: 700; color: #3b82f6;")
+  console.log("%cMinimal Modern Design", "font-size: 13px; color: #a3a3a3;")
 })
