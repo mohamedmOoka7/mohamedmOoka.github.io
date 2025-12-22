@@ -121,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // ===== SCROLL ANIMATIONS =====
   const animatedElements = document.querySelectorAll("[data-animate]")
 
   const observerOptions = {
@@ -144,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollObserver.observe(element)
   })
 
+  // ===== PARALLAX EFFECT =====
   const orbs = document.querySelectorAll(".gradient-orb")
 
   window.addEventListener("scroll", () => {
@@ -155,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // ===== WORK CARD SPOTLIGHT =====
   const workCards = document.querySelectorAll(".work-card")
 
   workCards.forEach((card) => {
@@ -168,6 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
+  // ===== MAGNETIC BUTTONS =====
   const magneticButtons = document.querySelectorAll(".btn-primary, .btn-secondary")
 
   magneticButtons.forEach((button) => {
