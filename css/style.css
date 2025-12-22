@@ -81,8 +81,8 @@ body {
 .nav-logo {
   width: 48px;
   height: 48px;
-  /* Made square with slight rounding instead of circular */
-  border-radius: 8px;
+  /* Making container perfectly circular */
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,8 +99,6 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  /* Making image fully circular */
-  border-radius: 50%;
 }
 
 .nav-logo:hover {
