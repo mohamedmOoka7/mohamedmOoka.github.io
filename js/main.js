@@ -111,38 +111,74 @@ document.querySelectorAll(".about-card, .skill-category, .project-card, .contact
 
 // Terminal typing animation (enhanced)
 const terminalCommands = document.querySelectorAll(".typing-animation")
-terminalCommands.forEach((cmd) => {
+terminalCommands.forEach((cmd, cmdIndex) => {
   const text = cmd.textContent
   cmd.textContent = ""
   let i = 0
 
-  const typing = setInterval(() => {
-    if (i < text.length) {
-      cmd.textContent += text.charAt(i)
-      i++
-    } else {
-      clearInterval(typing)
-    }
-  }, 100)
+  setTimeout(() => {
+    const typing = setInterval(
+      () => {
+        if (i < text.length) {
+          cmd.textContent += text.charAt(i)
+          i++
+        } else {
+          clearInterval(typing)
+        }
+      },
+      80 + Math.random() * 40,
+    )
+  }, cmdIndex * 500)
 })
 
 // Add keyboard navigation support
 document.addEventListener("keydown", (e) => {
+  // Escape key closes mobile menu
   if (e.key === "Escape" && navMenu.classList.contains("active")) {
     navMenu.classList.remove("active")
     mobileToggle.classList.remove("active")
   }
+
+  // Alt + number keys for quick navigation
+  if (e.altKey) {
+    switch (e.key) {
+      case "1":
+        document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "2":
+        document.querySelector("#skills")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "3":
+        document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "4":
+        document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
+        break
+    }
+  }
 })
 
 // Parallax effect for hero section
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset
-  const heroContent = document.querySelector(".hero-content")
-  const heroTerminal = document.querySelector(".hero-terminal")
+let ticking = false
 
-  if (heroContent && window.innerWidth > 768) {
-    heroContent.style.transform = `translateY(${scrolled * 0.3}px)`
-    heroTerminal.style.transform = `translateY(${scrolled * 0.2}px)`
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const scrolled = window.pageYOffset
+      const heroContent = document.querySelector(".hero-content")
+      const heroTerminal = document.querySelector(".hero-terminal")
+
+      if (heroContent && window.innerWidth > 768) {
+        heroContent.style.transform = `translateY(${scrolled * 0.15}px)`
+        if (heroTerminal) {
+          heroTerminal.style.transform = `translateY(${scrolled * 0.25}px)`
+        }
+      }
+
+      ticking = false
+    })
+
+    ticking = true
   }
 })
 
@@ -168,7 +204,7 @@ const highlightNav = debounce(() => {
 
   sections.forEach((section) => {
     const sectionHeight = section.offsetHeight
-    const sectionTop = section.offsetTop - 100
+    const sectionTop = section.offsetTop - 150
     const sectionId = section.getAttribute("id")
 
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -180,7 +216,7 @@ const highlightNav = debounce(() => {
       })
     }
   })
-}, 100)
+}, 50)
 
 window.addEventListener("scroll", highlightNav)
 
@@ -197,7 +233,40 @@ if ("loading" in HTMLImageElement.prototype) {
   document.body.appendChild(script)
 }
 
-// Console message for developers
-console.log("%c👋 Hello there!", "font-size: 20px; font-weight: bold; color: #3b82f6;")
-console.log("%cInterested in the code? Check out the GitHub repo!", "font-size: 14px; color: #94a3b8;")
-console.log("%chttps://github.com/mohamedmOoka7", "font-size: 14px; color: #10b981;")
+// Cursor trail effect (subtle)
+let mouseX = 0
+let mouseY = 0
+const cursorX = 0
+const cursorY = 0
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX
+  mouseY = e.clientY
+})
+
+// Performance optimization for animations
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+if (prefersReducedMotion.matches) {
+  document.querySelectorAll("*").forEach((el) => {
+    el.style.animation = "none"
+    el.style.transition = "none"
+  })
+}
+
+console.clear()
+console.log(
+  "%c🔒 Security Portfolio",
+  "font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #3b82f6, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;",
+)
+console.log("%c👋 Hello, fellow developer!", "font-size: 16px; font-weight: bold; color: #3b82f6;")
+console.log("%c💼 Interested in cybersecurity and digital forensics?", "font-size: 14px; color: #cbd5e1;")
+console.log("%c🔗 Check out the projects and connect!", "font-size: 14px; color: #10b981;")
+console.log("%c📧 mohamed.ashraf.abdallah65@gmail.com", "font-size: 14px; color: #06b6d4;")
+
+// Dynamic year to footer if needed
+const currentYear = new Date().getFullYear()
+const footerYear = document.querySelector(".footer-content p")
+if (footerYear && !footerYear.textContent.includes(currentYear)) {
+  footerYear.textContent = `© ${currentYear} Mohamed Mooka. All rights reserved.`
+}
