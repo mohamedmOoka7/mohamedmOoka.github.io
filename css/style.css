@@ -81,7 +81,7 @@ body {
 .nav-logo {
   width: 48px;
   height: 48px;
-  /* Updated styles to accommodate profile image */
+  /* Updated styles to accommodate circular profile image */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@ body {
   transition: var(--transition);
 }
 
-/* Added styles for profile image */
+/* Added styles for profile image to fit properly */
 .nav-logo-img {
   width: 100%;
   height: 100%;
