@@ -1,1090 +1,1010 @@
-/* ================================
-   CSS Variables & Theme
-================================ */
-:root {
-  /* Colors - Dark Theme */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-tertiary: #1a1a26;
-  --bg-card: rgba(26, 26, 38, 0.8);
-  --bg-glass: rgba(255, 255, 255, 0.05);
-
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0b5;
-  --text-tertiary: #6b6b85;
-
-  --accent-primary: #00d9ff;
-  --accent-secondary: #7c3aed;
-  --accent-gradient: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
-
-  --border-color: rgba(255, 255, 255, 0.1);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.25);
-  --shadow-glow: 0 0 20px rgba(0, 217, 255, 0.3);
-
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
-
-  /* Typography */
-  --font-primary: "Sora", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-secondary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "JetBrains Mono", "Courier New", monospace;
-
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.3s ease;
-  --transition-slow: 0.5s ease;
-}
-
-[data-theme="light"] {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #e9ecef;
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --bg-glass: rgba(0, 0, 0, 0.02);
-
-  --text-primary: #0a0a0f;
-  --text-secondary: #4a4a5e;
-  --text-tertiary: #6b6b85;
-
-  --border-color: rgba(0, 0, 0, 0.1);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
-}
-
-/* ================================
-   Reset & Base Styles
-================================ */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-body {
-  font-family: var(--font-secondary);
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background: var(--accent-primary);
-  color: var(--bg-primary);
-}
-
-/* ================================
-   Animated Background
-================================ */
-.bg-animation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.gradient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.3;
-  animation: float 20s ease-in-out infinite;
-}
-
-.orb-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
-  top: -10%;
-  right: -10%;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, var(--accent-secondary) 0%, transparent 70%);
-  bottom: -10%;
-  left: -10%;
-  animation-delay: 5s;
-}
-
-.orb-3 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, #ff006e 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  animation-delay: 10s;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(50px, 50px) scale(1.1);
-  }
-  50% {
-    transform: translate(-30px, 80px) scale(0.9);
-  }
-  75% {
-    transform: translate(-60px, -40px) scale(1.05);
-  }
-}
-
-#particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
-/* ================================
-   Typography
-================================ */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-primary);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-primary);
-}
-
-.gradient-text {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.highlight {
-  color: var(--accent-primary);
-  font-weight: 600;
-}
-
-/* ================================
-   Container
-================================ */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 var(--spacing-sm);
-  }
-}
-
-/* ================================
-   Section
-================================ */
-.section {
-  padding: var(--spacing-2xl) 0;
-  position: relative;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-}
-
-.section-label {
-  display: inline-block;
-  color: var(--accent-primary);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: var(--spacing-sm);
-}
-
-.section-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: var(--spacing-md);
-  position: relative;
-  display: inline-block;
-}
-
-/* ================================
-   Navigation
-================================ */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
-  transition: all var(--transition-base);
-}
-
-.nav.scrolled {
-  box-shadow: var(--shadow-md);
-}
-
-.nav-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: var(--spacing-sm) var(--spacing-md);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: var(--transition-fast);
-}
-
-.logo-brackets {
-  color: var(--accent-primary);
-}
-
-.logo-text {
-  color: var(--text-primary);
-}
-
-.nav-logo:hover {
-  transform: scale(1.05);
-}
-
-.nav-menu {
-  display: flex;
-  gap: var(--spacing-lg);
-  align-items: center;
-}
-
-.nav-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  position: relative;
-  transition: var(--transition-fast);
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--accent-gradient);
-  transition: width var(--transition-base);
-}
-
-.nav-link:hover {
-  color: var(--text-primary);
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.theme-toggle {
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-  position: relative;
-}
-
-.theme-toggle:hover {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
-  transform: scale(1.05);
-}
-
-.sun-icon,
-.moon-icon {
-  position: absolute;
-  transition: var(--transition-base);
-}
-
-.moon-icon {
-  opacity: 0;
-  transform: rotate(-90deg);
-}
-
-[data-theme="light"] .sun-icon {
-  opacity: 0;
-  transform: rotate(90deg);
-}
-
-[data-theme="light"] .moon-icon {
-  opacity: 1;
-  transform: rotate(0deg);
-}
-
-.menu-btn {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.menu-btn span {
-  width: 24px;
-  height: 2px;
-  background: var(--text-primary);
-  transition: var(--transition-fast);
-  border-radius: 2px;
-}
-
-.menu-btn.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(10px);
-}
-
-.menu-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-btn.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-10px);
-}
-
-@media (max-width: 768px) {
-  .menu-btn {
-    display: flex;
-  }
-
-  .nav-menu {
-    position: fixed;
-    top: 70px;
-    right: -100%;
-    width: 100%;
-    max-width: 300px;
-    height: calc(100vh - 70px);
-    background: var(--bg-secondary);
-    backdrop-filter: blur(20px);
-    flex-direction: column;
-    padding: var(--spacing-lg);
-    gap: var(--spacing-md);
-    border-left: 1px solid var(--border-color);
-    transition: right var(--transition-base);
-    align-items: flex-start;
-  }
-
-  .nav-menu.active {
-    right: 0;
-  }
-
-  .nav-link {
-    width: 100%;
-    padding: var(--spacing-sm) 0;
-    font-size: 1.1rem;
-  }
-}
-
-/* ================================
-   Hero Section
-================================ */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 80px;
-  position: relative;
-}
-
-.hero-content {
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Removed hero-badge styles */
-
-.hero-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 300;
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-sm);
-}
-
-.hero-name {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: var(--spacing-lg);
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-xl);
-  line-height: 1.6;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.hero-scroll {
-  margin-top: var(--spacing-2xl);
-}
-
-.scroll-indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-sm);
-  color: var(--text-tertiary);
-  font-size: 0.875rem;
-}
-
-.scroll-line {
-  width: 2px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--accent-primary), transparent);
-  animation: scrollDown 2s ease-in-out infinite;
-}
-
-@keyframes scrollDown {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(10px);
-    opacity: 0.5;
-  }
-}
-
-/* ================================
-   Buttons
-================================ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-base);
-  cursor: pointer;
-  border: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
-}
-
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.btn-primary {
-  background: var(--accent-gradient);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 217, 255, 0.4);
-}
-
-.btn-secondary {
-  background: var(--bg-glass);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
-}
-
-.btn-secondary:hover {
-  background: var(--bg-tertiary);
-  border-color: var(--accent-primary);
-  transform: translateY(-2px);
-}
-
-/* ================================
-   About Section
-================================ */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: var(--spacing-2xl);
-  align-items: start;
-}
-
-.about-image-wrapper {
-  position: relative;
-}
-
-.about-image-bg {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 100%;
-  height: 100%;
-  background: var(--accent-gradient);
-  border-radius: var(--radius-xl);
-  z-index: -1;
-  opacity: 0.2;
-}
-
-.about-image {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-xl);
-  display: block;
-  box-shadow: var(--shadow-lg);
-}
-
-.about-stats-float {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-md);
-  box-shadow: var(--shadow-lg);
-}
-
-.stat-float .stat-number {
-  font-size: 2rem;
-  font-weight: 800;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.stat-float .stat-label {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.about-text {
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-md);
-  font-size: 1.1rem;
-  line-height: 1.8;
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
-}
-
-.skill-card {
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  transition: all var(--transition-base);
-  backdrop-filter: blur(10px);
-}
-
-.skill-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-glow);
-}
-
-.skill-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--accent-gradient);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: var(--spacing-sm);
-  color: white;
-}
-
-.skill-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: var(--spacing-xs);
-}
-
-.skill-card p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.tools-section {
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  backdrop-filter: blur(10px);
-}
-
-.tools-title {
-  font-size: 1.2rem;
-  margin-bottom: var(--spacing-md);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  color: var(--text-primary);
-}
-
-.tools-title svg {
-  color: var(--accent-primary);
-}
-
-.tools-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-}
-
-.tool-tag {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  transition: all var(--transition-fast);
-  font-family: var(--font-mono);
-}
-
-.tool-tag:hover {
-  background: var(--accent-gradient);
-  color: white;
-  border-color: transparent;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 992px) {
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
-  }
-}
-
-/* ================================
-   Timeline / Experience
-================================ */
-.timeline {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding-left: 40px;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
-}
-
-.timeline-item {
-  position: relative;
-  margin-bottom: var(--spacing-xl);
-  padding-left: var(--spacing-lg);
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -40px;
-  top: 0;
-  width: 16px;
-  height: 16px;
-  background: var(--accent-gradient);
-  border: 3px solid var(--bg-primary);
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
-}
-
-.timeline-content {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  transition: all var(--transition-base);
-  backdrop-filter: blur(10px);
-}
-
-.timeline-content:hover {
-  transform: translateX(10px);
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-lg);
-}
-
-.timeline-date {
-  display: inline-block;
-  font-size: 0.875rem;
-  color: var(--accent-primary);
-  font-weight: 600;
-  margin-bottom: var(--spacing-xs);
-  font-family: var(--font-mono);
-}
-
-.timeline-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-xs);
-}
-
-.timeline-company {
-  color: var(--text-secondary);
-  font-weight: 600;
-  margin-bottom: var(--spacing-sm);
-}
-
-.timeline-desc {
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--spacing-md);
-}
-
-.timeline-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-}
-
-.timeline-tags span {
-  padding: 4px 12px;
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-}
-
-@media (max-width: 768px) {
-  .timeline {
-    padding-left: 30px;
-  }
-
-  .timeline-dot {
-    left: -34px;
-  }
-}
-
-/* ================================
-   Stats Section
-================================ */
-.stats {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-xl);
-}
-
-.stat-item {
-  text-align: center;
-  padding: var(--spacing-lg);
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
-  backdrop-filter: blur(10px);
-}
-
-.stat-item:hover {
-  transform: translateY(-10px);
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-glow);
-}
-
-.stat-icon {
-  margin-bottom: var(--spacing-md);
-  color: var(--accent-primary);
-}
-
-.stat-number {
-  font-size: 3rem;
-  font-weight: 800;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: var(--spacing-xs);
-}
-
-.stat-label {
-  color: var(--text-secondary);
-  font-size: 1rem;
-}
-
-/* ================================
-   Work / Projects
-================================ */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--spacing-xl);
-}
-
-.work-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  transition: all var(--transition-base);
-  backdrop-filter: blur(10px);
-}
-
-.work-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent-primary);
-}
-
-.work-image {
-  position: relative;
-  height: 250px;
-  overflow: hidden;
-}
-
-.work-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.work-card:hover .work-image img {
-  transform: scale(1.1);
-}
-
-.work-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent, rgba(10, 10, 15, 0.9));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--transition-base);
-}
-
-.work-card:hover .work-overlay {
-  opacity: 1;
-}
-
-.work-link-overlay {
-  width: 60px;
-  height: 60px;
-  background: var(--accent-gradient);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  transition: transform var(--transition-base);
-}
-
-.work-link-overlay:hover {
-  transform: scale(1.1) rotate(90deg);
-}
-
-.coming-soon-overlay {
-  opacity: 1;
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.8), rgba(0, 217, 255, 0.8));
-}
-
-.coming-soon-badge {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  background: white;
-  color: var(--bg-primary);
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 1rem;
-}
-
-.work-content {
-  padding: var(--spacing-lg);
-}
-
-.work-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-md);
-}
-
-.work-tags {
-  display: flex;
-  gap: var(--spacing-xs);
-}
-
-.tag {
-  padding: 4px 12px;
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  font-weight: 600;
-  font-family: var(--font-mono);
-}
-
-.tag-year,
-.work-year {
-  color: var(--accent-primary);
-  font-size: 0.875rem;
-  font-family: var(--font-mono);
-}
-
-.work-title {
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-primary);
-}
-
-.work-desc {
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--spacing-md);
-}
-
-.work-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-md);
-}
-
-.work-tech span {
-  padding: 4px 10px;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-}
-
-.work-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.work-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  color: var(--accent-primary);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all var(--transition-fast);
-}
-
-.work-link:hover {
-  gap: var(--spacing-sm);
-}
-
-.work-link.disabled {
-  color: var(--text-tertiary);
-  cursor: not-allowed;
-}
-
-@media (max-width: 768px) {
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ================================
-   Certifications
-================================ */
-.cert-grid {
-  display: grid;
-}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Mooka | Elite Cybersecurity Analyst</title>
+  
+  <meta name="description" content="Elite Cybersecurity Analyst specialized in DFIR, SOC operations, and advanced threat hunting" />
+  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Threat Hunting, Portfolio" />
+  <meta name="author" content="Mohamed Mooka" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- 3D Background Effects Canvas -->
+  <div class="background-effects">
+    <canvas id="particles" class="particles-canvas"></canvas>
+    <canvas id="neural-network" class="neural-canvas"></canvas>
+    <div class="grid-background"></div>
+    <div class="scanline-effect"></div>
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+    <div class="glow-orb glow-3"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+  </div>
+
+  <!-- Premium Navigation with Blur Effect -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </span>
+        <span class="logo-text">Mohamed<span class="logo-highlight">.</span>Mooka</span>
+        <span class="logo-pulse"></span>
+      </a>
+      
+      <div class="nav-menu">
+        <a href="#home" class="nav-link" data-section="home">
+          <span class="link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            </svg>
+          </span>
+          <span class="link-text">Home</span>
+          <span class="link-underline"></span>
+        </a>
+        <a href="#expertise" class="nav-link" data-section="expertise">
+          <span class="link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </span>
+          <span class="link-text">Expertise</span>
+          <span class="link-underline"></span>
+        </a>
+        <a href="#work" class="nav-link" data-section="work">
+          <span class="link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </span>
+          <span class="link-text">Work</span>
+          <span class="link-underline"></span>
+        </a>
+        <a href="#contact" class="nav-link" data-section="contact">
+          <span class="link-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </span>
+          <span class="link-text">Contact</span>
+          <span class="link-underline"></span>
+        </a>
+      </div>
+      
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <a href="assets/Mohamed_Mooka_CV.pdf" download class="nav-cta">
+          <span>Download CV</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </a>
+      </div>
+      
+      <button class="menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Revolutionary Hero Section with 3D Typography -->
+  <section class="hero" id="home">
+    <div class="hero-background">
+      <div class="hero-glow"></div>
+      <div class="matrix-rain" id="matrixRain"></div>
+    </div>
+    
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge" data-animate="fade-up">
+          <span class="badge-dot"></span>
+          <span class="badge-text">Available for Elite Opportunities</span>
+          <span class="badge-glow"></span>
+        </div>
+        
+        <div class="hero-intro" data-animate="fade-up" data-delay="100">
+          <span class="intro-greeting">Hello, I'm</span>
+        </div>
+        
+        <h1 class="hero-title">
+          <span class="title-line" data-animate="slide-up" data-delay="200">
+            <span class="word glitch" data-text="Mohamed">Mohamed</span>
+            <span class="word glitch" data-text="Mooka">Mooka</span>
+          </span>
+          <span class="title-line gradient-title" data-animate="slide-up" data-delay="300">
+            <span class="typed-text">
+              <span class="typed-word active">Cybersecurity Analyst</span>
+              <span class="typed-word">DFIR Specialist</span>
+              <span class="typed-word">Threat Hunter</span>
+              <span class="typed-word">SOC Expert</span>
+            </span>
+            <span class="typed-cursor">|</span>
+          </span>
+        </h1>
+        
+        <p class="hero-subtitle" data-animate="fade-up" data-delay="400">
+          Elite specialist in <span class="highlight">Digital Forensics</span>, 
+          <span class="highlight">Incident Response</span> & 
+          <span class="highlight">Advanced Threat Detection</span>. 
+          Protecting digital assets with cutting-edge security solutions.
+        </p>
+        
+        <div class="hero-stats-container" data-animate="fade-up" data-delay="500">
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value" data-count="15">0</div>
+                <div class="stat-label">Projects Completed</div>
+              </div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value" data-count="100">0</div>
+                <div class="stat-label">Threats Neutralized</div>
+              </div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Response Ready</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="hero-buttons" data-animate="fade-up" data-delay="600">
+          <a href="#work" class="btn btn-primary btn-glow-effect">
+            <span class="btn-content">
+              <span class="btn-text">Explore My Work</span>
+              <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="btn-glow"></span>
+            <span class="btn-particles"></span>
+          </a>
+          <a href="#contact" class="btn btn-secondary">
+            <span class="btn-content">
+              <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+              <span class="btn-text">Let's Connect</span>
+            </span>
+          </a>
+        </div>
+        
+        <div class="hero-social" data-animate="fade-up" data-delay="700">
+          <span class="social-label">Follow me</span>
+          <div class="social-links">
+            <a href="https://github.com/mohamedmOoka7" target="_blank" class="social-link" aria-label="GitHub">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="social-link" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="social-link" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual" data-animate="scale-up" data-delay="800">
+        <div class="visual-card">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+              </div>
+              <div class="terminal-title">elite@security:~$</div>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">scan --threats --realtime</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">[✓] Initializing security protocols...</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output success">[✓] 15 threats detected and neutralized</span>
+              </div>
+              <div class="terminal-line">
+                <span class="output">[✓] System secure. Monitoring active.</span>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="cursor-blink">_</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <div class="scroll-mouse">
+        <div class="scroll-wheel"></div>
+      </div>
+      <span class="scroll-text">Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- Expertise Section with Interactive Cards -->
+  <section class="expertise" id="expertise">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">
+          <span class="label-line"></span>
+          <span class="label-text">My Expertise</span>
+          <span class="label-line"></span>
+        </span>
+        <h2 class="section-title">
+          <span class="title-word">Advanced</span>
+          <span class="title-word gradient-text">Security</span>
+          <span class="title-word">Capabilities</span>
+        </h2>
+        <p class="section-subtitle">
+          Leveraging cutting-edge tools and methodologies to detect, analyze, and neutralize cyber threats
+        </p>
+      </div>
+      
+      <div class="expertise-grid">
+        <div class="expertise-card" data-animate="fade-up" data-delay="0">
+          <div class="card-glow-effect"></div>
+          <div class="card-header">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <div class="card-badge">Core</div>
+          </div>
+          <h3 class="card-title">Digital Forensics</h3>
+          <p class="card-desc">
+            Expert-level memory forensics, disk analysis, and evidence collection using industry-leading tools.
+          </p>
+          <div class="card-tech">
+            <span class="tech-item">Volatility</span>
+            <span class="tech-item">Autopsy</span>
+            <span class="tech-item">FTK</span>
+            <span class="tech-item">Sleuth Kit</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="98"></div>
+            </div>
+            <span class="progress-value">98%</span>
+          </div>
+        </div>
+        
+        <div class="expertise-card" data-animate="fade-up" data-delay="100">
+          <div class="card-glow-effect"></div>
+          <div class="card-header">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="card-badge">Expert</div>
+          </div>
+          <h3 class="card-title">Incident Response</h3>
+          <p class="card-desc">
+            Rapid threat containment, malware analysis, and comprehensive incident investigation capabilities.
+          </p>
+          <div class="card-tech">
+            <span class="tech-item">SIEM</span>
+            <span class="tech-item">IDS/IPS</span>
+            <span class="tech-item">EDR</span>
+            <span class="tech-item">SOAR</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="96"></div>
+            </div>
+            <span class="progress-value">96%</span>
+          </div>
+        </div>
+        
+        <div class="expertise-card" data-animate="fade-up" data-delay="200">
+          <div class="card-glow-effect"></div>
+          <div class="card-header">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <div class="card-badge">Advanced</div>
+          </div>
+          <h3 class="card-title">SOC Operations</h3>
+          <p class="card-desc">
+            24/7 security monitoring, alert triage, and proactive threat hunting using MITRE ATT&CK framework.
+          </p>
+          <div class="card-tech">
+            <span class="tech-item">Splunk</span>
+            <span class="tech-item">ELK Stack</span>
+            <span class="tech-item">QRadar</span>
+            <span class="tech-item">Sentinel</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="94"></div>
+            </div>
+            <span class="progress-value">94%</span>
+          </div>
+        </div>
+        
+        <div class="expertise-card" data-animate="fade-up" data-delay="300">
+          <div class="card-glow-effect"></div>
+          <div class="card-header">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+            </div>
+            <div class="card-badge">Master</div>
+          </div>
+          <h3 class="card-title">Network Analysis</h3>
+          <p class="card-desc">
+            Deep packet inspection, traffic analysis, and network-based threat detection and prevention.
+          </p>
+          <div class="card-tech">
+            <span class="tech-item">Wireshark</span>
+            <span class="tech-item">tcpdump</span>
+            <span class="tech-item">Zeek</span>
+            <span class="tech-item">Snort</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="92"></div>
+            </div>
+            <span class="progress-value">92%</span>
+          </div>
+        </div>
+        
+        <div class="expertise-card" data-animate="fade-up" data-delay="400">
+          <div class="card-glow-effect"></div>
+          <div class="card-header">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <rect x="8" y="2" width="8" height="4" rx="1"/>
+              </svg>
+            </div>
+            <div class="card-badge">Expert</div>
+          </div>
+          <h3 class="card-title">Threat Intelligence</h3>
+          <p class="card-desc">
+            IOC analysis, threat actor profiling, and strategic cyber intelligence for proactive defense.
+          </p>
+          <div class="card-tech">
+            <span class="tech-item">MISP</span>
+            <span class="tech-item">OpenCTI</span>
+            <span class="tech-item">ThreatConnect</span>
+            <span class="tech-item">YARA</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="90"></div>
+            </div>
+            <span class="progress-value">90%</span>
+          </div>
+        </div>
+        
+        <div class="expertise-card" data-animate="fade-up" data-delay="500">
+          <div class="card-glow-effect"></div>
+          <div class="card-header">
+            <div class="card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <div class="card-badge">Advanced</div>
+          </div>
+          <h3 class="card-title">Automation & Scripting</h3>
+          <p class="card-desc">
+            Custom security tools, automated workflows, and intelligent threat response orchestration.
+          </p>
+          <div class="card-tech">
+            <span class="tech-item">Python</span>
+            <span class="tech-item">PowerShell</span>
+            <span class="tech-item">Bash</span>
+            <span class="tech-item">APIs</span>
+          </div>
+          <div class="card-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" data-progress="95"></div>
+            </div>
+            <span class="progress-value">95%</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="certifications" data-animate="fade-up">
+        <h3 class="cert-title">Certifications & Training</h3>
+        <div class="cert-grid">
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <span class="cert-name">Security+</span>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+            </div>
+            <span class="cert-name">CEH</span>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+              </svg>
+            </div>
+            <span class="cert-name">GCIH</span>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+            </div>
+            <span class="cert-name">OSCP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section with Stunning Project Cards -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">
+          <span class="label-line"></span>
+          <span class="label-text">Featured Projects</span>
+          <span class="label-line"></span>
+        </span>
+        <h2 class="section-title">
+          <span class="title-word">Elite</span>
+          <span class="title-word gradient-text">Security</span>
+          <span class="title-word">Operations</span>
+        </h2>
+        <p class="section-subtitle">
+          Real-world incident response, forensic investigations, and advanced threat hunting operations
+        </p>
+      </div>
+      
+      <div class="work-grid">
+        <article class="project-card featured" data-animate="fade-up">
+          <div class="project-number">01</div>
+          <div class="project-image-wrapper">
+            <div class="project-image">
+              <img src="https://placehold.co/1600x1000?text=Advanced+DFIR+investigation+dashboard+showing+forensic+timeline+malware+analysis+memory+dumps+network+artifacts+dark+cybersecurity+interface" alt="Advanced DFIR investigation dashboard showing forensic timeline malware analysis memory dumps network artifacts dark cybersecurity interface" />
+              <div class="image-overlay">
+                <a href="project-dfir.html" class="project-view-btn">
+                  <span>View Project</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-stats">
+              <div class="stat">
+                <span class="stat-label">Duration</span>
+                <span class="stat-value">2 Weeks</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Complexity</span>
+                <span class="stat-value">Advanced</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Status</span>
+                <span class="stat-value status-complete">Complete</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <div class="project-header">
+              <div class="project-tags">
+                <span class="tag tag-primary">DFIR</span>
+                <span class="tag tag-secondary">Forensics</span>
+                <span class="tag tag-year">2024</span>
+              </div>
+            </div>
+            
+            <h3 class="project-title">Advanced DFIR Investigation Lab</h3>
+            
+            <p class="project-desc">
+              Comprehensive digital forensics investigation covering advanced memory analysis, 
+              disk forensics, malware reverse engineering, and complete incident timeline reconstruction. 
+              Successfully identified attack vectors, extracted IOCs, and documented complete chain of custody.
+            </p>
+            
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>Complete memory forensics analysis</span>
+              </div>
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>Malware artifacts extraction</span>
+              </div>
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span>Timeline reconstruction & reporting</span>
+              </div>
+            </div>
+            
+            <div class="project-tech-stack">
+              <span class="tech-badge">Volatility 3</span>
+              <span class="tech-badge">Autopsy</span>
+              <span class="tech-badge">Wireshark</span>
+              <span class="tech-badge">SIFT Workstation</span>
+              <span class="tech-badge">REMnux</span>
+              <span class="tech-badge">FTK Imager</span>
+            </div>
+            
+            <div class="project-footer">
+              <a href="project-dfir.html" class="project-link">
+                <span>View Full Case Study</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate="fade-up" data-delay="100">
+          <div class="project-number">02</div>
+          <div class="project-image-wrapper">
+            <div class="project-image">
+              <img src="https://placehold.co/1600x1000?text=SOC+security+operations+center+dashboard+with+SIEM+alerts+threat+detection+rules+log+correlation+incident+response+dark+interface" alt="SOC security operations center dashboard with SIEM alerts threat detection rules log correlation incident response dark interface" />
+              <div class="image-overlay">
+                <span class="project-view-btn disabled">
+                  <span>Coming Soon</span>
+                </span>
+              </div>
+              <div class="coming-soon-badge">In Progress</div>
+            </div>
+            <div class="project-stats">
+              <div class="stat">
+                <span class="stat-label">Duration</span>
+                <span class="stat-value">3 Weeks</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Complexity</span>
+                <span class="stat-value">Expert</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Status</span>
+                <span class="stat-value status-progress">In Progress</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <div class="project-header">
+              <div class="project-tags">
+                <span class="tag tag-primary">SOC</span>
+                <span class="tag tag-secondary">SIEM</span>
+                <span class="tag tag-year">2025</span>
+              </div>
+            </div>
+            
+            <h3 class="project-title">Enterprise SOC Operations</h3>
+            
+            <p class="project-desc">
+              Advanced security operations center implementation featuring custom SIEM correlation rules, 
+              automated threat detection, and real-time incident response workflows using MITRE ATT&CK framework 
+              for comprehensive threat coverage and rapid remediation.
+            </p>
+            
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>Real-time threat monitoring</span>
+              </div>
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>Custom detection rules</span>
+              </div>
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span>MITRE ATT&CK mapping</span>
+              </div>
+            </div>
+            
+            <div class="project-tech-stack">
+              <span class="tech-badge">Splunk</span>
+              <span class="tech-badge">Sigma Rules</span>
+              <span class="tech-badge">MITRE ATT&CK</span>
+              <span class="tech-badge">ELK Stack</span>
+              <span class="tech-badge">SOAR</span>
+            </div>
+            
+            <div class="project-footer">
+              <span class="project-link disabled">
+                <span>Available Q2 2025</span>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" data-animate="fade-up" data-delay="200">
+          <div class="project-number">03</div>
+          <div class="project-image-wrapper">
+            <div class="project-image">
+              <img src="https://placehold.co/1600x1000?text=Advanced+threat+hunting+platform+showing+network+traffic+analysis+behavioral+analytics+IOC+detection+anomaly+identification+dark+security+interface" alt="Advanced threat hunting platform showing network traffic analysis behavioral analytics IOC detection anomaly identification dark security interface" />
+              <div class="image-overlay">
+                <span class="project-view-btn disabled">
+                  <span>Coming Soon</span>
+                </span>
+              </div>
+              <div class="coming-soon-badge">Planned</div>
+            </div>
+            <div class="project-stats">
+              <div class="stat">
+                <span class="stat-label">Duration</span>
+                <span class="stat-value">4 Weeks</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Complexity</span>
+                <span class="stat-value">Expert</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Status</span>
+                <span class="stat-value status-planned">Planned</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="project-content">
+            <div class="project-header">
+              <div class="project-tags">
+                <span class="tag tag-primary">Threat Hunting</span>
+                <span class="tag tag-secondary">Analysis</span>
+                <span class="tag tag-year">2025</span>
+              </div>
+            </div>
+            
+            <h3 class="project-title">Proactive Threat Hunting Operation</h3>
+            
+            <p class="project-desc">
+              Sophisticated threat hunting operation utilizing behavioral analytics, hypothesis-driven investigation, 
+              and advanced detection techniques to identify hidden threats and APT activities before they cause damage.
+            </p>
+            
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <span>Behavioral analytics</span>
+              </div>
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <span>APT detection techniques</span>
+              </div>
+              <div class="highlight-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                  <path d="M2 17l10 5 10-5"/>
+                  <path d="M2 12l10 5 10-5"/>
+                </svg>
+                <span>Hypothesis-driven hunting</span>
+              </div>
+            </div>
+            
+            <div class="project-tech-stack">
+              <span class="tech-badge">Zeek</span>
+              <span class="tech-badge">Suricata</span>
+              <span class="tech-badge">YARA</span>
+              <span class="tech-badge">OSQuery</span>
+              <span class="tech-badge">Velociraptor</span>
+            </div>
+            
+            <div class="project-footer">
+              <span class="project-link disabled">
+                <span>Available Q3 2025</span>
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section with Premium Design -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="section-header" data-animate="fade-up">
+          <span class="section-label">
+            <span class="label-line"></span>
+            <span class="label-text">Get In Touch</span>
+            <span class="label-line"></span>
+          </span>
+          <h2 class="section-title">
+            <span class="title-word">Let's</span>
+            <span class="title-word gradient-text">Collaborate</span>
+          </h2>
+          <p class="section-subtitle">
+            Available for cybersecurity consulting, DFIR engagements, and security advisory roles. 
+            Let's discuss how I can help secure your digital infrastructure.
+          </p>
+        </div>
+        
+        <div class="contact-grid">
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card" data-animate="fade-up" data-delay="0">
+            <div class="card-glow-effect"></div>
+            <div class="contact-icon-wrapper">
+              <div class="contact-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <div class="icon-particles"></div>
+            </div>
+            <div class="contact-info">
+              <div class="contact-label">Email Address</div>
+              <div class="contact-value">mohamed.ashraf.abdallah65@gmail.com</div>
+              <div class="contact-action">
+                <span>Send Message</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+            <div class="card-shine"></div>
+          </a>
+
+          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card" data-animate="fade-up" data-delay="100">
+            <div class="card-glow-effect"></div>
+            <div class="contact-icon-wrapper">
+              <div class="contact-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </div>
+              <div class="icon-particles"></div>
+            </div>
+            <div class="contact-info">
+              <div class="contact-label">LinkedIn Profile</div>
+              <div class="contact-value">linkedin.com/in/mohamed-mooka</div>
+              <div class="contact-action">
+                <span>Connect</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </div>
+            </div>
+            <div class="card-shine"></div>
+          </a>
+
+          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card" data-animate="fade-up" data-delay="200">
+            <div class="card-glow-effect"></div>
+            <div class="contact-icon-wrapper">
+              <div class="contact-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </div>
+              <div class="icon-particles"></div>
+            </div>
+            <div class="contact-info">
+              <div class="contact-label">GitHub Projects</div>
+              <div class="contact-value">github.com/mohamedmOoka7</div>
+              <div class="contact-action">
+                <span>View Code</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </div>
+            </div>
+            <div class="card-shine"></div>
+          </a>
+        </div>
+        
+        <div class="contact-cta" data-animate="fade-up" data-delay="300">
+          <div class="cta-content">
+            <h3 class="cta-title">Ready to Strengthen Your Security Posture?</h3>
+            <p class="cta-desc">
+              Let's discuss your cybersecurity challenges and explore how my expertise can help protect your organization.
+            </p>
+            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="btn btn-primary btn-glow-effect">
+              <span class="btn-content">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <span class="btn-text">Start Conversation</span>
+              </span>
+              <span class="btn-glow"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="footer-info">
+            <div class="footer-name">Mohamed Mooka</div>
+            <div class="footer-title">Elite Cybersecurity Analyst</div>
+            <div class="footer-tagline">Protecting Digital Assets • DFIR Specialist • Threat Hunter</div>
+          </div>
+        </div>
+        
+        <div class="footer-links-group">
+          <div class="footer-column">
+            <h4 class="footer-heading">Navigation</h4>
+            <ul class="footer-links">
+              <li><a href="#home" class="footer-link">Home</a></li>
+              <li><a href="#expertise" class="footer-link">Expertise</a></li>
+              <li><a href="#work" class="footer-link">Projects</a></li>
+              <li><a href="#contact" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4 class="footer-heading">Specializations</h4>
+            <ul class="footer-links">
+              <li><span class="footer-text">Digital Forensics</span></li>
+              <li><span class="footer-text">Incident Response</span></li>
+              <li><span class="footer-text">SOC Operations</span></li>
+              <li><span class="footer-text">Threat Intelligence</span></li>
+            </ul>
+          </div>
+          
+          <div class="footer-column">
+            <h4 class="footer-heading">Connect</h4>
+            <div class="footer-social">
+              <a href="https://github.com/mohamedmOoka7" target="_blank" class="footer-social-link" aria-label="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="footer-social-link" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="footer-social-link" aria-label="Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copyright">
+          <span>© 2025 Mohamed Mooka. All rights reserved.</span>
+        </div>
+        <div class="footer-credits">
+          <span>Crafted with</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="heart-icon">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+          <span>and cutting-edge technology</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
