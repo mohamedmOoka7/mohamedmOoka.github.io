@@ -56,7 +56,7 @@ body {
   padding: 0 var(--spacing-lg);
 }
 
-/* New animated background with waves and hexagon pattern */
+/* New enhanced background with matrix rain and particles */
 .background-effects {
   position: fixed;
   top: 0;
@@ -68,169 +68,71 @@ body {
   z-index: 0;
 }
 
-/* Wave Animation */
-.wave-container {
+.matrix-canvas,
+.particles-canvas {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
-  overflow: hidden;
-}
-
-.wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  opacity: 0.3;
-}
-
-.wave-path {
-  fill: var(--color-accent);
-  animation: wave-animation 15s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.wave-2 {
-  bottom: -5%;
-  opacity: 0.2;
-}
-
-.wave-2-path {
-  animation: wave-animation 20s ease-in-out infinite reverse;
-}
-
-@keyframes wave-animation {
-  0%,
-  100% {
-    d: path(
-      "M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,186.7C672,192,768,160,864,133.3C960,107,1056,85,1152,90.7C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-    );
-  }
-  50% {
-    d: path(
-      "M0,192L48,181.3C96,171,192,149,288,144C384,139,480,149,576,165.3C672,181,768,203,864,208C960,213,1056,203,1152,186.7C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-    );
-  }
-}
-
-/* Hexagon Pattern */
-.hexagon-pattern {
-  position: absolute;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(
-      30deg,
-      rgba(59, 130, 246, 0.03) 12%,
-      transparent 12.5%,
-      transparent 87%,
-      rgba(59, 130, 246, 0.03) 87.5%,
-      rgba(59, 130, 246, 0.03)
-    ),
-    linear-gradient(
-      150deg,
-      rgba(59, 130, 246, 0.03) 12%,
-      transparent 12.5%,
-      transparent 87%,
-      rgba(59, 130, 246, 0.03) 87.5%,
-      rgba(59, 130, 246, 0.03)
-    ),
-    linear-gradient(
-      30deg,
-      rgba(59, 130, 246, 0.03) 12%,
-      transparent 12.5%,
-      transparent 87%,
-      rgba(59, 130, 246, 0.03) 87.5%,
-      rgba(59, 130, 246, 0.03)
-    ),
-    linear-gradient(
-      150deg,
-      rgba(59, 130, 246, 0.03) 12%,
-      transparent 12.5%,
-      transparent 87%,
-      rgba(59, 130, 246, 0.03) 87.5%,
-      rgba(59, 130, 246, 0.03)
-    ),
-    linear-gradient(
-      60deg,
-      rgba(59, 130, 246, 0.05) 25%,
-      transparent 25.5%,
-      transparent 75%,
-      rgba(59, 130, 246, 0.05) 75%,
-      rgba(59, 130, 246, 0.05)
-    ),
-    linear-gradient(
-      60deg,
-      rgba(59, 130, 246, 0.05) 25%,
-      transparent 25.5%,
-      transparent 75%,
-      rgba(59, 130, 246, 0.05) 75%,
-      rgba(59, 130, 246, 0.05)
-    );
-  background-size: 80px 140px;
-  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-  animation: hexagon-move 30s linear infinite;
 }
 
-@keyframes hexagon-move {
-  0% {
-    background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-  }
-  100% {
-    background-position: 0 140px, 0 140px, 40px 210px, 40px 210px, 0 140px, 40px 210px;
-  }
+.matrix-canvas {
+  opacity: 0.08;
+  z-index: 1;
+}
+
+.particles-canvas {
+  opacity: 0.4;
+  z-index: 2;
 }
 
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.15;
-  animation: float 25s ease-in-out infinite;
+  filter: blur(120px);
+  opacity: 0.2;
+  animation: float 30s ease-in-out infinite;
+  z-index: 3;
 }
 
 .orb-1 {
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
   background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
-  top: -250px;
-  right: -250px;
+  top: -300px;
+  right: -300px;
   animation-delay: 0s;
 }
 
 .orb-2 {
-  width: 500px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-  bottom: -200px;
-  left: -200px;
-  animation-delay: 8s;
+  bottom: -250px;
+  left: -250px;
+  animation-delay: 10s;
 }
 
 .orb-3 {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
   top: 50%;
   left: 50%;
-  animation-delay: 16s;
+  animation-delay: 20s;
 }
 
 @keyframes float {
   0%,
   100% {
-    transform: translate(0, 0) rotate(0deg) scale(1);
+    transform: translate(0, 0) scale(1);
   }
-  25% {
-    transform: translate(100px, -100px) rotate(90deg) scale(1.1);
+  33% {
+    transform: translate(150px, -100px) scale(1.15);
   }
-  50% {
-    transform: translate(-50px, 100px) rotate(180deg) scale(0.9);
-  }
-  75% {
-    transform: translate(-100px, -50px) rotate(270deg) scale(1.05);
+  66% {
+    transform: translate(-100px, 150px) scale(0.85);
   }
 }
 
@@ -447,14 +349,30 @@ body {
   }
 }
 
-/* Special gradient for Mohamed Mooka name with cyan and teal colors */
-.gradient-text-name {
-  background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 50%, #10b981 100%);
+/* Enhanced gradient text for Mohamed Mooka with glow effect */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   background-size: 200% auto;
-  animation: gradient-flow 3s linear infinite;
+  animation: gradient-flow 4s linear infinite;
+  position: relative;
+  display: inline-block;
+}
+
+.gradient-text::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(20px);
+  opacity: 0.5;
 }
 
 @keyframes gradient-flow {
@@ -959,4 +877,232 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-md); /* Fixed incomplete 'gap' property */
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: var(--transition-slow);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, #8b5cf6 100%);
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+
+.contact-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.contact-card:hover::before {
+  transform: scaleX(1);
+}
+
+.contact-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 12px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.contact-card:hover .contact-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.contact-info {
+  flex: 1;
+  text-align: left;
+}
+
+.contact-label {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin-bottom: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Footer */
+.footer {
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+}
+
+.footer-content p {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.footer-links {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.footer-links a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .work-card {
+    grid-template-columns: 1fr;
+  }
+
+  .work-image {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-lg);
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transform: translateY(-100%);
+    transition: var(--transition);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav.active .nav-menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+
+  .hero {
+    padding: calc(80px + var(--spacing-2xl)) var(--spacing-lg) var(--spacing-2xl);
+  }
+
+  .skills {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .work-title {
+    font-size: 24px;
+  }
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
