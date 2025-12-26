@@ -5,38 +5,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 :root {
-  /* Premium dark theme with sophisticated color palette */
-  --color-bg: #0a0a12;
-  --color-surface: #12121a;
-  --color-surface-elevated: #1a1a24;
-  --color-text: #ffffff;
-  --color-text-secondary: #b4b4c8;
-  --color-text-tertiary: #7a7a90;
-  --color-accent: #6366f1;
-  --color-accent-light: #818cf8;
-  --color-accent-hover: #4f46e5;
-  --color-border: #1f1f2e;
-  --color-border-light: #2a2a3c;
-  /* </CHANGE> */
+  --color-bg: #0a0f14;
+  --color-surface: #0f1419;
+  --color-surface-elevated: #151b21;
+  --color-text: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-accent: #10b981;
+  --color-accent-light: #34d399;
+  --color-accent-hover: #059669;
+  --color-accent-glow: rgba(16, 185, 129, 0.4);
+  --color-border: #1e293b;
+  --color-border-light: #334155;\
+  // </CHANGE>
 
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
+  --font-primary: "Inter\", -apple-system, BlinkMacSystemFont, sans-serif;\
+  --font-mono: \"JetBrains Mono\", monospace;
+\
+  --spacing-xs: 0.5rem;\
+  --spacing-sm: 1rem;\
+  --spacing-md: 1.5rem;\
+  --spacing-lg: 2rem;\
+  --spacing-xl: 3rem;\
+  --spacing-2xl: 4rem;\
   --spacing-3xl: 6rem;
-
+\
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
    RESET & BASE STYLES
    ============================================ */
-
+\
 * {
   margin: 0;
   padding: 0;
@@ -119,9 +119,11 @@ button {
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
-  transform-origin: left;
-  transform: scaleX(0);
-  z-index: 1001;
+  box-shadow: 0 0 20px var(--color-accent-glow);\
+  // </CHANGE>\
+  transform-origin: left;\
+  transform: scaleX(0);\
+  z-index: 1001;\
   transition: transform 0.1s linear;
 }
 
@@ -129,7 +131,7 @@ button {
    BACKGROUND EFFECTS
    ============================================ */
 
-/* Enhanced gradient background with premium colors */
+/* Enhanced gradient background with premium colors */\
 .animated-background {
   position: fixed;
   top: 0;
@@ -219,14 +221,20 @@ button {
 }
 
 .hero-name {
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: var(--spacing-md);
-  text-align: center;
+  background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.5));\
+  // </CHANGE>\
+  font-size: clamp(3rem, 8vw, 6rem);\
+  font-weight: 800;\
+  line-height: 1.1;\
+  margin-bottom: var(--spacing-md);\
+  text-align: center;\
   letter-spacing: -0.03em;
 }
-
+\
 .hero-role {
   font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 600;
@@ -239,11 +247,11 @@ button {
 
 /* Premium gradient for name with indigo and violet tones */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #06b6d4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.4));
+  background-clip: text;\
+  // </CHANGE>\
 }
 /* </CHANGE> */
 
@@ -465,15 +473,17 @@ button {
 
 /* Updated button styles with new accent color */
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   color: white;
-  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 20px var(--color-accent-glow);
+  // </CHANGE>
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 36px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 8px 30px var(--color-accent-glow);
+  // </CHANGE>
 }
 /* </CHANGE> */
 
@@ -558,12 +568,14 @@ button {
 /* Updated hover colors for skill items */
 .skill-item:hover {
   border-color: var(--color-accent);
-  background: rgba(99, 102, 241, 0.05);
+  background: rgba(16, 185, 129, 0.05);
+  // </CHANGE>
   transform: translateX(4px);
 }
 
 .skill-item svg {
-  color: var(--color-accent-light);
+  color: var(--color-accent);
+  // </CHANGE>
   flex-shrink: 0;
 }
 /* </CHANGE> */
@@ -708,18 +720,21 @@ button {
 /* Updated work card hover effects */
 .work-card:hover {
   border-color: var(--color-accent);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
+  // </CHANGE>
   transform: translateY(-4px);
   box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
 }
 /* </CHANGE> */
 
 .project-number {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+  // </CHANGE>
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
   width: 48px;
   height: 48px;
-  background: var(--color-accent);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -830,19 +845,16 @@ button {
 
 .contact-card:hover {
   border-color: var(--color-accent);
+  box-shadow: 0 12px 40px rgba(16, 185, 129, 0.2);
+  // </CHANGE>
   transform: translateY(-4px);
   box-shadow: 0 12px 40px rgba(99, 102, 241, 0.25);
 }
 
 .contact-icon {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(99, 102, 241, 0.1);
-  border-radius: 12px;
-  color: var(--color-accent-light);
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-accent);
+  // </CHANGE>
   flex-shrink: 0;
 }
 /* </CHANGE> */
@@ -911,6 +923,8 @@ button {
 .footer-links a:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
+  background: rgba(16, 185, 129, 0.1);
+  // </CHANGE>
   transform: translateY(-2px);
 }
 
