@@ -430,7 +430,7 @@ body {
 
 .gradient-title {
   /* Made gradient brighter with white starting point for better visibility */
-  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #a78bfa 60%, #22d3ee 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 25%, #a78bfa 50%, #22d3ee 75%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -439,11 +439,10 @@ body {
   position: relative;
   display: inline-block;
   /* Removed all blur filters for crystal clear text */
-  filter: none;
   /* Increased z-index to ensure name stays above background elements */
-  z-index: 10;
-  /* Reduced glow effects significantly for sharper appearance */
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(96, 165, 250, 0.4);
+  z-index: 100;
+  /* Removed filter to eliminate any blur effects */
+  filter: none;
 }
 
 .gradient-title::before {
@@ -465,12 +464,10 @@ body {
   opacity: 0;
   animation: fadeInChar 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   /* Made font even bolder for maximum visibility */
-  font-weight: 900;
   /* Removed heavy text shadows that could cause blur effect */
-  text-shadow: none;
   /* Ensure each character is above background */
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 
 .char:nth-child(1) {
