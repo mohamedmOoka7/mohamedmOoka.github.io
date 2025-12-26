@@ -105,59 +105,78 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight
   })
 
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width
-      this.y = Math.random() * canvas.height
-      this.size = Math.random() * 3 + 1
-      this.speedX = Math.random() * 1 - 0.5
-      this.speedY = Math.random() * 1 - 0.5
-      this.opacity = Math.random() * 0.5 + 0.2
+  // Grid configuration
+  const gridSize = 50
+  const waveSpeed = 0.02
+  const waveAmplitude = 15
+  let time = 0
+
+  class GridPoint {
+    constructor(x, y) {
+      this.baseX = x
+      this.baseY = y
+      this.x = x
+      this.y = y
     }
 
     update() {
-      this.x += this.speedX
-      this.y += this.speedY
+      const distanceFromCenter = Math.sqrt(
+        Math.pow(this.baseX - canvas.width / 2, 2) + Math.pow(this.baseY - canvas.height / 2, 2),
+      )
 
-      if (this.x > canvas.width || this.x < 0) {
-        this.speedX = -this.speedX
-      }
-      if (this.y > canvas.height || this.y < 0) {
-        this.speedY = -this.speedY
-      }
+      const wave = Math.sin(distanceFromCenter * 0.01 + time) * waveAmplitude
+      this.y = this.baseY + wave
     }
 
     draw() {
-      ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`
+      const opacity = 0.15
+      ctx.fillStyle = `rgba(99, 102, 241, ${opacity})`
       ctx.beginPath()
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+      ctx.arc(this.x, this.y, 2, 0, Math.PI * 2)
       ctx.fill()
     }
   }
 
-  const particlesArray = []
-  const numberOfParticles = 100
+  const gridPoints = []
 
-  for (let i = 0; i < numberOfParticles; i++) {
-    particlesArray.push(new Particle())
+  for (let x = 0; x < canvas.width; x += gridSize) {
+    for (let y = 0; y < canvas.height; y += gridSize) {
+      gridPoints.push(new GridPoint(x, y))
+    }
   }
 
-  function connectParticles() {
-    for (let a = 0; a < particlesArray.length; a++) {
-      for (let b = a; b < particlesArray.length; b++) {
-        const dx = particlesArray[a].x - particlesArray[b].x
-        const dy = particlesArray[a].y - particlesArray[b].y
-        const distance = Math.sqrt(dx * dx + dy * dy)
+  function connectGrid() {
+    for (let i = 0; i < gridPoints.length; i++) {
+      const point = gridPoints[i]
 
-        if (distance < 120) {
-          const opacity = (1 - distance / 120) * 0.3
-          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
-          ctx.lineWidth = 1
-          ctx.beginPath()
-          ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
-          ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
-          ctx.stroke()
-        }
+      // Connect to right neighbor
+      const rightNeighbor = gridPoints.find((p) => p.baseX === point.baseX + gridSize && p.baseY === point.baseY)
+      if (rightNeighbor) {
+        const gradient = ctx.createLinearGradient(point.x, point.y, rightNeighbor.x, rightNeighbor.y)
+        gradient.addColorStop(0, "rgba(99, 102, 241, 0.1)")
+        gradient.addColorStop(1, "rgba(139, 92, 246, 0.1)")
+
+        ctx.strokeStyle = gradient
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(point.x, point.y)
+        ctx.lineTo(rightNeighbor.x, rightNeighbor.y)
+        ctx.stroke()
+      }
+
+      // Connect to bottom neighbor
+      const bottomNeighbor = gridPoints.find((p) => p.baseX === point.baseX && p.baseY === point.baseY + gridSize)
+      if (bottomNeighbor) {
+        const gradient = ctx.createLinearGradient(point.x, point.y, bottomNeighbor.x, bottomNeighbor.y)
+        gradient.addColorStop(0, "rgba(99, 102, 241, 0.1)")
+        gradient.addColorStop(1, "rgba(139, 92, 246, 0.1)")
+
+        ctx.strokeStyle = gradient
+        ctx.lineWidth = 1
+        ctx.beginPath()
+        ctx.moveTo(point.x, point.y)
+        ctx.lineTo(bottomNeighbor.x, bottomNeighbor.y)
+        ctx.stroke()
       }
     }
   }
@@ -165,12 +184,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    for (let i = 0; i < particlesArray.length; i++) {
-      particlesArray[i].update()
-      particlesArray[i].draw()
+    time += waveSpeed
+
+    for (let i = 0; i < gridPoints.length; i++) {
+      gridPoints[i].update()
+      gridPoints[i].draw()
     }
 
-    connectParticles()
+    connectGrid()
     requestAnimationFrame(animate)
   }
 
