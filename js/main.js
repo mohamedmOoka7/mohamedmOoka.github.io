@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.radius = Math.random() * 200 + 150
       this.vx = (Math.random() - 0.5) * 0.3
       this.vy = (Math.random() - 0.5) * 0.3
-      this.hue = Math.random() * 60 + 220 // Blue to purple range
+      this.hue = Math.random() * 40 + 240 // Indigo to violet range (240-280)
     }
 
     update() {
@@ -130,9 +130,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     draw() {
       const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
-      gradient.addColorStop(0, `hsla(${this.hue}, 80%, 60%, 0.15)`)
-      gradient.addColorStop(0.5, `hsla(${this.hue}, 70%, 50%, 0.08)`)
-      gradient.addColorStop(1, `hsla(${this.hue}, 60%, 40%, 0)`)
+      gradient.addColorStop(0, `hsla(${this.hue}, 85%, 65%, 0.2)`)
+      gradient.addColorStop(0.5, `hsla(${this.hue}, 80%, 60%, 0.12)`)
+      gradient.addColorStop(1, `hsla(${this.hue}, 75%, 55%, 0)`)
+      // </CHANGE>
 
       ctx.fillStyle = gradient
       ctx.beginPath()
@@ -149,8 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
       this.size = Math.random() * 3 + 1
       this.speedX = (Math.random() - 0.5) * 0.5
       this.speedY = (Math.random() - 0.5) * 0.5
-      this.opacity = Math.random() * 0.5 + 0.2
-      this.hue = Math.random() * 60 + 220
+      this.opacity = Math.random() * 0.5 + 0.3
+      this.hue = Math.random() * 40 + 240 // Indigo to violet
     }
 
     update() {
@@ -162,9 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw() {
-      ctx.fillStyle = `hsla(${this.hue}, 80%, 70%, ${this.opacity})`
-      ctx.shadowBlur = 15
-      ctx.shadowColor = `hsla(${this.hue}, 80%, 70%, 0.8)`
+      ctx.fillStyle = `hsla(${this.hue}, 85%, 70%, ${this.opacity})`
+      ctx.shadowBlur = 25
+      ctx.shadowColor = `hsla(${this.hue}, 85%, 70%, 0.8)`
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
@@ -210,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < 120) {
-          ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - distance / 120)})`
+          ctx.strokeStyle = `rgba(99, 102, 241, ${0.3 * (1 - distance / 120)})`
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
@@ -224,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   animate()
-  // </CHANGE>
 
   // ===== BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll(".btn")
