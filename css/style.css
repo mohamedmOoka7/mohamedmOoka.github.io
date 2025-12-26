@@ -1397,3 +1397,43 @@ body {
     justify-content: center;
   }
 }
+
+
+
+
+
+
+/* === FORCE SHOW NAME (FINAL FIX) === */
+.hero-background,
+.hero-glow {
+  z-index: 0 !important;
+}
+
+.hero .container,
+.hero-content {
+  position: relative;
+  z-index: 5 !important;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 10 !important;
+}
+
+.gradient-title {
+  position: relative;
+  z-index: 15 !important;
+  filter: none !important;
+}
+
+.gradient-title::before,
+.gradient-title::after {
+  display: none !important;
+}
+
+.char {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
