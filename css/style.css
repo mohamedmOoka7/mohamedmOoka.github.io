@@ -219,7 +219,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Removed top padding for navbar */
   padding: var(--spacing-3xl) var(--spacing-lg);
   position: relative;
   overflow: hidden;
@@ -239,48 +238,64 @@ button {
 .hero-content {
   position: relative;
   z-index: 1;
-  /* Center all hero content */
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.hero-title {
-  /* Updated hero title to match "Hi, I'm" style from reference image */
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  line-height: 1.2;
+/* Enhanced typography with better hierarchy and spacing */
+.hero-greeting {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.hero-name {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+
+.hero-role {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--color-text-secondary);
   margin-bottom: var(--spacing-lg);
   text-align: center;
-  color: var(--color-text);
-  /* </CHANGE> */
+  letter-spacing: -0.01em;
 }
-
-/* Removed .hero-name and .hero-role styles as they're no longer needed */
+/* </CHANGE> */
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-weight: 800;
+  display: inline-block;
 }
 
 .hero-subtitle {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xl);
-  max-width: 700px;
+  margin-bottom: var(--spacing-2xl);
+  max-width: 600px;
   text-align: center;
-  line-height: 1.7;
+  line-height: 1.6;
+  font-weight: 400;
 }
-/* </CHANGE> */
 
 .hero-buttons {
   display: flex;
   gap: var(--spacing-md);
   flex-wrap: wrap;
-  /* Center buttons */
   justify-content: center;
 }
 
@@ -989,39 +1004,23 @@ button {
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--spacing-lg);
-    flex-direction: column;
-    gap: var(--spacing-md);
-    transform: translateY(-100%);
-    transition: var(--transition);
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .nav.active .nav-menu {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .menu-btn {
-    display: flex;
-  }
-
   .hero {
-    padding: calc(80px + var(--spacing-2xl)) var(--spacing-lg) var(--spacing-2xl);
+    padding: var(--spacing-2xl) var(--spacing-lg);
   }
 
-  .hero-title {
+  /* Better mobile typography scaling */
+  .hero-greeting {
+    font-size: 1.5rem;
+  }
+
+  .hero-name {
     font-size: 2.5rem;
   }
+
+  .hero-role {
+    font-size: 1.25rem;
+  }
+  /* </CHANGE> */
 
   .skills {
     grid-template-columns: 1fr;
