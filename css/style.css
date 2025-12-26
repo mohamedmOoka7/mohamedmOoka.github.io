@@ -428,7 +428,6 @@ body {
   margin-right: 0.3em;
 }
 
-/* Fixed gradient title to always be visible and removed blur issues */
 .gradient-title {
   background: linear-gradient(
     135deg,
@@ -443,16 +442,23 @@ body {
   animation: gradientFlow 4s linear infinite;
   position: relative;
   display: inline-block;
-  /* Ensure text is always visible */
-  filter: none;
-  backdrop-filter: none;
 }
 
 .gradient-title::before {
-  filter: blur(12px);   /* بدل 30px */
-  opacity: 0.2;         /* أقل شوية */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-accent-blue) 0%,
+    var(--color-accent-purple) 50%,
+    var(--color-accent-cyan) 100%
+  );
+  filter: blur(30px);
+  opacity: 0.3;
+  z-index: -1;
+  animation: gradientFlow 4s linear infinite;
 }
-
 
 @keyframes gradientFlow {
   0% {
@@ -463,14 +469,12 @@ body {
   }
 }
 
-/* Made char elements visible by default with smooth animation */
 .char {
   display: inline-block;
-  opacity: 1; /* Changed from 0 to 1 to ensure text is always visible */
-  animation: fadeInChar 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  animation: fadeInChar 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Extended animation delays for all characters in "Mohamed Mooka" */
 .char:nth-child(1) {
   animation-delay: 0.5s;
 }
@@ -513,7 +517,7 @@ body {
 
 @keyframes fadeInChar {
   from {
-    opacity: 0.3; /* Changed from 0 to 0.3 for smoother appearance */
+    opacity: 0;
     transform: translateY(20px) rotateX(-90deg);
   }
   to {
