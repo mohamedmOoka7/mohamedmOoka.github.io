@@ -429,6 +429,7 @@ body {
 }
 
 .gradient-title {
+  /* Made gradient brighter with white starting point for better visibility */
   background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #a78bfa 60%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -437,31 +438,39 @@ body {
   animation: gradientFlow 4s linear infinite;
   position: relative;
   display: inline-block;
-  /* Removed filter blur to make text crystal clear */
+  /* Removed all blur filters for crystal clear text */
   filter: none;
-  /* Added stronger direct text shadow for better visibility without blur */
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 80px rgba(96, 165, 250, 0.7), 0 0 120px rgba(167, 139, 250, 0.6);
+  /* Increased z-index to ensure name stays above background elements */
+  z-index: 10;
+  /* Reduced glow effects significantly for sharper appearance */
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(96, 165, 250, 0.4);
 }
 
 .gradient-title::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #a78bfa 60%, #22d3ee 100%);
-  /* Reduced blur significantly for sharper text */
-  filter: blur(20px);
-  opacity: 0.4;
-  z-index: -1;
-  animation: gradientFlow 4s linear infinite;
+  /* Removed the glow effect entirely to eliminate blur appearance */
+  display: none;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 .char {
   display: inline-block;
   opacity: 0;
   animation: fadeInChar 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Made font even bolder for maximum visibility */
   font-weight: 900;
-  /* Sharper text shadow without blur effects */
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 60px rgba(96, 165, 250, 0.8), 0 0 90px rgba(167, 139, 250, 0.7);
+  /* Removed heavy text shadows that could cause blur effect */
+  text-shadow: none;
+  /* Ensure each character is above background */
+  position: relative;
+  z-index: 10;
 }
 
 .char:nth-child(1) {
