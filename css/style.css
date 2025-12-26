@@ -4,15 +4,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
-/* Lighter background for better text readability */
 :root {
-  --color-bg: #0a0a12;
-  --color-surface: #12121f;
-  --color-text: #ffffff;
-  --color-text-secondary: #b4b4c8;
-  --color-accent: #7c3aed;
-  --color-accent-hover: #6d28d9;
-  --color-border: #1f1f2e;
+  --color-bg: #0a0e1a;
+  --color-surface: #111827;
+  --color-text: #f9fafb;
+  --color-text-secondary: #9ca3af;
+  --color-accent: #06b6d4;
+  --color-accent-hover: #0891b2;
+  --color-border: #1f2937;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -26,55 +25,6 @@
   --spacing-3xl: 6rem;
 
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Colors */
-  /*  --color-bg: #0a0a0a;
-  --color-surface: #111111;
-  --color-surface-elevated: #161616;
-  --color-surface-hover: #1a1a1a;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a3a3a3;
-  --color-text-tertiary: #737373;
-  --color-accent: #3b82f6;
-  --color-accent-hover: #2563eb;
-  --color-accent-light: #60a5fa;
-  --color-border: #1f1f1f;
-  --color-border-dark: #171717;
-  --color-success: #10b981;
-  --color-warning: #f59e0b;
-  --color-error: #ef4444;
-
-  /* Fonts */
-  /*  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "JetBrains Mono", "Courier New", monospace;
-
-  /* Spacing */
-  /*  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-2xl: 4rem;
-  --spacing-3xl: 6rem;
-  --spacing-4xl: 8rem;
-
-  /* Transitions */
-  /*  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.25);
-  --shadow-accent: 0 8px 24px rgba(59, 130, 246, 0.3);
-
-  /* Border Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
 }
 
 /* ============================================
@@ -280,12 +230,13 @@ button {
 }
 /* </CHANGE> */
 
+/* Updated gradient for name with professional cyan-to-blue gradient */
 .gradient-text {
-  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #c084fc 100%);
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.3));
+  filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.3));
 }
 
 .hero-subtitle {
