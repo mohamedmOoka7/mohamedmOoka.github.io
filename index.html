@@ -41,30 +41,16 @@
   <!-- Skip to main content for accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Background Effects -->
-  <div class="background-effects" aria-hidden="true">
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-  </div>
-
-  <!-- Navigation -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo" aria-label="Mohamed Mooka - Home">MM</a>
-      <div class="nav-menu" role="menu">
-        <a href="#home" class="nav-link" data-section="home" role="menuitem">Home</a>
-        <a href="#about" class="nav-link" data-section="about" role="menuitem">About</a>
-        <a href="#work" class="nav-link" data-section="work" role="menuitem">Work</a>
-        <a href="#contact" class="nav-link" data-section="contact" role="menuitem">Contact</a>
-      </div>
-      <button class="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+  <!-- Animated Background -->
+  <div class="animated-background" aria-hidden="true">
+    <div class="gradient-mesh">
+      <div class="mesh-gradient gradient-1"></div>
+      <div class="mesh-gradient gradient-2"></div>
+      <div class="mesh-gradient gradient-3"></div>
+      <div class="mesh-gradient gradient-4"></div>
     </div>
-  </nav>
+    <div class="particles-container"></div>
+  </div>
 
   <!-- Main Content -->
   <main id="main-content">
@@ -73,16 +59,20 @@
     <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container">
         <div class="hero-content">
+          <div class="hero-badge" data-animate="fade-up" data-delay="0">
+            <span class="badge-dot"></span>
+            <span>Available for Opportunities</span>
+          </div>
           <h1 class="hero-title" id="hero-title" data-animate="fade-up" data-delay="100">
-            <span class="text-line">Cybersecurity Analyst</span>
-            <span class="text-line gradient-text">Mohamed Mooka</span>
+            <span class="text-line">Mohamed Mooka</span>
+            <span class="text-line gradient-text">Cybersecurity Analyst</span>
           </h1>
           <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
             Specialized in Digital Forensics, Incident Response & SOC Operations
           </p>
           <div class="hero-buttons" data-animate="fade-up" data-delay="300">
             <a href="#work" class="btn btn-primary">
-              <span>View Work</span>
+              <span>View Portfolio</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
@@ -97,7 +87,7 @@
             </a>
           </div>
           <div class="scroll-indicator" aria-hidden="true">
-            <span>Scroll Down</span>
+            <span>Scroll to Explore</span>
             <div class="scroll-arrow"></div>
           </div>
         </div>
