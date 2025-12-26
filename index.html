@@ -3,58 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Mooka | Cyber Security Analyst</title>
-    <meta name="description" content="Cybersecurity analyst specializing in SOC operations and Digital Forensics & Incident Response (DFIR)">
+    <title>Mohamed Mooka | Cybersecurity Analyst</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">MOOKA<span class="dot">_</span></a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Expertise</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section id="hero" class="hero">
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
-                    <span class="badge-text">Available for opportunities</span>
+                <div class="hero-text">
+                    <div class="hero-label">
+                        <i data-lucide="shield-check"></i>
+                        <span>Cybersecurity Professional</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="gradient-text">Mohamed Mooka</span>
+                        <br>Cybersecurity Analyst
+                    </h1>
+                    <p class="hero-description">
+                        Specialized in Digital Forensics, Incident Response & SOC Operations. 
+                        Protecting digital assets and investigating security incidents with precision and expertise.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            View My Work
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            Get In Touch
+                            <i data-lucide="mail"></i>
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Security Incidents</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Forensic Cases</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">SOC Monitoring</div>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="hero-name">Mohamed Mooka</h1>
-                <p class="hero-role">Cyber Security Analyst | DFIR | SOC</p>
-                <p class="hero-tagline">Securing systems. Investigating threats.<br>Turning incidents into intelligence.</p>
-                <a href="#projects" class="cta-button">View My Work</a>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <img src="https://placehold.co/500x600?text=Cybersecurity+analyst+working+in+dark+SOC+room+with+multiple+monitors+showing+security+dashboards+and+threat+maps" alt="Cybersecurity analyst working in dark SOC room with multiple monitors showing security dashboards and threat maps" class="profile-img">
+                        <div class="image-decoration decoration-1"></div>
+                        <div class="image-decoration decoration-2"></div>
+                    </div>
+                </div>
             </div>
-            <div class="hero-decoration">
-                <div class="grid-overlay"></div>
-            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i data-lucide="mouse"></i>
+            <span>Scroll Down</span>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">About</span>
-                <h2 class="section-title">Professional Overview</h2>
+                <span class="section-label">About Me</span>
+                <h2 class="section-title">Protecting Digital Infrastructure</h2>
             </div>
             <div class="about-content">
-                <p class="about-text">
-                    I am a cybersecurity analyst specializing in SOC operations and Digital Forensics & Incident Response (DFIR).
-                    I focus on detecting, analyzing, and responding to security incidents with precision and discipline.
-                    My work is driven by structured analysis, attention to detail, and a strong defensive mindset.
-                </p>
-                <div class="about-stats">
-                    <div class="stat-item">
-                        <div class="stat-value">SOC</div>
-                        <div class="stat-label">Operations</div>
+                <div class="about-image">
+                    <img src="https://placehold.co/600x700?text=Security+operations+center+with+threat+intelligence+displays+network+diagrams+and+incident+response+tools" alt="Security operations center with threat intelligence displays network diagrams and incident response tools" class="about-img">
+                    <div class="about-badge">
+                        <i data-lucide="shield-alert"></i>
+                        <span>Security Expert</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-value">DFIR</div>
-                        <div class="stat-label">Forensics</div>
+                </div>
+                <div class="about-text">
+                    <h3>Experienced in threat detection, forensic analysis, and incident response</h3>
+                    <p>
+                        As a dedicated Cybersecurity Analyst, I specialize in Digital Forensics, Incident Response, 
+                        and SOC Operations. My expertise lies in identifying, analyzing, and mitigating security 
+                        threats to protect organizations from evolving cyber attacks.
+                    </p>
+                    <p>
+                        With extensive experience in threat hunting, malware analysis, and security monitoring, 
+                        I work to ensure the confidentiality, integrity, and availability of critical systems 
+                        and data. I stay current with the latest threat landscape and security technologies 
+                        to provide robust protection against sophisticated attacks.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i data-lucide="check-circle"></i>
+                            <span>Advanced Threat Detection</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check-circle"></i>
+                            <span>Forensic Investigation</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check-circle"></i>
+                            <span>Incident Response</span>
+                        </div>
+                        <div class="feature">
+                            <i data-lucide="check-circle"></i>
+                            <span>Security Operations</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-value">IR</div>
-                        <div class="stat-label">Incident Response</div>
+                    <a href="#contact" class="btn btn-primary">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Expertise</span>
+                <h2 class="section-title">Security Skills & Tools</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i data-lucide="search"></i>
+                    </div>
+                    <h3>Digital Forensics</h3>
+                    <p>Expert in collecting, preserving, and analyzing digital evidence from various systems and devices</p>
+                    <div class="skill-tags">
+                        <span>FTK</span>
+                        <span>EnCase</span>
+                        <span>Autopsy</span>
+                        <span>Volatility</span>
+                        <span>Wireshark</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i data-lucide="alert-triangle"></i>
+                    </div>
+                    <h3>Incident Response</h3>
+                    <p>Rapid response to security incidents with comprehensive investigation and remediation</p>
+                    <div class="skill-tags">
+                        <span>SIEM</span>
+                        <span>Splunk</span>
+                        <span>EDR</span>
+                        <span>CrowdStrike</span>
+                        <span>Carbon Black</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i data-lucide="monitor"></i>
+                    </div>
+                    <h3>SOC Operations</h3>
+                    <p>24/7 security monitoring, threat detection, and analysis of security events and alerts</p>
+                    <div class="skill-tags">
+                        <span>QRadar</span>
+                        <span>AlienVault</span>
+                        <span>ELK Stack</span>
+                        <span>Suricata</span>
+                        <span>Snort</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i data-lucide="bug"></i>
+                    </div>
+                    <h3>Threat Intelligence</h3>
+                    <p>Analyzing threat actors, malware, and attack patterns to proactively defend systems</p>
+                    <div class="skill-tags">
+                        <span>MITRE ATT&CK</span>
+                        <span>YARA</span>
+                        <span>VirusTotal</span>
+                        <span>OSINT</span>
+                        <span>ThreatConnect</span>
                     </div>
                 </div>
             </div>
@@ -62,69 +206,162 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects">
+    <section class="projects" id="projects">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Portfolio</span>
-                <h2 class="section-title">Selected Projects</h2>
+                <span class="section-label">Case Studies</span>
+                <h2 class="section-title">Security Projects & Investigations</h2>
             </div>
             <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-number">01</div>
-                    <h3 class="project-title">SOC Incident Analysis Dashboard</h3>
-                    <p class="project-description">
-                        Analysis and triage of security alerts, incident classification, and response workflow simulation.
-                    </p>
-                    <div class="project-tools">
-                        <span class="tool-tag">SIEM</span>
-                        <span class="tool-tag">Splunk</span>
-                        <span class="tool-tag">Windows Logs</span>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://placehold.co/800x600?text=Network+intrusion+detection+dashboard+showing+threat+alerts+packet+analysis+and+security+events+in+dark+interface" alt="Network intrusion detection dashboard showing threat alerts packet analysis and security events in dark interface">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">
+                                <i data-lucide="external-link"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="project-link">
-                        <span>View Case Study</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M4.16602 10H15.8327M15.8327 10L10.8327 5M15.8327 10L10.8327 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Incident Response</span>
+                            <span>Network Analysis</span>
+                            <span>Threat Detection</span>
+                        </div>
+                        <h3>Advanced Persistent Threat Investigation</h3>
+                        <p>Investigated and mitigated sophisticated APT attack targeting enterprise infrastructure, analyzing malware behavior and implementing defensive measures.</p>
+                        <a href="#" class="project-button">
+                            View Case Study
+                            <i data-lucide="arrow-right"></i>
+                        </a>
                     </div>
-                </article>
+                </div>
 
-                <article class="project-card">
-                    <div class="project-number">02</div>
-                    <h3 class="project-title">DFIR Malware Investigation Case Study</h3>
-                    <p class="project-description">
-                        End-to-end malware analysis including artifact collection, timeline analysis, and root cause identification.
-                    </p>
-                    <div class="project-tools">
-                        <span class="tool-tag">Autopsy</span>
-                        <span class="tool-tag">Volatility</span>
-                        <span class="tool-tag">Wireshark</span>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://placehold.co/800x600?text=Digital+forensics+workstation+with+disk+imaging+tools+hex+editor+and+evidence+recovery+software" alt="Digital forensics workstation with disk imaging tools hex editor and evidence recovery software">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">
+                                <i data-lucide="external-link"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="project-link">
-                        <span>View Case Study</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M4.16602 10H15.8327M15.8327 10L10.8327 5M15.8327 10L10.8327 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>Digital Forensics</span>
+                            <span>Data Recovery</span>
+                            <span>Evidence Analysis</span>
+                        </div>
+                        <h3>Corporate Data Breach Forensics</h3>
+                        <p>Conducted comprehensive forensic analysis of data breach incident, recovering deleted evidence and identifying attack vectors and compromised systems.</p>
+                        <a href="#" class="project-button">
+                            View Case Study
+                            <i data-lucide="arrow-right"></i>
+                        </a>
                     </div>
-                </article>
+                </div>
 
-                <article class="project-card">
-                    <div class="project-number">03</div>
-                    <h3 class="project-title">Log Analysis & Threat Detection Lab</h3>
-                    <p class="project-description">
-                        Detection of suspicious activity through log correlation and behavioral analysis.
-                    </p>
-                    <div class="project-tools">
-                        <span class="tool-tag">ELK Stack</span>
-                        <span class="tool-tag">Linux</span>
-                        <span class="tool-tag">Bash</span>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://placehold.co/800x600?text=Security+operations+center+monitoring+multiple+screens+with+real-time+threat+intelligence+feeds+and+global+attack+maps" alt="Security operations center monitoring multiple screens with real-time threat intelligence feeds and global attack maps">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link">
+                                <i data-lucide="external-link"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="project-link">
-                        <span>View Case Study</span>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M4.16602 10H15.8327M15.8327 10L10.8327 5M15.8327 10L10.8327 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span>SOC</span>
+                            <span>SIEM</span>
+                            <span>Automation</span>
+                        </div>
+                        <h3>Enterprise SOC Implementation</h3>
+                        <p>Designed and deployed comprehensive Security Operations Center with automated threat detection, incident response workflows, and real-time monitoring capabilities.</p>
+                        <a href="#" class="project-button">
+                            View Case Study
+                            <i data-lucide="arrow-right"></i>
+                        </a>
                     </div>
-                </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Get In Touch</span>
+                <h2 class="section-title">Contact Me</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's discuss your security needs</h3>
+                    <p>Available for cybersecurity consulting, incident response services, forensic investigations, and SOC operations support.</p>
+                    <div class="contact-methods">
+                        <a href="mailto:mohamed.mooka@security.com" class="contact-method">
+                            <div class="method-icon">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div class="method-text">
+                                <span class="method-label">Email</span>
+                                <span class="method-value">mohamed.mooka@security.com</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/mohamedmooka" class="contact-method">
+                            <div class="method-icon">
+                                <i data-lucide="linkedin"></i>
+                            </div>
+                            <div class="method-text">
+                                <span class="method-label">LinkedIn</span>
+                                <span class="method-value">linkedin.com/in/mohamedmooka</span>
+                            </div>
+                        </a>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i data-lucide="shield"></i>
+                            </div>
+                            <div class="method-text">
+                                <span class="method-label">Specialization</span>
+                                <span class="method-value">Digital Forensics & IR</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="GitHub">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Security consultation, incident response, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Describe your security needs..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Send Message
+                        <i data-lucide="send"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -133,30 +370,16 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3 class="footer-name">Mohamed Mooka</h3>
-                    <p class="footer-role">Cyber Security Analyst | DFIR | SOC</p>
+                <div class="footer-text">
+                    <p>&copy; 2025 Mohamed Mooka. Cybersecurity Analyst. All rights reserved.</p>
                 </div>
-                <div class="footer-social">
-                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" fill="currentColor"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:contact@mohamedmooka.com" class="social-link" aria-label="Email">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
-                        </svg>
-                    </a>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Expertise</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mohamed Mooka. All rights reserved.</p>
             </div>
         </div>
     </footer>
