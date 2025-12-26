@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== ANIMATED PARTICLE BACKGROUND =====
+  // ===== PREMIUM ANIMATED BACKGROUND =====
   const canvas = document.getElementById("particles-canvas")
   const ctx = canvas.getContext("2d")
 
@@ -105,97 +105,126 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight
   })
 
-  // Grid configuration
-  const gridSize = 50
-  const waveSpeed = 0.02
-  const waveAmplitude = 15
-  let time = 0
-
-  class GridPoint {
-    constructor(x, y) {
-      this.baseX = x
-      this.baseY = y
-      this.x = x
-      this.y = y
+  // Floating Gradient Orbs
+  class GradientOrb {
+    constructor() {
+      this.x = Math.random() * canvas.width
+      this.y = Math.random() * canvas.height
+      this.radius = Math.random() * 200 + 150
+      this.vx = (Math.random() - 0.5) * 0.3
+      this.vy = (Math.random() - 0.5) * 0.3
+      this.hue = Math.random() * 60 + 220 // Blue to purple range
     }
 
     update() {
-      const distanceFromCenter = Math.sqrt(
-        Math.pow(this.baseX - canvas.width / 2, 2) + Math.pow(this.baseY - canvas.height / 2, 2),
-      )
+      this.x += this.vx
+      this.y += this.vy
 
-      const wave = Math.sin(distanceFromCenter * 0.01 + time) * waveAmplitude
-      this.y = this.baseY + wave
+      if (this.x < -this.radius || this.x > canvas.width + this.radius) {
+        this.vx *= -1
+      }
+      if (this.y < -this.radius || this.y > canvas.height + this.radius) {
+        this.vy *= -1
+      }
     }
 
     draw() {
-      const opacity = 0.15
-      ctx.fillStyle = `rgba(99, 102, 241, ${opacity})`
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
+      gradient.addColorStop(0, `hsla(${this.hue}, 80%, 60%, 0.15)`)
+      gradient.addColorStop(0.5, `hsla(${this.hue}, 70%, 50%, 0.08)`)
+      gradient.addColorStop(1, `hsla(${this.hue}, 60%, 40%, 0)`)
+
+      ctx.fillStyle = gradient
       ctx.beginPath()
-      ctx.arc(this.x, this.y, 2, 0, Math.PI * 2)
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
       ctx.fill()
     }
   }
 
-  const gridPoints = []
+  // Floating Particles
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width
+      this.y = Math.random() * canvas.height
+      this.size = Math.random() * 3 + 1
+      this.speedX = (Math.random() - 0.5) * 0.5
+      this.speedY = (Math.random() - 0.5) * 0.5
+      this.opacity = Math.random() * 0.5 + 0.2
+      this.hue = Math.random() * 60 + 220
+    }
 
-  for (let x = 0; x < canvas.width; x += gridSize) {
-    for (let y = 0; y < canvas.height; y += gridSize) {
-      gridPoints.push(new GridPoint(x, y))
+    update() {
+      this.x += this.speedX
+      this.y += this.speedY
+
+      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1
+      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1
+    }
+
+    draw() {
+      ctx.fillStyle = `hsla(${this.hue}, 80%, 70%, ${this.opacity})`
+      ctx.shadowBlur = 15
+      ctx.shadowColor = `hsla(${this.hue}, 80%, 70%, 0.8)`
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.shadowBlur = 0
     }
   }
 
-  function connectGrid() {
-    for (let i = 0; i < gridPoints.length; i++) {
-      const point = gridPoints[i]
+  // Create orbs and particles
+  const orbs = []
+  const particles = []
+  const orbCount = 4
+  const particleCount = 80
 
-      // Connect to right neighbor
-      const rightNeighbor = gridPoints.find((p) => p.baseX === point.baseX + gridSize && p.baseY === point.baseY)
-      if (rightNeighbor) {
-        const gradient = ctx.createLinearGradient(point.x, point.y, rightNeighbor.x, rightNeighbor.y)
-        gradient.addColorStop(0, "rgba(99, 102, 241, 0.1)")
-        gradient.addColorStop(1, "rgba(139, 92, 246, 0.1)")
-
-        ctx.strokeStyle = gradient
-        ctx.lineWidth = 1
-        ctx.beginPath()
-        ctx.moveTo(point.x, point.y)
-        ctx.lineTo(rightNeighbor.x, rightNeighbor.y)
-        ctx.stroke()
-      }
-
-      // Connect to bottom neighbor
-      const bottomNeighbor = gridPoints.find((p) => p.baseX === point.baseX && p.baseY === point.baseY + gridSize)
-      if (bottomNeighbor) {
-        const gradient = ctx.createLinearGradient(point.x, point.y, bottomNeighbor.x, bottomNeighbor.y)
-        gradient.addColorStop(0, "rgba(99, 102, 241, 0.1)")
-        gradient.addColorStop(1, "rgba(139, 92, 246, 0.1)")
-
-        ctx.strokeStyle = gradient
-        ctx.lineWidth = 1
-        ctx.beginPath()
-        ctx.moveTo(point.x, point.y)
-        ctx.lineTo(bottomNeighbor.x, bottomNeighbor.y)
-        ctx.stroke()
-      }
-    }
+  for (let i = 0; i < orbCount; i++) {
+    orbs.push(new GradientOrb())
   }
 
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle())
+  }
+
+  // Animation loop
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    time += waveSpeed
+    // Draw orbs
+    orbs.forEach((orb) => {
+      orb.update()
+      orb.draw()
+    })
 
-    for (let i = 0; i < gridPoints.length; i++) {
-      gridPoints[i].update()
-      gridPoints[i].draw()
+    // Draw particles
+    particles.forEach((particle) => {
+      particle.update()
+      particle.draw()
+    })
+
+    // Connect nearby particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x
+        const dy = particles[i].y - particles[j].y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < 120) {
+          ctx.strokeStyle = `rgba(99, 102, 241, ${0.15 * (1 - distance / 120)})`
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.stroke()
+        }
+      }
     }
 
-    connectGrid()
     requestAnimationFrame(animate)
   }
 
   animate()
+  // </CHANGE>
 
   // ===== BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll(".btn")
