@@ -1,16 +1,92 @@
-// ===========================
-// Smooth Scroll Animation
-// ===========================
+// Import Lucide icons library
+import lucide from "lucide"
+
+// Initialize Lucide icons
+lucide.createIcons()
+
+// Mobile Navigation Toggle
+const mobileToggle = document.getElementById("mobileToggle")
+const navLinks = document.getElementById("navLinks")
+
+mobileToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active")
+})
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll(".nav-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active")
+  })
+})
+
+// Navbar scroll effect
+const navbar = document.getElementById("navbar")
+let lastScroll = 0
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset
+
+  if (currentScroll > 100) {
+    navbar.classList.add("scrolled")
+  } else {
+    navbar.classList.remove("scrolled")
+  }
+
+  lastScroll = currentScroll
+})
+
+// Active navigation link on scroll
+const sections = document.querySelectorAll("section")
+const navLinksArray = document.querySelectorAll(".nav-link")
+
+window.addEventListener("scroll", () => {
+  let current = ""
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop
+    const sectionHeight = section.clientHeight
+
+    if (window.pageYOffset >= sectionTop - 200) {
+      current = section.getAttribute("id")
+    }
+  })
+
+  navLinksArray.forEach((link) => {
+    link.classList.remove("active")
+    if (link.getAttribute("href").slice(1) === current) {
+      link.classList.add("active")
+    }
+  })
+})
+
+// Contact Form Submission
+const contactForm = document.getElementById("contactForm")
+
+contactForm.addEventListener("submit", (e) => {
+  e.preventDefault()
+
+  // Get form values
+  const name = document.getElementById("name").value
+  const email = document.getElementById("email").value
+  const subject = document.getElementById("subject").value
+  const message = document.getElementById("message").value
+
+  // Here you would typically send the form data to a server
+  // For now, we'll just show an alert
+  alert(`Thank you ${name}! Your message has been received. I'll get back to you soon!`)
+
+  // Reset form
+  contactForm.reset()
+})
+
+// Smooth scroll for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault()
-    const targetId = this.getAttribute("href")
+    const target = document.querySelector(this.getAttribute("href"))
 
-    if (targetId === "#") return
-
-    const targetElement = document.querySelector(targetId)
-    if (targetElement) {
-      targetElement.scrollIntoView({
+    if (target) {
+      target.scrollIntoView({
         behavior: "smooth",
         block: "start",
       })
@@ -18,149 +94,30 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   })
 })
 
-// ===========================
-// Intersection Observer for Scroll Animations
-// ===========================
+// Animate elements on scroll
 const observerOptions = {
   threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px",
+  rootMargin: "0px 0px -100px 0px",
 }
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add("visible")
+      entry.target.style.opacity = "1"
+      entry.target.style.transform = "translateY(0)"
     }
   })
 }, observerOptions)
 
-// Observe all sections and project cards
-document.addEventListener("DOMContentLoaded", () => {
-  // Add fade-in class to elements that should animate on scroll
-  const animatedElements = document.querySelectorAll(".section-header, .about-content, .project-card, .footer-content")
-
-  animatedElements.forEach((el) => {
-    el.classList.add("fade-in")
-    observer.observe(el)
-  })
+// Observe all cards and sections
+document.querySelectorAll(".skill-card, .project-card, .about-content, .contact-content").forEach((el) => {
+  el.style.opacity = "0"
+  el.style.transform = "translateY(30px)"
+  el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+  observer.observe(el)
 })
 
-// ===========================
-// Project Card Interactions
-// ===========================
-const projectCards = document.querySelectorAll(".project-card")
-
-projectCards.forEach((card) => {
-  card.addEventListener("mouseenter", function () {
-    this.style.zIndex = "10"
-  })
-
-  card.addEventListener("mouseleave", function () {
-    this.style.zIndex = "1"
-  })
-
-  // Add click handler for project cards (can be customized)
-  card.addEventListener("click", function (e) {
-    // Prevent if clicking on a link inside the card
-    if (e.target.tagName === "A") return
-
-    const projectTitle = this.querySelector(".project-title").textContent
-    console.log("Project clicked:", projectTitle)
-    // You can add navigation or modal logic here
-  })
-})
-
-// ===========================
-// Dynamic Grid Background Animation
-// ===========================
-const gridOverlay = document.querySelector(".grid-overlay")
-
-if (gridOverlay) {
-  let mouseX = 0
-  let mouseY = 0
-
-  document.addEventListener("mousemove", (e) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
-
-    const xPercent = (mouseX / window.innerWidth) * 20 - 10
-    const yPercent = (mouseY / window.innerHeight) * 20 - 10
-
-    gridOverlay.style.transform = `translate(${xPercent}px, ${yPercent}px)`
-  })
-}
-
-// ===========================
-// Performance: Reduce animations on low-power devices
-// ===========================
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-
-if (prefersReducedMotion.matches) {
-  document.documentElement.style.scrollBehavior = "auto"
-
-  // Disable complex animations
-  const style = document.createElement("style")
-  style.textContent = `
-        * {
-            animation-duration: 0.01ms !important;
-            transition-duration: 0.01ms !important;
-        }
-    `
-  document.head.appendChild(style)
-}
-
-// ===========================
-// Add subtle parallax effect to hero section
-// ===========================
-let ticking = false
-
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const scrolled = window.pageYOffset
-      const hero = document.querySelector(".hero-content")
-      const heroDecoration = document.querySelector(".hero-decoration")
-
-      if (hero && scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.3}px)`
-        hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8
-      }
-
-      if (heroDecoration && scrolled < window.innerHeight) {
-        heroDecoration.style.transform = `translateY(${scrolled * 0.15}px)`
-      }
-
-      ticking = false
-    })
-
-    ticking = true
-  }
-})
-
-// ===========================
-// Stats Counter Animation (when visible)
-// ===========================
-const statItems = document.querySelectorAll(".stat-item")
-
-const statsObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.animation = "fadeInUp 0.6s ease forwards"
-        statsObserver.unobserve(entry.target)
-      }
-    })
-  },
-  { threshold: 0.5 },
-)
-
-statItems.forEach((item, index) => {
-  item.style.animationDelay = `${index * 0.1}s`
-  item.style.opacity = "0"
-  statsObserver.observe(item)
-})
-
-// ===========================
-// Initialize
-// ===========================
-console.log("Portfolio initialized successfully")
+// Reinitialize Lucide icons after DOM changes
+setTimeout(() => {
+  lucide.createIcons()
+}, 100)
