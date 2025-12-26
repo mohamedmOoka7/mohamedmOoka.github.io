@@ -698,14 +698,14 @@ button {
 
 .work-grid {
   display: grid;
-  /* Changed to 2 columns for smaller cards */
+  /* Changed to 2 columns with smaller gap */
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-lg);
   margin-top: var(--spacing-2xl);
 }
 
 .work-card {
-  /* Changed to single column layout and reduced size */
+  /* Simplified to single column, no image section */
   display: flex;
   flex-direction: column;
   background: var(--color-surface);
@@ -714,6 +714,8 @@ button {
   overflow: hidden;
   transition: var(--transition);
   position: relative;
+  /* Reduced padding for smaller cards */
+  padding: var(--spacing-xl);
 }
 
 .work-card:hover {
@@ -722,11 +724,10 @@ button {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Added project number styling */
 .project-number {
   position: absolute;
   top: var(--spacing-md);
-  left: var(--spacing-md);
+  right: var(--spacing-md);
   width: 48px;
   height: 48px;
   background: var(--color-accent);
@@ -741,39 +742,25 @@ button {
   font-family: var(--font-mono);
 }
 
-.work-image {
-  position: relative;
-  overflow: hidden;
-  background: var(--color-bg);
-  /* Reduced image height */
-  height: 250px;
-}
-
-.work-card:hover .work-image img {
-  transform: scale(1.05);
-}
+/* Removed .work-image styles completely */
 
 .work-content {
-  /* Reduced padding */
-  padding: var(--spacing-lg);
   display: flex;
   flex-direction: column;
+  /* Removed padding since it's on parent now */
 }
 
-/* Removed work-tags section */
-/* .work-tags and related styles have been removed */
-
 .work-title {
-  /* Reduced title size */
   font-size: 22px;
   font-weight: 700;
   margin-bottom: var(--spacing-sm);
+  /* Added padding-right to avoid number overlap */
+  padding-right: 60px;
 }
 
 .work-desc {
   color: var(--color-text-secondary);
   line-height: 1.6;
-  /* Reduced margin */
   margin-bottom: var(--spacing-md);
   flex: 1;
   font-size: 15px;
@@ -783,7 +770,6 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
-  /* Reduced margin */
   margin-bottom: var(--spacing-md);
 }
 
