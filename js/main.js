@@ -1,75 +1,112 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== PARTICLES ANIMATION =====
-  const canvas = document.getElementById("particles-canvas")
-  const ctx = canvas.getContext("2d")
+  // ===== MATRIX RAIN ANIMATION =====
+  const matrixCanvas = document.getElementById("matrixCanvas")
+  const matrixCtx = matrixCanvas.getContext("2d")
 
-  // Set canvas size
-  function resizeCanvas() {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+  function resizeMatrixCanvas() {
+    matrixCanvas.width = window.innerWidth
+    matrixCanvas.height = window.innerHeight
   }
-  resizeCanvas()
-  window.addEventListener("resize", resizeCanvas)
+  resizeMatrixCanvas()
+  window.addEventListener("resize", resizeMatrixCanvas)
 
-  // Particle system
+  // Matrix rain characters
+  const matrixChars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン"
+  const fontSize = 14
+  const columns = matrixCanvas.width / fontSize
+  const drops = []
+
+  for (let i = 0; i < columns; i++) {
+    drops[i] = Math.random() * -100
+  }
+
+  function drawMatrix() {
+    matrixCtx.fillStyle = "rgba(10, 10, 10, 0.05)"
+    matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height)
+
+    matrixCtx.fillStyle = "#3b82f6"
+    matrixCtx.font = fontSize + "px monospace"
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = matrixChars[Math.floor(Math.random() * matrixChars.length)]
+      const x = i * fontSize
+      const y = drops[i] * fontSize
+
+      matrixCtx.fillText(char, x, y)
+
+      if (y > matrixCanvas.height && Math.random() > 0.975) {
+        drops[i] = 0
+      }
+      drops[i]++
+    }
+  }
+
+  setInterval(drawMatrix, 50)
+
+  // ===== PARTICLES ANIMATION =====
+  const particlesCanvas = document.getElementById("particlesCanvas")
+  const particlesCtx = particlesCanvas.getContext("2d")
+
+  function resizeParticlesCanvas() {
+    particlesCanvas.width = window.innerWidth
+    particlesCanvas.height = window.innerHeight
+  }
+  resizeParticlesCanvas()
+  window.addEventListener("resize", resizeParticlesCanvas)
+
   const particles = []
-  const particleCount = 80
+  const particleCount = 60
   const connectionDistance = 150
 
   class Particle {
     constructor() {
-      this.x = Math.random() * canvas.width
-      this.y = Math.random() * canvas.height
+      this.x = Math.random() * particlesCanvas.width
+      this.y = Math.random() * particlesCanvas.height
       this.vx = (Math.random() - 0.5) * 0.5
       this.vy = (Math.random() - 0.5) * 0.5
       this.radius = Math.random() * 2 + 1
-      this.opacity = Math.random() * 0.5 + 0.2
+      this.opacity = Math.random() * 0.5 + 0.3
     }
 
     update() {
       this.x += this.vx
       this.y += this.vy
 
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1
+      if (this.x < 0 || this.x > particlesCanvas.width) this.vx *= -1
+      if (this.y < 0 || this.y > particlesCanvas.height) this.vy *= -1
     }
 
     draw() {
-      ctx.beginPath()
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(124, 58, 237, ${this.opacity})`
-      ctx.fill()
+      particlesCtx.beginPath()
+      particlesCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+      particlesCtx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`
+      particlesCtx.fill()
     }
   }
 
-  // Initialize particles
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle())
   }
 
-  // Mouse interaction
   const mouse = { x: null, y: null, radius: 150 }
 
-  canvas.addEventListener("mousemove", (e) => {
+  window.addEventListener("mousemove", (e) => {
     mouse.x = e.x
     mouse.y = e.y
   })
 
-  canvas.addEventListener("mouseleave", () => {
+  window.addEventListener("mouseleave", () => {
     mouse.x = null
     mouse.y = null
   })
 
-  // Animation loop
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+  function animateParticles() {
+    particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height)
 
-    // Update and draw particles
     particles.forEach((particle) => {
       particle.update()
       particle.draw()
 
-      // Mouse repulsion
       if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - particle.x
         const dy = mouse.y - particle.y
@@ -78,13 +115,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (distance < mouse.radius) {
           const force = (mouse.radius - distance) / mouse.radius
           const angle = Math.atan2(dy, dx)
-          particle.vx -= Math.cos(angle) * force * 0.2
-          particle.vy -= Math.sin(angle) * force * 0.2
+          particle.vx -= Math.cos(angle) * force * 0.15
+          particle.vy -= Math.sin(angle) * force * 0.15
         }
       }
     })
 
-    // Draw connections
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x
@@ -92,21 +128,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < connectionDistance) {
-          const opacity = (1 - distance / connectionDistance) * 0.3
-          ctx.beginPath()
-          ctx.strokeStyle = `rgba(124, 58, 237, ${opacity})`
-          ctx.lineWidth = 1
-          ctx.moveTo(particles[i].x, particles[i].y)
-          ctx.lineTo(particles[j].x, particles[j].y)
-          ctx.stroke()
+          const opacity = (1 - distance / connectionDistance) * 0.2
+          particlesCtx.beginPath()
+          particlesCtx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
+          particlesCtx.lineWidth = 1
+          particlesCtx.moveTo(particles[i].x, particles[i].y)
+          particlesCtx.lineTo(particles[j].x, particles[j].y)
+          particlesCtx.stroke()
         }
       }
     }
 
-    requestAnimationFrame(animate)
+    requestAnimationFrame(animateParticles)
   }
 
-  animate()
+  animateParticles()
 
   // ===== NAVIGATION =====
   const nav = document.querySelector(".nav")
@@ -136,7 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateActiveNav)
   updateActiveNav()
 
-  // Mobile menu toggle
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
       nav.classList.toggle("active")
@@ -205,15 +240,15 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollObserver.observe(element)
   })
 
-  // ===== PARALLAX EFFECT =====
-  const glows = document.querySelectorAll(".glow-effect")
+  // ===== PARALLAX EFFECT FOR GRADIENT ORBS =====
+  const orbs = document.querySelectorAll(".gradient-orb")
 
   window.addEventListener("scroll", () => {
     const scrolled = window.pageYOffset
 
-    glows.forEach((glow, index) => {
+    orbs.forEach((orb, index) => {
       const speed = (index + 1) * 0.05
-      glow.style.transform = `translateY(${scrolled * speed}px)`
+      orb.style.transform = `translateY(${scrolled * speed}px)`
     })
   })
 
@@ -251,9 +286,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== CONSOLE MESSAGE =====
   console.log(
     "%cMohamed Mooka | Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #7c3aed; text-shadow: 0 2px 10px rgba(124, 58, 237, 0.5);",
+    "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);",
   )
-  console.log("%cEnhanced with Stunning Animations", "font-size: 14px; color: #ec4899; font-weight: 600;")
+  console.log("%cEnhanced Professional Design", "font-size: 14px; color: #8b5cf6; font-weight: 600;")
 
   // ===== PERFORMANCE: REDUCE MOTION =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
