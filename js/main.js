@@ -63,7 +63,7 @@ window.addEventListener("scroll", () => {
   sections.forEach((section) => {
     const sectionTop = section.offsetTop
     const sectionHeight = section.clientHeight
-    if (pageYOffset >= sectionTop - 200) {
+    if (window.pageYOffset >= sectionTop - 200) {
       current = section.getAttribute("id")
     }
   })
@@ -75,53 +75,6 @@ window.addEventListener("scroll", () => {
     }
   })
 })
-
-// ================================
-// Stats Counter Animation
-// ================================
-const stats = document.querySelectorAll(".stat-number")
-let animated = false
-
-const animateStats = () => {
-  if (animated) return
-
-  stats.forEach((stat) => {
-    const target = Number.parseInt(stat.getAttribute("data-target"))
-    const increment = target / 100
-    let current = 0
-
-    const updateCount = () => {
-      if (current < target) {
-        current += increment
-        stat.textContent = Math.ceil(current)
-        setTimeout(updateCount, 20)
-      } else {
-        stat.textContent = target + (target === 100 ? "+" : "")
-      }
-    }
-
-    updateCount()
-  })
-
-  animated = true
-}
-
-// Trigger animation when stats section is in view
-const statsSection = document.querySelector(".stats")
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateStats()
-      }
-    })
-  },
-  { threshold: 0.5 },
-)
-
-if (statsSection) {
-  observer.observe(statsSection)
-}
 
 // ================================
 // Scroll Animations (AOS-like)
@@ -161,42 +114,6 @@ backToTop.addEventListener("click", () => {
     behavior: "smooth",
   })
 })
-
-// ================================
-// Custom Cursor
-// ================================
-const cursorDot = document.querySelector("[data-cursor-dot]")
-const cursorOutline = document.querySelector("[data-cursor-outline]")
-
-if (window.innerWidth > 768) {
-  window.addEventListener("mousemove", (e) => {
-    const posX = e.clientX
-    const posY = e.clientY
-
-    cursorDot.style.left = `${posX}px`
-    cursorDot.style.top = `${posY}px`
-
-    cursorOutline.style.left = `${posX}px`
-    cursorOutline.style.top = `${posY}px`
-  })
-
-  // Cursor effects on interactive elements
-  const interactiveElements = document.querySelectorAll("a, button, .work-card, .skill-card, .cert-card")
-
-  interactiveElements.forEach((element) => {
-    element.addEventListener("mouseenter", () => {
-      cursorDot.style.transform = "translate(-50%, -50%) scale(1.5)"
-      cursorOutline.style.width = "50px"
-      cursorOutline.style.height = "50px"
-    })
-
-    element.addEventListener("mouseleave", () => {
-      cursorDot.style.transform = "translate(-50%, -50%) scale(1)"
-      cursorOutline.style.width = "32px"
-      cursorOutline.style.height = "32px"
-    })
-  })
-}
 
 // ================================
 // Particles Animation (Canvas)
@@ -276,25 +193,6 @@ animateParticles()
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
-})
-
-// ================================
-// Contact Form Handler
-// ================================
-const contactForm = document.getElementById("contactForm")
-
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault()
-
-  const formData = new FormData(contactForm)
-  const data = Object.fromEntries(formData)
-
-  // Here you would typically send the data to a backend
-  console.log("Form submitted:", data)
-
-  // Show success message (you can customize this)
-  alert("Thank you for your message! I will get back to you soon.")
-  contactForm.reset()
 })
 
 // ================================
