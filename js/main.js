@@ -1,71 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== MATRIX RAIN ANIMATION =====
-  const matrixCanvas = document.getElementById("matrixCanvas")
-  const matrixCtx = matrixCanvas.getContext("2d")
+  const particlesCanvas = document.getElementById("particles")
+  const ctx = particlesCanvas.getContext("2d")
 
-  function resizeMatrixCanvas() {
-    matrixCanvas.width = window.innerWidth
-    matrixCanvas.height = window.innerHeight
-  }
-  resizeMatrixCanvas()
-  window.addEventListener("resize", resizeMatrixCanvas)
-
-  // Matrix rain characters
-  const matrixChars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン"
-  const fontSize = 14
-  const columns = matrixCanvas.width / fontSize
-  const drops = []
-
-  for (let i = 0; i < columns; i++) {
-    drops[i] = Math.random() * -100
-  }
-
-  function drawMatrix() {
-    matrixCtx.fillStyle = "rgba(10, 10, 10, 0.05)"
-    matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height)
-
-    matrixCtx.fillStyle = "#3b82f6"
-    matrixCtx.font = fontSize + "px monospace"
-
-    for (let i = 0; i < drops.length; i++) {
-      const char = matrixChars[Math.floor(Math.random() * matrixChars.length)]
-      const x = i * fontSize
-      const y = drops[i] * fontSize
-
-      matrixCtx.fillText(char, x, y)
-
-      if (y > matrixCanvas.height && Math.random() > 0.975) {
-        drops[i] = 0
-      }
-      drops[i]++
-    }
-  }
-
-  setInterval(drawMatrix, 50)
-
-  // ===== PARTICLES ANIMATION =====
-  const particlesCanvas = document.getElementById("particlesCanvas")
-  const particlesCtx = particlesCanvas.getContext("2d")
-
-  function resizeParticlesCanvas() {
+  function resizeCanvas() {
     particlesCanvas.width = window.innerWidth
     particlesCanvas.height = window.innerHeight
   }
-  resizeParticlesCanvas()
-  window.addEventListener("resize", resizeParticlesCanvas)
+  resizeCanvas()
+  window.addEventListener("resize", resizeCanvas)
 
+  // Particle system
   const particles = []
-  const particleCount = 60
-  const connectionDistance = 150
+  const particleCount = 80
+  const connectionDistance = 120
 
   class Particle {
     constructor() {
       this.x = Math.random() * particlesCanvas.width
       this.y = Math.random() * particlesCanvas.height
-      this.vx = (Math.random() - 0.5) * 0.5
-      this.vy = (Math.random() - 0.5) * 0.5
-      this.radius = Math.random() * 2 + 1
-      this.opacity = Math.random() * 0.5 + 0.3
+      this.vx = (Math.random() - 0.5) * 0.8
+      this.vy = (Math.random() - 0.5) * 0.8
+      this.radius = Math.random() * 2.5 + 0.5
+      this.opacity = Math.random() * 0.5 + 0.2
     }
 
     update() {
@@ -77,10 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw() {
-      particlesCtx.beginPath()
-      particlesCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-      particlesCtx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`
-      particlesCtx.fill()
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 2)
+      gradient.addColorStop(0, `rgba(59, 130, 246, ${this.opacity})`)
+      gradient.addColorStop(1, `rgba(59, 130, 246, 0)`)
+      ctx.fillStyle = gradient
+      ctx.fill()
     }
   }
 
@@ -88,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     particles.push(new Particle())
   }
 
-  const mouse = { x: null, y: null, radius: 150 }
+  const mouse = { x: null, y: null, radius: 180 }
 
   window.addEventListener("mousemove", (e) => {
     mouse.x = e.x
@@ -101,12 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   function animateParticles() {
-    particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height)
+    ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height)
 
     particles.forEach((particle) => {
       particle.update()
       particle.draw()
 
+      // Mouse interaction
       if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - particle.x
         const dy = mouse.y - particle.y
@@ -115,12 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (distance < mouse.radius) {
           const force = (mouse.radius - distance) / mouse.radius
           const angle = Math.atan2(dy, dx)
-          particle.vx -= Math.cos(angle) * force * 0.15
-          particle.vy -= Math.sin(angle) * force * 0.15
+          particle.vx -= Math.cos(angle) * force * 0.2
+          particle.vy -= Math.sin(angle) * force * 0.2
         }
       }
     })
 
+    // Draw connections
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x
@@ -128,13 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < connectionDistance) {
-          const opacity = (1 - distance / connectionDistance) * 0.2
-          particlesCtx.beginPath()
-          particlesCtx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
-          particlesCtx.lineWidth = 1
-          particlesCtx.moveTo(particles[i].x, particles[i].y)
-          particlesCtx.lineTo(particles[j].x, particles[j].y)
-          particlesCtx.stroke()
+          const opacity = (1 - distance / connectionDistance) * 0.3
+          ctx.beginPath()
+          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
+          ctx.lineWidth = 1
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.stroke()
         }
       }
     }
@@ -144,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateParticles()
 
-  // ===== NAVIGATION =====
   const nav = document.querySelector(".nav")
   const navLinks = document.querySelectorAll(".nav-link")
   const sections = document.querySelectorAll("section[id]")
@@ -172,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateActiveNav)
   updateActiveNav()
 
+  // Mobile menu toggle
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
       nav.classList.toggle("active")
@@ -193,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // ===== SMOOTH SCROLL =====
   const links = document.querySelectorAll('a[href^="#"]')
 
   links.forEach((link) => {
@@ -216,12 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== SCROLL ANIMATIONS =====
   const animatedElements = document.querySelectorAll("[data-animate]")
 
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -80px 0px",
   }
 
   const scrollObserver = new IntersectionObserver((entries) => {
@@ -240,42 +199,92 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollObserver.observe(element)
   })
 
-  // ===== PARALLAX EFFECT FOR GRADIENT ORBS =====
-  const orbs = document.querySelectorAll(".gradient-orb")
+  const glowOrbs = document.querySelectorAll(".glow-orb")
 
   window.addEventListener("scroll", () => {
     const scrolled = window.pageYOffset
 
-    orbs.forEach((orb, index) => {
-      const speed = (index + 1) * 0.05
+    glowOrbs.forEach((orb, index) => {
+      const speed = (index + 1) * 0.03
+      const currentTransform = orb.style.transform || ""
       orb.style.transform = `translateY(${scrolled * speed}px)`
     })
   })
 
-  // ===== WORK CARD SPOTLIGHT =====
-  const workCards = document.querySelectorAll(".work-card")
+  const skillCards = document.querySelectorAll(".skill-card")
 
-  workCards.forEach((card) => {
+  const skillObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const progressBar = entry.target.querySelector(".skill-progress")
+          if (progressBar) {
+            const progress = progressBar.getAttribute("data-progress") || 90
+            progressBar.style.transform = `scaleX(${progress / 100})`
+          }
+          skillObserver.unobserve(entry.target)
+        }
+      })
+    },
+    { threshold: 0.3 },
+  )
+
+  skillCards.forEach((card) => {
+    skillObserver.observe(card)
+  })
+
+  const projectCards = document.querySelectorAll(".project-card")
+
+  projectCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect()
-      const x = ((e.clientX - rect.left) / rect.width) * 100
-      const y = ((e.clientY - rect.top) / rect.height) * 100
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
 
-      card.style.setProperty("--mouse-x", `${x}%`)
-      card.style.setProperty("--mouse-y", `${y}%`)
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = (y - centerY) / 20
+      const rotateY = (centerX - x) / 20
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
+    })
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = ""
     })
   })
 
-  // ===== MAGNETIC BUTTONS =====
-  const magneticButtons = document.querySelectorAll(".btn-primary, .btn-secondary")
+  const contactCards = document.querySelectorAll(".contact-card")
 
-  magneticButtons.forEach((button) => {
+  contactCards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      const shine = card.querySelector(".card-shine")
+      if (shine) {
+        shine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.1) 0%, transparent 50%)`
+      }
+    })
+  })
+
+  const buttons = document.querySelectorAll(".btn")
+
+  buttons.forEach((button) => {
     button.addEventListener("mousemove", (e) => {
       const rect = button.getBoundingClientRect()
       const x = e.clientX - rect.left - rect.width / 2
       const y = e.clientY - rect.top - rect.height / 2
 
-      button.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`
+      const distance = Math.sqrt(x * x + y * y)
+      const maxDistance = 50
+
+      if (distance < maxDistance) {
+        const strength = (maxDistance - distance) / maxDistance
+        button.style.transform = `translate(${x * strength * 0.3}px, ${y * strength * 0.3}px)`
+      }
     })
 
     button.addEventListener("mouseleave", () => {
@@ -283,28 +292,76 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== CONSOLE MESSAGE =====
-  console.log(
-    "%cMohamed Mooka | Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);",
-  )
-  console.log("%cEnhanced Professional Design", "font-size: 14px; color: #8b5cf6; font-weight: 600;")
+  const cursorTrail = []
+  const maxTrailLength = 15
 
-  // ===== PERFORMANCE: REDUCE MOTION =====
+  document.addEventListener("mousemove", (e) => {
+    cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() })
+
+    if (cursorTrail.length > maxTrailLength) {
+      cursorTrail.shift()
+    }
+  })
+
+  const gradientTexts = document.querySelectorAll(".gradient-title")
+
+  window.addEventListener("scroll", () => {
+    const scrollPercent = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+
+    gradientTexts.forEach((text) => {
+      text.style.backgroundPosition = `${scrollPercent}% center`
+    })
+  })
+
+  console.log(
+    "%c✨ Mohamed Mooka - Cybersecurity Portfolio",
+    "font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 20px 0;",
+  )
+  console.log("%cRevolutionary Design by v0", "font-size: 14px; color: #8b5cf6; font-weight: 600; padding: 10px 0;")
+
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
   if (prefersReducedMotion.matches) {
     document.querySelectorAll("*").forEach((el) => {
-      el.style.animation = "none"
-      el.style.transition = "none"
+      el.style.animation = "none !important"
+      el.style.transition = "none !important"
     })
+
+    // Stop particle animation for reduced motion
+    ctx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height)
   }
 
-  // ===== ACCESSIBILITY: KEYBOARD NAVIGATION =====
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && nav.classList.contains("active")) {
       nav.classList.remove("active")
       menuBtn.classList.remove("active")
     }
   })
+
+  const images = document.querySelectorAll("img[data-src]")
+
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target
+        img.src = img.getAttribute("data-src")
+        img.removeAttribute("data-src")
+        imageObserver.unobserve(img)
+      }
+    })
+  })
+
+  images.forEach((img) => {
+    imageObserver.observe(img)
+  })
+
+  window.scrollTo({ top: 0, behavior: "instant" })
+
+  const heroTitle = document.querySelector(".gradient-title")
+  if (heroTitle) {
+    const chars = heroTitle.querySelectorAll(".char")
+    chars.forEach((char, index) => {
+      char.style.animationDelay = `${0.5 + index * 0.05}s`
+    })
+  }
 })
