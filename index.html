@@ -11,30 +11,45 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Enhanced animated background with matrix rain effect and particles -->
+  <!-- Revolutionary animated background with particles, grid, and glow effects -->
   <div class="background-effects">
-    <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
-    <canvas id="particlesCanvas" class="particles-canvas"></canvas>
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
+    <canvas id="particles" class="particles-canvas"></canvas>
+    <div class="grid-background"></div>
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+    <div class="glow-orb glow-3"></div>
   </div>
 
-  <!-- Navigation -->
+  <!-- Redesigned glassmorphic navigation -->
   <nav class="nav">
     <div class="nav-container">
-      <a href="#" class="nav-logo">MM</a>
+      <a href="#" class="nav-logo">
+        <span class="logo-text">MM</span>
+        <span class="logo-pulse"></span>
+      </a>
       <div class="nav-menu">
-        <a href="#home" class="nav-link" data-section="home">Home</a>
-        <a href="#about" class="nav-link" data-section="about">About</a>
-        <a href="#work" class="nav-link" data-section="work">Work</a>
-        <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+        <a href="#home" class="nav-link" data-section="home">
+          <span class="link-text">Home</span>
+          <span class="link-underline"></span>
+        </a>
+        <a href="#about" class="nav-link" data-section="about">
+          <span class="link-text">About</span>
+          <span class="link-underline"></span>
+        </a>
+        <a href="#work" class="nav-link" data-section="work">
+          <span class="link-text">Work</span>
+          <span class="link-underline"></span>
+        </a>
+        <a href="#contact" class="nav-link" data-section="contact">
+          <span class="link-text">Contact</span>
+          <span class="link-underline"></span>
+        </a>
       </div>
       <button class="menu-btn" aria-label="Menu">
         <span></span>
@@ -44,186 +59,277 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Revolutionary hero section with 3D text effect -->
   <section class="hero" id="home">
+    <div class="hero-background">
+      <div class="hero-glow"></div>
+    </div>
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title" data-animate="fade-up" data-delay="100">
-          <span class="text-line">Cybersecurity Analyst</span>
-          <!-- Enhanced gradient for Mohamed Mooka with glow effect -->
-          <span class="text-line gradient-text">Mohamed Mooka</span>
+        <div class="hero-badge" data-animate="fade-up">
+          <span class="badge-dot"></span>
+          <span>Available for opportunities</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="title-line" data-animate="slide-up" data-delay="100">
+            <span class="word">Cybersecurity</span>
+            <span class="word">Analyst</span>
+          </span>
+          <span class="title-line gradient-title" data-animate="slide-up" data-delay="200">
+            <span class="char">M</span><span class="char">o</span><span class="char">h</span><span class="char">a</span><span class="char">m</span><span class="char">e</span><span class="char">d</span>
+            <span class="char space"> </span>
+            <span class="char">M</span><span class="char">o</span><span class="char">o</span><span class="char">k</span><span class="char">a</span>
+          </span>
         </h1>
-        <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+        <p class="hero-subtitle" data-animate="fade-up" data-delay="300">
           Specialized in Digital Forensics, Incident Response & SOC Operations
         </p>
-        <div class="hero-buttons" data-animate="fade-up" data-delay="300">
+        <div class="hero-stats" data-animate="fade-up" data-delay="400">
+          <div class="stat-item">
+            <div class="stat-value">5+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Available</div>
+          </div>
+        </div>
+        <div class="hero-buttons" data-animate="fade-up" data-delay="500">
           <a href="#work" class="btn btn-primary">
-            <span>View Work</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
+            <span class="btn-content">
+              <span>Explore Work</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </span>
+            <span class="btn-glow"></span>
           </a>
           <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            <span>Download CV</span>
+            <span class="btn-content">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <span>Download CV</span>
+            </span>
           </a>
-        </div>
-        <div class="scroll-indicator">
-          <span>Scroll Down</span>
-          <div class="scroll-arrow"></div>
         </div>
       </div>
     </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll to explore</span>
+    </div>
   </section>
 
-  <!-- About -->
+  <!-- Modern about section with glassmorphic cards -->
   <section class="about" id="about">
     <div class="container">
       <div class="section-header" data-animate="fade-up">
-        <span class="section-label">Get to know me</span>
+        <span class="section-label">
+          <span class="label-line"></span>
+          <span>Get to know me</span>
+        </span>
         <h2 class="section-title">About Me</h2>
       </div>
       <div class="about-content">
-        <p class="about-text" data-animate="fade-up">
-          I'm a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) 
-          and Security Operations Center (SOC) operations. With hands-on experience in threat detection, 
-          log analysis, and incident response, I'm passionate about protecting digital assets and 
-          uncovering cyber threats.
-        </p>
-        <div class="skills">
-          <div class="skill-item" data-animate="fade-up" data-delay="0">
-            <div class="skill-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
+        <div class="about-card" data-animate="fade-up">
+          <div class="card-glow"></div>
+          <p class="about-text">
+            I'm a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) 
+            and Security Operations Center (SOC) operations. With hands-on experience in threat detection, 
+            log analysis, and incident response, I'm passionate about protecting digital assets and 
+            uncovering cyber threats.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card" data-animate="scale-up" data-delay="0">
+            <div class="skill-icon-wrapper">
+              <div class="skill-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="m21 21-4.35-4.35"/>
+                </svg>
+              </div>
+              <div class="icon-glow"></div>
             </div>
-            <span>Digital Forensics</span>
+            <h3 class="skill-title">Digital Forensics</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="95"></div>
+            </div>
           </div>
-          <div class="skill-item" data-animate="fade-up" data-delay="50">
-            <div class="skill-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
+          
+          <div class="skill-card" data-animate="scale-up" data-delay="100">
+            <div class="skill-icon-wrapper">
+              <div class="skill-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div class="icon-glow"></div>
             </div>
-            <span>Incident Response</span>
+            <h3 class="skill-title">Incident Response</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="92"></div>
+            </div>
           </div>
-          <div class="skill-item" data-animate="fade-up" data-delay="100">
-            <div class="skill-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
+          
+          <div class="skill-card" data-animate="scale-up" data-delay="200">
+            <div class="skill-icon-wrapper">
+              <div class="skill-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/>
+                  <line x1="8" y1="21" x2="16" y2="21"/>
+                  <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+              </div>
+              <div class="icon-glow"></div>
             </div>
-            <span>SOC Operations</span>
+            <h3 class="skill-title">SOC Operations</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="90"></div>
+            </div>
           </div>
-          <div class="skill-item" data-animate="fade-up" data-delay="150">
-            <div class="skill-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              </svg>
+          
+          <div class="skill-card" data-animate="scale-up" data-delay="300">
+            <div class="skill-icon-wrapper">
+              <div class="skill-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                </svg>
+              </div>
+              <div class="icon-glow"></div>
             </div>
-            <span>Network Analysis</span>
+            <h3 class="skill-title">Network Analysis</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="88"></div>
+            </div>
           </div>
-          <div class="skill-item" data-animate="fade-up" data-delay="200">
-            <div class="skill-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                <rect x="8" y="2" width="8" height="4" rx="1"/>
-              </svg>
+          
+          <div class="skill-card" data-animate="scale-up" data-delay="400">
+            <div class="skill-icon-wrapper">
+              <div class="skill-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                  <rect x="8" y="2" width="8" height="4" rx="1"/>
+                </svg>
+              </div>
+              <div class="icon-glow"></div>
             </div>
-            <span>Threat Intelligence</span>
+            <h3 class="skill-title">Threat Intelligence</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="85"></div>
+            </div>
           </div>
-          <div class="skill-item" data-animate="fade-up" data-delay="250">
-            <div class="skill-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
+          
+          <div class="skill-card" data-animate="scale-up" data-delay="500">
+            <div class="skill-icon-wrapper">
+              <div class="skill-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"/>
+                  <polyline points="8 6 2 12 8 18"/>
+                </svg>
+              </div>
+              <div class="icon-glow"></div>
             </div>
-            <span>Scripting & Automation</span>
+            <h3 class="skill-title">Scripting & Automation</h3>
+            <div class="skill-bar">
+              <div class="skill-progress" data-progress="93"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Work -->
+  <!-- Premium work section with hover effects -->
   <section class="work" id="work">
     <div class="container">
       <div class="section-header" data-animate="fade-up">
-        <span class="section-label">Portfolio</span>
+        <span class="section-label">
+          <span class="label-line"></span>
+          <span>Portfolio</span>
+        </span>
         <h2 class="section-title">Featured Work</h2>
       </div>
       <div class="work-grid">
-        <article class="work-card" data-animate="slide-up">
-          <div class="work-image">
-            <img src="https://placehold.co/1200x800?text=Digital+forensics+investigation+dashboard+with+evidence+analysis+timeline+and+system+artifacts" alt="Digital forensics investigation dashboard with evidence analysis timeline and system artifacts" />
-            <div class="work-overlay">
-              <a href="project-dfir.html" class="overlay-btn">
-                View Project
+        <article class="project-card" data-animate="fade-up">
+          <div class="project-image">
+            <img src="https://placehold.co/1400x900?text=Digital+forensics+investigation+dashboard+with+evidence+analysis+timeline+system+artifacts+dark+theme+modern+interface" alt="Digital forensics investigation dashboard with evidence analysis timeline system artifacts dark theme modern interface" />
+            <div class="image-overlay">
+              <a href="project-dfir.html" class="project-btn">
+                <span>View Project</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                  <path d="M7 17L17 7M17 7H7M17 7v10"/>
                 </svg>
               </a>
             </div>
           </div>
-          <div class="work-content">
-            <div class="work-tags">
-              <span class="tag">DFIR</span>
-              <span class="tag tag-year">2024</span>
+          <div class="project-content">
+            <div class="project-header">
+              <div class="project-tags">
+                <span class="tag tag-primary">DFIR</span>
+                <span class="tag tag-year">2024</span>
+              </div>
+              <div class="project-number">01</div>
             </div>
-            <h3 class="work-title">DFIR Investigation Lab</h3>
-            <p class="work-desc">
+            <h3 class="project-title">DFIR Investigation Lab</h3>
+            <p class="project-desc">
               Comprehensive digital forensics case study covering detection, forensic analysis, 
               attacker timeline reconstruction, and detailed incident response documentation.
             </p>
-            <div class="work-tech">
-              <span>Volatility</span>
-              <span>Autopsy</span>
-              <span>Wireshark</span>
-              <span>SIFT</span>
+            <div class="project-tech">
+              <span class="tech-tag">Volatility</span>
+              <span class="tech-tag">Autopsy</span>
+              <span class="tech-tag">Wireshark</span>
+              <span class="tech-tag">SIFT</span>
             </div>
-            <a href="project-dfir.html" class="work-link">
-              View Project
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <a href="project-dfir.html" class="project-link">
+              <span>Explore Project</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </a>
           </div>
         </article>
 
-        <article class="work-card" data-animate="slide-up" data-delay="100">
-          <div class="work-image">
-            <img src="https://placehold.co/1200x800?text=SOC+security+monitoring+interface+with+threat+alerts+detection+rules+and+log+analysis" alt="SOC security monitoring interface with threat alerts detection rules and log analysis" />
-            <div class="work-overlay">
-              <span class="overlay-btn disabled">
-                Coming Soon
+        <article class="project-card project-coming-soon" data-animate="fade-up" data-delay="100">
+          <div class="project-image">
+            <img src="https://placehold.co/1400x900?text=SOC+security+monitoring+interface+with+threat+alerts+detection+rules+log+analysis+dark+theme+modern+dashboard" alt="SOC security monitoring interface with threat alerts detection rules log analysis dark theme modern dashboard" />
+            <div class="image-overlay">
+              <span class="project-btn disabled">
+                <span>Coming Soon</span>
               </span>
             </div>
+            <div class="coming-soon-badge">Coming Soon</div>
           </div>
-          <div class="work-content">
-            <div class="work-tags">
-              <span class="tag">SOC</span>
-              <span class="tag tag-year">Coming Soon</span>
+          <div class="project-content">
+            <div class="project-header">
+              <div class="project-tags">
+                <span class="tag tag-primary">SOC</span>
+                <span class="tag tag-year">2025</span>
+              </div>
+              <div class="project-number">02</div>
             </div>
-            <h3 class="work-title">SOC Monitoring & Detection</h3>
-            <p class="work-desc">
+            <h3 class="project-title">SOC Monitoring & Detection</h3>
+            <p class="project-desc">
               SOC-focused monitoring and alert triage scenarios using advanced log analysis 
               techniques and SIEM correlation rules for threat detection.
             </p>
-            <div class="work-tech">
-              <span>Splunk</span>
-              <span>Sigma Rules</span>
-              <span>MITRE ATT&CK</span>
+            <div class="project-tech">
+              <span class="tech-tag">Splunk</span>
+              <span class="tech-tag">Sigma Rules</span>
+              <span class="tech-tag">MITRE ATT&CK</span>
             </div>
-            <span class="work-link disabled">
-              Coming Soon
+            <span class="project-link disabled">
+              <span>Coming Soon</span>
             </span>
           </div>
         </article>
@@ -231,78 +337,94 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Stunning contact section with glassmorphism -->
   <section class="contact" id="contact">
     <div class="container">
-      <div class="contact-content">
+      <div class="contact-wrapper">
         <div class="section-header" data-animate="fade-up">
-          <span class="section-label">Get in touch</span>
+          <span class="section-label">
+            <span class="label-line"></span>
+            <span>Get in touch</span>
+          </span>
           <h2 class="section-title">Let's Connect</h2>
+          <p class="contact-subtitle">
+            I'm always interested in discussing new opportunities, collaborations, 
+            or cybersecurity projects. Feel free to reach out.
+          </p>
         </div>
-        <p class="contact-subtitle" data-animate="fade-up" data-delay="100">
-          I'm always interested in discussing new opportunities, collaborations, 
-          or cybersecurity projects. Feel free to reach out.
-        </p>
-        <div class="contact-methods">
-          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card" data-animate="slide-up" data-delay="0">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
+        
+        <div class="contact-grid">
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card" data-animate="fade-up" data-delay="0">
+            <div class="contact-icon-wrapper">
+              <div class="contact-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
             </div>
             <div class="contact-info">
               <div class="contact-label">Email</div>
               <div class="contact-value">mohamed.ashraf.abdallah65@gmail.com</div>
             </div>
+            <div class="card-shine"></div>
           </a>
 
-          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card" data-animate="slide-up" data-delay="100">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
+          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card" data-animate="fade-up" data-delay="100">
+            <div class="contact-icon-wrapper">
+              <div class="contact-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </div>
             </div>
             <div class="contact-info">
               <div class="contact-label">LinkedIn</div>
               <div class="contact-value">mohamed-mooka</div>
             </div>
+            <div class="card-shine"></div>
           </a>
 
-          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card" data-animate="slide-up" data-delay="200">
-            <div class="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
+          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card" data-animate="fade-up" data-delay="200">
+            <div class="contact-icon-wrapper">
+              <div class="contact-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </div>
             </div>
             <div class="contact-info">
               <div class="contact-label">GitHub</div>
               <div class="contact-value">mohamedmOoka7</div>
             </div>
+            <div class="card-shine"></div>
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Refined footer design -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2025 Mohamed Mooka. Cybersecurity Analyst</p>
+        <div class="footer-left">
+          <div class="footer-logo">MM</div>
+          <p class="footer-text">2025 Mohamed Mooka. Cybersecurity Analyst</p>
+        </div>
         <div class="footer-links">
-          <a href="https://github.com/mohamedmOoka7" target="_blank" aria-label="GitHub">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <a href="https://github.com/mohamedmOoka7" target="_blank" class="footer-link" aria-label="GitHub">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
             </svg>
           </a>
-          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="footer-link" aria-label="LinkedIn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
             </svg>
           </a>
-          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" aria-label="Email">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="footer-link" aria-label="Email">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
