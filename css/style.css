@@ -601,18 +601,13 @@ button {
   z-index: 1;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: var(--spacing-3xl);
-  margin-top: var(--spacing-2xl);
-}
-
+/* Removed about-grid two-column layout, made single column */
 .about-text {
   font-size: 18px;
   color: var(--color-text-secondary);
   line-height: 1.8;
   margin-bottom: var(--spacing-xl);
+  max-width: 800px;
 }
 
 .about-text p {
@@ -626,8 +621,10 @@ button {
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  max-width: 900px;
 }
 
 .skill-item {
@@ -657,73 +654,7 @@ button {
   color: var(--color-text);
 }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
-}
-
-.stat {
-  padding: var(--spacing-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.stat:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-4px);
-}
-
-.stat-number {
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--color-accent);
-  margin-bottom: var(--spacing-xs);
-}
-
-.stat-label {
-  font-size: 14px;
-  color: var(--color-text-secondary);
-}
-
-.tools-section {
-  padding: var(--spacing-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-}
-
-.tools-title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: var(--spacing-md);
-}
-
-.tools-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xs);
-}
-
-.tool-tag {
-  padding: 6px 12px;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  font-size: 13px;
-  color: var(--color-text-secondary);
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.tool-tag:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-}
+/* Removed stats-grid and tools-section styles as they're no longer in HTML */
 
 /* ============================================
    EXPERTISE SECTION
@@ -1117,4 +1048,75 @@ button {
   }
 }
 
-/* ============================================ */
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  /* Removed about-grid responsive rule */
+
+  .work-card {
+    grid-template-columns: 1fr;
+  }
+
+  .work-image {
+    min-height: 300px;
+  }
+
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-lg);
+    flex-direction: column;
+    gap: var(--spacing-md);
+    transform: translateY(-100%);
+    transition: var(--transition);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav.active .nav-menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+
+  .hero {
+    padding: calc(80px + var(--spacing-2xl)) var(--spacing-lg) var(--spacing-2xl);
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .skills {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
