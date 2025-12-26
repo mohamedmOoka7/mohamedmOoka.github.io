@@ -76,41 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".nav")
   const navLinks = document.querySelectorAll(".nav-link")
   const menuBtn = document.querySelector(".menu-btn")
-  let lastScroll = 0
-
-  // Scroll effects
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY
-
-    // Add shadow on scroll
-    if (currentScroll > 50) {
-      nav.style.boxShadow = "0 4px 24px rgba(0, 0, 0, 0.1)"
-    } else {
-      nav.style.boxShadow = "none"
-    }
-
-    // Update active nav link
-    const sections = document.querySelectorAll("section[id]")
-    let current = ""
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 150
-      const sectionHeight = section.offsetHeight
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute("id")
-      }
-    })
-
-    navLinks.forEach((link) => {
-      link.classList.remove("active")
-      const href = link.getAttribute("href")
-      if (href && href.includes(current)) {
-        link.classList.add("active")
-      }
-    })
-
-    lastScroll = currentScroll
-  })
 
   // Mobile menu toggle
   if (menuBtn) {
@@ -119,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
       menuBtn.classList.toggle("active")
     })
 
-    // Close menu when clicking nav links
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("active")
@@ -127,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
 
-    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
         nav.classList.remove("active")
@@ -159,32 +122,88 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+  // ===== ANIMATED PARTICLE BACKGROUND =====
+  const canvas = document.getElementById("particles-canvas")
+  const ctx = canvas.getContext("2d")
+
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  })
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width
+      this.y = Math.random() * canvas.height
+      this.size = Math.random() * 3 + 1
+      this.speedX = Math.random() * 1 - 0.5
+      this.speedY = Math.random() * 1 - 0.5
+      this.opacity = Math.random() * 0.5 + 0.2
+    }
+
+    update() {
+      this.x += this.speedX
+      this.y += this.speedY
+
+      if (this.x > canvas.width || this.x < 0) {
+        this.speedX = -this.speedX
+      }
+      if (this.y > canvas.height || this.y < 0) {
+        this.speedY = -this.speedY
+      }
+    }
+
+    draw() {
+      ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+      ctx.fill()
+    }
   }
 
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
+  const particlesArray = []
+  const numberOfParticles = 100
+
+  for (let i = 0; i < numberOfParticles; i++) {
+    particlesArray.push(new Particle())
+  }
+
+  function connectParticles() {
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        const dx = particlesArray[a].x - particlesArray[b].x
+        const dy = particlesArray[a].y - particlesArray[b].y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < 120) {
+          const opacity = (1 - distance / 120) * 0.3
+          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
+          ctx.lineWidth = 1
+          ctx.beginPath()
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
+          ctx.stroke()
+        }
       }
-    })
-  }, observerOptions)
+    }
+  }
 
-  // Animate elements on scroll
-  const animatedElements = document.querySelectorAll(
-    ".work-card, .expertise-card, .skill-item, .contact-card, .about-text, .tools-card, .certifications-card",
-  )
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  animatedElements.forEach((element, index) => {
-    element.style.opacity = "0"
-    element.style.transform = "translateY(40px)"
-    element.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
-    fadeInObserver.observe(element)
-  })
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update()
+      particlesArray[i].draw()
+    }
+
+    connectParticles()
+    requestAnimationFrame(animate)
+  }
+
+  animate()
 
   // ===== PARALLAX EFFECT FOR BACKGROUND ORBS =====
   const orbs = document.querySelectorAll(".gradient-orb")
