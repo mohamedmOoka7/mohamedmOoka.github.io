@@ -3,76 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohamed Mooka | Cybersecurity Analyst - Digital Forensics & Incident Response</title>
-    <meta name="description" content="Cybersecurity Analyst specialized in Digital Forensics, Incident Response & SOC Operations">
-    <link rel="stylesheet" href="./styles.css">
+    <meta name="description" content="Mohamed Mooka - Cybersecurity Analyst specializing in DFIR and SOC operations">
+    <title>Mohamed Mooka | Cybersecurity Analyst</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo">
-                <span class="logo-text">Mohamed Mooka</span>
-                <span class="logo-subtitle">Cybersecurity Analyst</span>
+    <nav class="nav" id="nav">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-bracket">&lt;</span>
+                MM
+                <span class="logo-bracket">/&gt;</span>
             </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#expertise" class="nav-link">Expertise</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
             </ul>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
-            </button>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-grid"></div>
-        <div class="container">
+        <div class="container hero-container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    </svg>
-                    Available for Security Consulting
+                <div class="hero-greeting fade-in">
+                    <span class="greeting-text">Hello, I'm</span>
                 </div>
-                <h1 class="hero-title">
-                    <span class="title-line">Protecting Digital</span>
-                    <span class="title-line title-highlight">Infrastructure</span>
+                <h1 class="hero-title fade-in-up">
+                    Mohamed Mooka
                 </h1>
-                <p class="hero-description">
-                    I'm Mohamed Mooka, a cybersecurity analyst specialized in Digital Forensics, Incident Response, and SOC Operations. 
-                    I investigate threats, analyze breaches, and secure enterprise systems.
-                </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">
-                        <span>View Case Studies</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <span>Get in Touch</span>
-                    </a>
+                <div class="hero-subtitle fade-in-up">
+                    <span class="subtitle-bracket">[</span>
+                    <span class="typing-text">Cybersecurity Analyst</span>
+                    <span class="subtitle-bracket">]</span>
                 </div>
-                <div class="hero-metrics">
-                    <div class="metric">
-                        <div class="metric-value">100+</div>
-                        <div class="metric-label">Security Incidents</div>
+                <p class="hero-specialization fade-in-up">
+                    DFIR & SOC Specialist
+                </p>
+                <div class="hero-cta fade-in-up">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-secondary">View Work</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="terminal-button red"></span>
+                            <span class="terminal-button yellow"></span>
+                            <span class="terminal-button green"></span>
+                        </div>
+                        <div class="terminal-title">security_analysis.sh</div>
                     </div>
-                    <div class="metric">
-                        <div class="metric-value">50+</div>
-                        <div class="metric-label">Forensic Cases</div>
-                    </div>
-                    <div class="metric">
-                        <div class="metric-value">3+</div>
-                        <div class="metric-label">Years Experience</div>
+                    <div class="terminal-body" id="terminal">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">sudo analyze --mode=deep</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,88 +91,41 @@
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
+    <section class="about section" id="about">
         <div class="container">
-            <div class="about-layout">
-                <div class="about-sidebar">
-                    <h2 class="sidebar-title">About</h2>
-                    <nav class="sidebar-nav">
-                        <a href="#background" class="sidebar-link active">Background</a>
-                        <a href="#approach" class="sidebar-link">Approach</a>
-                        <a href="#certifications" class="sidebar-link">Certifications</a>
-                    </nav>
-                </div>
-                <div class="about-content">
-                    <div class="content-section" id="background">
-                        <h3 class="content-heading">Cybersecurity analyst focused on threat detection and forensic investigation</h3>
-                        <p class="content-text">
-                            With over 3 years of experience in cybersecurity, I specialize in investigating digital crimes, 
-                            responding to security incidents, and monitoring threat landscapes. My work involves analyzing 
-                            attack patterns, preserving digital evidence, and implementing defensive measures.
-                        </p>
-                        <p class="content-text">
-                            I've handled over 100 security incidents across various threat vectors including ransomware, 
-                            APT attacks, insider threats, and data breaches. My forensic investigations have supported 
-                            legal proceedings and helped organizations understand their security posture.
-                        </p>
-                    </div>
-                    <div class="content-section" id="approach">
-                        <h3 class="content-heading">My approach to cybersecurity</h3>
-                        <div class="approach-grid">
-                            <div class="approach-item">
-                                <div class="approach-number">01</div>
-                                <h4>Threat Intelligence</h4>
-                                <p>Continuous monitoring of threat landscapes and actor behaviors</p>
-                            </div>
-                            <div class="approach-item">
-                                <div class="approach-number">02</div>
-                                <h4>Rapid Response</h4>
-                                <p>Quick containment and remediation of security incidents</p>
-                            </div>
-                            <div class="approach-item">
-                                <div class="approach-number">03</div>
-                                <h4>Forensic Analysis</h4>
-                                <p>Deep investigation using advanced forensic tools and methodologies</p>
-                            </div>
-                            <div class="approach-item">
-                                <div class="approach-number">04</div>
-                                <h4>Documentation</h4>
-                                <p>Detailed reporting for stakeholders and compliance requirements</p>
+            <div class="section-header">
+                <span class="section-number">01.</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="about-description">
+                        I'm a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations. With hands-on experience in threat detection, log analysis, and incident response, I'm passionate about protecting digital assets and uncovering cyber threats.
+                    </p>
+                    <p class="about-description">
+                        My expertise lies in analyzing security incidents, investigating breaches, and implementing robust security measures to safeguard organizations from evolving cyber threats. I combine technical proficiency with a strategic mindset to deliver comprehensive security solutions.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🔍</div>
+                            <div class="highlight-text">
+                                <h4>Digital Forensics</h4>
+                                <p>Expert in evidence collection and analysis</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="content-section" id="certifications">
-                        <h3 class="content-heading">Certifications & Training</h3>
-                        <div class="cert-list">
-                            <div class="cert-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                    <path d="M9 12l2 2 4-4"/>
-                                </svg>
-                                <div>
-                                    <strong>CompTIA Security+</strong>
-                                    <span>Security Fundamentals</span>
-                                </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🛡️</div>
+                            <div class="highlight-text">
+                                <h4>Incident Response</h4>
+                                <p>Rapid threat mitigation and containment</p>
                             </div>
-                            <div class="cert-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                    <path d="M9 12l2 2 4-4"/>
-                                </svg>
-                                <div>
-                                    <strong>CEH - Certified Ethical Hacker</strong>
-                                    <span>Penetration Testing</span>
-                                </div>
-                            </div>
-                            <div class="cert-item">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                                    <path d="M9 12l2 2 4-4"/>
-                                </svg>
-                                <div>
-                                    <strong>GCIH - GIAC Certified Incident Handler</strong>
-                                    <span>Incident Response</span>
-                                </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📊</div>
+                            <div class="highlight-text">
+                                <h4>SOC Operations</h4>
+                                <p>24/7 security monitoring and analysis</p>
                             </div>
                         </div>
                     </div>
@@ -175,392 +134,191 @@
         </div>
     </section>
 
-    <!-- Expertise Section -->
-    <section class="expertise" id="expertise">
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
         <div class="container">
-            <div class="section-intro">
-                <span class="section-tag">Expertise</span>
-                <h2 class="section-heading">Core Competencies</h2>
+            <div class="section-header">
+                <span class="section-number">02.</span>
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="section-line"></div>
             </div>
-            <div class="expertise-grid">
-                <div class="expertise-card">
-                    <div class="card-header">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="m21 21-4.35-4.35"/>
-                        </svg>
-                        <h3>Digital Forensics</h3>
-                    </div>
-                    <p class="card-description">
-                        Expert in collecting, preserving, and analyzing digital evidence from computers, mobile devices, 
-                        networks, and cloud environments using industry-standard forensic tools and methodologies.
-                    </p>
-                    <div class="tools-list">
-                        <span>FTK Imager</span>
-                        <span>Autopsy</span>
-                        <span>Volatility</span>
-                        <span>Wireshark</span>
-                        <span>EnCase</span>
-                        <span>X-Ways</span>
-                    </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🔐</span>
+                        Security Analysis
+                    </h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">Threat Detection & Analysis</li>
+                        <li class="skill-item">Malware Analysis</li>
+                        <li class="skill-item">Network Security Monitoring</li>
+                        <li class="skill-item">Vulnerability Assessment</li>
+                        <li class="skill-item">Penetration Testing</li>
+                    </ul>
                 </div>
-                <div class="expertise-card">
-                    <div class="card-header">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            <path d="M12 8v8M8 12h8"/>
-                        </svg>
-                        <h3>Incident Response</h3>
-                    </div>
-                    <p class="card-description">
-                        Rapid detection, analysis, containment, and recovery from security incidents including malware 
-                        infections, ransomware attacks, data breaches, and APT compromises.
-                    </p>
-                    <div class="tools-list">
-                        <span>SIEM</span>
-                        <span>Splunk</span>
-                        <span>QRadar</span>
-                        <span>EDR Solutions</span>
-                        <span>Cortex XSOAR</span>
-                        <span>TheHive</span>
-                    </div>
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🔬</span>
+                        DFIR Tools
+                    </h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">Autopsy</li>
+                        <li class="skill-item">FTK Imager</li>
+                        <li class="skill-item">Volatility</li>
+                        <li class="skill-item">Wireshark</li>
+                        <li class="skill-item">Splunk</li>
+                    </ul>
                 </div>
-                <div class="expertise-card">
-                    <div class="card-header">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="3" width="20" height="14" rx="2"/>
-                            <path d="M8 21h8M12 17v4"/>
-                        </svg>
-                        <h3>SOC Operations</h3>
-                    </div>
-                    <p class="card-description">
-                        24/7 security monitoring, threat detection, alert triage, and incident escalation. Experienced 
-                        in building detection rules, conducting threat hunts, and optimizing SOC workflows.
-                    </p>
-                    <div class="tools-list">
-                        <span>ELK Stack</span>
-                        <span>Carbon Black</span>
-                        <span>CrowdStrike</span>
-                        <span>Sentinel</span>
-                        <span>Suricata</span>
-                        <span>Zeek</span>
-                    </div>
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">🛠️</span>
+                        SOC Tools
+                    </h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">SIEM Platforms</li>
+                        <li class="skill-item">IDS/IPS Systems</li>
+                        <li class="skill-item">EDR Solutions</li>
+                        <li class="skill-item">Log Management</li>
+                        <li class="skill-item">Threat Intelligence</li>
+                    </ul>
                 </div>
-                <div class="expertise-card">
-                    <div class="card-header">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 8V4H8"/>
-                            <rect x="4" y="4" width="16" height="16" rx="2"/>
-                            <path d="M2 14h5m10 0h5"/>
-                        </svg>
-                        <h3>Threat Intelligence</h3>
-                    </div>
-                    <p class="card-description">
-                        Malware analysis, vulnerability assessment, threat actor profiling, and intelligence gathering 
-                        using OSINT and proprietary threat feeds to anticipate and prevent attacks.
-                    </p>
-                    <div class="tools-list">
-                        <span>MITRE ATT&CK</span>
-                        <span>YARA</span>
-                        <span>OpenCTI</span>
-                        <span>Nessus</span>
-                        <span>VirusTotal</span>
-                        <span>MISP</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Timeline -->
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-intro">
-                <span class="section-tag">Experience</span>
-                <h2 class="section-heading">Professional Journey</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022 — Present</div>
-                        <h3 class="timeline-title">Senior Cybersecurity Analyst</h3>
-                        <p class="timeline-company">Enterprise Security Operations</p>
-                        <p class="timeline-description">
-                            Leading incident response efforts, conducting forensic investigations, and managing SOC operations. 
-                            Developed custom detection rules that reduced false positives by 35% and improved threat detection accuracy.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Investigated 100+ security incidents including ransomware and APT attacks</li>
-                            <li>Built automated incident response playbooks reducing MTTR by 40%</li>
-                            <li>Mentored junior analysts on forensic techniques and threat hunting</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2021 — 2022</div>
-                        <h3 class="timeline-title">SOC Analyst</h3>
-                        <p class="timeline-company">Managed Security Service Provider</p>
-                        <p class="timeline-description">
-                            Monitored security events, triaged alerts, and escalated incidents for multiple client environments. 
-                            Specialized in network traffic analysis and malware detection.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Monitored SIEM platforms for 20+ enterprise clients</li>
-                            <li>Conducted initial triage on 500+ security alerts monthly</li>
-                            <li>Developed threat intelligence reports for client briefings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2020 — 2021</div>
-                        <h3 class="timeline-title">Junior Security Analyst</h3>
-                        <p class="timeline-company">Information Security Department</p>
-                        <p class="timeline-description">
-                            Started career in cybersecurity focusing on vulnerability management, log analysis, and security 
-                            awareness. Built foundation in security operations and incident handling procedures.
-                        </p>
-                        <ul class="timeline-achievements">
-                            <li>Performed vulnerability scans and remediation tracking</li>
-                            <li>Assisted in security incident investigations</li>
-                            <li>Conducted security awareness training sessions</li>
-                        </ul>
-                    </div>
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <span class="category-icon">💻</span>
+                        Technical Skills
+                    </h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">Python Scripting</li>
+                        <li class="skill-item">Linux/Windows Forensics</li>
+                        <li class="skill-item">Network Protocols</li>
+                        <li class="skill-item">Security Frameworks</li>
+                        <li class="skill-item">Incident Documentation</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projects">
+    <section class="projects section" id="projects">
         <div class="container">
-            <div class="section-intro">
-                <span class="section-tag">Case Studies</span>
-                <h2 class="section-heading">Featured Investigations</h2>
+            <div class="section-header">
+                <span class="section-number">03.</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-note">
+                <div class="note-icon">📌</div>
+                <p>Projects and case studies coming soon. Check back for detailed write-ups on security investigations, threat analysis, and incident response scenarios.</p>
             </div>
             <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="https://placehold.co/800x500?text=Advanced+Persistent+Threat+Investigation+Dashboard+Showing+Attack+Timeline+Network+Flow+Diagrams+and+Indicators+of+Compromise" alt="Advanced Persistent Threat Investigation Dashboard Showing Attack Timeline Network Flow Diagrams and Indicators of Compromise">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-type">DFIR Case Study</span>
+                        <div class="project-status">Coming Soon</div>
                     </div>
-                    <div class="project-details">
-                        <div class="project-meta">
-                            <span class="project-tag">APT Investigation</span>
-                            <span class="project-tag">Forensics</span>
-                            <span class="project-date">2024</span>
-                        </div>
-                        <h3 class="project-title">Advanced Persistent Threat Detection</h3>
-                        <p class="project-excerpt">
-                            Led comprehensive forensic investigation of sophisticated APT campaign targeting critical infrastructure. 
-                            Identified attack vectors, collected digital evidence, and traced attacker infrastructure across multiple 
-                            continents. Investigation resulted in complete incident timeline and remediation strategy.
-                        </p>
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <strong>Duration</strong>
-                                <span>3 weeks</span>
-                            </div>
-                            <div class="stat-item">
-                                <strong>Evidence Items</strong>
-                                <span>500+ artifacts</span>
-                            </div>
-                            <div class="stat-item">
-                                <strong>Systems Analyzed</strong>
-                                <span>25 endpoints</span>
-                            </div>
-                        </div>
+                    <h3 class="project-title">Ransomware Investigation</h3>
+                    <p class="project-description">
+                        Comprehensive analysis of a ransomware attack including initial access vectors, lateral movement patterns, and data exfiltration techniques.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Malware Analysis</span>
+                        <span class="tag">Memory Forensics</span>
+                        <span class="tag">Timeline Analysis</span>
                     </div>
-                </article>
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="https://placehold.co/800x500?text=Security+Operations+Center+Real-Time+Monitoring+Dashboard+With+Threat+Alerts+Network+Traffic+Analysis+and+Incident+Response+Metrics" alt="Security Operations Center Real-Time Monitoring Dashboard With Threat Alerts Network Traffic Analysis and Incident Response Metrics">
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-type">SOC Analysis</span>
+                        <div class="project-status">Coming Soon</div>
                     </div>
-                    <div class="project-details">
-                        <div class="project-meta">
-                            <span class="project-tag">SOC Automation</span>
-                            <span class="project-tag">SOAR</span>
-                            <span class="project-date">2023</span>
-                        </div>
-                        <h3 class="project-title">SOC Automation & Orchestration</h3>
-                        <p class="project-excerpt">
-                            Designed and implemented automated incident response playbooks integrating SIEM, EDR, and ticketing 
-                            systems. Created custom detection rules based on MITRE ATT&CK framework reducing mean time to detect 
-                            by 40% and improving overall SOC efficiency.
-                        </p>
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <strong>MTTR Reduction</strong>
-                                <span>40%</span>
-                            </div>
-                            <div class="stat-item">
-                                <strong>Playbooks Created</strong>
-                                <span>15</span>
-                            </div>
-                            <div class="stat-item">
-                                <strong>Detection Rules</strong>
-                                <span>50+</span>
-                            </div>
-                        </div>
+                    <h3 class="project-title">APT Detection & Response</h3>
+                    <p class="project-description">
+                        Detection and mitigation of an Advanced Persistent Threat campaign using SIEM correlation rules and threat intelligence integration.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Threat Hunting</span>
+                        <span class="tag">SIEM</span>
+                        <span class="tag">IOC Analysis</span>
                     </div>
-                </article>
-                <article class="project-card">
-                    <div class="project-image">
-                        <img src="https://placehold.co/800x500?text=Ransomware+Forensic+Analysis+Interface+Displaying+Encrypted+Files+Memory+Dump+Analysis+and+Malware+Behavior+Patterns" alt="Ransomware Forensic Analysis Interface Displaying Encrypted Files Memory Dump Analysis and Malware Behavior Patterns">
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-type">Network Security</span>
+                        <div class="project-status">Coming Soon</div>
                     </div>
-                    <div class="project-details">
-                        <div class="project-meta">
-                            <span class="project-tag">Ransomware</span>
-                            <span class="project-tag">Incident Response</span>
-                            <span class="project-date">2023</span>
-                        </div>
-                        <h3 class="project-title">Ransomware Incident Response</h3>
-                        <p class="project-excerpt">
-                            Rapid response to ransomware attack affecting enterprise network. Performed memory forensics, 
-                            identified encryption mechanisms, isolated affected systems, and assisted recovery efforts. 
-                            Documented complete attack chain from initial access to encryption for future prevention.
-                        </p>
-                        <div class="project-stats">
-                            <div class="stat-item">
-                                <strong>Response Time</strong>
-                                <span>2 hours</span>
-                            </div>
-                            <div class="stat-item">
-                                <strong>Systems Recovered</strong>
-                                <span>50+</span>
-                            </div>
-                            <div class="stat-item">
-                                <strong>Data Loss</strong>
-                                <span>0%</span>
-                            </div>
-                        </div>
+                    <h3 class="project-title">Network Intrusion Analysis</h3>
+                    <p class="project-description">
+                        Deep packet analysis and reconstruction of network-based attack patterns including C2 communications and data exfiltration.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Packet Analysis</span>
+                        <span class="tag">Network Forensics</span>
+                        <span class="tag">Traffic Analysis</span>
                     </div>
-                </article>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="contact section" id="contact">
         <div class="container">
-            <div class="contact-layout">
-                <div class="contact-info">
-                    <span class="section-tag">Contact</span>
-                    <h2 class="contact-heading">Let's Discuss Your Security Needs</h2>
+            <div class="section-header">
+                <span class="section-number">04.</span>
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h3 class="contact-heading">Let's Connect</h3>
                     <p class="contact-description">
-                        Available for cybersecurity consulting, incident response support, forensic investigations, 
-                        or discussing collaboration opportunities in digital security.
+                        I'm always interested in discussing cybersecurity challenges, collaboration opportunities, or potential roles. Whether you need security consultation or want to discuss the latest threats, feel free to reach out.
                     </p>
-                    <div class="contact-methods">
-                        <a href="mailto:mohamed.mooka@cybersec.pro" class="contact-method">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                </div>
+                <div class="contact-info">
+                    <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="4" width="20" height="16" rx="2"/>
                                 <path d="m2 7 10 7 10-7"/>
                             </svg>
-                            <div>
-                                <div class="method-label">Email</div>
-                                <div class="method-value">mohamed.mooka@cybersec.pro</div>
-                            </div>
-                        </a>
-                        <a href="https://linkedin.com/in/mohamedmooka" class="contact-method" target="_blank" rel="noopener">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">Email</span>
+                            <span class="contact-value">mohamed.ashraf.abdallah65@gmail.com</span>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/mohamed-mooka" target="_blank" rel="noopener noreferrer" class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                 <rect x="2" y="9" width="4" height="12"/>
                                 <circle cx="4" cy="4" r="2"/>
                             </svg>
-                            <div>
-                                <div class="method-label">LinkedIn</div>
-                                <div class="method-value">linkedin.com/in/mohamedmooka</div>
-                            </div>
-                        </a>
-                        <a href="https://github.com/mohamedmooka" class="contact-method" target="_blank" rel="noopener">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                                <path d="M9 18c-4.51 2-5-2-7-2"/>
-                            </svg>
-                            <div>
-                                <div class="method-label">GitHub</div>
-                                <div class="method-value">github.com/mohamedmooka</div>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                        <div class="contact-details">
+                            <span class="contact-label">LinkedIn</span>
+                            <span class="contact-value">mohamed-mooka</span>
+                        </div>
+                    </a>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-grid">
-                        <div class="form-field">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your name" required>
-                        </div>
-                        <div class="form-field">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                        </div>
-                    </div>
-                    <div class="form-field">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="How can I help?" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Tell me about your security needs..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <span>Send Message</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m22 2-7 20-4-9-9-4Z"/>
-                            <path d="M22 2 11 13"/>
-                        </svg>
-                    </button>
-                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="footer-logo">Mohamed Mooka</div>
-                    <p class="footer-tagline">Cybersecurity Analyst | Digital Forensics & Incident Response</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#expertise">Expertise</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-social">
-                    <a href="https://linkedin.com/in/mohamedmooka" target="_blank" rel="noopener" aria-label="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect x="2" y="9" width="4" height="12"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
-                    </a>
-                    <a href="https://github.com/mohamedmooka" target="_blank" rel="noopener" aria-label="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
-                            <path d="M9 18c-4.51 2-5-2-7-2"/>
-                        </svg>
-                    </a>
-                    <a href="https://twitter.com/mohamedmooka" target="_blank" rel="noopener" aria-label="Twitter">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mohamed Mooka. All rights reserved.</p>
-            </div>
+        <div class="container footer-container">
+            <p class="footer-text">
+                Designed & Built by Mohamed Mooka
+            </p>
+            <p class="footer-copyright">
+                © 2025 All rights reserved
+            </p>
         </div>
     </footer>
 
-    <script src="./script.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
