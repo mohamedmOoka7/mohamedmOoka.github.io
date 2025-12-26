@@ -1,37 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Loading Screen
-  const loadingScreen = document.querySelector(".loading-screen")
+  const loadingScreen = document.getElementById("loadingScreen")
 
   window.addEventListener("load", () => {
     setTimeout(() => {
-      loadingScreen.classList.add("hide")
-    }, 1500)
+      loadingScreen.classList.add("hidden")
+    }, 1000)
   })
 
-  // Custom Cursor
-  const cursor = document.querySelector(".cursor")
-  const cursorFollower = document.querySelector(".cursor-follower")
-
-  if (window.innerWidth > 768) {
-    document.addEventListener("mousemove", (e) => {
-      cursor.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`
-      cursorFollower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`
-    })
-
-    document.querySelectorAll("a, button, .nav-link").forEach((el) => {
-      el.addEventListener("mouseenter", () => {
-        cursor.style.transform += " scale(1.5)"
-        cursorFollower.style.transform += " scale(1.5)"
-      })
-
-      el.addEventListener("mouseleave", () => {
-        cursor.style.transform = cursor.style.transform.replace(" scale(1.5)", "")
-        cursorFollower.style.transform = cursorFollower.style.transform.replace(" scale(1.5)", "")
-      })
-    })
-  }
-
-  // Particles Canvas
   const particlesCanvas = document.getElementById("particles")
   const ctx = particlesCanvas.getContext("2d")
 
@@ -42,8 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   resizeCanvas()
   window.addEventListener("resize", resizeCanvas)
 
+  // Particle system
   const particles = []
-  const particleCount = 80
+  const particleCount = window.innerWidth < 768 ? 40 : 80
   const connectionDistance = 120
 
   class Particle {
@@ -98,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       particle.update()
       particle.draw()
 
+      // Mouse interaction
       if (mouse.x !== null && mouse.y !== null) {
         const dx = mouse.x - particle.x
         const dy = mouse.y - particle.y
@@ -112,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
+    // Draw connections
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x
@@ -135,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateParticles()
 
-  // Navigation
   const nav = document.querySelector(".nav")
   const navLinks = document.querySelectorAll(".nav-link")
   const sections = document.querySelectorAll("section[id]")
@@ -163,16 +140,19 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateActiveNav)
   updateActiveNav()
 
+  // Mobile menu toggle
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      nav.classList.toggle("active")
+      const isActive = nav.classList.toggle("active")
       menuBtn.classList.toggle("active")
+      menuBtn.setAttribute("aria-expanded", isActive.toString())
     })
 
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("active")
         menuBtn.classList.remove("active")
+        menuBtn.setAttribute("aria-expanded", "false")
       })
     })
 
@@ -180,11 +160,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
         nav.classList.remove("active")
         menuBtn.classList.remove("active")
+        menuBtn.setAttribute("aria-expanded", "false")
       }
     })
   }
 
-  // Smooth Scrolling
   const links = document.querySelectorAll('a[href^="#"]')
 
   links.forEach((link) => {
@@ -207,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Scroll Animations
   const animatedElements = document.querySelectorAll("[data-animate]")
 
   const observerOptions = {
@@ -231,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollObserver.observe(element)
   })
 
-  // Parallax Orbs
   const glowOrbs = document.querySelectorAll(".glow-orb")
 
   window.addEventListener("scroll", () => {
@@ -243,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Skill Bars Animation
   const skillCards = document.querySelectorAll(".skill-card")
 
   const skillObserver = new IntersectionObserver(
@@ -266,60 +243,66 @@ document.addEventListener("DOMContentLoaded", () => {
     skillObserver.observe(card)
   })
 
-  // Counter Animation
-  const counters = document.querySelectorAll(".stat-value[data-count]")
+  const statValues = document.querySelectorAll(".stat-value")
 
-  const counterObserver = new IntersectionObserver(
+  const statsObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const target = entry.target
-          const count = Number.parseInt(target.getAttribute("data-count"))
-          const duration = 2000
-          const increment = count / (duration / 16)
-          let current = 0
+          const count = target.getAttribute("data-count")
 
-          const updateCounter = () => {
-            current += increment
-            if (current < count) {
-              target.textContent = Math.floor(current)
-              requestAnimationFrame(updateCounter)
-            } else {
-              target.textContent = count
-            }
+          if (count) {
+            const finalValue = Number.parseInt(count)
+            const duration = 2000
+            const increment = finalValue / (duration / 16)
+            let current = 0
+
+            const timer = setInterval(() => {
+              current += increment
+              if (current >= finalValue) {
+                current = finalValue
+                clearInterval(timer)
+              }
+              target.textContent = Math.floor(current) + (target.textContent.includes("%") ? "%" : "+")
+            }, 16)
           }
 
-          updateCounter()
-          counterObserver.unobserve(target)
+          statsObserver.unobserve(entry.target)
         }
       })
     },
     { threshold: 0.5 },
   )
 
-  counters.forEach((counter) => {
-    counterObserver.observe(counter)
-  })
-
-  // Back to Top Button
-  const backToTop = document.querySelector(".back-to-top")
-
-  window.addEventListener("scroll", () => {
-    if (window.pageYOffset > 500) {
-      backToTop.classList.add("show")
-    } else {
-      backToTop.classList.remove("show")
+  statValues.forEach((stat) => {
+    if (stat.getAttribute("data-count")) {
+      statsObserver.observe(stat)
     }
   })
 
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+  const projectCards = document.querySelectorAll(".project-card")
+
+  projectCards.forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
+
+      const rotateX = (y - centerY) / 20
+      const rotateY = (centerX - x) / 20
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
+    })
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = ""
     })
   })
 
-  // Contact Cards Shine Effect
   const contactCards = document.querySelectorAll(".contact-card")
 
   contactCards.forEach((card) => {
@@ -335,32 +318,71 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Project Cards 3D Effect
-  const projectCards = document.querySelectorAll(".project-card")
+  const buttons = document.querySelectorAll(".btn")
 
-  projectCards.forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      if (window.innerWidth > 1024) {
-        const rect = card.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
+  buttons.forEach((button) => {
+    button.addEventListener("mousemove", (e) => {
+      const rect = button.getBoundingClientRect()
+      const x = e.clientX - rect.left - rect.width / 2
+      const y = e.clientY - rect.top - rect.height / 2
 
-        const centerX = rect.width / 2
-        const centerY = rect.height / 2
+      const distance = Math.sqrt(x * x + y * y)
+      const maxDistance = 50
 
-        const rotateX = (y - centerY) / 20
-        const rotateY = (centerX - x) / 20
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`
+      if (distance < maxDistance) {
+        const strength = (maxDistance - distance) / maxDistance
+        button.style.transform = `translate(${x * strength * 0.3}px, ${y * strength * 0.3}px)`
       }
     })
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = ""
+    button.addEventListener("mouseleave", () => {
+      button.style.transform = "translate(0, 0)"
     })
   })
 
-  // Accessibility
+  const backToTopBtn = document.getElementById("backToTop")
+
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 500) {
+      backToTopBtn.classList.add("visible")
+    } else {
+      backToTopBtn.classList.remove("visible")
+    }
+  })
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
+  })
+
+  const cursorTrail = []
+  const maxTrailLength = 15
+
+  document.addEventListener("mousemove", (e) => {
+    cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() })
+
+    if (cursorTrail.length > maxTrailLength) {
+      cursorTrail.shift()
+    }
+  })
+
+  const gradientTexts = document.querySelectorAll(".gradient-title")
+
+  window.addEventListener("scroll", () => {
+    const scrollPercent = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+
+    gradientTexts.forEach((text) => {
+      text.style.backgroundPosition = `${scrollPercent}% center`
+    })
+  })
+
+  console.log(
+    "%c✨ Mohamed Mooka - Cybersecurity Portfolio",
+    "font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 20px 0;",
+  )
+
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
   if (prefersReducedMotion.matches) {
@@ -376,16 +398,35 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" && nav.classList.contains("active")) {
       nav.classList.remove("active")
       menuBtn.classList.remove("active")
+      menuBtn.setAttribute("aria-expanded", "false")
     }
   })
 
-  // Console Message
-  console.log(
-    "%c✨ محمد موكا - بورتفوليو أمن سيبراني",
-    "font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 20px 0;",
-  )
-  console.log(
-    "%c🚀 تصميم ثوري بواسطة BLACKBOX AI",
-    "font-size: 14px; color: #8b5cf6; font-weight: 600; padding: 10px 0;",
-  )
+  const images = document.querySelectorAll("img[loading='lazy']")
+
+  if ("IntersectionObserver" in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target
+          img.classList.add("loaded")
+          imageObserver.unobserve(img)
+        }
+      })
+    })
+
+    images.forEach((img) => {
+      imageObserver.observe(img)
+    })
+  }
+
+  window.scrollTo({ top: 0, behavior: "instant" })
+
+  const heroTitle = document.querySelector(".gradient-title")
+  if (heroTitle) {
+    const chars = heroTitle.querySelectorAll(".char")
+    chars.forEach((char, index) => {
+      char.style.animationDelay = `${0.5 + index * 0.05}s`
+    })
+  }
 })
