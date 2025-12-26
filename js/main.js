@@ -206,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     glowOrbs.forEach((orb, index) => {
       const speed = (index + 1) * 0.03
-      const currentTransform = orb.style.transform || ""
       orb.style.transform = `translateY(${scrolled * speed}px)`
     })
   })
@@ -313,12 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  console.log(
-    "%c✨ Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 20px 0;",
-  )
-  console.log("%cRevolutionary Design by v0", "font-size: 14px; color: #8b5cf6; font-weight: 600; padding: 10px 0;")
-
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 
   if (prefersReducedMotion.matches) {
@@ -356,12 +349,4 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   window.scrollTo({ top: 0, behavior: "instant" })
-
-  const heroTitle = document.querySelector(".gradient-title")
-  if (heroTitle) {
-    const chars = heroTitle.querySelectorAll(".char")
-    chars.forEach((char, index) => {
-      char.style.animationDelay = `${0.5 + index * 0.05}s`
-    })
-  }
 })
