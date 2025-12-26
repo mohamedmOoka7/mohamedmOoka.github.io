@@ -8,17 +8,25 @@
     <meta property="og:description" content="Cybersecurity Analyst specializing in DFIR and SOC operations">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
-    <title>Mohamed Mooka | Cybersecurity Analyst - Projects Portfolio</title>
+    <title>Mohamed Mooka | Cybersecurity Analyst - Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    
+    <!-- Added premium background with animated particles and gradients -->
+    <div class="background-wrapper">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <canvas id="particles-canvas"></canvas>
+    </div>
+
     <!-- Hero Header Section -->
     <section class="hero-header">
         <div class="grid-background"></div>
-        <div class="gradient-overlay"></div>
         
         <div class="container">
             <div class="hero-content">
@@ -26,43 +34,75 @@
                 <div class="profile-section">
                     <div class="profile-avatar">
                         <div class="avatar-ring"></div>
-                        <div class="avatar-content">MM</div>
-                        <div class="status-indicator"></div>
+                        <div class="avatar-ring-2"></div>
+                        <div class="avatar-content">
+                            <span class="avatar-text">MM</span>
+                        </div>
+                        <div class="status-indicator">
+                            <span class="status-pulse"></span>
+                        </div>
                     </div>
                     
                     <div class="profile-info">
-                        <h1 class="profile-name">Mohamed Mooka</h1>
+                        <h1 class="profile-name">
+                            <span class="name-text">Mohamed Mooka</span>
+                            <span class="name-glow"></span>
+                        </h1>
                         <div class="profile-title">
                             <span class="title-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                                 </svg>
                             </span>
-                            <span>Cybersecurity Analyst | DFIR & SOC Specialist</span>
+                            <span class="typing-text">Cybersecurity Analyst | DFIR & SOC Specialist</span>
                         </div>
                         <p class="profile-bio">
                             I'm a Cybersecurity Analyst specializing in Digital Forensics and Incident Response (DFIR) and Security Operations Center (SOC) operations. With hands-on experience in threat detection, log analysis, and incident response, I'm passionate about protecting digital assets and uncovering cyber threats.
                         </p>
+                        
+                        <!-- Added stats section for better visual appeal -->
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">5+</div>
+                                <div class="stat-label">Projects</div>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <div class="stat-value">3+</div>
+                                <div class="stat-label">Years Exp</div>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">Dedicated</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Contact & Social Links -->
                 <div class="contact-social-section">
                     <div class="contact-links">
-                        <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <path d="m2 7 10 7 10-7"/>
-                            </svg>
-                            <span>Email Me</span>
+                        <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-btn primary-btn">
+                            <span class="btn-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="m2 7 10 7 10-7"/>
+                                </svg>
+                                <span>Email Me</span>
+                            </span>
+                            <span class="btn-glow"></span>
                         </a>
-                        <a href="https://www.linkedin.com/in/mohamed-mooka" target="_blank" class="contact-btn secondary">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                                <rect x="2" y="9" width="4" height="12"/>
-                                <circle cx="4" cy="4" r="2"/>
-                            </svg>
-                            <span>LinkedIn</span>
+                        <a href="https://www.linkedin.com/in/mohamed-mooka" target="_blank" class="contact-btn secondary-btn">
+                            <span class="btn-content">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                    <rect x="2" y="9" width="4" height="12"/>
+                                    <circle cx="4" cy="4" r="2"/>
+                                </svg>
+                                <span>LinkedIn</span>
+                            </span>
+                            <span class="btn-shine"></span>
                         </a>
                     </div>
                 </div>
@@ -76,8 +116,14 @@
             <!-- Section Header -->
             <div class="section-header-modern">
                 <div class="header-content">
-                    <span class="section-badge">Portfolio</span>
-                    <h2 class="section-title-modern">Featured Projects & Case Studies</h2>
+                    <span class="section-badge">
+                        <span class="badge-dot"></span>
+                        Portfolio
+                    </span>
+                    <h2 class="section-title-modern">
+                        <span class="title-gradient">Featured Projects</span>
+                        <span class="title-underline"></span>
+                    </h2>
                     <p class="section-description">
                         A showcase of cybersecurity investigations, threat analysis, and incident response scenarios. Each project demonstrates practical experience in DFIR and SOC operations.
                     </p>
@@ -87,19 +133,27 @@
             <!-- Projects Grid -->
             <div class="projects-grid-modern">
                 <!-- Project Card 1 -->
-                <article class="project-card-modern">
+                <article class="project-card-modern" data-category="dfir">
+                    <div class="project-card-glow"></div>
                     <div class="project-card-inner">
                         <div class="project-thumbnail">
+                            <div class="thumbnail-bg">
+                                <div class="thumbnail-pattern"></div>
+                            </div>
                             <div class="thumbnail-overlay">
                                 <div class="overlay-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="m2 7 10 7 10-7"/>
-                                        <path d="M12 22V14"/>
-                                        <path d="M22 7v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="11" cy="11" r="8"/>
+                                        <path d="m21 21-4.35-4.35"/>
+                                        <circle cx="11" cy="11" r="3"/>
                                     </svg>
                                 </div>
                             </div>
-                            <div class="project-status-badge coming-soon">Coming Soon</div>
+                            <div class="project-number">01</div>
+                            <div class="project-status-badge coming-soon">
+                                <span class="badge-pulse"></span>
+                                Coming Soon
+                            </div>
                         </div>
                         
                         <div class="project-content">
@@ -111,7 +165,7 @@
                             <h3 class="project-title-card">Advanced Ransomware Analysis</h3>
                             
                             <p class="project-excerpt">
-                                Comprehensive forensic analysis of a sophisticated ransomware attack. Investigated initial access vectors, lateral movement patterns, data exfiltration techniques, and encryption mechanisms. Utilized memory forensics and timeline analysis to reconstruct the attack chain.
+                                Comprehensive forensic analysis of a sophisticated ransomware attack. Investigated initial access vectors, lateral movement patterns, data exfiltration techniques, and encryption mechanisms using advanced memory forensics and timeline analysis.
                             </p>
                             
                             <div class="project-technologies">
@@ -123,19 +177,19 @@
                             </div>
                             
                             <div class="project-highlights">
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Timeline Reconstruction</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>IOC Extraction</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
@@ -147,19 +201,26 @@
                 </article>
 
                 <!-- Project Card 2 -->
-                <article class="project-card-modern">
+                <article class="project-card-modern" data-category="soc">
+                    <div class="project-card-glow"></div>
                     <div class="project-card-inner">
                         <div class="project-thumbnail">
+                            <div class="thumbnail-bg">
+                                <div class="thumbnail-pattern"></div>
+                            </div>
                             <div class="thumbnail-overlay">
                                 <div class="overlay-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="2" y1="12" x2="22" y2="12"/>
-                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                        <path d="M12 8v4l2 2"/>
                                     </svg>
                                 </div>
                             </div>
-                            <div class="project-status-badge coming-soon">Coming Soon</div>
+                            <div class="project-number">02</div>
+                            <div class="project-status-badge coming-soon">
+                                <span class="badge-pulse"></span>
+                                Coming Soon
+                            </div>
                         </div>
                         
                         <div class="project-content">
@@ -171,7 +232,7 @@
                             <h3 class="project-title-card">APT Detection & Threat Hunting</h3>
                             
                             <p class="project-excerpt">
-                                Proactive threat hunting campaign that detected and mitigated an Advanced Persistent Threat (APT) group. Leveraged SIEM correlation rules, threat intelligence feeds, and behavioral analytics to identify sophisticated attack patterns and C2 communications.
+                                Proactive threat hunting campaign that detected and mitigated an Advanced Persistent Threat (APT) group. Leveraged SIEM correlation rules, threat intelligence feeds, and behavioral analytics to identify sophisticated attack patterns.
                             </p>
                             
                             <div class="project-technologies">
@@ -183,19 +244,19 @@
                             </div>
                             
                             <div class="project-highlights">
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>SIEM Rule Development</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>TTPs Identification</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
@@ -207,12 +268,16 @@
                 </article>
 
                 <!-- Project Card 3 -->
-                <article class="project-card-modern">
+                <article class="project-card-modern" data-category="network">
+                    <div class="project-card-glow"></div>
                     <div class="project-card-inner">
                         <div class="project-thumbnail">
+                            <div class="thumbnail-bg">
+                                <div class="thumbnail-pattern"></div>
+                            </div>
                             <div class="thumbnail-overlay">
                                 <div class="overlay-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
                                         <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
                                         <line x1="6" y1="6" x2="6.01" y2="6"/>
@@ -220,7 +285,11 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="project-status-badge coming-soon">Coming Soon</div>
+                            <div class="project-number">03</div>
+                            <div class="project-status-badge coming-soon">
+                                <span class="badge-pulse"></span>
+                                Coming Soon
+                            </div>
                         </div>
                         
                         <div class="project-content">
@@ -232,7 +301,7 @@
                             <h3 class="project-title-card">Network Intrusion Deep Analysis</h3>
                             
                             <p class="project-excerpt">
-                                Deep packet analysis of a sophisticated network-based attack. Performed traffic analysis, protocol reconstruction, and data carving to identify attack vectors, C2 server communications, and exfiltrated data. Reconstructed the complete attack timeline from PCAP files.
+                                Deep packet analysis of a sophisticated network-based attack. Performed traffic analysis, protocol reconstruction, and data carving to identify attack vectors, C2 server communications, and exfiltrated data from PCAP files.
                             </p>
                             
                             <div class="project-technologies">
@@ -244,19 +313,19 @@
                             </div>
                             
                             <div class="project-highlights">
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>PCAP Analysis</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Protocol Reconstruction</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
@@ -268,18 +337,28 @@
                 </article>
 
                 <!-- Project Card 4 -->
-                <article class="project-card-modern">
+                <article class="project-card-modern" data-category="incident">
+                    <div class="project-card-glow"></div>
                     <div class="project-card-inner">
                         <div class="project-thumbnail">
+                            <div class="thumbnail-bg">
+                                <div class="thumbnail-pattern"></div>
+                            </div>
                             <div class="thumbnail-overlay">
                                 <div class="overlay-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
                                         <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="12" y1="18" x2="12" y2="12"/>
+                                        <line x1="9" y1="15" x2="15" y2="15"/>
                                     </svg>
                                 </div>
                             </div>
-                            <div class="project-status-badge coming-soon">Coming Soon</div>
+                            <div class="project-number">04</div>
+                            <div class="project-status-badge coming-soon">
+                                <span class="badge-pulse"></span>
+                                Coming Soon
+                            </div>
                         </div>
                         
                         <div class="project-content">
@@ -291,7 +370,7 @@
                             <h3 class="project-title-card">Enterprise Security Breach Investigation</h3>
                             
                             <p class="project-excerpt">
-                                End-to-end incident response for a major security breach affecting enterprise infrastructure. Led the investigation from detection through containment, eradication, and recovery. Documented complete IR process following NIST framework.
+                                End-to-end incident response for a major security breach affecting enterprise infrastructure. Led the investigation from detection through containment, eradication, and recovery following NIST framework guidelines.
                             </p>
                             
                             <div class="project-technologies">
@@ -303,19 +382,19 @@
                             </div>
                             
                             <div class="project-highlights">
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Incident Handling</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Evidence Collection</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
@@ -327,19 +406,27 @@
                 </article>
 
                 <!-- Project Card 5 -->
-                <article class="project-card-modern">
+                <article class="project-card-modern" data-category="malware">
+                    <div class="project-card-glow"></div>
                     <div class="project-card-inner">
                         <div class="project-thumbnail">
+                            <div class="thumbnail-bg">
+                                <div class="thumbnail-pattern"></div>
+                            </div>
                             <div class="thumbnail-overlay">
                                 <div class="overlay-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
                                         <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
                                         <line x1="12" y1="22.08" x2="12" y2="12"/>
                                     </svg>
                                 </div>
                             </div>
-                            <div class="project-status-badge coming-soon">Coming Soon</div>
+                            <div class="project-number">05</div>
+                            <div class="project-status-badge coming-soon">
+                                <span class="badge-pulse"></span>
+                                Coming Soon
+                            </div>
                         </div>
                         
                         <div class="project-content">
@@ -351,7 +438,7 @@
                             <h3 class="project-title-card">Advanced Malware Reverse Engineering</h3>
                             
                             <p class="project-excerpt">
-                                Static and dynamic analysis of sophisticated malware samples. Performed reverse engineering, behavior analysis, and code deobfuscation to understand malware functionality, persistence mechanisms, and communication protocols with command and control servers.
+                                Static and dynamic analysis of sophisticated malware samples. Performed reverse engineering, behavior analysis, and code deobfuscation to understand malware functionality, persistence mechanisms, and C2 communication protocols.
                             </p>
                             
                             <div class="project-technologies">
@@ -363,19 +450,19 @@
                             </div>
                             
                             <div class="project-highlights">
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Static Analysis</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Dynamic Analysis</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
@@ -387,17 +474,25 @@
                 </article>
 
                 <!-- Project Card 6 -->
-                <article class="project-card-modern">
+                <article class="project-card-modern" data-category="automation">
+                    <div class="project-card-glow"></div>
                     <div class="project-card-inner">
                         <div class="project-thumbnail">
+                            <div class="thumbnail-bg">
+                                <div class="thumbnail-pattern"></div>
+                            </div>
                             <div class="thumbnail-overlay">
                                 <div class="overlay-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                                     </svg>
                                 </div>
                             </div>
-                            <div class="project-status-badge coming-soon">Coming Soon</div>
+                            <div class="project-number">06</div>
+                            <div class="project-status-badge coming-soon">
+                                <span class="badge-pulse"></span>
+                                Coming Soon
+                            </div>
                         </div>
                         
                         <div class="project-content">
@@ -409,7 +504,7 @@
                             <h3 class="project-title-card">Automated Threat Detection System</h3>
                             
                             <p class="project-excerpt">
-                                Developed custom Python-based automation scripts for threat detection and incident response. Integrated multiple security tools, created automated playbooks, and implemented machine learning models for anomaly detection in security logs and network traffic.
+                                Developed custom Python-based automation scripts for threat detection and incident response. Integrated multiple security tools, created automated playbooks, and implemented ML models for anomaly detection in security logs.
                             </p>
                             
                             <div class="project-technologies">
@@ -421,19 +516,19 @@
                             </div>
                             
                             <div class="project-highlights">
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Script Development</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
                                     <span>Playbook Creation</span>
                                 </div>
-                                <div class="highlight-item-mini">
+                                <div class="highlight-item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <polyline points="20 6 9 17 4 12"/>
                                     </svg>
@@ -448,7 +543,7 @@
             <!-- Note Section -->
             <div class="projects-note-modern">
                 <div class="note-icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="12" y1="16" x2="12" y2="12"/>
                         <line x1="12" y1="8" x2="12.01" y2="8"/>
@@ -469,27 +564,25 @@
                 <div class="footer-info">
                     <h3 class="footer-name">Mohamed Mooka</h3>
                     <p class="footer-tagline">Cybersecurity Analyst | DFIR & SOC Specialist</p>
+                    <p class="footer-copyright">2025 All rights reserved.</p>
                 </div>
                 <div class="footer-links">
-                    <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="footer-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="footer-link" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="2" y="4" width="20" height="16" rx="2"/>
                             <path d="m2 7 10 7 10-7"/>
                         </svg>
-                        Email
+                        <span>Email</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/mohamed-mooka" target="_blank" class="footer-link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <a href="https://www.linkedin.com/in/mohamed-mooka" target="_blank" class="footer-link" aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                             <rect x="2" y="9" width="4" height="12"/>
                             <circle cx="4" cy="4" r="2"/>
                         </svg>
-                        LinkedIn
+                        <span>LinkedIn</span>
                     </a>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Mohamed Mooka. All rights reserved.</p>
             </div>
         </div>
     </footer>
