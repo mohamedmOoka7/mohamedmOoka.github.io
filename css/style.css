@@ -6,13 +6,13 @@
 
 /* Lighter background for better text readability */
 :root {
-  --color-bg: #0f0f1a;
-  --color-surface: #1a1a2e;
+  --color-bg: #0a0a12;
+  --color-surface: #12121f;
   --color-text: #ffffff;
-  --color-text-secondary: #c0c0d0;
-  --color-accent: #6366f1;
-  --color-accent-hover: #4f46e5;
-  --color-border: #2a2a3e;
+  --color-text-secondary: #b4b4c8;
+  --color-accent: #7c3aed;
+  --color-accent-hover: #6d28d9;
+  --color-border: #1f1f2e;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -281,11 +281,11 @@ button {
 /* </CHANGE> */
 
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  display: inline-block;
+  filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.3));
 }
 
 .hero-subtitle {
@@ -505,14 +505,15 @@ button {
 }
 
 .btn-primary {
-  background: var(--color-accent);
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
   color: white;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);
+  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
 }
 
 .btn-secondary {
@@ -603,19 +604,14 @@ button {
 }
 
 .skill-item:hover {
-  border-color: var(--color-accent);
+  border-color: #7c3aed;
+  background: rgba(124, 58, 237, 0.05);
   transform: translateX(4px);
 }
 
 .skill-item svg {
-  color: var(--color-accent);
+  color: #a78bfa;
   flex-shrink: 0;
-}
-
-.skill-item span {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text);
 }
 
 /* Removed stats-grid and tools-section styles as they're no longer in HTML */
@@ -756,9 +752,9 @@ button {
 }
 
 .work-card:hover {
-  border-color: var(--color-accent);
+  border-color: #7c3aed;
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
 }
 
 .project-number {
@@ -876,9 +872,9 @@ button {
 }
 
 .contact-card:hover {
-  border-color: var(--color-accent);
+  border-color: #7c3aed;
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.2);
 }
 
 .contact-icon {
@@ -887,9 +883,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-bg);
-  border-radius: 12px;
-  color: var(--color-accent);
+  background: rgba(124, 58, 237, 0.1);
+  color: #a78bfa;
   flex-shrink: 0;
 }
 
@@ -1056,3 +1051,11 @@ button {
   }
 }
 /* Removed all navigation styles */
+
+.tag {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap; /* Corrected incomplete property */
+} /* Added missing closing brace */
