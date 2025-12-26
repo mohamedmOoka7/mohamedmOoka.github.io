@@ -17,13 +17,20 @@
 </head>
 <body>
 
-  <!-- Animated Background -->
-  <div class="animated-background">
-    <canvas id="particles-canvas"></canvas>
-    <div class="grid-overlay"></div>
-    <div class="glow-effect glow-1"></div>
-    <div class="glow-effect glow-2"></div>
-    <div class="glow-effect glow-3"></div>
+  <!-- Background with animated waves and hexagon pattern -->
+  <div class="background-effects">
+    <div class="wave-container">
+      <svg class="wave" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path class="wave-path wave-1" d="M0,160L48,149.3C96,139,192,117,288,128C384,139,480,181,576,186.7C672,192,768,160,864,133.3C960,107,1056,85,1152,90.7C1248,96,1344,128,1392,144L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill-opacity="0.1"></path>
+      </svg>
+      <svg class="wave wave-2" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path class="wave-path wave-2-path" d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,213.3C672,224,768,224,864,208C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill-opacity="0.05"></path>
+      </svg>
+    </div>
+    <div class="hexagon-pattern"></div>
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
   </div>
 
   <!-- Navigation -->
@@ -50,7 +57,8 @@
       <div class="hero-content">
         <h1 class="hero-title" data-animate="fade-up" data-delay="100">
           <span class="text-line">Cybersecurity Analyst</span>
-          <span class="text-line gradient-text">Mohamed Mooka</span>
+          <!-- Changed gradient text color for Mohamed Mooka name -->
+          <span class="text-line gradient-text-name">Mohamed Mooka</span>
         </h1>
         <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
           Specialized in Digital Forensics, Incident Response & SOC Operations
