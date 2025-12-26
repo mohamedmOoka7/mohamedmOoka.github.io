@@ -429,13 +429,7 @@ body {
 }
 
 .gradient-title {
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    var(--color-accent-blue) 30%,
-    var(--color-accent-purple) 60%,
-    var(--color-accent-cyan) 100%
-  );
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #a78bfa 60%, #22d3ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -443,24 +437,20 @@ body {
   animation: gradientFlow 4s linear infinite;
   position: relative;
   display: inline-block;
-  /* Added text shadow for better visibility */
-  filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.6)) drop-shadow(0 0 60px rgba(168, 85, 247, 0.4));
+  /* Removed filter blur to make text crystal clear */
+  filter: none;
+  /* Added stronger direct text shadow for better visibility without blur */
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 80px rgba(96, 165, 250, 0.7), 0 0 120px rgba(167, 139, 250, 0.6);
 }
 
 .gradient-title::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    var(--color-accent-blue) 30%,
-    var(--color-accent-purple) 60%,
-    var(--color-accent-cyan) 100%
-  );
-  /* Increased blur and opacity for stronger glow effect */
-  filter: blur(50px);
-  opacity: 0.6;
+  background: linear-gradient(135deg, #ffffff 0%, #60a5fa 30%, #a78bfa 60%, #22d3ee 100%);
+  /* Reduced blur significantly for sharper text */
+  filter: blur(20px);
+  opacity: 0.4;
   z-index: -1;
   animation: gradientFlow 4s linear infinite;
 }
@@ -469,8 +459,9 @@ body {
   display: inline-block;
   opacity: 0;
   animation: fadeInChar 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  font-weight: 800;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(99, 102, 241, 0.5), 0 0 80px rgba(168, 85, 247, 0.3);
+  font-weight: 900;
+  /* Sharper text shadow without blur effects */
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.9), 0 0 60px rgba(96, 165, 250, 0.8), 0 0 90px rgba(167, 139, 250, 0.7);
 }
 
 .char:nth-child(1) {
