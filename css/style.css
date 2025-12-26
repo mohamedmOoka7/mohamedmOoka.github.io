@@ -1,1010 +1,2354 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Mooka | Elite Cybersecurity Analyst</title>
-  
-  <meta name="description" content="Elite Cybersecurity Analyst specialized in DFIR, SOC operations, and advanced threat hunting" />
-  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Threat Hunting, Portfolio" />
-  <meta name="author" content="Mohamed Mooka" />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
-  <!-- 3D Background Effects Canvas -->
-  <div class="background-effects">
-    <canvas id="particles" class="particles-canvas"></canvas>
-    <canvas id="neural-network" class="neural-canvas"></canvas>
-    <div class="grid-background"></div>
-    <div class="scanline-effect"></div>
-    <div class="glow-orb glow-1"></div>
-    <div class="glow-orb glow-2"></div>
-    <div class="glow-orb glow-3"></div>
-  </div>
+/* ===================================
+   REVOLUTIONARY COLOR SYSTEM
+   =================================== */
+:root {
+  /* Core Colors - Ultra Dark Theme */
+  --color-bg: #000000;
+  --color-bg-elevated: #0a0a0a;
+  --color-surface: #0f0f0f;
+  --color-surface-elevated: #1a1a1a;
+  --color-surface-hover: #252525;
 
-  <!-- Custom Cursor -->
-  <div class="custom-cursor">
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-  </div>
+  /* Text Colors */
+  --color-text: #ffffff;
+  --color-text-secondary: #a0aec0;
+  --color-text-muted: #718096;
+  --color-text-disabled: #4a5568;
 
-  <!-- Premium Navigation with Blur Effect -->
-  <nav class="nav">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">
-        <span class="logo-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </span>
-        <span class="logo-text">Mohamed<span class="logo-highlight">.</span>Mooka</span>
-        <span class="logo-pulse"></span>
-      </a>
-      
-      <div class="nav-menu">
-        <a href="#home" class="nav-link" data-section="home">
-          <span class="link-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            </svg>
-          </span>
-          <span class="link-text">Home</span>
-          <span class="link-underline"></span>
-        </a>
-        <a href="#expertise" class="nav-link" data-section="expertise">
-          <span class="link-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </span>
-          <span class="link-text">Expertise</span>
-          <span class="link-underline"></span>
-        </a>
-        <a href="#work" class="nav-link" data-section="work">
-          <span class="link-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="2" y="7" width="20" height="14" rx="2"/>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-            </svg>
-          </span>
-          <span class="link-text">Work</span>
-          <span class="link-underline"></span>
-        </a>
-        <a href="#contact" class="nav-link" data-section="contact">
-          <span class="link-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </span>
-          <span class="link-text">Contact</span>
-          <span class="link-underline"></span>
-        </a>
-      </div>
-      
-      <div class="nav-actions">
-        <button class="theme-toggle" aria-label="Toggle theme">
-          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/>
-            <line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/>
-            <line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-        </button>
-        <a href="assets/Mohamed_Mooka_CV.pdf" download class="nav-cta">
-          <span>Download CV</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-        </a>
-      </div>
-      
-      <button class="menu-btn" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
+  /* Brand Colors - Cybersecurity Theme */
+  --color-primary: #00f0ff;
+  --color-primary-dark: #00b8cc;
+  --color-primary-light: #66f6ff;
+  --color-secondary: #7c3aed;
+  --color-secondary-dark: #5b21b6;
+  --color-accent: #f59e0b;
 
-  <!-- Revolutionary Hero Section with 3D Typography -->
-  <section class="hero" id="home">
-    <div class="hero-background">
-      <div class="hero-glow"></div>
-      <div class="matrix-rain" id="matrixRain"></div>
-    </div>
-    
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge" data-animate="fade-up">
-          <span class="badge-dot"></span>
-          <span class="badge-text">Available for Elite Opportunities</span>
-          <span class="badge-glow"></span>
-        </div>
-        
-        <div class="hero-intro" data-animate="fade-up" data-delay="100">
-          <span class="intro-greeting">Hello, I'm</span>
-        </div>
-        
-        <h1 class="hero-title">
-          <span class="title-line" data-animate="slide-up" data-delay="200">
-            <span class="word glitch" data-text="Mohamed">Mohamed</span>
-            <span class="word glitch" data-text="Mooka">Mooka</span>
-          </span>
-          <span class="title-line gradient-title" data-animate="slide-up" data-delay="300">
-            <span class="typed-text">
-              <span class="typed-word active">Cybersecurity Analyst</span>
-              <span class="typed-word">DFIR Specialist</span>
-              <span class="typed-word">Threat Hunter</span>
-              <span class="typed-word">SOC Expert</span>
-            </span>
-            <span class="typed-cursor">|</span>
-          </span>
-        </h1>
-        
-        <p class="hero-subtitle" data-animate="fade-up" data-delay="400">
-          Elite specialist in <span class="highlight">Digital Forensics</span>, 
-          <span class="highlight">Incident Response</span> & 
-          <span class="highlight">Advanced Threat Detection</span>. 
-          Protecting digital assets with cutting-edge security solutions.
-        </p>
-        
-        <div class="hero-stats-container" data-animate="fade-up" data-delay="500">
-          <div class="hero-stats">
-            <div class="stat-item">
-              <div class="stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                  <polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-              </div>
-              <div class="stat-content">
-                <div class="stat-value" data-count="15">0</div>
-                <div class="stat-label">Projects Completed</div>
-              </div>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <div class="stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                </svg>
-              </div>
-              <div class="stat-content">
-                <div class="stat-value" data-count="100">0</div>
-                <div class="stat-label">Threats Neutralized</div>
-              </div>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <div class="stat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <div class="stat-content">
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Response Ready</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="hero-buttons" data-animate="fade-up" data-delay="600">
-          <a href="#work" class="btn btn-primary btn-glow-effect">
-            <span class="btn-content">
-              <span class="btn-text">Explore My Work</span>
-              <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </span>
-            <span class="btn-glow"></span>
-            <span class="btn-particles"></span>
-          </a>
-          <a href="#contact" class="btn btn-secondary">
-            <span class="btn-content">
-              <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              <span class="btn-text">Let's Connect</span>
-            </span>
-          </a>
-        </div>
-        
-        <div class="hero-social" data-animate="fade-up" data-delay="700">
-          <span class="social-label">Follow me</span>
-          <div class="social-links">
-            <a href="https://github.com/mohamedmOoka7" target="_blank" class="social-link" aria-label="GitHub">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-            <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="social-link" aria-label="LinkedIn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="social-link" aria-label="Email">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="hero-visual" data-animate="scale-up" data-delay="800">
-        <div class="visual-card">
-          <div class="terminal-window">
-            <div class="terminal-header">
-              <div class="terminal-buttons">
-                <span class="btn-close"></span>
-                <span class="btn-minimize"></span>
-                <span class="btn-maximize"></span>
-              </div>
-              <div class="terminal-title">elite@security:~$</div>
-            </div>
-            <div class="terminal-body">
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="command">scan --threats --realtime</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">[✓] Initializing security protocols...</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output success">[✓] 15 threats detected and neutralized</span>
-              </div>
-              <div class="terminal-line">
-                <span class="output">[✓] System secure. Monitoring active.</span>
-              </div>
-              <div class="terminal-line">
-                <span class="prompt">$</span>
-                <span class="cursor-blink">_</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="scroll-indicator">
-      <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
-      </div>
-      <span class="scroll-text">Scroll to explore</span>
-    </div>
-  </section>
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
 
-  <!-- Expertise Section with Interactive Cards -->
-  <section class="expertise" id="expertise">
-    <div class="container">
-      <div class="section-header" data-animate="fade-up">
-        <span class="section-label">
-          <span class="label-line"></span>
-          <span class="label-text">My Expertise</span>
-          <span class="label-line"></span>
-        </span>
-        <h2 class="section-title">
-          <span class="title-word">Advanced</span>
-          <span class="title-word gradient-text">Security</span>
-          <span class="title-word">Capabilities</span>
-        </h2>
-        <p class="section-subtitle">
-          Leveraging cutting-edge tools and methodologies to detect, analyze, and neutralize cyber threats
-        </p>
-      </div>
-      
-      <div class="expertise-grid">
-        <div class="expertise-card" data-animate="fade-up" data-delay="0">
-          <div class="card-glow-effect"></div>
-          <div class="card-header">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
-            </div>
-            <div class="card-badge">Core</div>
-          </div>
-          <h3 class="card-title">Digital Forensics</h3>
-          <p class="card-desc">
-            Expert-level memory forensics, disk analysis, and evidence collection using industry-leading tools.
-          </p>
-          <div class="card-tech">
-            <span class="tech-item">Volatility</span>
-            <span class="tech-item">Autopsy</span>
-            <span class="tech-item">FTK</span>
-            <span class="tech-item">Sleuth Kit</span>
-          </div>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" data-progress="98"></div>
-            </div>
-            <span class="progress-value">98%</span>
-          </div>
-        </div>
-        
-        <div class="expertise-card" data-animate="fade-up" data-delay="100">
-          <div class="card-glow-effect"></div>
-          <div class="card-header">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <div class="card-badge">Expert</div>
-          </div>
-          <h3 class="card-title">Incident Response</h3>
-          <p class="card-desc">
-            Rapid threat containment, malware analysis, and comprehensive incident investigation capabilities.
-          </p>
-          <div class="card-tech">
-            <span class="tech-item">SIEM</span>
-            <span class="tech-item">IDS/IPS</span>
-            <span class="tech-item">EDR</span>
-            <span class="tech-item">SOAR</span>
-          </div>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" data-progress="96"></div>
-            </div>
-            <span class="progress-value">96%</span>
-          </div>
-        </div>
-        
-        <div class="expertise-card" data-animate="fade-up" data-delay="200">
-          <div class="card-glow-effect"></div>
-          <div class="card-header">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-            <div class="card-badge">Advanced</div>
-          </div>
-          <h3 class="card-title">SOC Operations</h3>
-          <p class="card-desc">
-            24/7 security monitoring, alert triage, and proactive threat hunting using MITRE ATT&CK framework.
-          </p>
-          <div class="card-tech">
-            <span class="tech-item">Splunk</span>
-            <span class="tech-item">ELK Stack</span>
-            <span class="tech-item">QRadar</span>
-            <span class="tech-item">Sentinel</span>
-          </div>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" data-progress="94"></div>
-            </div>
-            <span class="progress-value">94%</span>
-          </div>
-        </div>
-        
-        <div class="expertise-card" data-animate="fade-up" data-delay="300">
-          <div class="card-glow-effect"></div>
-          <div class="card-header">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              </svg>
-            </div>
-            <div class="card-badge">Master</div>
-          </div>
-          <h3 class="card-title">Network Analysis</h3>
-          <p class="card-desc">
-            Deep packet inspection, traffic analysis, and network-based threat detection and prevention.
-          </p>
-          <div class="card-tech">
-            <span class="tech-item">Wireshark</span>
-            <span class="tech-item">tcpdump</span>
-            <span class="tech-item">Zeek</span>
-            <span class="tech-item">Snort</span>
-          </div>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" data-progress="92"></div>
-            </div>
-            <span class="progress-value">92%</span>
-          </div>
-        </div>
-        
-        <div class="expertise-card" data-animate="fade-up" data-delay="400">
-          <div class="card-glow-effect"></div>
-          <div class="card-header">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                <rect x="8" y="2" width="8" height="4" rx="1"/>
-              </svg>
-            </div>
-            <div class="card-badge">Expert</div>
-          </div>
-          <h3 class="card-title">Threat Intelligence</h3>
-          <p class="card-desc">
-            IOC analysis, threat actor profiling, and strategic cyber intelligence for proactive defense.
-          </p>
-          <div class="card-tech">
-            <span class="tech-item">MISP</span>
-            <span class="tech-item">OpenCTI</span>
-            <span class="tech-item">ThreatConnect</span>
-            <span class="tech-item">YARA</span>
-          </div>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" data-progress="90"></div>
-            </div>
-            <span class="progress-value">90%</span>
-          </div>
-        </div>
-        
-        <div class="expertise-card" data-animate="fade-up" data-delay="500">
-          <div class="card-glow-effect"></div>
-          <div class="card-header">
-            <div class="card-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </div>
-            <div class="card-badge">Advanced</div>
-          </div>
-          <h3 class="card-title">Automation & Scripting</h3>
-          <p class="card-desc">
-            Custom security tools, automated workflows, and intelligent threat response orchestration.
-          </p>
-          <div class="card-tech">
-            <span class="tech-item">Python</span>
-            <span class="tech-item">PowerShell</span>
-            <span class="tech-item">Bash</span>
-            <span class="tech-item">APIs</span>
-          </div>
-          <div class="card-progress">
-            <div class="progress-bar">
-              <div class="progress-fill" data-progress="95"></div>
-            </div>
-            <span class="progress-value">95%</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="certifications" data-animate="fade-up">
-        <h3 class="cert-title">Certifications & Training</h3>
-        <div class="cert-grid">
-          <div class="cert-item">
-            <div class="cert-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <span class="cert-name">Security+</span>
-          </div>
-          <div class="cert-item">
-            <div class="cert-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
-            </div>
-            <span class="cert-name">CEH</span>
-          </div>
-          <div class="cert-item">
-            <div class="cert-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-              </svg>
-            </div>
-            <span class="cert-name">GCIH</span>
-          </div>
-          <div class="cert-item">
-            <div class="cert-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              </svg>
-            </div>
-            <span class="cert-name">OSCP</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  /* Border & Divider Colors */
+  --color-border: #1e293b;
+  --color-border-hover: #334155;
+  --color-divider: #2d3748;
 
-  <!-- Work Section with Stunning Project Cards -->
-  <section class="work" id="work">
-    <div class="container">
-      <div class="section-header" data-animate="fade-up">
-        <span class="section-label">
-          <span class="label-line"></span>
-          <span class="label-text">Featured Projects</span>
-          <span class="label-line"></span>
-        </span>
-        <h2 class="section-title">
-          <span class="title-word">Elite</span>
-          <span class="title-word gradient-text">Security</span>
-          <span class="title-word">Operations</span>
-        </h2>
-        <p class="section-subtitle">
-          Real-world incident response, forensic investigations, and advanced threat hunting operations
-        </p>
-      </div>
-      
-      <div class="work-grid">
-        <article class="project-card featured" data-animate="fade-up">
-          <div class="project-number">01</div>
-          <div class="project-image-wrapper">
-            <div class="project-image">
-              <img src="https://placehold.co/1600x1000?text=Advanced+DFIR+investigation+dashboard+showing+forensic+timeline+malware+analysis+memory+dumps+network+artifacts+dark+cybersecurity+interface" alt="Advanced DFIR investigation dashboard showing forensic timeline malware analysis memory dumps network artifacts dark cybersecurity interface" />
-              <div class="image-overlay">
-                <a href="project-dfir.html" class="project-view-btn">
-                  <span>View Project</span>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div class="project-stats">
-              <div class="stat">
-                <span class="stat-label">Duration</span>
-                <span class="stat-value">2 Weeks</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Complexity</span>
-                <span class="stat-value">Advanced</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Status</span>
-                <span class="stat-value status-complete">Complete</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="project-content">
-            <div class="project-header">
-              <div class="project-tags">
-                <span class="tag tag-primary">DFIR</span>
-                <span class="tag tag-secondary">Forensics</span>
-                <span class="tag tag-year">2024</span>
-              </div>
-            </div>
-            
-            <h3 class="project-title">Advanced DFIR Investigation Lab</h3>
-            
-            <p class="project-desc">
-              Comprehensive digital forensics investigation covering advanced memory analysis, 
-              disk forensics, malware reverse engineering, and complete incident timeline reconstruction. 
-              Successfully identified attack vectors, extracted IOCs, and documented complete chain of custody.
-            </p>
-            
-            <div class="project-highlights">
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span>Complete memory forensics analysis</span>
-              </div>
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span>Malware artifacts extraction</span>
-              </div>
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                <span>Timeline reconstruction & reporting</span>
-              </div>
-            </div>
-            
-            <div class="project-tech-stack">
-              <span class="tech-badge">Volatility 3</span>
-              <span class="tech-badge">Autopsy</span>
-              <span class="tech-badge">Wireshark</span>
-              <span class="tech-badge">SIFT Workstation</span>
-              <span class="tech-badge">REMnux</span>
-              <span class="tech-badge">FTK Imager</span>
-            </div>
-            
-            <div class="project-footer">
-              <a href="project-dfir.html" class="project-link">
-                <span>View Full Case Study</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
+  /* Gradient Definitions */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-accent: linear-gradient(135deg, #00f0ff 0%, #7c3aed 50%, #f59e0b 100%);
+  --gradient-surface: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
 
-        <article class="project-card" data-animate="fade-up" data-delay="100">
-          <div class="project-number">02</div>
-          <div class="project-image-wrapper">
-            <div class="project-image">
-              <img src="https://placehold.co/1600x1000?text=SOC+security+operations+center+dashboard+with+SIEM+alerts+threat+detection+rules+log+correlation+incident+response+dark+interface" alt="SOC security operations center dashboard with SIEM alerts threat detection rules log correlation incident response dark interface" />
-              <div class="image-overlay">
-                <span class="project-view-btn disabled">
-                  <span>Coming Soon</span>
-                </span>
-              </div>
-              <div class="coming-soon-badge">In Progress</div>
-            </div>
-            <div class="project-stats">
-              <div class="stat">
-                <span class="stat-label">Duration</span>
-                <span class="stat-value">3 Weeks</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Complexity</span>
-                <span class="stat-value">Expert</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Status</span>
-                <span class="stat-value status-progress">In Progress</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="project-content">
-            <div class="project-header">
-              <div class="project-tags">
-                <span class="tag tag-primary">SOC</span>
-                <span class="tag tag-secondary">SIEM</span>
-                <span class="tag tag-year">2025</span>
-              </div>
-            </div>
-            
-            <h3 class="project-title">Enterprise SOC Operations</h3>
-            
-            <p class="project-desc">
-              Advanced security operations center implementation featuring custom SIEM correlation rules, 
-              automated threat detection, and real-time incident response workflows using MITRE ATT&CK framework 
-              for comprehensive threat coverage and rapid remediation.
-            </p>
-            
-            <div class="project-highlights">
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <span>Real-time threat monitoring</span>
-              </div>
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <span>Custom detection rules</span>
-              </div>
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <span>MITRE ATT&CK mapping</span>
-              </div>
-            </div>
-            
-            <div class="project-tech-stack">
-              <span class="tech-badge">Splunk</span>
-              <span class="tech-badge">Sigma Rules</span>
-              <span class="tech-badge">MITRE ATT&CK</span>
-              <span class="tech-badge">ELK Stack</span>
-              <span class="tech-badge">SOAR</span>
-            </div>
-            
-            <div class="project-footer">
-              <span class="project-link disabled">
-                <span>Available Q2 2025</span>
-              </span>
-            </div>
-          </div>
-        </article>
+  /* Typography */
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
 
-        <article class="project-card" data-animate="fade-up" data-delay="200">
-          <div class="project-number">03</div>
-          <div class="project-image-wrapper">
-            <div class="project-image">
-              <img src="https://placehold.co/1600x1000?text=Advanced+threat+hunting+platform+showing+network+traffic+analysis+behavioral+analytics+IOC+detection+anomaly+identification+dark+security+interface" alt="Advanced threat hunting platform showing network traffic analysis behavioral analytics IOC detection anomaly identification dark security interface" />
-              <div class="image-overlay">
-                <span class="project-view-btn disabled">
-                  <span>Coming Soon</span>
-                </span>
-              </div>
-              <div class="coming-soon-badge">Planned</div>
-            </div>
-            <div class="project-stats">
-              <div class="stat">
-                <span class="stat-label">Duration</span>
-                <span class="stat-value">4 Weeks</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Complexity</span>
-                <span class="stat-value">Expert</span>
-              </div>
-              <div class="stat">
-                <span class="stat-label">Status</span>
-                <span class="stat-value status-planned">Planned</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="project-content">
-            <div class="project-header">
-              <div class="project-tags">
-                <span class="tag tag-primary">Threat Hunting</span>
-                <span class="tag tag-secondary">Analysis</span>
-                <span class="tag tag-year">2025</span>
-              </div>
-            </div>
-            
-            <h3 class="project-title">Proactive Threat Hunting Operation</h3>
-            
-            <p class="project-desc">
-              Sophisticated threat hunting operation utilizing behavioral analytics, hypothesis-driven investigation, 
-              and advanced detection techniques to identify hidden threats and APT activities before they cause damage.
-            </p>
-            
-            <div class="project-highlights">
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5"/>
-                  <path d="M2 12l10 5 10-5"/>
-                </svg>
-                <span>Behavioral analytics</span>
-              </div>
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5"/>
-                  <path d="M2 12l10 5 10-5"/>
-                </svg>
-                <span>APT detection techniques</span>
-              </div>
-              <div class="highlight-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5"/>
-                  <path d="M2 12l10 5 10-5"/>
-                </svg>
-                <span>Hypothesis-driven hunting</span>
-              </div>
-            </div>
-            
-            <div class="project-tech-stack">
-              <span class="tech-badge">Zeek</span>
-              <span class="tech-badge">Suricata</span>
-              <span class="tech-badge">YARA</span>
-              <span class="tech-badge">OSQuery</span>
-              <span class="tech-badge">Velociraptor</span>
-            </div>
-            
-            <div class="project-footer">
-              <span class="project-link disabled">
-                <span>Available Q3 2025</span>
-              </span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
+  --spacing-6xl: 12rem;
 
-  <!-- Contact Section with Premium Design -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="contact-wrapper">
-        <div class="section-header" data-animate="fade-up">
-          <span class="section-label">
-            <span class="label-line"></span>
-            <span class="label-text">Get In Touch</span>
-            <span class="label-line"></span>
-          </span>
-          <h2 class="section-title">
-            <span class="title-word">Let's</span>
-            <span class="title-word gradient-text">Collaborate</span>
-          </h2>
-          <p class="section-subtitle">
-            Available for cybersecurity consulting, DFIR engagements, and security advisory roles. 
-            Let's discuss how I can help secure your digital infrastructure.
-          </p>
-        </div>
-        
-        <div class="contact-grid">
-          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card" data-animate="fade-up" data-delay="0">
-            <div class="card-glow-effect"></div>
-            <div class="contact-icon-wrapper">
-              <div class="contact-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-              </div>
-              <div class="icon-particles"></div>
-            </div>
-            <div class="contact-info">
-              <div class="contact-label">Email Address</div>
-              <div class="contact-value">mohamed.ashraf.abdallah65@gmail.com</div>
-              <div class="contact-action">
-                <span>Send Message</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </div>
-            </div>
-            <div class="card-shine"></div>
-          </a>
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
 
-          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="contact-card" data-animate="fade-up" data-delay="100">
-            <div class="card-glow-effect"></div>
-            <div class="contact-icon-wrapper">
-              <div class="contact-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </div>
-              <div class="icon-particles"></div>
-            </div>
-            <div class="contact-info">
-              <div class="contact-label">LinkedIn Profile</div>
-              <div class="contact-value">linkedin.com/in/mohamed-mooka</div>
-              <div class="contact-action">
-                <span>Connect</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </div>
-            </div>
-            <div class="card-shine"></div>
-          </a>
+  /* Transitions */
+  --transition-fastest: 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slowest: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 
-          <a href="https://github.com/mohamedmOoka7" target="_blank" class="contact-card" data-animate="fade-up" data-delay="200">
-            <div class="card-glow-effect"></div>
-            <div class="contact-icon-wrapper">
-              <div class="contact-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </div>
-              <div class="icon-particles"></div>
-            </div>
-            <div class="contact-info">
-              <div class="contact-label">GitHub Projects</div>
-              <div class="contact-value">github.com/mohamedmOoka7</div>
-              <div class="contact-action">
-                <span>View Code</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </div>
-            </div>
-            <div class="card-shine"></div>
-          </a>
-        </div>
-        
-        <div class="contact-cta" data-animate="fade-up" data-delay="300">
-          <div class="cta-content">
-            <h3 class="cta-title">Ready to Strengthen Your Security Posture?</h3>
-            <p class="cta-desc">
-              Let's discuss your cybersecurity challenges and explore how my expertise can help protect your organization.
-            </p>
-            <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="btn btn-primary btn-glow-effect">
-              <span class="btn-content">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-                <span class="btn-text">Start Conversation</span>
-              </span>
-              <span class="btn-glow"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 30px rgba(0, 240, 255, 0.3);
+  --shadow-glow-lg: 0 0 60px rgba(0, 240, 255, 0.4);
 
-  <!-- Premium Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <div class="footer-info">
-            <div class="footer-name">Mohamed Mooka</div>
-            <div class="footer-title">Elite Cybersecurity Analyst</div>
-            <div class="footer-tagline">Protecting Digital Assets • DFIR Specialist • Threat Hunter</div>
-          </div>
-        </div>
-        
-        <div class="footer-links-group">
-          <div class="footer-column">
-            <h4 class="footer-heading">Navigation</h4>
-            <ul class="footer-links">
-              <li><a href="#home" class="footer-link">Home</a></li>
-              <li><a href="#expertise" class="footer-link">Expertise</a></li>
-              <li><a href="#work" class="footer-link">Projects</a></li>
-              <li><a href="#contact" class="footer-link">Contact</a></li>
-            </ul>
-          </div>
-          
-          <div class="footer-column">
-            <h4 class="footer-heading">Specializations</h4>
-            <ul class="footer-links">
-              <li><span class="footer-text">Digital Forensics</span></li>
-              <li><span class="footer-text">Incident Response</span></li>
-              <li><span class="footer-text">SOC Operations</span></li>
-              <li><span class="footer-text">Threat Intelligence</span></li>
-            </ul>
-          </div>
-          
-          <div class="footer-column">
-            <h4 class="footer-heading">Connect</h4>
-            <div class="footer-social">
-              <a href="https://github.com/mohamedmOoka7" target="_blank" class="footer-social-link" aria-label="GitHub">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </a>
-              <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" class="footer-social-link" aria-label="LinkedIn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-              <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="footer-social-link" aria-label="Email">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <div class="footer-copyright">
-          <span>© 2025 Mohamed Mooka. All rights reserved.</span>
-        </div>
-        <div class="footer-credits">
-          <span>Crafted with</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="heart-icon">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-          <span>and cutting-edge technology</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+  /* Z-Index Scale */
+  --z-background: -1;
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
 
-  <script src="js/main.js"></script>
-</body>
-</html>
+/* ===================================
+   BASE STYLES
+   =================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-elevated);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-bg-elevated);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-surface-hover);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+/* ===================================
+   CUSTOM CURSOR
+   =================================== */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.cursor-outline {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+  opacity: 0.5;
+}
+
+/* ===================================
+   BACKGROUND EFFECTS
+   =================================== */
+.background-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: var(--z-background);
+}
+
+.particles-canvas,
+.neural-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.neural-canvas {
+  opacity: 0.3;
+}
+
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.scanline-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 240, 255, 0.03) 50%, transparent 100%);
+  background-size: 100% 4px;
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.15;
+  animation: floatOrb 30s ease-in-out infinite;
+  will-change: transform;
+}
+
+.glow-1 {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%);
+  top: -400px;
+  right: -400px;
+  animation-delay: 0s;
+}
+
+.glow-2 {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--color-secondary) 0%, transparent 70%);
+  bottom: -300px;
+  left: -300px;
+  animation-delay: 10s;
+}
+
+.glow-3 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  animation-delay: 20s;
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(150px, -200px) scale(1.1);
+  }
+  50% {
+    transform: translate(-100px, 150px) scale(0.9);
+  }
+  75% {
+    transform: translate(100px, -100px) scale(1.05);
+  }
+}
+
+/* ===================================
+   NAVIGATION - PREMIUM GLASSMORPHISM
+   =================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--color-border);
+  animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+}
+
+.nav-logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  z-index: 2;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.nav-logo:hover .logo-icon::before {
+  opacity: 1;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+}
+
+.logo-highlight {
+  color: var(--color-primary);
+  font-size: 24px;
+}
+
+.logo-pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-primary);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.1;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  border-radius: var(--radius-md);
+}
+
+.link-icon {
+  display: flex;
+  align-items: center;
+  opacity: 0.7;
+  transition: opacity var(--transition-base);
+}
+
+.link-text {
+  position: relative;
+  z-index: 1;
+}
+
+.link-underline {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+  transition: transform var(--transition-base);
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.nav-link:hover .link-icon {
+  opacity: 1;
+}
+
+.nav-link:hover .link-underline {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.nav-link.active {
+  color: var(--color-text);
+  background: rgba(0, 240, 255, 0.1);
+}
+
+.nav-link.active .link-underline {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  color: var(--color-text-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.moon-icon {
+  display: none;
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--gradient-primary);
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-glow);
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base);
+}
+
+.menu-btn:hover {
+  background: rgba(0, 240, 255, 0.1);
+}
+
+.menu-btn span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  transition: all var(--transition-base);
+  border-radius: 2px;
+}
+
+.menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-btn.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ===================================
+   HERO SECTION - REVOLUTIONARY
+   =================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(88px + var(--spacing-5xl)) var(--spacing-xl) var(--spacing-5xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%);
+  filter: blur(120px);
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.1);
+  }
+}
+
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0.1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xl);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.badge-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.hero-badge:hover .badge-glow {
+  opacity: 0.2;
+}
+
+.hero-intro {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 500;
+}
+
+.intro-greeting {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-xl);
+  letter-spacing: -0.04em;
+}
+
+.title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch:hover::before {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  color: var(--color-primary);
+  z-index: -1;
+}
+
+.glitch:hover::after {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+  color: var(--color-secondary);
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-2px, -2px);
+    opacity: 1;
+  }
+  60% {
+    transform: translate(2px, 2px);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(2px, -2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+.gradient-title {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: gradientFlow 4s linear infinite;
+  position: relative;
+  display: inline-block;
+}
+
+.gradient-title::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: var(--gradient-accent);
+  filter: blur(30px);
+  opacity: 0.3;
+  z-index: -1;
+  animation: gradientFlow 4s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.typed-text {
+  display: inline-block;
+  position: relative;
+}
+
+.typed-word {
+  display: none;
+  opacity: 0;
+  animation: fadeInOut 4s ease-in-out infinite;
+}
+
+.typed-word.active {
+  display: inline-block;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+}
+
+.typed-cursor {
+  display: inline-block;
+  margin-left: 0.1em;
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2xl);
+  max-width: 800px;
+  line-height: 1.7;
+}
+
+.highlight {
+  color: var(--color-primary);
+  font-weight: 600;
+  position: relative;
+}
+
+.highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-primary);
+  opacity: 0.3;
+}
+
+.hero-stats-container {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-2xl);
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(20px);
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-stats::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-surface);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.hero-stats:hover::before {
+  opacity: 1;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  position: relative;
+  z-index: 1;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 240, 255, 0.1);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary);
+}
+
+.stat-content {
+  text-align: left;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 60px;
+  background: var(--color-border);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ===================================
+   PREMIUM BUTTON STYLES
+   =================================== */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.btn-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.btn-glow {
+  position: absolute;
+  inset: -2px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity var(--transition-base);
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.btn-primary:hover .btn-glow {
+  opacity: 1;
+}
+
+.btn-primary:hover .btn-icon {
+  transform: translateX(4px);
+}
+
+.btn-icon {
+  transition: transform var(--transition-base);
+}
+
+.btn-secondary {
+  background: rgba(15, 15, 15, 0.8);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-border-hover);
+  background: rgba(26, 26, 26, 0.9);
+  transform: translateY(-2px);
+}
+
+.hero-social {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.social-label {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.social-links {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.social-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.social-link:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.hero-visual {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 500px;
+}
+
+.visual-card {
+  position: relative;
+}
+
+.terminal-window {
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-2xl);
+  overflow: hidden;
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  background: rgba(26, 26, 26, 0.9);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.terminal-buttons span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.btn-close {
+  background: #ef4444;
+}
+
+.btn-minimize {
+  background: #f59e0b;
+}
+
+.btn-maximize {
+  background: #10b981;
+}
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.terminal-body {
+  padding: var(--spacing-xl);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.terminal-line {
+  margin-bottom: var(--spacing-md);
+}
+
+.prompt {
+  color: var(--color-primary);
+  margin-right: var(--spacing-sm);
+}
+
+.command {
+  color: var(--color-text);
+}
+
+.output {
+  color: var(--color-text-secondary);
+  padding-left: var(--spacing-lg);
+}
+
+.output.success {
+  color: var(--color-success);
+}
+
+.cursor-blink {
+  animation: cursorBlink 1s step-end infinite;
+  color: var(--color-primary);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: var(--spacing-4xl);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 36px;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  animation: scrollWheel 2s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+.scroll-text {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===================================
+   SECTION HEADERS
+   =================================== */
+.section-header {
+  margin-bottom: var(--spacing-5xl);
+  text-align: center;
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: 14px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+}
+
+.label-line {
+  width: 40px;
+  height: 2px;
+  background: var(--gradient-primary);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-lg);
+}
+
+.title-word {
+  display: inline-block;
+  margin-right: 0.3em;
+}
+
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ===================================
+   EXPERTISE SECTION
+   =================================== */
+.expertise {
+  padding: var(--spacing-6xl) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: var(--spacing-xl);
+}
+
+.expertise-card {
+  position: relative;
+  padding: var(--spacing-3xl);
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(20px);
+  transition: all var(--transition-slow);
+  overflow: hidden;
+}
+
+.card-glow-effect {
+  position: absolute;
+  inset: -100%;
+  background: var(--gradient-primary);
+  opacity: 0;
+  filter: blur(60px);
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.expertise-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.expertise-card:hover .card-glow-effect {
+  opacity: 0.1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.card-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 240, 255, 0.1);
+  border-radius: var(--radius-xl);
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+.expertise-card:hover .card-icon {
+  transform: scale(1.1) rotate(-5deg);
+  background: rgba(0, 240, 255, 0.2);
+  box-shadow: var(--shadow-glow);
+}
+
+.card-badge {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text);
+  position: relative;
+  z-index: 1;
+}
+
+.card-desc {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.tech-item {
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  transition: all var(--transition-base);
+}
+
+.expertise-card:hover .tech-item {
+  border-color: var(--color-primary);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.card-progress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  position: relative;
+  z-index: 1;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(0, 240, 255, 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transform-origin: left;
+  transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+.progress-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+}
+
+.certifications {
+  margin-top: var(--spacing-5xl);
+  padding: var(--spacing-3xl);
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(20px);
+}
+
+.cert-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.cert-item:hover {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.cert-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 240, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+}
+
+.cert-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ===================================
+   WORK SECTION - PREMIUM PROJECTS
+   =================================== */
+.work {
+  padding: var(--spacing-6xl) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.work-grid {
+  display: grid;
+  gap: var(--spacing-5xl);
+}
+
+.project-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--spacing-4xl);
+  padding: var(--spacing-3xl);
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3xl);
+  backdrop-filter: blur(20px);
+  transition: all var(--transition-slow);
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-surface);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+.project-card:hover {
+  transform: translateY(-16px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-number {
+  position: absolute;
+  top: var(--spacing-xl);
+  right: var(--spacing-xl);
+  font-family: var(--font-display);
+  font-size: 120px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.02);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.project-image-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.project-image {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slowest);
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: var(--spacing-3xl);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.project-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.project-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-2xl);
+  background: white;
+  color: #000;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.project-view-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.3);
+}
+
+.project-view-btn.disabled {
+  background: rgba(15, 15, 15, 0.8);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: rgba(124, 58, 237, 0.2);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.project-stats {
+  display: flex;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+.status-complete {
+  color: var(--color-success);
+}
+
+.status-progress {
+  color: var(--color-warning);
+}
+
+.status-planned {
+  color: var(--color-info);
+}
+
+.project-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.tag {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tag-primary {
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.tag-secondary {
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.tag-year {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.2;
+}
+
+.project-desc {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-xl);
+}
+
+.project-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.highlight-item svg {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tech-badge {
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(26, 26, 26, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  transition: all var(--transition-base);
+}
+
+.project-card:hover .tech-badge {
+  border-color: var(--color-primary);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.project-footer {
+  margin-top: auto;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all var(--transition-base);
+}
+
+.project-link:hover {
+  gap: var(--spacing-lg);
+}
+
+.project-link.disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ===================================
+   CONTACT SECTION - PREMIUM
+   =================================== */
+.contact {
+  padding: var(--spacing-6xl) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-5xl);
+}
+
+.contact-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-3xl);
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+
+.card-shine {
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.8s ease;
+}
+
+.contact-card:hover .card-shine {
+  transform: translateX(100%);
+}
+
+.contact-card:hover {
+  transform: translateY(-12px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.contact-card:hover .card-glow-effect {
+  opacity: 0.1;
+}
+
+.contact-icon-wrapper {
+  position: relative;
+}
+
+.contact-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 240, 255, 0.1);
+  border-radius: var(--radius-xl);
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-card:hover .contact-icon {
+  transform: scale(1.1) rotate(-5deg);
+  background: rgba(0, 240, 255, 0.2);
+  box-shadow: var(--shadow-glow);
+}
+
+.icon-particles {
+  position: absolute;
+  inset: -20px;
+  background: var(--gradient-primary);
+  filter: blur(30px);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.contact-card:hover .icon-particles {
+  opacity: 0.3;
+}
+
+.contact-info {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  word-break: break-word;
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-base);
+}
+
+.contact-card:hover .contact-action {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contact-cta {
+  padding: var(--spacing-5xl) var(--spacing-4xl);
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-3xl);
+  text-align: center;
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-accent);
+  opacity: 0.03;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: var(--spacing-lg);
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-desc {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-2xl);
+  line-height: 1.7;
+}
+
+/* ===================================
+   FOOTER - PREMIUM DESIGN
+   =================================== */
+.footer {
+  padding: var(--spacing-5xl) 0 var(--spacing-3xl);
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  gap: var(--spacing-5xl);
+  margin-bottom: var(--spacing-5xl);
+}
+
+.footer-brand {
+  display: flex;
+  gap: var(--spacing-xl);
+}
+
+.footer-logo {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-xl);
+  color: white;
+  flex-shrink: 0;
+}
+
+.footer-info {
+  flex: 1;
+}
+
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-title {
+  font-size: 16px;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-tagline {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.footer-links-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3xl);
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.footer-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer-link {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--transition-base);
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-text {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.footer-social-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.footer-social-link:hover {
+  background: rgba(0, 240, 255, 0.1);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spacing-3xl);
+  border-top: 1px solid var(--color-border);
+  gap: var(--spacing-xl);
+}
+
+.footer-copyright {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.footer-credits {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.heart-icon {
+  color: #ef4444;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* ===================================
+   ANIMATION UTILITIES
+   =================================== */
+[data-animate] {
+  opacity: 0;
+}
+
+[data-animate="fade-up"] {
+  transform: translateY(40px);
+}
+
+[data-animate="slide-up"] {
+  transform: translateY(60px);
+}
+
+[data-animate="scale-up"] {
+  transform: scale(0.9);
+}
+
+[data-animate].animated {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 1200px) {
+  .hero-visual {
+    display: none;
+  }
+
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links-group {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 88px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--spacing-xl);
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all var(--transition-base);
+  }
+
+  .nav.active .nav-menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  .menu-btn {
+    display: flex;
+  }
+
+  .hero {
+    padding: calc(88px + var(--spacing-3xl)) var(--spacing-lg) var(--spacing-3xl);
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    width: 100%;
+  }
+
+  .stat-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-links-group {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+
+  .project-stats {
+    flex-direction: column;
+  }
+
+  .project-number {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .hero-social {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-cta {
+    padding: var(--spacing-3xl) var(--spacing-xl);
+  }
+}
+
+/* ===================================
+   ACCESSIBILITY
+   =================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ===================================
+   PRINT STYLES
+   =================================== */
+@media print {
+  .nav,
+  .hero-background,
+  .background-effects,
+  .scroll-indicator,
+  .custom-cursor {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
