@@ -449,20 +449,10 @@ body {
 }
 
 .gradient-title::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--color-accent-blue) 0%,
-    var(--color-accent-purple) 50%,
-    var(--color-accent-cyan) 100%
-  );
-  filter: blur(30px);
-  opacity: 0.4;
-  z-index: -1;
-  animation: gradientFlow 4s linear infinite;
+  filter: blur(12px);   /* بدل 30px */
+  opacity: 0.2;         /* أقل شوية */
 }
+
 
 @keyframes gradientFlow {
   0% {
