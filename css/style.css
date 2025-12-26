@@ -246,13 +246,29 @@ button {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: var(--spacing-md);
-  letter-spacing: -0.02em;
-  /* Center title text */
+  /* Removed old styles, name is now standalone */
+  margin-bottom: var(--spacing-lg);
   text-align: center;
+}
+
+.hero-name {
+  /* Made name significantly larger and more prominent */
+  display: block;
+  font-size: clamp(3.5rem, 12vw, 8rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-role {
+  /* Added separate styling for job title */
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.01em;
 }
 
 .gradient-text {
@@ -260,14 +276,15 @@ button {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* Added text shadow for more depth */
+  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.3));
 }
 
 .hero-subtitle {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-xl);
   max-width: 600px;
-  /* Center subtitle */
   text-align: center;
 }
 
