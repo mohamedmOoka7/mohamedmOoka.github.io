@@ -5,13 +5,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 :root {
-  --color-bg: #0a0e1a;
-  --color-surface: #111827;
-  --color-text: #f9fafb;
-  --color-text-secondary: #9ca3af;
-  --color-accent: #06b6d4;
-  --color-accent-hover: #0891b2;
-  --color-border: #1f2937;
+  /* Premium dark theme with sophisticated color palette */
+  --color-bg: #0a0a12;
+  --color-surface: #12121a;
+  --color-surface-elevated: #1a1a24;
+  --color-text: #ffffff;
+  --color-text-secondary: #b4b4c8;
+  --color-text-tertiary: #7a7a90;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --color-accent-hover: #4f46e5;
+  --color-border: #1f1f2e;
+  --color-border-light: #2a2a3c;
+  /* </CHANGE> */
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -123,7 +129,7 @@ button {
    BACKGROUND EFFECTS
    ============================================ */
 
-/* Updated background for better contrast and readability */
+/* Enhanced gradient background with premium colors */
 .animated-background {
   position: fixed;
   top: 0;
@@ -132,8 +138,9 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(135deg, #0a0a0f 0%, #0f0a15 50%, #0a0a0f 100%);
+  background: linear-gradient(135deg, #0a0a12 0%, #0f0a1a 25%, #120a18 50%, #0f0a1a 75%, #0a0a12 100%);
 }
+/* </CHANGE> */
 
 #particles-canvas {
   width: 100%;
@@ -230,14 +237,15 @@ button {
 }
 /* </CHANGE> */
 
-/* Updated gradient for name with professional cyan-to-blue gradient */
+/* Premium gradient for name with indigo and violet tones */
 .gradient-text {
-  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.3));
+  filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.4));
 }
+/* </CHANGE> */
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -455,17 +463,19 @@ button {
   transform: translateX(4px);
 }
 
+/* Updated button styles with new accent color */
 .btn-primary {
-  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   color: white;
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 4px 24px rgba(99, 102, 241, 0.4);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+  box-shadow: 0 8px 36px rgba(99, 102, 241, 0.5);
 }
+/* </CHANGE> */
 
 .btn-secondary {
   background: var(--color-surface);
@@ -490,11 +500,13 @@ button {
   text-shadow: 0 2px 20px rgba(99, 102, 241, 0.3);
 }
 
+/* Updated text shadows for better depth */
 .hero-title,
 .hero-name,
 .section-title {
-  text-shadow: 0 2px 20px rgba(99, 102, 241, 0.3);
+  text-shadow: 0 2px 30px rgba(99, 102, 241, 0.4);
 }
+/* </CHANGE> */
 
 /* ============================================
    ABOUT SECTION
@@ -543,27 +555,18 @@ button {
   margin-right: auto;
 }
 
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  transition: var(--transition);
-}
-
+/* Updated hover colors for skill items */
 .skill-item:hover {
-  border-color: #7c3aed;
-  background: rgba(124, 58, 237, 0.05);
+  border-color: var(--color-accent);
+  background: rgba(99, 102, 241, 0.05);
   transform: translateX(4px);
 }
 
 .skill-item svg {
-  color: #a78bfa;
+  color: var(--color-accent-light);
   flex-shrink: 0;
 }
+/* </CHANGE> */
 
 /* Removed stats-grid and tools-section styles as they're no longer in HTML */
 
@@ -702,11 +705,13 @@ button {
   padding: var(--spacing-xl);
 }
 
+/* Updated work card hover effects */
 .work-card:hover {
-  border-color: #7c3aed;
+  border-color: var(--color-accent);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
 }
+/* </CHANGE> */
 
 .project-number {
   position: absolute;
@@ -810,6 +815,7 @@ button {
   margin-top: var(--spacing-xl);
 }
 
+/* Updated contact card styles */
 .contact-card {
   display: flex;
   align-items: center;
@@ -823,9 +829,9 @@ button {
 }
 
 .contact-card:hover {
-  border-color: #7c3aed;
+  border-color: var(--color-accent);
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.25);
 }
 
 .contact-icon {
@@ -834,10 +840,12 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(124, 58, 237, 0.1);
-  color: #a78bfa;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+  color: var(--color-accent-light);
   flex-shrink: 0;
 }
+/* </CHANGE> */
 
 .contact-info {
   flex: 1;
