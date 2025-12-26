@@ -37,9 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     animateCursor()
 
     // Cursor hover effects
-    const interactiveElements = document.querySelectorAll(
-      "a, button, .btn, .nav-link, .work-card, .expertise-card, .contact-card, .skill-item, .tool-tag",
-    )
+    const interactiveElements = document.querySelectorAll("a, button, .btn, .work-card, .contact-card, .skill-item")
 
     interactiveElements.forEach((el) => {
       el.addEventListener("mouseenter", () => {
@@ -72,33 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // ===== NAVIGATION =====
-  const nav = document.querySelector(".nav")
-  const navLinks = document.querySelectorAll(".nav-link")
-  const menuBtn = document.querySelector(".menu-btn")
-
-  // Mobile menu toggle
-  if (menuBtn) {
-    menuBtn.addEventListener("click", () => {
-      nav.classList.toggle("active")
-      menuBtn.classList.toggle("active")
-    })
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        nav.classList.remove("active")
-        menuBtn.classList.remove("active")
-      })
-    })
-
-    document.addEventListener("click", (e) => {
-      if (!nav.contains(e.target) && !menuBtn.contains(e.target)) {
-        nav.classList.remove("active")
-        menuBtn.classList.remove("active")
-      }
-    })
-  }
-
   // ===== SMOOTH SCROLL =====
   const links = document.querySelectorAll('a[href^="#"]')
 
@@ -111,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const target = document.querySelector(href)
         if (target) {
-          const offsetTop = target.offsetTop - 80
+          const offsetTop = target.offsetTop
 
           window.scrollTo({
             top: offsetTop,
@@ -205,18 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animate()
 
-  // ===== PARALLAX EFFECT FOR BACKGROUND ORBS =====
-  const orbs = document.querySelectorAll(".gradient-orb")
-
-  window.addEventListener("scroll", () => {
-    const scrolled = window.scrollY
-
-    orbs.forEach((orb, index) => {
-      const speed = (index + 1) * 0.05
-      orb.style.transform = `translateY(${scrolled * speed}px)`
-    })
-  })
-
   // ===== BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll(".btn")
 
@@ -261,52 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
   `
   document.head.appendChild(style)
 
-  // ===== TERMINAL TYPING EFFECT =====
-  const terminalLines = document.querySelectorAll(".terminal-line")
-  let terminalAnimated = false
-
-  const terminalObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !terminalAnimated) {
-          terminalAnimated = true
-          animateTerminal()
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const terminal = document.querySelector(".terminal")
-  if (terminal) {
-    terminalObserver.observe(terminal)
-  }
-
-  function animateTerminal() {
-    terminalLines.forEach((line, index) => {
-      line.style.opacity = "0"
-      setTimeout(() => {
-        line.style.transition = "opacity 0.3s ease"
-        line.style.opacity = "1"
-      }, index * 100)
-    })
-  }
-
-  // ===== SCROLL INDICATOR HIDE ON SCROLL =====
-  const scrollIndicator = document.querySelector(".scroll-indicator")
-
-  if (scrollIndicator) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 200) {
-        scrollIndicator.style.opacity = "0"
-        scrollIndicator.style.pointerEvents = "none"
-      } else {
-        scrollIndicator.style.opacity = "1"
-        scrollIndicator.style.pointerEvents = "all"
-      }
-    })
-  }
-
   // ===== IMAGE LOADING OPTIMIZATION =====
   const images = document.querySelectorAll("img")
 
@@ -323,19 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
   )
   console.log("%c⚡ Modern Professional Design", "font-size: 14px; color: #a3a3a3;")
   console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 12px; color: #737373;")
-
-  // ===== ACCESSIBILITY: KEYBOARD NAVIGATION =====
-  document.addEventListener("keydown", (e) => {
-    // Press 'Esc' to close mobile menu
-    if (e.key === "Escape") {
-      if (nav.classList.contains("active")) {
-        nav.classList.remove("active")
-        if (menuBtn) {
-          menuBtn.classList.remove("active")
-        }
-      }
-    }
-  })
 
   // ===== PERFORMANCE: REDUCE MOTION FOR USERS WHO PREFER IT =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
