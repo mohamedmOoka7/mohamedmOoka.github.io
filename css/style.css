@@ -1,33 +1,34 @@
 /* ============================================
-   BLOOD RED DRAGON THEME - SIMPLE & POWERFUL
+   PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
    ============================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Blood Red Dragon Color System */
-  --color-bg: #0d0000;
+  /* Enhanced color system with festive touches */
+  --color-bg: #0a0000;
   --color-surface: #1a0303;
-  --color-surface-elevated: #260505;
-  --color-surface-hover: #330707;
+  --color-surface-elevated: #230505;
+  --color-surface-hover: #2d0606;
 
   --color-text-primary: #ffffff;
   --color-text-secondary: #d4a5a5;
   --color-text-tertiary: #a37676;
 
-  /* Blood Red Accent Colors */
-  --color-accent-primary: #dc0000;
-  --color-accent-secondary: #a30000;
-  --color-accent-tertiary: #ff1a1a;
-  --color-accent-hover: #ff3333;
+  /* Professional Red with festive gold accents */
+  --color-accent-primary: #dc2626;
+  --color-accent-secondary: #991b1b;
+  --color-accent-tertiary: #ef4444;
+  --color-accent-gold: #fbbf24;
+  --color-accent-green: #10b981;
+  /* </CHANGE> */
 
   --color-success: #10b981;
   --color-warning: #fbbf24;
-  --color-error: #ff0000;
+  --color-error: #dc2626;
 
-  --color-border: #330707;
-  --color-border-light: #4d0a0a;
-  /* </CHANGE> */
+  --color-border: #2d0606;
+  --color-border-light: #3d0808;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
@@ -41,18 +42,17 @@
   --spacing-3xl: 6rem;
   --spacing-4xl: 8rem;
 
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Blood Red Shadows */
-  --shadow-sm: 0 2px 8px rgba(220, 0, 0, 0.2);
-  --shadow-md: 0 4px 16px rgba(220, 0, 0, 0.3);
-  --shadow-lg: 0 12px 32px rgba(220, 0, 0, 0.4);
-  --shadow-xl: 0 20px 48px rgba(220, 0, 0, 0.5);
-  --shadow-glow: 0 0 32px rgba(220, 0, 0, 0.5);
-  --shadow-glow-hover: 0 0 48px rgba(220, 0, 0, 0.7);
+  /* Reduced animation speeds for better UX */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.35s ease;
+  --transition-slow: 0.6s ease;
   /* </CHANGE> */
+
+  --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.15);
+  --shadow-md: 0 4px 16px rgba(220, 38, 38, 0.25);
+  --shadow-lg: 0 8px 24px rgba(220, 38, 38, 0.35);
+  --shadow-xl: 0 12px 32px rgba(220, 38, 38, 0.4);
+  --shadow-glow: 0 0 24px rgba(220, 38, 38, 0.4);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -86,7 +86,7 @@ body {
   position: relative;
 }
 
-/* Blood Red Background Gradient */
+/* Subtle festive background gradient */
 body::before {
   content: "";
   position: fixed;
@@ -94,8 +94,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 20%, rgba(220, 0, 0, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(163, 0, 0, 0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
   pointer-events: none;
   z-index: 0;
 }
@@ -136,7 +136,9 @@ button {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   opacity: 1;
-  transition: opacity 0.3s ease, width var(--transition-base), height var(--transition-base);
+  /* Smoother cursor transitions */
+  transition: opacity 0.3s ease, width 0.25s ease, height 0.25s ease, transform 0.15s ease;
+  /* </CHANGE> */
   z-index: 10000;
   mix-blend-mode: difference;
 }
@@ -144,20 +146,15 @@ button {
 .cursor-dot {
   width: 8px;
   height: 8px;
-  /* Red cursor */
   background: var(--color-accent-primary);
-  box-shadow: 0 0 12px var(--color-accent-primary);
-  /* </CHANGE> */
-  transition: transform var(--transition-fast);
+  box-shadow: 0 0 10px var(--color-accent-primary);
 }
 
 .cursor-outline {
   width: 40px;
   height: 40px;
-  /* Red outline */
   border: 2px solid var(--color-accent-primary);
-  box-shadow: 0 0 20px rgba(220, 0, 0, 0.5);
-  /* </CHANGE> */
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -176,12 +173,12 @@ button {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  /* Red gradient progress */
+  height: 3px;
+  /* Festive red and gold gradient */
   background: linear-gradient(
     90deg,
     var(--color-accent-primary) 0%,
-    var(--color-accent-tertiary) 50%,
+    var(--color-accent-gold) 50%,
     var(--color-accent-primary) 100%
   );
   /* </CHANGE> */
@@ -189,7 +186,7 @@ button {
   transform: scaleX(0);
   z-index: 1001;
   transition: transform 0.1s linear;
-  box-shadow: 0 0 20px rgba(220, 0, 0, 0.7);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
 }
 
 /* ============================================
@@ -204,7 +201,9 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.6;
+  /* Reduced opacity for less distraction */
+  opacity: 0.4;
+  /* </CHANGE> */
 }
 
 #particles-canvas {
@@ -246,33 +245,33 @@ button {
   overflow: hidden;
 }
 
-/* Red dragon fire glow effect */
+/* Subtle festive glow - less aggressive */
 .hero::before {
   content: "";
   position: absolute;
-  top: -50%;
+  top: -40%;
   left: 50%;
   transform: translateX(-50%);
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(220, 0, 0, 0.3) 0%, rgba(163, 0, 0, 0.2) 30%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(251, 191, 36, 0.08) 40%, transparent 70%);
   border-radius: 50%;
-  filter: blur(80px);
-  animation: heroGlow 8s ease-in-out infinite alternate;
+  filter: blur(100px);
+  animation: gentleGlow 10s ease-in-out infinite alternate;
   pointer-events: none;
 }
-/* </CHANGE> */
 
-@keyframes heroGlow {
+@keyframes gentleGlow {
   0% {
-    opacity: 0.5;
-    transform: translateX(-50%) translateY(0);
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
   }
   100% {
-    opacity: 0.8;
-    transform: translateX(-50%) translateY(20px);
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.1);
   }
 }
+/* </CHANGE> */
 
 .hero-content {
   position: relative;
@@ -282,74 +281,89 @@ button {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
-  animation: fadeInUp 1s ease-out;
+  /* Simplified fade-in animation */
+  animation: simpleFadeIn 1.2s ease-out;
+  /* </CHANGE> */
 }
 
+/* Simplified animations */
+@keyframes simpleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* </CHANGE> */
+
 .hero-greeting {
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  font-weight: 500;
-  /* Red accent text */
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
   color: var(--color-accent-primary);
-  /* </CHANGE> */
   margin-bottom: var(--spacing-sm);
   text-align: center;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.2s forwards;
 }
 
 .hero-name {
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(3rem, 10vw, 6.5rem);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.1;
   margin-bottom: var(--spacing-md);
   text-align: center;
-  letter-spacing: -0.04em;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  letter-spacing: -0.03em;
 }
 
 .hero-role {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   font-weight: 600;
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-md);
   text-align: center;
-  letter-spacing: -0.02em;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.6s forwards;
+  letter-spacing: -0.015em;
 }
 
-/* Blood Red gradient text */
+/* Professional festive gradient */
 .gradient-text {
   background: linear-gradient(
     135deg,
     var(--color-accent-primary) 0%,
-    var(--color-accent-tertiary) 50%,
-    var(--color-accent-primary) 100%
+    var(--color-accent-gold) 40%,
+    var(--color-accent-primary) 80%,
+    var(--color-accent-tertiary) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
-  position: relative;
-  animation: gradientShift 6s ease infinite;
   background-size: 200% 200%;
-  filter: drop-shadow(0 0 20px rgba(220, 0, 0, 0.5));
+  animation: subtleGradientShift 8s ease infinite;
+  filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.3));
+}
+
+@keyframes subtleGradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 /* </CHANGE> */
 
 .hero-subtitle {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-size: clamp(1.0625rem, 1.8vw, 1.375rem);
   color: var(--color-text-tertiary);
   margin-bottom: var(--spacing-2xl);
   max-width: 700px;
   text-align: center;
   line-height: 1.7;
   font-weight: 400;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.8s forwards;
 }
 
 .hero-buttons {
@@ -357,8 +371,6 @@ button {
   gap: var(--spacing-md);
   flex-wrap: wrap;
   justify-content: center;
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out 1s forwards;
 }
 
 /* ============================================
@@ -369,9 +381,9 @@ button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: 16px 32px;
+  padding: 15px 30px;
   border-radius: var(--radius-md);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   text-decoration: none;
   transition: all var(--transition-base);
@@ -390,9 +402,9 @@ button {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition: width 0.5s ease, height 0.5s ease;
   z-index: -1;
 }
 
@@ -406,43 +418,41 @@ button {
 }
 
 .btn:hover svg {
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
-/* Red primary button */
+/* Festive button gradient */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
   color: white;
-  box-shadow: 0 8px 24px rgba(220, 0, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(220, 38, 38, 0.45), 0 0 20px rgba(251, 191, 36, 0.2);
 }
 /* </CHANGE> */
 
 .btn-primary:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
 }
 
 .btn-secondary {
   background: var(--color-surface-elevated);
   color: var(--color-text-primary);
   border: 2px solid var(--color-border-light);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Red border on hover */
 .btn-secondary:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 0 24px rgba(220, 0, 0, 0.3);
-  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
+  transform: translateY(-2px);
 }
-/* </CHANGE> */
 
 .btn-secondary:active {
-  transform: translateY(-1px);
+  transform: translateY(0);
 }
 
 /* ============================================
@@ -450,10 +460,10 @@ button {
    ============================================ */
 
 .section-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
   font-weight: 900;
   margin-bottom: var(--spacing-xl);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -462,18 +472,18 @@ button {
   display: inline-block;
 }
 
-/* Red underline */
+/* Festive gold and red underline */
 .section-title::after {
   content: "";
   position: absolute;
-  bottom: -12px;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 70px;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-gold), var(--color-accent-primary));
   border-radius: 2px;
-  box-shadow: 0 0 16px rgba(220, 0, 0, 0.6);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
 }
 /* </CHANGE> */
 
@@ -489,9 +499,9 @@ button {
 }
 
 .about-text {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--color-text-secondary);
-  line-height: 1.9;
+  line-height: 1.8;
   margin-bottom: var(--spacing-3xl);
   max-width: 900px;
   margin-left: auto;
@@ -501,34 +511,17 @@ button {
 
 .about-text p {
   margin-bottom: var(--spacing-lg);
-  opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.about-text p:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.about-text p:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.about-text p:nth-child(3) {
-  animation-delay: 0.3s;
 }
 
 .about-text strong {
-  /* Red highlight */
   color: var(--color-accent-primary);
-  /* </CHANGE> */
   font-weight: 700;
-  position: relative;
 }
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-md);
   margin-top: var(--spacing-xl);
   max-width: 1000px;
   margin-left: auto;
@@ -549,7 +542,6 @@ button {
   cursor: pointer;
 }
 
-/* Red left border on skill items */
 .skill-item::before {
   content: "";
   position: absolute;
@@ -557,12 +549,11 @@ button {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-secondary));
+  background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-gold));
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform var(--transition-base);
 }
-/* </CHANGE> */
 
 .skill-item:hover::before {
   transform: scaleY(1);
@@ -571,25 +562,25 @@ button {
 .skill-item:hover {
   border-color: var(--color-accent-primary);
   background: var(--color-surface-elevated);
-  transform: translateX(8px);
-  box-shadow: var(--shadow-lg);
+  transform: translateX(6px);
+  box-shadow: var(--shadow-md);
 }
 
 .skill-item svg {
-  /* Red icons */
   color: var(--color-accent-primary);
   flex-shrink: 0;
-  filter: drop-shadow(0 0 8px rgba(220, 0, 0, 0.6));
-  /* </CHANGE> */
+  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.4));
   transition: all var(--transition-base);
 }
 
 .skill-item:hover svg {
-  transform: scale(1.2) rotate(5deg);
+  /* Less aggressive rotation */
+  transform: scale(1.15) rotate(3deg);
+  /* </CHANGE> */
 }
 
 .skill-item span {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--color-text-primary);
 }
@@ -607,8 +598,8 @@ button {
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: var(--spacing-2xl);
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: var(--spacing-xl);
   margin-top: var(--spacing-2xl);
 }
 
@@ -625,7 +616,6 @@ button {
   cursor: pointer;
 }
 
-/* Red gradient overlay on work cards */
 .work-card::before {
   content: "";
   position: absolute;
@@ -633,12 +623,11 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(220, 0, 0, 0.05) 0%, rgba(163, 0, 0, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.04) 0%, rgba(251, 191, 36, 0.02) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
   pointer-events: none;
 }
-/* </CHANGE> */
 
 .work-card:hover::before {
   opacity: 1;
@@ -646,31 +635,29 @@ button {
 
 .work-card:hover {
   border-color: var(--color-accent-primary);
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Red gradient project number */
 .project-number {
   position: absolute;
   top: var(--spacing-lg);
   right: var(--spacing-lg);
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   color: white;
   z-index: 10;
   font-family: var(--font-mono);
-  box-shadow: 0 8px 24px rgba(220, 0, 0, 0.5);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
   transition: all var(--transition-base);
 }
-/* </CHANGE> */
 
 .work-content {
   display: flex;
@@ -678,20 +665,20 @@ button {
 }
 
 .work-title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   margin-bottom: var(--spacing-md);
-  padding-right: 70px;
+  padding-right: 65px;
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .work-desc {
   color: var(--color-text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
   margin-bottom: var(--spacing-lg);
   flex: 1;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .work-tech {
@@ -702,7 +689,7 @@ button {
 }
 
 .work-tech span {
-  padding: 8px 16px;
+  padding: 7px 14px;
   background: var(--color-surface-elevated);
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-sm);
@@ -714,30 +701,26 @@ button {
 }
 
 .work-tech span:hover {
-  /* Red border on tech tags */
   border-color: var(--color-accent-primary);
   color: var(--color-accent-primary);
-  /* </CHANGE> */
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .work-link {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  /* Red link color */
   color: var(--color-accent-primary);
-  /* </CHANGE> */
   text-decoration: none;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   transition: all var(--transition-base);
   width: fit-content;
 }
 
 .work-link:hover {
   gap: var(--spacing-md);
-  text-shadow: 0 0 12px rgba(220, 0, 0, 0.6);
+  text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
 }
 
 .work-link.disabled {
@@ -765,8 +748,8 @@ button {
 
 .contact-methods {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
   margin-top: var(--spacing-2xl);
 }
 
@@ -784,7 +767,7 @@ button {
   overflow: hidden;
 }
 
-/* Red shine effect on contact cards */
+/* Subtle festive shine effect */
 .contact-card::before {
   content: "";
   position: absolute;
@@ -792,8 +775,8 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(220, 0, 0, 0.2), transparent);
-  transition: left var(--transition-slow);
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), rgba(251, 191, 36, 0.05), transparent);
+  transition: left 0.8s ease;
 }
 /* </CHANGE> */
 
@@ -804,18 +787,17 @@ button {
 .contact-card:hover {
   border-color: var(--color-accent-primary);
   background: var(--color-surface-elevated);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-glow);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Red contact icon background */
 .contact-icon {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(220, 0, 0, 0.2), rgba(163, 0, 0, 0.2));
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(251, 191, 36, 0.08));
   border-radius: var(--radius-md);
   color: var(--color-accent-primary);
   flex-shrink: 0;
@@ -826,11 +808,12 @@ button {
 .contact-card:hover .contact-icon {
   background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
   color: white;
-  transform: scale(1.1) rotate(-5deg);
+  /* Reduced rotation */
+  transform: scale(1.08) rotate(-3deg);
+  /* </CHANGE> */
   border-color: transparent;
-  box-shadow: var(--shadow-glow);
+  box-shadow: var(--shadow-md);
 }
-/* </CHANGE> */
 
 .contact-info {
   flex: 1;
@@ -839,16 +822,16 @@ button {
 }
 
 .contact-label {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--color-text-tertiary);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
 }
 
 .contact-value {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--color-text-primary);
 }
@@ -885,8 +868,8 @@ button {
 }
 
 .footer-links a {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -899,23 +882,18 @@ button {
 }
 
 .footer-links a:hover {
-  /* Red hover state for footer links */
   color: var(--color-accent-primary);
   border-color: var(--color-accent-primary);
   background: var(--color-bg);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(220, 0, 0, 0.3);
-  /* </CHANGE> */
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
 }
 
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-
+/* Simplified and professional animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
@@ -932,15 +910,29 @@ button {
   }
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
+/* Snowflakes for festive touch */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  user-select: none;
+  pointer-events: none;
+  animation: snowfall linear infinite;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
   }
-  50% {
-    transform: translateY(-10px);
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.3;
   }
 }
+/* </CHANGE> */
 
 /* ============================================
    LOADING STATE
@@ -959,27 +951,22 @@ body.loaded {
    ============================================ */
 
 @media (max-width: 1024px) {
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-
   .skills {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
-  :root {
-    --spacing-3xl: 4rem;
-    --spacing-4xl: 5rem;
-  }
-
   .hero {
-    padding: var(--spacing-2xl) var(--spacing-md);
+    padding: var(--spacing-2xl) var(--spacing-lg);
   }
 
   .hero-greeting {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
 
   .hero-name {
@@ -987,24 +974,14 @@ body.loaded {
   }
 
   .hero-role {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-
-  /* Completed responsive styles */
   .skills {
     grid-template-columns: 1fr;
   }
 
   .contact-methods {
     grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
   }
 }
