@@ -1,5 +1,5 @@
 // =============================================
-// PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
+// ULTRA PROFESSIONAL RED THEME - CHRISTMAS EDITION
 // =============================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const distX = mouseX - outlineX
       const distY = mouseY - outlineY
 
-      // Smoother cursor follow
       outlineX += distX * 0.15
       outlineY += distY * 0.15
 
@@ -40,7 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animateCursor()
 
-    const interactiveElements = document.querySelectorAll("a, button, .btn, .work-card, .contact-card, .skill-item")
+    const interactiveElements = document.querySelectorAll(
+      "a, button, .btn, .work-card, .contact-card, .skill-item, .stat-card",
+    )
 
     interactiveElements.forEach((el) => {
       el.addEventListener("mouseenter", () => {
@@ -96,26 +97,30 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== RED PARTICLE BACKGROUND =====
+  // ===== PROFESSIONAL RED PARTICLE BACKGROUND =====
   const canvas = document.getElementById("particles-canvas")
   const ctx = canvas.getContext("2d")
 
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
+  let resizeTimeout
   window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth
-    canvas.height = window.innerHeight
+    clearTimeout(resizeTimeout)
+    resizeTimeout = setTimeout(() => {
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+    }, 250)
   })
 
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
-      this.size = Math.random() * 2.5 + 0.8
-      this.speedX = Math.random() * 0.8 - 0.4
-      this.speedY = Math.random() * 0.8 - 0.4
-      this.opacity = Math.random() * 0.4 + 0.15
+      this.size = Math.random() * 2 + 0.5
+      this.speedX = Math.random() * 0.6 - 0.3
+      this.speedY = Math.random() * 0.6 - 0.3
+      this.opacity = Math.random() * 0.35 + 0.1
       this.color = this.getRandomColor()
     }
 
@@ -150,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const particlesArray = []
-  const numberOfParticles = 80 // Reduced for better performance
+  const numberOfParticles = 60 // Reduced for better performance
 
   for (let i = 0; i < numberOfParticles; i++) {
     particlesArray.push(new Particle())
@@ -158,13 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function connectParticles() {
     for (let a = 0; a < particlesArray.length; a++) {
-      for (let b = a; b < particlesArray.length; b++) {
+      for (let b = a + 1; b < particlesArray.length; b++) {
         const dx = particlesArray[a].x - particlesArray[b].x
         const dy = particlesArray[a].y - particlesArray[b].y
         const distance = Math.sqrt(dx * dx + dy * dy)
 
-        if (distance < 120) {
-          const opacity = (1 - distance / 120) * 0.25
+        if (distance < 110) {
+          const opacity = (1 - distance / 110) * 0.2
           ctx.strokeStyle = `rgba(220, 38, 38, ${opacity})`
           ctx.lineWidth = 1
           ctx.beginPath()
@@ -189,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   animate()
+  // </CHANGE>
 
   // ===== ENHANCED BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll(".btn")
@@ -208,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.borderRadius = "50%"
       ripple.style.background = "rgba(255, 255, 255, 0.5)"
       ripple.style.transform = "translate(-50%, -50%)"
-      ripple.style.animation = "ripple 0.7s ease-out"
+      ripple.style.animation = "ripple 0.6s ease-out"
       ripple.style.pointerEvents = "none"
 
       button.style.position = "relative"
@@ -217,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         ripple.remove()
-      }, 700)
+      }, 600)
     })
   })
 
@@ -236,10 +242,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(style)
   }
 
-  // ===== SCROLL REVEAL ANIMATIONS =====
+  // ===== PROFESSIONAL SCROLL REVEAL ANIMATIONS =====
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -80px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -60px 0px",
   }
 
   const observer = new IntersectionObserver((entries) => {
@@ -247,20 +253,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = "1"
         entry.target.style.transform = "translateY(0)"
+        observer.unobserve(entry.target) // Stop observing after animation
       }
     })
   }, observerOptions)
 
-  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .contact-card")
+  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .contact-card, .stat-card")
   animatedElements.forEach((el, index) => {
     el.style.opacity = "0"
-    el.style.transform = "translateY(20px)"
-    el.style.transition = `all 0.5s ease-out ${index * 0.08}s`
+    el.style.transform = "translateY(15px)"
+    el.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s`
     observer.observe(el)
   })
+  // </CHANGE>
 
-  // ===== PARALLAX EFFECT ON SCROLL =====
-  let lastScrollTop = 0
+  // ===== SUBTLE PARALLAX EFFECT ON SCROLL =====
   let ticking = false
 
   window.addEventListener(
@@ -272,11 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
           const hero = document.querySelector(".hero")
 
           if (hero && scrollTop < window.innerHeight) {
-            hero.style.transform = `translateY(${scrollTop * 0.3}px)`
-            hero.style.opacity = Math.max(0, 1 - scrollTop / 600)
+            hero.style.transform = `translateY(${scrollTop * 0.25}px)`
+            hero.style.opacity = Math.max(0, 1 - scrollTop / 700)
           }
 
-          lastScrollTop = scrollTop
           ticking = false
         })
 
@@ -285,6 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: true },
   )
+  // </CHANGE>
 
   // ===== IMAGE LOADING OPTIMIZATION =====
   const images = document.querySelectorAll("img")
@@ -301,29 +308,29 @@ document.addEventListener("DOMContentLoaded", () => {
     snowflake.classList.add("snowflake")
     snowflake.innerHTML = "❄"
     snowflake.style.left = Math.random() * window.innerWidth + "px"
-    snowflake.style.animationDuration = Math.random() * 3 + 8 + "s"
-    snowflake.style.opacity = Math.random() * 0.6 + 0.3
-    snowflake.style.fontSize = Math.random() * 10 + 10 + "px"
+    snowflake.style.animationDuration = Math.random() * 4 + 10 + "s"
+    snowflake.style.opacity = Math.random() * 0.5 + 0.2
+    snowflake.style.fontSize = Math.random() * 8 + 8 + "px"
 
     document.body.appendChild(snowflake)
 
     setTimeout(() => {
       snowflake.remove()
-    }, 12000)
+    }, 15000)
   }
 
-  // Create snowflakes periodically
-  setInterval(createSnowflake, 400)
+  // Create snowflakes less frequently for subtle effect
+  setInterval(createSnowflake, 600)
+  // </CHANGE>
 
-  // ===== ENHANCED CONSOLE MESSAGE =====
+  // ===== PROFESSIONAL CONSOLE MESSAGE =====
   console.log(
     "%c🎄 Mohamed Mooka - Professional Portfolio",
     "font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #dc2626, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 8px 0;",
   )
   console.log("%c🎅 Happy Holidays & Merry Christmas!", "font-size: 15px; color: #fbbf24; font-weight: 700;")
   console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 13px; color: #d4a5a5;")
-  console.log("%c⚡ Professional Red Theme with Festive Touches", "font-size: 12px; color: #a37676;")
-  // </CHANGE>
+  console.log("%c⚡ Ultra Professional Red Theme with Festive Touches", "font-size: 12px; color: #a37676;")
 
   // ===== PERFORMANCE: REDUCE MOTION =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
