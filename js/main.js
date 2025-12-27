@@ -1,5 +1,5 @@
 // =============================================
-// UNIQUE CYBERSECURITY PORTFOLIO - MODERN THEME
+// PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
 // =============================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== UNIQUE CYAN PARTICLE BACKGROUND =====
+  // ===== RED PARTICLE BACKGROUND =====
   const canvas = document.getElementById("particles-canvas")
   const ctx = canvas.getContext("2d")
 
@@ -55,10 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getRandomColor() {
       const colors = [
-        "6, 182, 212", // Cyan
-        "34, 211, 238", // Light Cyan
-        "139, 92, 246", // Purple
-        "236, 72, 153", // Pink
+        "220, 38, 38", // Red
+        "153, 27, 27", // Dark Red
+        "251, 191, 36", // Gold
+        "239, 68, 68", // Bright Red
       ]
       return colors[Math.floor(Math.random() * colors.length)]
     }
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const particlesArray = []
-  const numberOfParticles = 80
+  const numberOfParticles = 80 // Reduced for better performance
 
   for (let i = 0; i < numberOfParticles; i++) {
     particlesArray.push(new Particle())
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (distance < 120) {
           const opacity = (1 - distance / 120) * 0.25
-          ctx.strokeStyle = `rgba(6, 182, 212, ${opacity})`
+          ctx.strokeStyle = `rgba(220, 38, 38, ${opacity})`
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
@@ -123,7 +123,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   animate()
-  // </CHANGE>
 
   // ===== ENHANCED BUTTON RIPPLE EFFECT =====
   const buttons = document.querySelectorAll(".btn")
@@ -141,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.width = "0"
       ripple.style.height = "0"
       ripple.style.borderRadius = "50%"
-      ripple.style.background = "rgba(6, 182, 212, 0.5)" // Changed to cyan
+      ripple.style.background = "rgba(255, 255, 255, 0.5)"
       ripple.style.transform = "translate(-50%, -50%)"
       ripple.style.animation = "ripple 0.7s ease-out"
       ripple.style.pointerEvents = "none"
@@ -180,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     img.style.transition = "opacity 0.4s ease-out"
   })
 
-  // ===== CYBER SNOWFLAKES =====
+  // ===== FESTIVE CHRISTMAS SNOWFLAKES =====
   function createSnowflake() {
     const snowflake = document.createElement("div")
     snowflake.classList.add("snowflake")
@@ -197,21 +196,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 12000)
   }
 
+  // Create snowflakes periodically
   setInterval(createSnowflake, 400)
-  // </CHANGE>
 
   // ===== ENHANCED CONSOLE MESSAGE =====
   console.log(
-    "%c⚡ Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #06b6d4, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 8px 0;",
+    "%c🎄 Mohamed Mooka - Professional Portfolio",
+    "font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #dc2626, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 8px 0;",
   )
-  console.log(
-    "%c🔒 Digital Forensics & Incident Response Specialist",
-    "font-size: 15px; color: #06b6d4; font-weight: 700;",
-  )
-  console.log("%c🛡️ SOC Analyst | Threat Hunter | DFIR Expert", "font-size: 13px; color: #94a3b8;")
-  console.log("%c✨ Unique Modern Design with Cybersecurity Focus", "font-size: 12px; color: #64748b;")
-  // </CHANGE>
+  console.log("%c🎅 Happy Holidays & Merry Christmas!", "font-size: 15px; color: #fbbf24; font-weight: 700;")
+  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 13px; color: #d4a5a5;")
+  console.log("%c⚡ Professional Red Theme with Festive Touches", "font-size: 12px; color: #a37676;")
 
   // ===== PERFORMANCE: REDUCE MOTION =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
