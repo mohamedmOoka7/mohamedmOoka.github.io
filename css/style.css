@@ -4,20 +4,20 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
-/* Updated to premium deep blue and cyan color scheme */
+/* Premium navy blue and deep purple color scheme */
 :root {
-  --color-bg: #0a0a1a;
-  --color-surface: #12121f;
-  --color-surface-elevated: #1a1a2e;
-  --color-text: #ffffff;
-  --color-text-secondary: #c0c0d8;
-  --color-text-tertiary: #9090b0;
-  --color-accent: #6366f1;
-  --color-accent-light: #818cf8;
-  --color-accent-hover: #4f46e5;
-  --color-accent-glow: rgba(99, 102, 241, 0.4);
-  --color-border: #2a2a40;
-  --color-border-light: #3a3a55;
+  --color-bg: #0b0c1e;
+  --color-surface: #151729;
+  --color-surface-elevated: #1d1f38;
+  --color-text: #e8eaf0;
+  --color-text-secondary: #b4b7c9;
+  --color-text-tertiary: #8b8fa3;
+  --color-accent: #5b5fc7;
+  --color-accent-light: #7275d4;
+  --color-accent-hover: #4a4eb5;
+  --color-accent-glow: rgba(91, 95, 199, 0.35);
+  --color-border: #252841;
+  --color-border-light: #2f3351;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -36,14 +36,13 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
   --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.25);
-  --shadow-accent: 0 8px 24px rgba(6, 182, 212, 0.4);
+  --shadow-accent: 0 8px 24px rgba(91, 95, 199, 0.3);
 
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
 }
-/* </CHANGE> */
 
 /* ============================================
    RESET & BASE STYLES
@@ -138,13 +137,12 @@ button {
   z-index: 1001;
   transition: transform 0.1s linear;
 }
-/* </CHANGE> */
 
 /* ============================================
    BACKGROUND EFFECTS
    ============================================ */
 
-/* Updated animated background with deep blue gradient */
+/* Clean background without excessive gradients */
 .animated-background {
   position: fixed;
   top: 0;
@@ -153,9 +151,8 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(135deg, #020817 0%, #0c1222 25%, #050b1a 50%, #0c1222 75%, #020817 100%);
+  background: linear-gradient(135deg, #0b0c1e 0%, #111327 50%, #0b0c1e 100%);
 }
-/* </CHANGE> */
 
 #particles-canvas {
   width: 100%;
@@ -250,15 +247,14 @@ button {
   letter-spacing: -0.01em;
 }
 
-/* Updated gradient text with cyan to light blue */
+/* Refined gradient without glow effect */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
 }
-/* </CHANGE> */
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -488,7 +484,6 @@ button {
   transform: translateY(-2px);
   box-shadow: 0 8px 30px var(--color-accent-glow);
 }
-/* </CHANGE> */
 
 .btn-secondary {
   background: var(--color-surface);
@@ -505,21 +500,19 @@ button {
    SECTION STYLES
    ============================================ */
 
+/* Removed excessive text-shadow effects */
 .section-title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   margin-bottom: var(--spacing-lg);
   letter-spacing: -0.02em;
-  text-shadow: 0 2px 20px rgba(99, 102, 241, 0.3);
 }
 
-/* Updated text shadows with cyan glow */
+/* Clean hero styling without glow */
 .hero-title,
-.hero-name,
-.section-title {
-  text-shadow: 0 2px 30px rgba(6, 182, 212, 0.6);
+.hero-name {
+  text-shadow: none;
 }
-/* </CHANGE> */
 
 /* ============================================
    ABOUT SECTION
@@ -590,7 +583,6 @@ button {
   color: var(--color-accent);
   flex-shrink: 0;
 }
-/* </CHANGE> */
 
 /* Removed stats-grid and tools-section styles as they're no longer in HTML */
 
@@ -735,7 +727,6 @@ button {
   transform: translateY(-4px);
   box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
 }
-/* </CHANGE> */
 
 /* Updated project number with cyan gradient */
 .project-number {
@@ -756,7 +747,6 @@ button {
   font-family: var(--font-mono);
   box-shadow: 0 4px 15px var(--color-accent-glow);
 }
-/* </CHANGE> */
 
 /* Removed .work-image styles completely */
 
@@ -872,7 +862,6 @@ button {
   color: var(--color-accent);
   flex-shrink: 0;
 }
-/* </CHANGE> */
 
 .contact-info {
   flex: 1;
@@ -942,7 +931,6 @@ button {
   background: rgba(6, 182, 212, 0.1);
   transform: translateY(-2px);
 }
-/* </CHANGE> */
 
 /* ============================================
    ANIMATIONS
