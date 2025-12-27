@@ -236,33 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(style)
   }
 
-  // ===== PARALLAX EFFECT ON SCROLL =====
-  let lastScrollTop = 0
-  let ticking = false
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-          const hero = document.querySelector(".hero")
-
-          if (hero && scrollTop < window.innerHeight) {
-            hero.style.transform = `translateY(${scrollTop * 0.3}px)`
-            hero.style.opacity = Math.max(0, 1 - scrollTop / 600)
-          }
-
-          lastScrollTop = scrollTop
-          ticking = false
-        })
-
-        ticking = true
-      }
-    },
-    { passive: true },
-  )
-
   // ===== IMAGE LOADING OPTIMIZATION =====
   const images = document.querySelectorAll("img")
   images.forEach((img) => {
