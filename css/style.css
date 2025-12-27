@@ -4,20 +4,21 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
-/* Premium navy blue and deep purple color scheme */
+/* Premium color scheme with blue/purple gradients and polished look */
 :root {
-  --color-bg: #0b0c1e;
-  --color-surface: #151729;
-  --color-surface-elevated: #1d1f38;
-  --color-text: #e8eaf0;
-  --color-text-secondary: #b4b7c9;
-  --color-text-tertiary: #8b8fa3;
-  --color-accent: #5b5fc7;
-  --color-accent-light: #7275d4;
-  --color-accent-hover: #4a4eb5;
-  --color-accent-glow: rgba(91, 95, 199, 0.35);
-  --color-border: #252841;
-  --color-border-light: #2f3351;
+  --color-bg: #0a0e27;
+  --color-surface: #12172e;
+  --color-surface-elevated: #1a1f3a;
+  --color-text: #f0f2f8;
+  --color-text-secondary: #c1c7dc;
+  --color-text-tertiary: #8f95b2;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --color-accent-hover: #4f46e5;
+  --color-accent-glow: rgba(99, 102, 241, 0.4);
+  --color-secondary: #8b5cf6;
+  --color-border: #1e2542;
+  --color-border-light: #2a3153;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -36,7 +37,7 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
   --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.25);
-  --shadow-accent: 0 8px 24px rgba(91, 95, 199, 0.3);
+  --shadow-accent: 0 8px 24px rgba(99, 102, 241, 0.3);
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -142,7 +143,7 @@ button {
    BACKGROUND EFFECTS
    ============================================ */
 
-/* Clean background without excessive gradients */
+/* Enhanced background with better gradient and clarity */
 .animated-background {
   position: fixed;
   top: 0;
@@ -151,15 +152,14 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(135deg, #0b0c1e 0%, #111327 50%, #0b0c1e 100%);
+  background: radial-gradient(ellipse at top, #0f1535 0%, #0a0e27 50%, #080b1f 100%);
 }
 
 #particles-canvas {
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0.9;
-  filter: blur(0.5px);
+  opacity: 1;
 }
 
 /* ============================================
@@ -247,13 +247,25 @@ button {
   letter-spacing: -0.01em;
 }
 
-/* Refined gradient without glow effect */
+/* Polished gradient for name with shine effect */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a78bfa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
+  position: relative;
+}
+
+.gradient-text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .hero-subtitle {
@@ -472,40 +484,64 @@ button {
   transform: translateX(4px);
 }
 
-/* Updated button styles with cyan accent */
+/* Enhanced button styles with glossy effect */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
   color: white;
-  box-shadow: 0 4px 20px var(--color-accent-glow);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px var(--color-accent-glow);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary {
   background: var(--color-surface);
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border-light);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .btn-secondary:hover {
   border-color: var(--color-accent);
+  background: var(--color-surface-elevated);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* ============================================
    SECTION STYLES
    ============================================ */
 
-/* Removed excessive text-shadow effects */
+/* Enhanced section title with subtle shine */
 .section-title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   margin-bottom: var(--spacing-lg);
   letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f0f2f8 0%, #c1c7dc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Clean hero styling without glow */
@@ -561,22 +597,24 @@ button {
   margin-right: auto;
 }
 
+/* Polished skill items with glossy cards */
 .skill-item {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+  border: 1px solid var(--color-border-light);
   border-radius: 10px;
   transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Updated skill item hover with cyan background */
 .skill-item:hover {
   border-color: var(--color-accent);
-  background: rgba(6, 182, 212, 0.1);
-  transform: translateX(4px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
 }
 
 .skill-item svg {
@@ -707,35 +745,50 @@ button {
   margin-top: var(--spacing-2xl);
 }
 
+/* Enhanced work cards with premium shine effect */
 .work-card {
-  /* Simplified to single column, no image section */
   display: flex;
   flex-direction: column;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+  border: 1px solid var(--color-border-light);
   border-radius: 16px;
   overflow: hidden;
   transition: var(--transition);
   position: relative;
-  /* Reduced padding for smaller cards */
   padding: var(--spacing-xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Updated work card hover with cyan shadow */
+.work-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.work-card:hover::before {
+  opacity: 1;
+}
+
 .work-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.3), 0 0 0 1px rgba(99, 102, 241, 0.1), inset 0 1px 0
+    rgba(255, 255, 255, 0.08);
 }
 
-/* Updated project number with cyan gradient */
 .project-number {
   position: absolute;
   top: var(--spacing-md);
   right: var(--spacing-md);
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -745,7 +798,7 @@ button {
   color: white;
   z-index: 10;
   font-family: var(--font-mono);
-  box-shadow: 0 4px 15px var(--color-accent-glow);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Removed .work-image styles completely */
@@ -832,23 +885,24 @@ button {
   margin-top: var(--spacing-xl);
 }
 
-/* Updated contact card hover with cyan glow */
+/* Polished contact cards with glossy effect */
 .contact-card {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
   padding: var(--spacing-xl);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%);
+  border: 1px solid var(--color-border-light);
   border-radius: 12px;
   text-decoration: none;
   transition: var(--transition);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .contact-card:hover {
   border-color: var(--color-accent);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .contact-icon {
@@ -857,10 +911,11 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(6, 182, 212, 0.1);
+  background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-surface) 100%);
   border-radius: 12px;
   color: var(--color-accent);
   flex-shrink: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .contact-info {
