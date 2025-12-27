@@ -245,29 +245,15 @@ button {
 
 /* Refined gradient with perfect color harmony */
 .gradient-text {
-  background: linear-gradient(
-    90deg,
-    var(--color-accent-light) 0%,
-    var(--color-accent) 50%,
-    var(--color-accent-hover) 100%
-  );
+  /* Changed to a clean solid blue that matches the site's primary accent color */
+  background: #3b82f6;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
-  animation: gradient-shimmer 3s ease-in-out infinite;
 }
 
-@keyframes gradient-shimmer {
-  0%,
-  100% {
-    filter: brightness(1);
-  }
-  50% {
-    filter: brightness(1.1);
-  }
-}
-/* </CHANGE> */
+/* Removed gradient animation */
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
