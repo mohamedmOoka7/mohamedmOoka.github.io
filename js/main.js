@@ -1,122 +1,282 @@
-// =============================================
-// PROFESSIONAL PORTFOLIO - CLEAN & PERFORMANT
-// =============================================
-
-document.addEventListener("DOMContentLoaded", () => {
-  // ===== SCROLL PROGRESS =====
-  const scrollProgress = document.querySelector(".scroll-progress")
-
-  function updateScrollProgress() {
-    const windowHeight = window.innerHeight
-    const documentHeight = document.documentElement.scrollHeight - windowHeight
-    const scrolled = window.scrollY
-    const progress = (scrolled / documentHeight) * 100
-
-    if (scrollProgress) {
-      scrollProgress.style.transform = `scaleX(${progress / 100})`
-    }
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Mooka | Cybersecurity Analyst & DFIR Specialist</title>
+  
+  <meta name="description" content="Professional Cybersecurity Analyst specialized in Digital Forensics, Incident Response, SOC operations, and threat hunting. Expert in DFIR, threat intelligence, and network analysis." />
+  <meta name="keywords" content="Cybersecurity, DFIR, SOC Analyst, Incident Response, Digital Forensics, Threat Hunter, Threat Intelligence, Network Security, Malware Analysis" />
+  <meta name="author" content="Mohamed Mooka" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Mohamed Mooka | Cybersecurity Analyst" />
+  <meta property="og:description" content="Professional Cybersecurity Analyst specialized in DFIR and SOC operations" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://placehold.co/1200x630?text=Mohamed+Mooka+Cybersecurity+Portfolio" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mohamed Mooka | Cybersecurity Analyst" />
+  <meta name="twitter:description" content="Professional Cybersecurity Analyst specialized in DFIR and SOC operations" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+  
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mohamed Mooka",
+    "jobTitle": "Cybersecurity Analyst",
+    "description": "Digital Forensics & Incident Response Specialist",
+    "url": "https://mohamedmooka.com",
+    "sameAs": [
+      "https://linkedin.com/in/mohamed-mooka/",
+      "https://github.com/mohamedmOoka7"
+    ]
   }
+  </script>
+</head>
+<body>
 
-  window.addEventListener("scroll", updateScrollProgress, { passive: true })
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 
-  // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
-  const links = document.querySelectorAll('a[href^="#"]')
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
+  <div class="cursor-outline" data-cursor-outline aria-hidden="true"></div>
 
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href")
+  <!-- Animated Background -->
+  <div class="animated-background" aria-hidden="true">
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+  </div>
 
-      if (href !== "#" && href.length > 1) {
-        e.preventDefault()
-        const target = document.querySelector(href)
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-greeting" aria-label="Professional title">Cybersecurity Professional</div>
+        <h1 class="hero-name">
+          <span class="gradient-text">Mohamed Mooka</span>
+        </h1>
+        <p class="hero-role">Digital Forensics & Incident Response Specialist</p>
+        <p class="hero-subtitle">
+          Transforming cyber threats into actionable intelligence through expert forensic analysis and proactive security operations
+        </p>
+        <div class="hero-buttons">
+          <a href="#work" class="btn btn-primary" aria-label="View my projects">
+            View Projects
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="assets/Mohamed_Mooka_CV.pdf" download class="btn btn-secondary" aria-label="Download my CV">
+            Download CV
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        if (target) {
-          const offsetTop = target.offsetTop - 20
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-text">
+        <p>
+          I'm a dedicated Cybersecurity Analyst with a strong focus on <strong>Digital Forensics and Incident Response (DFIR)</strong>. My passion lies in uncovering the digital footprints left by cyber threats and transforming complex security incidents into actionable intelligence.
+        </p>
+        <p>
+          With extensive hands-on experience in <strong>threat detection, log analysis, and forensic investigation</strong>, I've developed a comprehensive skill set that enables me to effectively protect organizations from sophisticated cyber attacks. I thrive in high-pressure situations where quick thinking and methodical analysis are essential.
+        </p>
+        <p>
+          My approach combines technical expertise with continuous learning, staying ahead of emerging threats and leveraging cutting-edge tools to strengthen security postures. Whether it's analyzing malicious artifacts, hunting for advanced threats, or responding to security incidents, I'm committed to safeguarding digital assets and maintaining operational resilience.
+        </p>
+      </div>
+      <div class="skills">
+        <div class="skill-item" role="listitem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <span>Digital Forensics</span>
+        </div>
+        <div class="skill-item" role="listitem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Incident Response</span>
+        </div>
+        <div class="skill-item" role="listitem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+          <span>SOC Operations</span>
+        </div>
+        <div class="skill-item" role="listitem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          </svg>
+          <span>Network Analysis</span>
+        </div>
+        <div class="skill-item" role="listitem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1"/>
+          </svg>
+          <span>Threat Intelligence</span>
+        </div>
+        <div class="skill-item" role="listitem">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+          <span>Scripting & Automation</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-          })
-        }
-      }
-    })
-  })
+  <!-- Work Section -->
+  <section class="work" id="work">
+    <div class="container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="work-grid">
+        <article class="work-card">
+          <div class="project-number" aria-label="Project 1">01</div>
+          <div class="work-content">
+            <h3 class="work-title">DFIR Investigation Lab</h3>
+            <p class="work-desc">
+              Comprehensive digital forensics analysis project featuring memory dump analysis, evidence recovery, and detailed incident documentation following industry-standard DFIR methodologies.
+            </p>
+            <div class="work-tech" role="list" aria-label="Technologies used">
+              <span role="listitem">Volatility</span>
+              <span role="listitem">Autopsy</span>
+              <span role="listitem">Wireshark</span>
+              <span role="listitem">FTK Imager</span>
+            </div>
+            <a href="project-dfir.html" class="work-link" aria-label="View DFIR Investigation Lab project details">
+              View Project Details
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
 
-  // ===== INTERSECTION OBSERVER FOR FADE-IN ANIMATIONS =====
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
+        <article class="work-card">
+          <div class="project-number" aria-label="Project 2">02</div>
+          <div class="work-content">
+            <h3 class="work-title">SOC Monitoring Dashboard</h3>
+            <p class="work-desc">
+              Advanced security monitoring implementation using SIEM tools for real-time threat detection, correlation rules development, and automated incident response workflows.
+            </p>
+            <div class="work-tech" role="list" aria-label="Technologies used">
+              <span role="listitem">Splunk</span>
+              <span role="listitem">Sigma Rules</span>
+              <span role="listitem">MITRE ATT&CK</span>
+              <span role="listitem">ELK Stack</span>
+            </div>
+            <span class="work-link disabled" aria-label="Project coming soon">
+              Coming Soon
+            </span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-  const fadeInObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
-        fadeInObserver.unobserve(entry.target)
-      }
-    })
-  }, observerOptions)
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-content">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-methods">
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" class="contact-card" aria-label="Send me an email">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="contact-info">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">mohamed.ashraf.abdallah65@gmail.com</div>
+            </div>
+          </a>
 
-  // Add fade-in effect to cards
-  const animatedElements = document.querySelectorAll(".work-card, .skill-item, .contact-card")
+          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Visit my LinkedIn profile">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div class="contact-info">
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">mohamed-mooka</div>
+            </div>
+          </a>
 
-  animatedElements.forEach((el, index) => {
-    el.style.opacity = "0"
-    el.style.transform = "translateY(20px)"
-    el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`
-    fadeInObserver.observe(el)
-  })
+          <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" class="contact-card" aria-label="Visit my GitHub profile">
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="contact-info">
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">mohamedmOoka7</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  // ===== BUTTON CLICK FEEDBACK =====
-  const buttons = document.querySelectorAll(".btn")
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2025 Mohamed Mooka. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="https://github.com/mohamedmOoka7" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/mohamed-mooka/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+          <a href="mailto:mohamed.ashraf.abdallah65@gmail.com" aria-label="Email Contact">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", function (e) {
-      // Simple scale effect
-      this.style.transform = "scale(0.95)"
-      setTimeout(() => {
-        this.style.transform = ""
-      }, 150)
-    })
-  })
-
-  // ===== IMAGE LAZY LOADING =====
-  const images = document.querySelectorAll("img")
-
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target
-        img.style.opacity = "1"
-        imageObserver.unobserve(img)
-      }
-    })
-  })
-
-  images.forEach((img) => {
-    img.style.opacity = "0"
-    img.style.transition = "opacity 0.4s ease"
-    imageObserver.observe(img)
-  })
-
-  // ===== CONSOLE BRANDING =====
-  console.log(
-    "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 18px; font-weight: bold; color: #ef4444; padding: 8px 0;",
-  )
-  console.log("%cDFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 13px; color: #b8b8b8; font-weight: 600;")
-
-  // ===== PERFORMANCE: RESPECT REDUCED MOTION =====
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-
-  if (prefersReducedMotion.matches) {
-    document.querySelectorAll("*").forEach((el) => {
-      el.style.animationDuration = "0.01ms"
-      el.style.transitionDuration = "0.01ms"
-    })
-  }
-
-  // Initial scroll progress update
-  updateScrollProgress()
-})
+  <script src="js/main.js"></script>
+</body>
+</html>
