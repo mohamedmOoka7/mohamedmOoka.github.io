@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.radius = Math.random() * 200 + 150
       this.vx = (Math.random() - 0.5) * 0.3
       this.vy = (Math.random() - 0.5) * 0.3
-      this.hue = Math.random() * 60 + 220
+      this.hue = Math.random() * 40 + 230 // Blue to purple range (230-270)
     }
 
     update() {
@@ -130,9 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     draw() {
       const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
-      gradient.addColorStop(0, `hsla(${this.hue}, 70%, 55%, 0.15)`)
-      gradient.addColorStop(0.5, `hsla(${this.hue}, 65%, 50%, 0.08)`)
-      gradient.addColorStop(1, `hsla(${this.hue}, 60%, 45%, 0)`)
+      gradient.addColorStop(0, `hsla(${this.hue}, 60%, 50%, 0.12)`)
+      gradient.addColorStop(0.5, `hsla(${this.hue}, 55%, 45%, 0.06)`)
+      gradient.addColorStop(1, `hsla(${this.hue}, 50%, 40%, 0)`)
 
       ctx.fillStyle = gradient
       ctx.beginPath()
@@ -146,11 +146,11 @@ document.addEventListener("DOMContentLoaded", () => {
     constructor() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
-      this.size = Math.random() * 3 + 1
+      this.size = Math.random() * 2.5 + 1
       this.speedX = (Math.random() - 0.5) * 0.5
       this.speedY = (Math.random() - 0.5) * 0.5
-      this.opacity = Math.random() * 0.5 + 0.2
-      this.hue = Math.random() * 60 + 220
+      this.opacity = Math.random() * 0.4 + 0.2
+      this.hue = Math.random() * 40 + 230 // Blue to purple range
     }
 
     update() {
@@ -162,9 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw() {
-      ctx.fillStyle = `hsla(${this.hue}, 70%, 65%, ${this.opacity})`
-      ctx.shadowBlur = 15
-      ctx.shadowColor = `hsla(${this.hue}, 70%, 65%, 0.6)`
+      ctx.fillStyle = `hsla(${this.hue}, 65%, 60%, ${this.opacity})`
+      ctx.shadowBlur = 10
+      ctx.shadowColor = `hsla(${this.hue}, 65%, 60%, 0.4)`
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
@@ -175,8 +175,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create orbs and particles
   const orbs = []
   const particles = []
-  const orbCount = 4
-  const particleCount = 80
+  const orbCount = 3
+  const particleCount = 70
 
   for (let i = 0; i < orbCount; i++) {
     orbs.push(new GradientOrb())
@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < 120) {
-          ctx.strokeStyle = `rgba(99, 102, 241, ${0.3 * (1 - distance / 120)})`
-          ctx.lineWidth = 1
+          ctx.strokeStyle = `rgba(91, 95, 199, ${0.25 * (1 - distance / 120)})`
+          ctx.lineWidth = 0.8
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
           ctx.lineTo(particles[j].x, particles[j].y)
