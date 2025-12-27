@@ -1,36 +1,39 @@
 /* ============================================
-   PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
+   UNIQUE CYBERSECURITY PORTFOLIO - MODERN DESIGN
    ============================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Enhanced color system with festive touches */
-  --color-bg: #0a0000;
-  --color-surface: #1a0303;
-  --color-surface-elevated: #230505;
-  --color-surface-hover: #2d0606;
+  /* Unique color system - dark cyan and electric blue theme */
+  --color-bg: #0a0e1a;
+  --color-surface: #0f1420;
+  --color-surface-elevated: #151b2b;
+  --color-surface-hover: #1a2234;
 
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #d4a5a5;
-  --color-text-tertiary: #a37676;
+  --color-text-primary: #e0e7ff;
+  --color-text-secondary: #94a3b8;
+  --color-text-tertiary: #64748b;
 
-  /* Professional Red with festive gold accents */
-  --color-accent-primary: #dc2626;
-  --color-accent-secondary: #991b1b;
-  --color-accent-tertiary: #ef4444;
-  --color-accent-gold: #fbbf24;
-  --color-accent-green: #10b981;
+  /* Unique electric cyan and blue accents */
+  --color-accent-primary: #06b6d4;
+  --color-accent-secondary: #0891b2;
+  --color-accent-tertiary: #22d3ee;
+  --color-accent-purple: #8b5cf6;
+  --color-accent-pink: #ec4899;
+  /* </CHANGE> */
 
   --color-success: #10b981;
-  --color-warning: #fbbf24;
-  --color-error: #dc2626;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 
-  --color-border: #2d0606;
-  --color-border-light: #3d0808;
+  --color-border: #1e293b;
+  --color-border-light: #334155;
 
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  /* Modern font - Space Grotesk */
+  --font-primary: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
+  /* </CHANGE> */
 
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -41,16 +44,17 @@
   --spacing-3xl: 6rem;
   --spacing-4xl: 8rem;
 
-  /* Reduced animation speeds for better UX */
   --transition-fast: 0.2s ease;
   --transition-base: 0.35s ease;
   --transition-slow: 0.6s ease;
 
-  --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.15);
-  --shadow-md: 0 4px 16px rgba(220, 38, 38, 0.25);
-  --shadow-lg: 0 8px 24px rgba(220, 38, 38, 0.35);
-  --shadow-xl: 0 12px 32px rgba(220, 38, 38, 0.4);
-  --shadow-glow: 0 0 24px rgba(220, 38, 38, 0.4);
+  /* Unique cyan shadows */
+  --shadow-sm: 0 2px 8px rgba(6, 182, 212, 0.15);
+  --shadow-md: 0 4px 16px rgba(6, 182, 212, 0.25);
+  --shadow-lg: 0 8px 24px rgba(6, 182, 212, 0.35);
+  --shadow-xl: 0 12px 32px rgba(6, 182, 212, 0.4);
+  --shadow-glow: 0 0 24px rgba(6, 182, 212, 0.5);
+  /* </CHANGE> */
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -84,7 +88,7 @@ body {
   position: relative;
 }
 
-/* Subtle festive background gradient */
+/* Unique gradient background with grid pattern */
 body::before {
   content: "";
   position: fixed;
@@ -92,11 +96,27 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+  background: radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+}
+/* </CHANGE> */
 
 ::selection {
   background: var(--color-accent-primary);
@@ -121,7 +141,7 @@ button {
 }
 
 /* ============================================
-   BACKGROUND EFFECTS - Enhanced
+   BACKGROUND EFFECTS
    ============================================ */
 
 .animated-background {
@@ -132,8 +152,7 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  /* Reduced opacity for less distraction */
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 #particles-canvas {
@@ -162,7 +181,7 @@ button {
 }
 
 /* ============================================
-   HERO SECTION - NO ANIMATIONS
+   HERO SECTION - UNIQUE DESIGN
    ============================================ */
 
 .hero {
@@ -175,24 +194,29 @@ button {
   overflow: hidden;
 }
 
-/* Removed all animations from hero::before - static glow only */
+/* Unique glowing orb effect */
 .hero::before {
   content: "";
   position: absolute;
-  top: -40%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(251, 191, 36, 0.08) 40%, transparent 70%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.2) 0%,
+    rgba(139, 92, 246, 0.15) 30%,
+    rgba(236, 72, 153, 0.1) 60%,
+    transparent 80%
+  );
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(120px);
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 /* </CHANGE> */
 
-/* Removed fade-in animation from hero-content */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -202,60 +226,77 @@ button {
   max-width: 1000px;
   margin: 0 auto;
 }
-/* </CHANGE> */
 
+/* Unique badge style for greeting */
 .hero-greeting {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-size: clamp(0.875rem, 2vw, 1rem);
   font-weight: 600;
   color: var(--color-accent-primary);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
   text-align: center;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  padding: 10px 24px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 50px;
+  display: inline-block;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
 }
+/* </CHANGE> */
 
 .hero-name {
-  font-size: clamp(3rem, 10vw, 6.5rem);
-  font-weight: 900;
-  line-height: 1.1;
-  margin-bottom: var(--spacing-md);
+  font-size: clamp(3rem, 10vw, 7rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--spacing-lg);
   text-align: center;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hero-role {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-  font-weight: 600;
+  font-size: clamp(1.25rem, 3.5vw, 2rem);
+  font-weight: 500;
   color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
   text-align: center;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
-/* Removed gradient animation - static gradient only */
+/* Unique animated gradient for name */
 .gradient-text {
   background: linear-gradient(
-    135deg,
+    120deg,
     var(--color-accent-primary) 0%,
-    var(--color-accent-gold) 40%,
-    var(--color-accent-primary) 80%,
+    var(--color-accent-purple) 30%,
+    var(--color-accent-pink) 60%,
     var(--color-accent-tertiary) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
-  filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.3));
+  position: relative;
+}
+
+.gradient-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  filter: blur(20px);
+  opacity: 0.5;
 }
 /* </CHANGE> */
 
 .hero-subtitle {
-  font-size: clamp(1.0625rem, 1.8vw, 1.375rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   color: var(--color-text-tertiary);
   margin-bottom: var(--spacing-2xl);
-  max-width: 700px;
+  max-width: 650px;
   text-align: center;
-  line-height: 1.7;
+  line-height: 1.8;
   font-weight: 400;
 }
 
@@ -267,14 +308,14 @@ button {
 }
 
 /* ============================================
-   BUTTONS - Enhanced Design
+   BUTTONS - UNIQUE DESIGN
    ============================================ */
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  padding: 15px 30px;
+  padding: 16px 32px;
   border-radius: var(--radius-md);
   font-size: 15px;
   font-weight: 600;
@@ -287,24 +328,21 @@ button {
   z-index: 1;
 }
 
+/* Unique animated border effect */
 .btn::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  transform: translate(-50%, -50%);
-  transition: width 0.5s ease, height 0.5s ease;
-  z-index: -1;
+  inset: 0;
+  border-radius: var(--radius-md);
+  padding: 2px;
+  background: linear-gradient(45deg, var(--color-accent-primary), var(--color-accent-purple), var(--color-accent-pink));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-base);
 }
-
-.btn:active::before {
-  width: 300px;
-  height: 300px;
-}
+/* </CHANGE> */
 
 .btn svg {
   transition: transform var(--transition-base);
@@ -314,37 +352,46 @@ button {
   transform: translateX(4px);
 }
 
-/* Festive button gradient */
+/* Unique gradient button with glow */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
   color: white;
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.4);
+  border: 2px solid transparent;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(220, 38, 38, 0.45), 0 0 20px rgba(251, 191, 36, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(6, 182, 212, 0.5);
 }
+/* </CHANGE> */
 
 .btn-primary:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
+/* Unique outlined button with gradient border */
 .btn-secondary {
-  background: var(--color-surface-elevated);
+  background: rgba(6, 182, 212, 0.05);
   color: var(--color-text-primary);
-  border: 2px solid var(--color-border-light);
-  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-accent-primary);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  position: relative;
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-accent-primary);
-  box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
-  transform: translateY(-2px);
+  background: rgba(6, 182, 212, 0.1);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
+  transform: translateY(-3px);
 }
 
+.btn-secondary:hover::before {
+  opacity: 1;
+}
+/* </CHANGE> */
+
 .btn-secondary:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
 /* ============================================
@@ -352,11 +399,11 @@ button {
    ============================================ */
 
 .section-title {
-  font-size: clamp(2.5rem, 5.5vw, 3.75rem);
-  font-weight: 900;
+  font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+  font-weight: 700;
   margin-bottom: var(--spacing-xl);
-  letter-spacing: -0.025em;
-  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-text-secondary) 100%);
+  letter-spacing: -0.03em;
+  background: linear-gradient(120deg, var(--color-text-primary) 0%, var(--color-accent-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -364,22 +411,22 @@ button {
   display: inline-block;
 }
 
-/* Festive gold and red underline */
+/* Unique glowing underline */
 .section-title::after {
   content: "";
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70px;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-gold), var(--color-accent-primary));
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), var(--color-accent-purple), transparent);
   border-radius: 2px;
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
 }
+/* </CHANGE> */
 
 /* ============================================
-   ABOUT SECTION - Enhanced
+   ABOUT SECTION
    ============================================ */
 
 .about {
@@ -419,14 +466,15 @@ button {
   margin-right: auto;
 }
 
+/* Unique skill card design with hover effect */
 .skill-item {
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-lg);
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
+  background: rgba(6, 182, 212, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
@@ -437,36 +485,35 @@ button {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  width: 4px;
+  left: -100%;
+  width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-gold));
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform var(--transition-base);
+  background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+  transition: left 0.6s ease;
 }
 
 .skill-item:hover::before {
-  transform: scaleY(1);
+  left: 100%;
 }
 
 .skill-item:hover {
   border-color: var(--color-accent-primary);
-  background: var(--color-surface-elevated);
-  transform: translateX(6px);
-  box-shadow: var(--shadow-md);
+  background: rgba(6, 182, 212, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.25);
 }
+/* </CHANGE> */
 
 .skill-item svg {
   color: var(--color-accent-primary);
   flex-shrink: 0;
-  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.4));
+  filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.5));
   transition: all var(--transition-base);
 }
 
 .skill-item:hover svg {
-  /* Less aggressive rotation */
-  transform: scale(1.15) rotate(3deg);
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 12px rgba(6, 182, 212, 0.8));
 }
 
 .skill-item span {
@@ -476,7 +523,7 @@ button {
 }
 
 /* ============================================
-   WORK SECTION - Redesigned Cards
+   WORK SECTION
    ============================================ */
 
 .work {
@@ -493,12 +540,13 @@ button {
   margin-top: var(--spacing-2xl);
 }
 
+/* Unique project card design */
 .work-card {
   display: flex;
   flex-direction: column;
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  background: rgba(6, 182, 212, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all var(--transition-base);
   position: relative;
@@ -513,7 +561,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.04) 0%, rgba(251, 191, 36, 0.02) 100%);
+  background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.1) 0%, transparent 60%);
   opacity: 0;
   transition: opacity var(--transition-base);
   pointer-events: none;
@@ -525,29 +573,37 @@ button {
 
 .work-card:hover {
   border-color: var(--color-accent-primary);
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 48px rgba(6, 182, 212, 0.3);
 }
+/* </CHANGE> */
 
+/* Unique project number badge */
 .project-number {
   position: absolute;
   top: var(--spacing-lg);
   right: var(--spacing-lg);
-  width: 52px;
-  height: 52px;
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
-  border-radius: var(--radius-md);
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-purple));
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  font-weight: 900;
+  font-size: 20px;
+  font-weight: 700;
   color: white;
   z-index: 10;
   font-family: var(--font-mono);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5);
   transition: all var(--transition-base);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
+
+.work-card:hover .project-number {
+  transform: rotate(360deg) scale(1.1);
+}
+/* </CHANGE> */
 
 .work-content {
   display: flex;
@@ -556,11 +612,11 @@ button {
 
 .work-title {
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: var(--spacing-md);
-  padding-right: 65px;
+  padding-right: 70px;
   color: var(--color-text-primary);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
 }
 
 .work-desc {
@@ -578,23 +634,26 @@ button {
   margin-bottom: var(--spacing-lg);
 }
 
+/* Unique tech tag design */
 .work-tech span {
-  padding: 7px 14px;
-  background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 50px;
   font-size: 13px;
-  color: var(--color-text-tertiary);
+  color: var(--color-accent-primary);
   font-weight: 600;
   font-family: var(--font-mono);
   transition: all var(--transition-base);
 }
 
 .work-tech span:hover {
+  background: rgba(6, 182, 212, 0.2);
   border-color: var(--color-accent-primary);
-  color: var(--color-accent-primary);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
+/* </CHANGE> */
 
 .work-link {
   display: inline-flex;
@@ -610,7 +669,7 @@ button {
 
 .work-link:hover {
   gap: var(--spacing-md);
-  text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
 }
 
 .work-link.disabled {
@@ -620,7 +679,7 @@ button {
 }
 
 /* ============================================
-   CONTACT SECTION - Enhanced
+   CONTACT SECTION
    ============================================ */
 
 .contact {
@@ -643,65 +702,72 @@ button {
   margin-top: var(--spacing-2xl);
 }
 
+/* Unique contact card design */
 .contact-card {
   display: flex;
   align-items: center;
   gap: var(--spacing-lg);
   padding: var(--spacing-xl);
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  background: rgba(6, 182, 212, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   text-decoration: none;
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle festive shine effect */
 .contact-card::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), rgba(251, 191, 36, 0.05), transparent);
-  transition: left 0.8s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);
+  transition: all 0.6s ease;
 }
 
 .contact-card:hover::before {
-  left: 100%;
+  width: 300px;
+  height: 300px;
 }
 
 .contact-card:hover {
   border-color: var(--color-accent-primary);
-  background: var(--color-surface-elevated);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  background: rgba(6, 182, 212, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 36px rgba(6, 182, 212, 0.3);
 }
+/* </CHANGE> */
 
+/* Unique icon design with gradient */
 .contact-icon {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(251, 191, 36, 0.08));
-  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(139, 92, 246, 0.2));
+  border-radius: var(--radius-lg);
   color: var(--color-accent-primary);
   flex-shrink: 0;
   transition: all var(--transition-base);
-  border: 2px solid var(--color-border-light);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .contact-card:hover .contact-icon {
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-purple));
   color: white;
-  /* Reduced rotation */
-  transform: scale(1.08) rotate(-3deg);
+  transform: scale(1.1) rotate(-5deg);
   border-color: transparent;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.5);
 }
+/* </CHANGE> */
 
 .contact-info {
   flex: 1;
@@ -714,18 +780,18 @@ button {
   color: var(--color-text-tertiary);
   margin-bottom: 5px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   font-weight: 600;
 }
 
 .contact-value {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text-primary);
 }
 
 /* ============================================
-   FOOTER - Enhanced
+   FOOTER
    ============================================ */
 
 .footer {
@@ -755,15 +821,16 @@ button {
   gap: var(--spacing-md);
 }
 
+/* Unique footer link design */
 .footer-links a {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-tertiary);
-  background: var(--color-surface-elevated);
-  border: 2px solid var(--color-border);
+  background: rgba(6, 182, 212, 0.05);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   text-decoration: none;
   transition: all var(--transition-base);
@@ -772,31 +839,11 @@ button {
 .footer-links a:hover {
   color: var(--color-accent-primary);
   border-color: var(--color-accent-primary);
-  background: var(--color-bg);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
+  background: rgba(6, 182, 212, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
 }
-
-/* Simplified and professional animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+/* </CHANGE> */
 
 /* Snowflakes for festive touch */
 .snowflake {
@@ -806,7 +853,7 @@ button {
   user-select: none;
   pointer-events: none;
   animation: snowfall linear infinite;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(6, 182, 212, 0.4);
   font-size: 14px;
 }
 
@@ -817,7 +864,7 @@ button {
   }
   100% {
     transform: translateY(100vh) rotate(360deg);
-    opacity: 0.3;
+    opacity: 0.2;
   }
 }
 
@@ -830,7 +877,7 @@ body:not(.loaded) * {
 }
 
 body.loaded {
-  animation: fadeIn 0.5s ease-out;
+  opacity: 1;
 }
 
 /* ============================================
@@ -853,7 +900,7 @@ body.loaded {
   }
 
   .hero-greeting {
-    font-size: 1.125rem;
+    font-size: 0.875rem;
   }
 
   .hero-name {
@@ -861,7 +908,7 @@ body.loaded {
   }
 
   .hero-role {
-    font-size: 1.375rem;
+    font-size: 1.25rem;
   }
 
   .skills {
@@ -869,6 +916,10 @@ body.loaded {
   }
 
   .contact-methods {
+    grid-template-columns: 1fr;
+  }
+
+  .work-grid {
     grid-template-columns: 1fr;
   }
 }
