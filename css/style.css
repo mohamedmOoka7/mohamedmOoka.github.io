@@ -5,30 +5,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Enhanced color system with better contrast for improved readability */
-  --color-bg: #000000;
-  --color-surface: #1a0000;
-  --color-surface-elevated: #2d0505;
-  --color-surface-hover: #3d0909;
+  /* Enhanced color system with festive touches */
+  --color-bg: #0a0000;
+  --color-surface: #1a0303;
+  --color-surface-elevated: #230505;
+  --color-surface-hover: #2d0606;
 
   --color-text-primary: #ffffff;
-  --color-text-secondary: #f0d0d0;
-  --color-text-tertiary: #d4a5a5;
+  --color-text-secondary: #d4a5a5;
+  --color-text-tertiary: #a37676;
 
   /* Professional Red with festive gold accents */
-  --color-accent-primary: #ef4444;
-  --color-accent-secondary: #dc2626;
-  --color-accent-tertiary: #f87171;
+  --color-accent-primary: #dc2626;
+  --color-accent-secondary: #991b1b;
+  --color-accent-tertiary: #ef4444;
   --color-accent-gold: #fbbf24;
   --color-accent-green: #10b981;
 
   --color-success: #10b981;
   --color-warning: #fbbf24;
-  --color-error: #ef4444;
+  --color-error: #dc2626;
 
-  --color-border: #3d0808;
-  --color-border-light: #5d1010;
-  /* </CHANGE> */
+  --color-border: #2d0606;
+  --color-border-light: #3d0808;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
@@ -42,17 +41,16 @@
   --spacing-3xl: 6rem;
   --spacing-4xl: 8rem;
 
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.35s ease;
-  --transition-slow: 0.6s ease;
+  /* Improved animation speeds - faster and snappier */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
 
-  /* Enhanced shadows with better visibility */
-  --shadow-sm: 0 2px 8px rgba(239, 68, 68, 0.2);
-  --shadow-md: 0 4px 16px rgba(239, 68, 68, 0.3);
-  --shadow-lg: 0 8px 24px rgba(239, 68, 68, 0.4);
-  --shadow-xl: 0 12px 32px rgba(239, 68, 68, 0.5);
-  --shadow-glow: 0 0 24px rgba(239, 68, 68, 0.5);
-  /* </CHANGE> */
+  --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.15);
+  --shadow-md: 0 4px 16px rgba(220, 38, 38, 0.25);
+  --shadow-lg: 0 8px 24px rgba(220, 38, 38, 0.35);
+  --shadow-xl: 0 12px 32px rgba(220, 38, 38, 0.4);
+  --shadow-glow: 0 0 24px rgba(220, 38, 38, 0.4);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -63,9 +61,8 @@
 /* ============================================
    RESET & BASE STYLES
    ============================================ */
-*,
-*::before,
-*::after {
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -74,7 +71,6 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -86,7 +82,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
-  min-height: 100vh;
+  /* Set default cursor back to normal */
+  cursor: default;
 }
 
 /* Subtle festive background gradient */
@@ -97,10 +94,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Reduced opacity for better contrast with content */
-  background: radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.03) 0%, transparent 40%);
-  /* </CHANGE> */
+  background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
   pointer-events: none;
   z-index: 0;
 }
@@ -113,12 +108,13 @@ body::before {
 img {
   max-width: 100%;
   display: block;
-  height: auto;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+  /* Added pointer cursor for links */
+  cursor: pointer;
 }
 
 button {
@@ -126,81 +122,16 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
-  background: none;
 }
+
+/* Removed custom cursor styles - no longer needed */
+
+/* Removed scroll progress bar styles - no longer needed */
 
 /* ============================================
-   CUSTOM CURSOR - Enhanced
+   BACKGROUND EFFECTS - Enhanced
    ============================================ */
-.cursor-dot,
-.cursor-outline {
-  pointer-events: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  opacity: 1;
-  transition: opacity 0.3s ease, width 0.25s ease, height 0.25s ease, transform 0.15s ease;
-  z-index: 10000;
-  mix-blend-mode: difference;
-  will-change: transform;
-}
 
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  /* Brighter cursor for better visibility */
-  background: var(--color-accent-tertiary);
-  box-shadow: 0 0 12px var(--color-accent-tertiary);
-  /* </CHANGE> */
-}
-
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  /* Enhanced cursor outline */
-  border: 2px solid var(--color-accent-tertiary);
-  box-shadow: 0 0 20px rgba(248, 113, 113, 0.4);
-  /* </CHANGE> */
-}
-
-@media (max-width: 768px), (hover: none) {
-  .cursor-dot,
-  .cursor-outline {
-    display: none;
-  }
-}
-
-/* ============================================
-   SCROLL PROGRESS - Enhanced
-   ============================================ */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  /* Brighter gradient for better visibility */
-  background: linear-gradient(
-    90deg,
-    var(--color-accent-tertiary) 0%,
-    var(--color-accent-gold) 50%,
-    var(--color-accent-tertiary) 100%
-  );
-  /* </CHANGE> */
-  transform-origin: left;
-  transform: scaleX(0);
-  z-index: 1001;
-  transition: transform 0.1s linear;
-  /* Stronger shadow for visibility */
-  box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
-  /* </CHANGE> */
-}
-
-/* ============================================
-   ANIMATED BACKGROUND
-   ============================================ */
 .animated-background {
   position: fixed;
   top: 0;
@@ -209,9 +140,7 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  /* Reduced for better text contrast */
-  opacity: 0.3;
-  /* </CHANGE> */
+  opacity: 0.4;
 }
 
 #particles-canvas {
@@ -223,12 +152,14 @@ button {
 /* ============================================
    CONTAINER
    ============================================ */
+
 .container {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -240,6 +171,7 @@ button {
 /* ============================================
    HERO SECTION - Completely Redesigned
    ============================================ */
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -250,7 +182,7 @@ button {
   overflow: hidden;
 }
 
-/* Subtle festive glow - less aggressive */
+/* Subtle festive glow */
 .hero::before {
   content: "";
   position: absolute;
@@ -259,14 +191,11 @@ button {
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  /* Adjusted opacity for better text visibility */
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.12) 0%, rgba(251, 191, 36, 0.06) 40%, transparent 70%);
-  /* </CHANGE> */
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(251, 191, 36, 0.08) 40%, transparent 70%);
   border-radius: 50%;
   filter: blur(100px);
   animation: gentleGlow 10s ease-in-out infinite alternate;
   pointer-events: none;
-  will-change: opacity, transform;
 }
 
 @keyframes gentleGlow {
@@ -288,10 +217,11 @@ button {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
-  animation: simpleFadeIn 1.2s ease-out;
-  text-align: center;
+  /* Faster hero animation: reduced from 1.2s to 0.8s */
+  animation: simpleFadeIn 0.8s ease-out;
 }
 
+/* Simplified animations */
 @keyframes simpleFadeIn {
   from {
     opacity: 0;
@@ -306,10 +236,9 @@ button {
 .hero-greeting {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
   font-weight: 600;
-  /* Brighter color for better visibility */
-  color: var(--color-accent-tertiary);
-  /* </CHANGE> */
+  color: var(--color-accent-primary);
   margin-bottom: var(--spacing-sm);
+  text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -319,6 +248,7 @@ button {
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: var(--spacing-md);
+  text-align: center;
   letter-spacing: -0.03em;
 }
 
@@ -327,29 +257,27 @@ button {
   font-weight: 600;
   color: var(--color-text-secondary);
   margin-bottom: var(--spacing-md);
+  text-align: center;
   letter-spacing: -0.015em;
 }
 
 /* Professional festive gradient */
 .gradient-text {
-  /* Adjusted gradient for better visibility and contrast */
   background: linear-gradient(
     135deg,
-    var(--color-accent-tertiary) 0%,
+    var(--color-accent-primary) 0%,
     var(--color-accent-gold) 40%,
-    var(--color-accent-tertiary) 80%,
-    #fca5a5 100%
+    var(--color-accent-primary) 80%,
+    var(--color-accent-tertiary) 100%
   );
-  /* </CHANGE> */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
   background-size: 200% 200%;
-  animation: subtleGradientShift 8s ease infinite;
-  /* Enhanced drop shadow for better definition */
-  filter: drop-shadow(0 2px 16px rgba(239, 68, 68, 0.4));
-  /* </CHANGE> */
+  /* Smoother gradient animation: increased from 8s to 10s */
+  animation: subtleGradientShift 10s ease infinite;
+  filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.3));
 }
 
 @keyframes subtleGradientShift {
@@ -367,6 +295,7 @@ button {
   color: var(--color-text-tertiary);
   margin-bottom: var(--spacing-2xl);
   max-width: 700px;
+  text-align: center;
   line-height: 1.7;
   font-weight: 400;
 }
@@ -381,6 +310,7 @@ button {
 /* ============================================
    BUTTONS - Enhanced Design
    ============================================ */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -408,7 +338,8 @@ button {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   transform: translate(-50%, -50%);
-  transition: width 0.5s ease, height 0.5s ease;
+  /* Faster button hover effect: reduced from 0.5s to 0.4s */
+  transition: width 0.4s ease, height 0.4s ease;
   z-index: -1;
 }
 
@@ -419,7 +350,6 @@ button {
 
 .btn svg {
   transition: transform var(--transition-base);
-  flex-shrink: 0;
 }
 
 .btn:hover svg {
@@ -428,20 +358,14 @@ button {
 
 /* Festive button gradient */
 .btn-primary {
-  /* Brighter gradient for better visibility */
-  background: linear-gradient(135deg, var(--color-accent-tertiary) 0%, var(--color-accent-secondary) 100%);
-  /* </CHANGE> */
+  background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
   color: white;
-  /* Enhanced shadow */
-  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
-  /* </CHANGE> */
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  /* Stronger hover shadow */
-  box-shadow: 0 8px 28px rgba(239, 68, 68, 0.5), 0 0 24px rgba(251, 191, 36, 0.25);
-  /* </CHANGE> */
+  box-shadow: 0 8px 28px rgba(220, 38, 38, 0.45), 0 0 20px rgba(251, 191, 36, 0.2);
 }
 
 .btn-primary:active {
@@ -456,10 +380,8 @@ button {
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-accent-tertiary);
-  /* Enhanced hover effect */
-  box-shadow: 0 0 24px rgba(239, 68, 68, 0.3);
-  /* </CHANGE> */
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
   transform: translateY(-2px);
 }
 
@@ -470,6 +392,7 @@ button {
 /* ============================================
    SECTION STYLES
    ============================================ */
+
 .section-title {
   font-size: clamp(2.5rem, 5.5vw, 3.75rem);
   font-weight: 900;
@@ -481,8 +404,6 @@ button {
   background-clip: text;
   position: relative;
   display: inline-block;
-  text-align: center;
-  width: 100%;
 }
 
 /* Festive gold and red underline */
@@ -494,65 +415,14 @@ button {
   transform: translateX(-50%);
   width: 70px;
   height: 4px;
-  /* Brighter gradient for underline */
-  background: linear-gradient(
-    90deg,
-    var(--color-accent-tertiary),
-    var(--color-accent-gold),
-    var(--color-accent-tertiary)
-  );
-  /* </CHANGE> */
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-gold), var(--color-accent-primary));
   border-radius: 2px;
-  /* Enhanced shadow */
-  box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
-  /* </CHANGE> */
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
 }
 
 /* ============================================
    ABOUT SECTION - Enhanced
    ============================================ */
-.about {
-  padding: var(--spacing-4xl) 0;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  z-index: 1;
-}
-
-.about-text {
-  font-size: 17px;
-  color: var(--color-text-secondary);
-  line-height: 1.8;
-  margin-bottom: var(--spacing-3xl);
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-}
-
-.about-text p {
-  margin-bottom: var(--spacing-lg);
-}
-
-.about-text p:last-child {
-  margin-bottom: 0;
-}
-
-.about-text strong {
-  /* Brighter accent for strong text */
-  color: var(--color-accent-tertiary);
-  /* </CHANGE> */
-  font-weight: 700;
-}
-
-.skills {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .skill-item {
   display: flex;
@@ -575,9 +445,7 @@ button {
   left: 0;
   width: 4px;
   height: 100%;
-  /* Brighter gradient for skill item accent */
-  background: linear-gradient(180deg, var(--color-accent-tertiary), var(--color-accent-gold));
-  /* </CHANGE> */
+  background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-gold));
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform var(--transition-base);
@@ -588,25 +456,22 @@ button {
 }
 
 .skill-item:hover {
-  border-color: var(--color-accent-tertiary);
+  border-color: var(--color-accent-primary);
   background: var(--color-surface-elevated);
   transform: translateX(6px);
   box-shadow: var(--shadow-md);
 }
 
 .skill-item svg {
-  /* Brighter icon color */
-  color: var(--color-accent-tertiary);
-  /* </CHANGE> */
+  color: var(--color-accent-primary);
   flex-shrink: 0;
-  /* Enhanced glow effect */
-  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
-  /* </CHANGE> */
+  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.4));
   transition: all var(--transition-base);
 }
 
 .skill-item:hover svg {
-  transform: scale(1.15) rotate(3deg);
+  /* Smoother icon animation: reduced rotation from 3deg to 2deg */
+  transform: scale(1.1) rotate(2deg);
 }
 
 .skill-item span {
@@ -618,19 +483,6 @@ button {
 /* ============================================
    WORK SECTION - Redesigned Cards
    ============================================ */
-.work {
-  padding: var(--spacing-4xl) 0;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  z-index: 1;
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-2xl);
-}
 
 .work-card {
   display: flex;
@@ -652,9 +504,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Adjusted gradient opacity */
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(251, 191, 36, 0.03) 100%);
-  /* </CHANGE> */
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.04) 0%, rgba(251, 191, 36, 0.02) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
   pointer-events: none;
@@ -665,148 +515,23 @@ button {
 }
 
 .work-card:hover {
-  border-color: var(--color-accent-tertiary);
-  transform: translateY(-6px);
+  border-color: var(--color-accent-primary);
+  /* Smoother card lift: reduced from -6px to -4px */
+  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
 }
 
-.project-number {
-  position: absolute;
-  top: var(--spacing-lg);
-  right: var(--spacing-lg);
-  width: 52px;
-  height: 52px;
-  /* Brighter gradient for project number */
-  background: linear-gradient(135deg, var(--color-accent-tertiary), var(--color-accent-secondary));
-  /* </CHANGE> */
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: 900;
-  color: white;
-  z-index: 10;
-  font-family: var(--font-mono);
-  /* Enhanced shadow */
-  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
-  /* </CHANGE> */
-  transition: all var(--transition-base);
-}
-
-.work-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.work-title {
-  font-size: 26px;
-  font-weight: 800;
-  margin-bottom: var(--spacing-md);
-  padding-right: 65px;
-  color: var(--color-text-primary);
-  letter-spacing: -0.015em;
-}
-
-.work-desc {
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--spacing-lg);
-  flex: 1;
-  font-size: 15px;
-}
-
-.work-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-}
-
-.work-tech span {
-  padding: 7px 14px;
-  background: var(--color-surface-elevated);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  color: var(--color-text-tertiary);
-  font-weight: 600;
-  font-family: var(--font-mono);
-  transition: all var(--transition-base);
-}
-
 .work-tech span:hover {
-  border-color: var(--color-accent-tertiary);
-  color: var(--color-accent-tertiary);
-  transform: translateY(-1px);
-}
-
-.work-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  /* Brighter link color */
-  color: var(--color-accent-tertiary);
-  /* </CHANGE> */
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-  transition: all var(--transition-base);
-  width: fit-content;
-}
-
-.work-link:hover {
-  gap: var(--spacing-md);
-  /* Enhanced text shadow */
-  text-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
-  /* </CHANGE> */
-}
-
-.work-link.disabled {
-  color: var(--color-text-tertiary);
-  cursor: not-allowed;
-  opacity: 0.5;
-  pointer-events: none;
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  /* Subtle tech tag lift: reduced from -1px to -0.5px */
+  transform: translateY(-0.5px);
 }
 
 /* ============================================
    CONTACT SECTION - Enhanced
    ============================================ */
-.contact {
-  padding: var(--spacing-4xl) 0;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  z-index: 1;
-}
 
-.contact-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.contact-methods {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-2xl);
-}
-
-.contact-card {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-lg);
-  padding: var(--spacing-xl);
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  text-decoration: none;
-  transition: all var(--transition-base);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Subtle festive shine effect */
 .contact-card::before {
   content: "";
   position: absolute;
@@ -814,10 +539,9 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  /* Adjusted shine gradient */
-  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.12), rgba(251, 191, 36, 0.06), transparent);
-  /* </CHANGE> */
-  transition: left 0.8s ease;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), rgba(251, 191, 36, 0.05), transparent);
+  /* Faster shine effect: reduced from 0.8s to 0.6s */
+  transition: left 0.6s ease;
 }
 
 .contact-card:hover::before {
@@ -825,119 +549,36 @@ button {
 }
 
 .contact-card:hover {
-  border-color: var(--color-accent-tertiary);
+  border-color: var(--color-accent-primary);
   background: var(--color-surface-elevated);
-  transform: translateY(-4px);
+  /* Smoother card lift: reduced from -4px to -3px */
+  transform: translateY(-3px);
   box-shadow: var(--shadow-lg);
 }
 
-.contact-icon {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Brighter background gradient */
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(251, 191, 36, 0.1));
-  /* </CHANGE> */
-  border-radius: var(--radius-md);
-  /* Brighter icon color */
-  color: var(--color-accent-tertiary);
-  /* </CHANGE> */
-  flex-shrink: 0;
-  transition: all var(--transition-base);
-  border: 2px solid var(--color-border-light);
-}
-
 .contact-card:hover .contact-icon {
-  /* Brighter hover gradient */
-  background: linear-gradient(135deg, var(--color-accent-tertiary), var(--color-accent-secondary));
-  /* </CHANGE> */
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
   color: white;
-  transform: scale(1.08) rotate(-3deg);
+  /* Subtle icon animation: reduced scale and rotation */
+  transform: scale(1.05) rotate(-2deg);
   border-color: transparent;
   box-shadow: var(--shadow-md);
-}
-
-.contact-info {
-  flex: 1;
-  text-align: left;
-  word-break: break-word;
-  min-width: 0;
-}
-
-.contact-label {
-  font-size: 12px;
-  color: var(--color-text-tertiary);
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.contact-value {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--color-text-primary);
 }
 
 /* ============================================
    FOOTER - Enhanced
    ============================================ */
-.footer {
-  padding: var(--spacing-2xl) 0;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  z-index: 1;
-  background: var(--color-surface);
-}
-
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
-}
-
-.footer-content p {
-  color: var(--color-text-tertiary);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.footer-links {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.footer-links a {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-tertiary);
-  background: var(--color-surface-elevated);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  transition: all var(--transition-base);
-}
 
 .footer-links a:hover {
-  color: var(--color-accent-tertiary);
-  border-color: var(--color-accent-tertiary);
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
   background: var(--color-bg);
-  transform: translateY(-3px);
-  /* Enhanced hover shadow */
-  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.3);
-  /* </CHANGE> */
+  /* Smoother icon lift: reduced from -3px to -2px */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
 }
 
-/* ============================================
-   ANIMATIONS
-   ============================================ */
+/* Simplified and professional animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -946,5 +587,90 @@ button {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Snowflakes for festive touch */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  user-select: none;
+  pointer-events: none;
+  animation: snowfall linear infinite;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+body:not(.loaded) * {
+  animation-play-state: paused !important;
+}
+
+body.loaded {
+  /* Faster page load: reduced from 0.5s to 0.3s */
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+  }
+
+  .hero-greeting {
+    font-size: 1.125rem;
+  }
+
+  .hero-name {
+    font-size: 2.5rem;
+  }
+
+  .hero-role {
+    font-size: 1.375rem;
+  }
+
+  .skills {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
   }
 }
