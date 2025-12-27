@@ -113,8 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.radius = Math.random() * 200 + 150
       this.vx = (Math.random() - 0.5) * 0.3
       this.vy = (Math.random() - 0.5) * 0.3
-      this.hue = Math.random() * 60 + 160 // Cyan to emerald range (160-220)
-      // </CHANGE>
+      this.hue = Math.random() * 40 + 200 // Blue to cyan range (200-240)
     }
 
     update() {
@@ -131,10 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     draw() {
       const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
-      gradient.addColorStop(0, `hsla(${this.hue}, 75%, 55%, 0.25)`)
-      gradient.addColorStop(0.5, `hsla(${this.hue}, 70%, 50%, 0.15)`)
-      gradient.addColorStop(1, `hsla(${this.hue}, 65%, 45%, 0)`)
-      // </CHANGE>
+      gradient.addColorStop(0, `hsla(${this.hue}, 70%, 55%, 0.25)`)
+      gradient.addColorStop(0.5, `hsla(${this.hue}, 65%, 50%, 0.15)`)
+      gradient.addColorStop(1, `hsla(${this.hue}, 60%, 45%, 0)`)
 
       ctx.fillStyle = gradient
       ctx.beginPath()
@@ -152,8 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.speedX = (Math.random() - 0.5) * 0.5
       this.speedY = (Math.random() - 0.5) * 0.5
       this.opacity = Math.random() * 0.5 + 0.3
-      this.hue = Math.random() * 60 + 160 // Cyan to emerald
-      // </CHANGE>
+      this.hue = Math.random() * 40 + 200 // Blue to cyan
     }
 
     update() {
@@ -165,10 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw() {
-      ctx.fillStyle = `hsla(${this.hue}, 75%, 60%, ${this.opacity})`
+      ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`
       ctx.shadowBlur = 20
-      ctx.shadowColor = `hsla(${this.hue}, 75%, 60%, 0.6)`
-      // </CHANGE>
+      ctx.shadowColor = `hsla(${this.hue}, 70%, 60%, 0.6)`
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
@@ -214,8 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < 120) {
-          ctx.strokeStyle = `rgba(16, 185, 129, ${0.3 * (1 - distance / 120)})`
-          // </CHANGE>
+          ctx.strokeStyle = `rgba(59, 130, 246, ${0.3 * (1 - distance / 120)})`
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
@@ -286,10 +281,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== CONSOLE MESSAGE =====
   console.log(
     "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #10b981; text-shadow: 0 2px 10px rgba(16,185,129,0.4);",
+    "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59,130,246,0.4);",
   )
-  console.log("%c⚡ Ultimate Professional Design", "font-size: 14px; color: #cbd5e1;")
-  // </CHANGE>
+  console.log("%c⚡ Professional Cybersecurity Portfolio", "font-size: 14px; color: #cbd5e1;")
   console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 12px; color: #94a3b8;")
 
   // ===== PERFORMANCE: REDUCE MOTION FOR USERS WHO PREFER IT =====
