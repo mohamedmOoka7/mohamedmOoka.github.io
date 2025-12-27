@@ -5,13 +5,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 :root {
+  /* Enhanced color system with refined accent colors */
   --color-bg: #0a0a0a;
   --color-surface: #111111;
+  --color-surface-hover: #1a1a1a;
   --color-text: #ffffff;
   --color-text-secondary: #a3a3a3;
+  --color-text-muted: #737373;
   --color-accent: #3b82f6;
   --color-accent-hover: #2563eb;
+  --color-accent-light: #60a5fa;
+  --color-accent-glow: rgba(59, 130, 246, 0.15);
   --color-border: #1f1f1f;
+  /* </CHANGE> */
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -83,6 +89,7 @@ button {
   cursor: pointer;
 }
 
+/* Optimized cursor for better performance */
 /* ============================================
    CUSTOM CURSOR
    ============================================ */
@@ -98,6 +105,7 @@ button {
   opacity: 0;
   transition: opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
   z-index: 10000;
+  will-change: transform;
 }
 
 .cursor-dot {
@@ -112,6 +120,7 @@ button {
   height: 40px;
   border: 2px solid var(--color-accent);
 }
+/* </CHANGE> */
 
 /* ============================================
    SCROLL PROGRESS
@@ -123,13 +132,14 @@ button {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent) 0%, #60a5fa 100%);
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
   transform-origin: left;
   transform: scaleX(0);
   z-index: 1001;
   transition: transform 0.1s linear;
 }
 
+/* Optimized canvas for better performance */
 /* ============================================
    BACKGROUND EFFECTS
    ============================================ */
@@ -142,6 +152,7 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.8;
 }
 
 #particles-canvas {
@@ -149,6 +160,7 @@ button {
   height: 100%;
   display: block;
 }
+/* </CHANGE> */
 
 /* ============================================
    CONTAINER
@@ -190,7 +202,7 @@ button {
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 50% 0%, var(--color-accent-glow) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -231,15 +243,31 @@ button {
   letter-spacing: -0.01em;
 }
 
-/* Reversed gradient to start light from left and darken to the right */
+/* Refined gradient with perfect color harmony */
 .gradient-text {
-  /* Updated gradient to match site accent colors exactly - starts with lighter blue and transitions to primary accent color to match button */
-  background: linear-gradient(90deg, #60a5fa 0%, #3b82f6 60%, #3b82f6 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-light) 0%,
+    var(--color-accent) 50%,
+    var(--color-accent-hover) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
+  animation: gradient-shimmer 3s ease-in-out infinite;
 }
+
+@keyframes gradient-shimmer {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+/* </CHANGE> */
 
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
@@ -413,6 +441,7 @@ button {
   }
 }
 
+/* Enhanced button styles with better performance */
 /* ============================================
    BUTTONS
    ============================================ */
@@ -431,6 +460,7 @@ button {
   border: none;
   position: relative;
   overflow: hidden;
+  will-change: transform;
 }
 
 .btn::before {
@@ -462,6 +492,7 @@ button {
 .btn-primary {
   background: var(--color-accent);
   color: white;
+  box-shadow: 0 4px 14px var(--color-accent-glow);
 }
 
 .btn-primary:hover {
@@ -477,10 +508,13 @@ button {
 }
 
 .btn-secondary:hover {
+  background: var(--color-surface-hover);
   border-color: var(--color-accent);
   transform: translateY(-2px);
 }
+/* </CHANGE> */
 
+/* Enhanced section styles */
 /* ============================================
    SECTION STYLES
    ============================================ */
@@ -490,7 +524,12 @@ button {
   font-weight: 800;
   margin-bottom: var(--spacing-lg);
   letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+/* </CHANGE> */
 
 /* ============================================
    ABOUT SECTION
@@ -533,6 +572,7 @@ button {
   margin-right: auto;
 }
 
+/* Enhanced skill items with better hover effects */
 .skill-item {
   display: flex;
   align-items: center;
@@ -542,11 +582,14 @@ button {
   border: 1px solid var(--color-border);
   border-radius: 10px;
   transition: var(--transition);
+  will-change: transform;
 }
 
 .skill-item:hover {
+  background: var(--color-surface-hover);
   border-color: var(--color-accent);
   transform: translateX(4px);
+  box-shadow: 0 4px 12px var(--color-accent-glow);
 }
 
 .skill-item svg {
@@ -559,6 +602,7 @@ button {
   font-weight: 500;
   color: var(--color-text);
 }
+/* </CHANGE> */
 
 /* ============================================
    EXPERTISE SECTION
@@ -661,6 +705,7 @@ button {
   color: var(--color-accent);
 }
 
+/* Optimized work cards */
 /* ============================================
    WORK SECTION
    ============================================ */
@@ -689,12 +734,14 @@ button {
   transition: var(--transition);
   position: relative;
   padding: var(--spacing-xl);
+  will-change: transform;
 }
 
 .work-card:hover {
+  background: var(--color-surface-hover);
   border-color: var(--color-accent);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--color-accent-glow);
 }
 
 .project-number {
@@ -703,7 +750,7 @@ button {
   right: var(--spacing-md);
   width: 48px;
   height: 48px;
-  background: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -713,6 +760,7 @@ button {
   color: white;
   z-index: 10;
   font-family: var(--font-mono);
+  box-shadow: 0 4px 12px var(--color-accent-glow);
 }
 
 .work-content {
@@ -750,6 +798,12 @@ button {
   font-size: 13px;
   color: var(--color-text-secondary);
   font-weight: 500;
+  transition: var(--transition);
+}
+
+.work-tech span:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .work-link {
@@ -764,13 +818,16 @@ button {
 
 .work-link:hover {
   gap: var(--spacing-md);
+  color: var(--color-accent-light);
 }
 
 .work-link.disabled {
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   cursor: not-allowed;
 }
+/* </CHANGE> */
 
+/* Enhanced contact cards */
 /* ============================================
    CONTACT SECTION
    ============================================ */
@@ -805,12 +862,14 @@ button {
   border-radius: 12px;
   text-decoration: none;
   transition: var(--transition);
+  will-change: transform;
 }
 
 .contact-card:hover {
+  background: var(--color-surface-hover);
   border-color: var(--color-accent);
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--color-accent-glow);
 }
 
 .contact-icon {
@@ -823,6 +882,12 @@ button {
   border-radius: 12px;
   color: var(--color-accent);
   flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.contact-card:hover .contact-icon {
+  background: var(--color-accent-glow);
+  transform: scale(1.05);
 }
 
 .contact-info {
@@ -833,7 +898,7 @@ button {
 
 .contact-label {
   font-size: 13px;
-  color: var(--color-text-secondary);
+  color: var(--color-text-muted);
   margin-bottom: 4px;
 }
 
@@ -842,6 +907,7 @@ button {
   font-weight: 600;
   color: var(--color-text);
 }
+/* </CHANGE> */
 
 /* ============================================
    FOOTER
@@ -872,6 +938,7 @@ button {
   gap: var(--spacing-md);
 }
 
+/* Enhanced footer links */
 .footer-links a {
   width: 40px;
   height: 40px;
@@ -884,13 +951,17 @@ button {
   border-radius: 10px;
   text-decoration: none;
   transition: var(--transition);
+  will-change: transform;
 }
 
 .footer-links a:hover {
+  background: var(--color-surface-hover);
   color: var(--color-accent);
   border-color: var(--color-accent);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-accent-glow);
 }
+/* </CHANGE> */
 
 /* ============================================
    ANIMATIONS
