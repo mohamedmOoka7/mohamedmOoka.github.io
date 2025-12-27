@@ -1,39 +1,37 @@
 /* ============================================
-   MODERN CYBERSECURITY PORTFOLIO - ENHANCED UX/UI
+   BLOOD RED DRAGON THEME - SIMPLE & POWERFUL
    ============================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Enhanced Color System */
-  --color-bg: #0a0a0f;
-  --color-surface: #13141b;
-  --color-surface-elevated: #1a1b26;
-  --color-surface-hover: #1f2029;
+  /* Blood Red Dragon Color System */
+  --color-bg: #0d0000;
+  --color-surface: #1a0303;
+  --color-surface-elevated: #260505;
+  --color-surface-hover: #330707;
 
-  --color-text-primary: #f8f9fa;
-  --color-text-secondary: #b4bcd0;
-  --color-text-tertiary: #7c8aaa;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #d4a5a5;
+  --color-text-tertiary: #a37676;
 
-  /* Vibrant accent colors */
-  --color-accent-primary: #00d4ff;
-  --color-accent-secondary: #667eea;
-  --color-accent-tertiary: #f093fb;
-  --color-accent-hover: #00b8e6;
+  /* Blood Red Accent Colors */
+  --color-accent-primary: #dc0000;
+  --color-accent-secondary: #a30000;
+  --color-accent-tertiary: #ff1a1a;
+  --color-accent-hover: #ff3333;
 
-  /* Semantic colors */
   --color-success: #10b981;
   --color-warning: #fbbf24;
-  --color-error: #ef4444;
+  --color-error: #ff0000;
 
-  --color-border: #1f2937;
-  --color-border-light: #2d3748;
+  --color-border: #330707;
+  --color-border-light: #4d0a0a;
+  /* </CHANGE> */
 
-  /* Fonts */
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
 
-  /* Enhanced Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
@@ -43,20 +41,19 @@
   --spacing-3xl: 6rem;
   --spacing-4xl: 8rem;
 
-  /* Smooth Transitions */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Enhanced Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 32px rgba(0, 212, 255, 0.3);
-  --shadow-glow-hover: 0 0 48px rgba(0, 212, 255, 0.5);
+  /* Blood Red Shadows */
+  --shadow-sm: 0 2px 8px rgba(220, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(220, 0, 0, 0.3);
+  --shadow-lg: 0 12px 32px rgba(220, 0, 0, 0.4);
+  --shadow-xl: 0 20px 48px rgba(220, 0, 0, 0.5);
+  --shadow-glow: 0 0 32px rgba(220, 0, 0, 0.5);
+  --shadow-glow-hover: 0 0 48px rgba(220, 0, 0, 0.7);
+  /* </CHANGE> */
 
-  /* Border Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -89,6 +86,7 @@ body {
   position: relative;
 }
 
+/* Blood Red Background Gradient */
 body::before {
   content: "";
   position: fixed;
@@ -96,15 +94,16 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(102, 126, 234, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 20%, rgba(220, 0, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(163, 0, 0, 0.15) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
+/* </CHANGE> */
 
 ::selection {
   background: var(--color-accent-primary);
-  color: var(--color-bg);
+  color: white;
 }
 
 img {
@@ -145,16 +144,20 @@ button {
 .cursor-dot {
   width: 8px;
   height: 8px;
+  /* Red cursor */
   background: var(--color-accent-primary);
   box-shadow: 0 0 12px var(--color-accent-primary);
+  /* </CHANGE> */
   transition: transform var(--transition-fast);
 }
 
 .cursor-outline {
   width: 40px;
   height: 40px;
+  /* Red outline */
   border: 2px solid var(--color-accent-primary);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 20px rgba(220, 0, 0, 0.5);
+  /* </CHANGE> */
 }
 
 @media (max-width: 768px) {
@@ -174,17 +177,19 @@ button {
   left: 0;
   right: 0;
   height: 4px;
+  /* Red gradient progress */
   background: linear-gradient(
     90deg,
     var(--color-accent-primary) 0%,
-    var(--color-accent-secondary) 50%,
-    var(--color-accent-tertiary) 100%
+    var(--color-accent-tertiary) 50%,
+    var(--color-accent-primary) 100%
   );
+  /* </CHANGE> */
   transform-origin: left;
   transform: scaleX(0);
   z-index: 1001;
   transition: transform 0.1s linear;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 20px rgba(220, 0, 0, 0.7);
 }
 
 /* ============================================
@@ -241,6 +246,7 @@ button {
   overflow: hidden;
 }
 
+/* Red dragon fire glow effect */
 .hero::before {
   content: "";
   position: absolute;
@@ -249,12 +255,13 @@ button {
   transform: translateX(-50%);
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, rgba(102, 126, 234, 0.1) 30%, transparent 70%);
+  background: radial-gradient(circle, rgba(220, 0, 0, 0.3) 0%, rgba(163, 0, 0, 0.2) 30%, transparent 70%);
   border-radius: 50%;
   filter: blur(80px);
   animation: heroGlow 8s ease-in-out infinite alternate;
   pointer-events: none;
 }
+/* </CHANGE> */
 
 @keyframes heroGlow {
   0% {
@@ -281,7 +288,9 @@ button {
 .hero-greeting {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 500;
+  /* Red accent text */
   color: var(--color-accent-primary);
+  /* </CHANGE> */
   margin-bottom: var(--spacing-sm);
   text-align: center;
   letter-spacing: 0.05em;
@@ -312,12 +321,13 @@ button {
   animation: fadeInUp 0.8s ease-out 0.6s forwards;
 }
 
+/* Blood Red gradient text */
 .gradient-text {
   background: linear-gradient(
     135deg,
     var(--color-accent-primary) 0%,
-    var(--color-accent-secondary) 50%,
-    var(--color-accent-tertiary) 100%
+    var(--color-accent-tertiary) 50%,
+    var(--color-accent-primary) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -326,17 +336,9 @@ button {
   position: relative;
   animation: gradientShift 6s ease infinite;
   background-size: 200% 200%;
+  filter: drop-shadow(0 0 20px rgba(220, 0, 0, 0.5));
 }
-
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
+/* </CHANGE> */
 
 .hero-subtitle {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
@@ -407,16 +409,18 @@ button {
   transform: translateX(5px);
 }
 
+/* Red primary button */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
   color: white;
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(220, 0, 0, 0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow-hover);
 }
+/* </CHANGE> */
 
 .btn-primary:active {
   transform: translateY(-1px);
@@ -429,11 +433,13 @@ button {
   box-shadow: var(--shadow-md);
 }
 
+/* Red border on hover */
 .btn-secondary:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 0 24px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 0 24px rgba(220, 0, 0, 0.3);
   transform: translateY(-3px);
 }
+/* </CHANGE> */
 
 .btn-secondary:active {
   transform: translateY(-1px);
@@ -456,6 +462,7 @@ button {
   display: inline-block;
 }
 
+/* Red underline */
 .section-title::after {
   content: "";
   position: absolute;
@@ -466,7 +473,9 @@ button {
   height: 4px;
   background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
   border-radius: 2px;
+  box-shadow: 0 0 16px rgba(220, 0, 0, 0.6);
 }
+/* </CHANGE> */
 
 /* ============================================
    ABOUT SECTION - Enhanced
@@ -509,7 +518,9 @@ button {
 }
 
 .about-text strong {
+  /* Red highlight */
   color: var(--color-accent-primary);
+  /* </CHANGE> */
   font-weight: 700;
   position: relative;
 }
@@ -538,6 +549,7 @@ button {
   cursor: pointer;
 }
 
+/* Red left border on skill items */
 .skill-item::before {
   content: "";
   position: absolute;
@@ -550,6 +562,7 @@ button {
   transform-origin: bottom;
   transition: transform var(--transition-base);
 }
+/* </CHANGE> */
 
 .skill-item:hover::before {
   transform: scaleY(1);
@@ -563,9 +576,11 @@ button {
 }
 
 .skill-item svg {
+  /* Red icons */
   color: var(--color-accent-primary);
   flex-shrink: 0;
-  filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.5));
+  filter: drop-shadow(0 0 8px rgba(220, 0, 0, 0.6));
+  /* </CHANGE> */
   transition: all var(--transition-base);
 }
 
@@ -610,6 +625,7 @@ button {
   cursor: pointer;
 }
 
+/* Red gradient overlay on work cards */
 .work-card::before {
   content: "";
   position: absolute;
@@ -617,11 +633,12 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(220, 0, 0, 0.05) 0%, rgba(163, 0, 0, 0.05) 100%);
   opacity: 0;
   transition: opacity var(--transition-base);
   pointer-events: none;
 }
+/* </CHANGE> */
 
 .work-card:hover::before {
   opacity: 1;
@@ -633,6 +650,7 @@ button {
   box-shadow: var(--shadow-glow);
 }
 
+/* Red gradient project number */
 .project-number {
   position: absolute;
   top: var(--spacing-lg);
@@ -649,14 +667,10 @@ button {
   color: white;
   z-index: 10;
   font-family: var(--font-mono);
-  box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(220, 0, 0, 0.5);
   transition: all var(--transition-base);
 }
-
-.work-card:hover .project-number {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: var(--shadow-glow);
-}
+/* </CHANGE> */
 
 .work-content {
   display: flex;
@@ -700,8 +714,10 @@ button {
 }
 
 .work-tech span:hover {
+  /* Red border on tech tags */
   border-color: var(--color-accent-primary);
   color: var(--color-accent-primary);
+  /* </CHANGE> */
   transform: translateY(-2px);
 }
 
@@ -709,7 +725,9 @@ button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
+  /* Red link color */
   color: var(--color-accent-primary);
+  /* </CHANGE> */
   text-decoration: none;
   font-weight: 700;
   font-size: 15px;
@@ -719,7 +737,7 @@ button {
 
 .work-link:hover {
   gap: var(--spacing-md);
-  text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+  text-shadow: 0 0 12px rgba(220, 0, 0, 0.6);
 }
 
 .work-link.disabled {
@@ -766,6 +784,7 @@ button {
   overflow: hidden;
 }
 
+/* Red shine effect on contact cards */
 .contact-card::before {
   content: "";
   position: absolute;
@@ -773,9 +792,10 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(220, 0, 0, 0.2), transparent);
   transition: left var(--transition-slow);
 }
+/* </CHANGE> */
 
 .contact-card:hover::before {
   left: 100%;
@@ -788,13 +808,14 @@ button {
   box-shadow: var(--shadow-glow);
 }
 
+/* Red contact icon background */
 .contact-icon {
   width: 64px;
   height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(102, 126, 234, 0.1));
+  background: linear-gradient(135deg, rgba(220, 0, 0, 0.2), rgba(163, 0, 0, 0.2));
   border-radius: var(--radius-md);
   color: var(--color-accent-primary);
   flex-shrink: 0;
@@ -809,6 +830,7 @@ button {
   border-color: transparent;
   box-shadow: var(--shadow-glow);
 }
+/* </CHANGE> */
 
 .contact-info {
   flex: 1;
@@ -877,11 +899,13 @@ button {
 }
 
 .footer-links a:hover {
+  /* Red hover state for footer links */
   color: var(--color-accent-primary);
   border-color: var(--color-accent-primary);
   background: var(--color-bg);
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 8px 16px rgba(220, 0, 0, 0.3);
+  /* </CHANGE> */
 }
 
 /* ============================================
@@ -970,36 +994,9 @@ body.loaded {
     font-size: 1rem;
   }
 
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
+  /* Completed responsive styles */
   .skills {
     grid-template-columns: 1fr;
-  }
-
-  .work-grid {
-    gap: var(--spacing-xl);
-  }
-
-  .work-card {
-    padding: var(--spacing-xl);
-  }
-
-  .project-number {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
-  }
-
-  .work-title {
-    font-size: 24px;
   }
 
   .contact-methods {
@@ -1010,51 +1007,4 @@ body.loaded {
     flex-direction: column;
     text-align: center;
   }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 var(--spacing-sm);
-  }
-
-  .about-text {
-    font-size: 16px;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-}
-
-/* ============================================
-   ACCESSIBILITY - Reduced Motion
-   ============================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glow {
-  box-shadow: var(--shadow-glow);
-}
-
-.glow-text {
-  text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
 }
