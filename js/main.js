@@ -1,5 +1,5 @@
 // =============================================
-// BLOOD RED DRAGON THEME - ENHANCED INTERACTIONS
+// PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
 // =============================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,8 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const distX = mouseX - outlineX
       const distY = mouseY - outlineY
 
-      outlineX += distX * 0.2
-      outlineY += distY * 0.2
+      // Smoother cursor follow
+      outlineX += distX * 0.15
+      outlineY += distY * 0.15
 
       cursorOutline.style.left = `${outlineX}px`
       cursorOutline.style.top = `${outlineY}px`
@@ -43,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     interactiveElements.forEach((el) => {
       el.addEventListener("mouseenter", () => {
-        cursorDot.style.transform = "translate(-50%, -50%) scale(2)"
-        cursorOutline.style.width = "70px"
-        cursorOutline.style.height = "70px"
-        cursorOutline.style.borderWidth = "3px"
+        cursorDot.style.transform = "translate(-50%, -50%) scale(1.6)"
+        cursorOutline.style.width = "60px"
+        cursorOutline.style.height = "60px"
+        cursorOutline.style.borderWidth = "2px"
       })
 
       el.addEventListener("mouseleave", () => {
@@ -111,21 +112,21 @@ document.addEventListener("DOMContentLoaded", () => {
     constructor() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
-      this.size = Math.random() * 3 + 1
-      this.speedX = Math.random() * 1 - 0.5
-      this.speedY = Math.random() * 1 - 0.5
-      this.opacity = Math.random() * 0.5 + 0.2
-      this.color = this.getRandomRedColor()
-      // </CHANGE>
+      this.size = Math.random() * 2.5 + 0.8
+      this.speedX = Math.random() * 0.8 - 0.4
+      this.speedY = Math.random() * 0.8 - 0.4
+      this.opacity = Math.random() * 0.4 + 0.15
+      this.color = this.getRandomColor()
     }
 
-    getRandomRedColor() {
-      const reds = [
-        "220, 0, 0", // Blood Red
-        "163, 0, 0", // Dark Red
-        "255, 26, 26", // Bright Red
+    getRandomColor() {
+      const colors = [
+        "220, 38, 38", // Red
+        "153, 27, 27", // Dark Red
+        "251, 191, 36", // Gold
+        "239, 68, 68", // Bright Red
       ]
-      return reds[Math.floor(Math.random() * reds.length)]
+      return colors[Math.floor(Math.random() * colors.length)]
     }
 
     update() {
@@ -149,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const particlesArray = []
-  const numberOfParticles = 120
+  const numberOfParticles = 80 // Reduced for better performance
 
   for (let i = 0; i < numberOfParticles; i++) {
     particlesArray.push(new Particle())
@@ -162,11 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const dy = particlesArray[a].y - particlesArray[b].y
         const distance = Math.sqrt(dx * dx + dy * dy)
 
-        if (distance < 150) {
-          const opacity = (1 - distance / 150) * 0.3
-          ctx.strokeStyle = `rgba(220, 0, 0, ${opacity})`
-          // </CHANGE>
-          ctx.lineWidth = 1.5
+        if (distance < 120) {
+          const opacity = (1 - distance / 120) * 0.25
+          ctx.strokeStyle = `rgba(220, 38, 38, ${opacity})`
+          ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
           ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
@@ -206,9 +206,9 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.width = "0"
       ripple.style.height = "0"
       ripple.style.borderRadius = "50%"
-      ripple.style.background = "rgba(255, 255, 255, 0.6)"
+      ripple.style.background = "rgba(255, 255, 255, 0.5)"
       ripple.style.transform = "translate(-50%, -50%)"
-      ripple.style.animation = "ripple 0.8s ease-out"
+      ripple.style.animation = "ripple 0.7s ease-out"
       ripple.style.pointerEvents = "none"
 
       button.style.position = "relative"
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         ripple.remove()
-      }, 800)
+      }, 700)
     })
   })
 
@@ -227,8 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
     style.textContent = `
       @keyframes ripple {
         to {
-          width: 500px;
-          height: 500px;
+          width: 400px;
+          height: 400px;
           opacity: 0;
         }
       }
@@ -238,8 +238,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== SCROLL REVEAL ANIMATIONS =====
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.15,
+    rootMargin: "0px 0px -80px 0px",
   }
 
   const observer = new IntersectionObserver((entries) => {
@@ -254,26 +254,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const animatedElements = document.querySelectorAll(".work-card, .skill-item, .contact-card")
   animatedElements.forEach((el, index) => {
     el.style.opacity = "0"
-    el.style.transform = "translateY(30px)"
-    el.style.transition = `all 0.6s ease-out ${index * 0.1}s`
+    el.style.transform = "translateY(20px)"
+    el.style.transition = `all 0.5s ease-out ${index * 0.08}s`
     observer.observe(el)
   })
 
   // ===== PARALLAX EFFECT ON SCROLL =====
   let lastScrollTop = 0
+  let ticking = false
+
   window.addEventListener(
     "scroll",
     () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-      const scrollDelta = scrollTop - lastScrollTop
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+          const hero = document.querySelector(".hero")
 
-      const hero = document.querySelector(".hero")
-      if (hero && scrollTop < window.innerHeight) {
-        hero.style.transform = `translateY(${scrollTop * 0.4}px)`
-        hero.style.opacity = 1 - scrollTop / 800
+          if (hero && scrollTop < window.innerHeight) {
+            hero.style.transform = `translateY(${scrollTop * 0.3}px)`
+            hero.style.opacity = Math.max(0, 1 - scrollTop / 600)
+          }
+
+          lastScrollTop = scrollTop
+          ticking = false
+        })
+
+        ticking = true
       }
-
-      lastScrollTop = scrollTop
     },
     { passive: true },
   )
@@ -284,16 +292,37 @@ document.addEventListener("DOMContentLoaded", () => {
     img.addEventListener("load", () => {
       img.style.opacity = "1"
     })
-    img.style.transition = "opacity 0.5s ease-out"
+    img.style.transition = "opacity 0.4s ease-out"
   })
+
+  // ===== FESTIVE CHRISTMAS SNOWFLAKES =====
+  function createSnowflake() {
+    const snowflake = document.createElement("div")
+    snowflake.classList.add("snowflake")
+    snowflake.innerHTML = "❄"
+    snowflake.style.left = Math.random() * window.innerWidth + "px"
+    snowflake.style.animationDuration = Math.random() * 3 + 8 + "s"
+    snowflake.style.opacity = Math.random() * 0.6 + 0.3
+    snowflake.style.fontSize = Math.random() * 10 + 10 + "px"
+
+    document.body.appendChild(snowflake)
+
+    setTimeout(() => {
+      snowflake.remove()
+    }, 12000)
+  }
+
+  // Create snowflakes periodically
+  setInterval(createSnowflake, 400)
 
   // ===== ENHANCED CONSOLE MESSAGE =====
   console.log(
-    "%c🐉 Mohamed Mooka - Blood Dragon Portfolio",
-    "font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #dc0000, #a30000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 10px 0;",
+    "%c🎄 Mohamed Mooka - Professional Portfolio",
+    "font-size: 22px; font-weight: 900; background: linear-gradient(135deg, #dc2626, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 8px 0;",
   )
-  console.log("%c⚡ Blood Red Dragon Theme", "font-size: 16px; color: #dc0000; font-weight: 600;")
-  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 14px; color: #d4a5a5;")
+  console.log("%c🎅 Happy Holidays & Merry Christmas!", "font-size: 15px; color: #fbbf24; font-weight: 700;")
+  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 13px; color: #d4a5a5;")
+  console.log("%c⚡ Professional Red Theme with Festive Touches", "font-size: 12px; color: #a37676;")
   // </CHANGE>
 
   // ===== PERFORMANCE: REDUCE MOTION =====
