@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.radius = Math.random() * 200 + 150
       this.vx = (Math.random() - 0.5) * 0.3
       this.vy = (Math.random() - 0.5) * 0.3
-      this.hue = Math.random() * 40 + 200 // Blue to cyan range (200-240)
+      this.hue = Math.random() * 60 + 220
     }
 
     update() {
@@ -130,8 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     draw() {
       const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
-      gradient.addColorStop(0, `hsla(${this.hue}, 70%, 55%, 0.25)`)
-      gradient.addColorStop(0.5, `hsla(${this.hue}, 65%, 50%, 0.15)`)
+      gradient.addColorStop(0, `hsla(${this.hue}, 70%, 55%, 0.15)`)
+      gradient.addColorStop(0.5, `hsla(${this.hue}, 65%, 50%, 0.08)`)
       gradient.addColorStop(1, `hsla(${this.hue}, 60%, 45%, 0)`)
 
       ctx.fillStyle = gradient
@@ -149,8 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
       this.size = Math.random() * 3 + 1
       this.speedX = (Math.random() - 0.5) * 0.5
       this.speedY = (Math.random() - 0.5) * 0.5
-      this.opacity = Math.random() * 0.5 + 0.3
-      this.hue = Math.random() * 40 + 200 // Blue to cyan
+      this.opacity = Math.random() * 0.5 + 0.2
+      this.hue = Math.random() * 60 + 220
     }
 
     update() {
@@ -162,9 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     draw() {
-      ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`
-      ctx.shadowBlur = 20
-      ctx.shadowColor = `hsla(${this.hue}, 70%, 60%, 0.6)`
+      ctx.fillStyle = `hsla(${this.hue}, 70%, 65%, ${this.opacity})`
+      ctx.shadowBlur = 15
+      ctx.shadowColor = `hsla(${this.hue}, 70%, 65%, 0.6)`
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < 120) {
-          ctx.strokeStyle = `rgba(59, 130, 246, ${0.3 * (1 - distance / 120)})`
+          ctx.strokeStyle = `rgba(99, 102, 241, ${0.3 * (1 - distance / 120)})`
           ctx.lineWidth = 1
           ctx.beginPath()
           ctx.moveTo(particles[i].x, particles[i].y)
@@ -281,10 +281,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== CONSOLE MESSAGE =====
   console.log(
     "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59,130,246,0.4);",
+    "font-size: 20px; font-weight: 800; color: #06b6d4; text-shadow: 0 2px 10px rgba(6,182,212,0.6);",
   )
-  console.log("%c⚡ Professional Cybersecurity Portfolio", "font-size: 14px; color: #cbd5e1;")
-  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 12px; color: #94a3b8;")
+  console.log("%c⚡ Professional Cybersecurity Portfolio", "font-size: 14px; color: #bae6fd;")
+  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 12px; color: #7dd3fc;")
 
   // ===== PERFORMANCE: REDUCE MOTION FOR USERS WHO PREFER IT =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
