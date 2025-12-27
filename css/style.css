@@ -1,33 +1,37 @@
+/* ============================================
+   PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
+   ============================================ */
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
-/* ============================================
-   CSS VARIABLES & THEMING
-   ============================================ */
 :root {
-  --color-bg: #0a0000;
-  --color-surface: #1a0303;
-  --color-surface-elevated: #230505;
-  --color-surface-hover: #2d0606;
+  /* Enhanced color system with better contrast for improved readability */
+  --color-bg: #000000;
+  --color-surface: #1a0000;
+  --color-surface-elevated: #2d0505;
+  --color-surface-hover: #3d0909;
 
   --color-text-primary: #ffffff;
-  --color-text-secondary: #d4a5a5;
-  --color-text-tertiary: #a37676;
+  --color-text-secondary: #f0d0d0;
+  --color-text-tertiary: #d4a5a5;
 
-  --color-accent-primary: #dc2626;
-  --color-accent-secondary: #991b1b;
-  --color-accent-tertiary: #ef4444;
+  /* Professional Red with festive gold accents */
+  --color-accent-primary: #ef4444;
+  --color-accent-secondary: #dc2626;
+  --color-accent-tertiary: #f87171;
   --color-accent-gold: #fbbf24;
   --color-accent-green: #10b981;
 
   --color-success: #10b981;
   --color-warning: #fbbf24;
-  --color-error: #dc2626;
+  --color-error: #ef4444;
 
-  --color-border: #2d0606;
-  --color-border-light: #3d0808;
+  --color-border: #3d0808;
+  --color-border-light: #5d1010;
+  /* </CHANGE> */
 
-  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "Courier New", Consolas, monospace;
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
 
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -42,11 +46,13 @@
   --transition-base: 0.35s ease;
   --transition-slow: 0.6s ease;
 
-  --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.15);
-  --shadow-md: 0 4px 16px rgba(220, 38, 38, 0.25);
-  --shadow-lg: 0 8px 24px rgba(220, 38, 38, 0.35);
-  --shadow-xl: 0 12px 32px rgba(220, 38, 38, 0.4);
-  --shadow-glow: 0 0 24px rgba(220, 38, 38, 0.4);
+  /* Enhanced shadows with better visibility */
+  --shadow-sm: 0 2px 8px rgba(239, 68, 68, 0.2);
+  --shadow-md: 0 4px 16px rgba(239, 68, 68, 0.3);
+  --shadow-lg: 0 8px 24px rgba(239, 68, 68, 0.4);
+  --shadow-xl: 0 12px 32px rgba(239, 68, 68, 0.5);
+  --shadow-glow: 0 0 24px rgba(239, 68, 68, 0.5);
+  /* </CHANGE> */
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -83,12 +89,18 @@ body {
   min-height: 100vh;
 }
 
+/* Subtle festive background gradient */
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Reduced opacity for better contrast with content */
+  background: radial-gradient(circle at 15% 15%, rgba(239, 68, 68, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.03) 0%, transparent 40%);
+  /* </CHANGE> */
   pointer-events: none;
   z-index: 0;
 }
@@ -118,7 +130,7 @@ button {
 }
 
 /* ============================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR - Enhanced
    ============================================ */
 .cursor-dot,
 .cursor-outline {
@@ -138,15 +150,19 @@ button {
 .cursor-dot {
   width: 8px;
   height: 8px;
-  background: var(--color-accent-primary);
-  box-shadow: 0 0 10px var(--color-accent-primary);
+  /* Brighter cursor for better visibility */
+  background: var(--color-accent-tertiary);
+  box-shadow: 0 0 12px var(--color-accent-tertiary);
+  /* </CHANGE> */
 }
 
 .cursor-outline {
   width: 40px;
   height: 40px;
-  border: 2px solid var(--color-accent-primary);
-  box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
+  /* Enhanced cursor outline */
+  border: 2px solid var(--color-accent-tertiary);
+  box-shadow: 0 0 20px rgba(248, 113, 113, 0.4);
+  /* </CHANGE> */
 }
 
 @media (max-width: 768px), (hover: none) {
@@ -157,7 +173,7 @@ button {
 }
 
 /* ============================================
-   SCROLL PROGRESS BAR
+   SCROLL PROGRESS - Enhanced
    ============================================ */
 .scroll-progress {
   position: fixed;
@@ -165,18 +181,21 @@ button {
   left: 0;
   right: 0;
   height: 3px;
+  /* Brighter gradient for better visibility */
   background: linear-gradient(
     90deg,
-    var(--color-accent-primary) 0%,
+    var(--color-accent-tertiary) 0%,
     var(--color-accent-gold) 50%,
-    var(--color-accent-primary) 100%
+    var(--color-accent-tertiary) 100%
   );
+  /* </CHANGE> */
   transform-origin: left;
   transform: scaleX(0);
   z-index: 1001;
   transition: transform 0.1s linear;
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
-  will-change: transform;
+  /* Stronger shadow for visibility */
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.6);
+  /* </CHANGE> */
 }
 
 /* ============================================
@@ -184,10 +203,15 @@ button {
    ============================================ */
 .animated-background {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.4;
+  /* Reduced for better text contrast */
+  opacity: 0.3;
+  /* </CHANGE> */
 }
 
 #particles-canvas {
@@ -214,7 +238,7 @@ button {
 }
 
 /* ============================================
-   HERO SECTION
+   HERO SECTION - Completely Redesigned
    ============================================ */
 .hero {
   min-height: 100vh;
@@ -226,6 +250,7 @@ button {
   overflow: hidden;
 }
 
+/* Subtle festive glow - less aggressive */
 .hero::before {
   content: "";
   position: absolute;
@@ -234,7 +259,9 @@ button {
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(251, 191, 36, 0.08) 40%, transparent 70%);
+  /* Adjusted opacity for better text visibility */
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.12) 0%, rgba(251, 191, 36, 0.06) 40%, transparent 70%);
+  /* </CHANGE> */
   border-radius: 50%;
   filter: blur(100px);
   animation: gentleGlow 10s ease-in-out infinite alternate;
@@ -279,7 +306,9 @@ button {
 .hero-greeting {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
   font-weight: 600;
-  color: var(--color-accent-primary);
+  /* Brighter color for better visibility */
+  color: var(--color-accent-tertiary);
+  /* </CHANGE> */
   margin-bottom: var(--spacing-sm);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -301,21 +330,26 @@ button {
   letter-spacing: -0.015em;
 }
 
+/* Professional festive gradient */
 .gradient-text {
+  /* Adjusted gradient for better visibility and contrast */
   background: linear-gradient(
     135deg,
-    var(--color-accent-primary) 0%,
+    var(--color-accent-tertiary) 0%,
     var(--color-accent-gold) 40%,
-    var(--color-accent-primary) 80%,
-    var(--color-accent-tertiary) 100%
+    var(--color-accent-tertiary) 80%,
+    #fca5a5 100%
   );
+  /* </CHANGE> */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
   background-size: 200% 200%;
   animation: subtleGradientShift 8s ease infinite;
-  filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.3));
+  /* Enhanced drop shadow for better definition */
+  filter: drop-shadow(0 2px 16px rgba(239, 68, 68, 0.4));
+  /* </CHANGE> */
 }
 
 @keyframes subtleGradientShift {
@@ -345,7 +379,7 @@ button {
 }
 
 /* ============================================
-   BUTTONS
+   BUTTONS - Enhanced Design
    ============================================ */
 .btn {
   display: inline-flex;
@@ -392,15 +426,22 @@ button {
   transform: translateX(4px);
 }
 
+/* Festive button gradient */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 100%);
+  /* Brighter gradient for better visibility */
+  background: linear-gradient(135deg, var(--color-accent-tertiary) 0%, var(--color-accent-secondary) 100%);
+  /* </CHANGE> */
   color: white;
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35);
+  /* Enhanced shadow */
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  /* </CHANGE> */
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(220, 38, 38, 0.45), 0 0 20px rgba(251, 191, 36, 0.2);
+  /* Stronger hover shadow */
+  box-shadow: 0 8px 28px rgba(239, 68, 68, 0.5), 0 0 24px rgba(251, 191, 36, 0.25);
+  /* </CHANGE> */
 }
 
 .btn-primary:active {
@@ -415,8 +456,10 @@ button {
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-accent-primary);
-  box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
+  border-color: var(--color-accent-tertiary);
+  /* Enhanced hover effect */
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.3);
+  /* </CHANGE> */
   transform: translateY(-2px);
 }
 
@@ -442,6 +485,7 @@ button {
   width: 100%;
 }
 
+/* Festive gold and red underline */
 .section-title::after {
   content: "";
   position: absolute;
@@ -450,13 +494,22 @@ button {
   transform: translateX(-50%);
   width: 70px;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-gold), var(--color-accent-primary));
+  /* Brighter gradient for underline */
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-tertiary),
+    var(--color-accent-gold),
+    var(--color-accent-tertiary)
+  );
+  /* </CHANGE> */
   border-radius: 2px;
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+  /* Enhanced shadow */
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.5);
+  /* </CHANGE> */
 }
 
 /* ============================================
-   ABOUT SECTION
+   ABOUT SECTION - Enhanced
    ============================================ */
 .about {
   padding: var(--spacing-4xl) 0;
@@ -485,7 +538,9 @@ button {
 }
 
 .about-text strong {
-  color: var(--color-accent-primary);
+  /* Brighter accent for strong text */
+  color: var(--color-accent-tertiary);
+  /* </CHANGE> */
   font-weight: 700;
 }
 
@@ -520,7 +575,9 @@ button {
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-gold));
+  /* Brighter gradient for skill item accent */
+  background: linear-gradient(180deg, var(--color-accent-tertiary), var(--color-accent-gold));
+  /* </CHANGE> */
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform var(--transition-base);
@@ -531,16 +588,20 @@ button {
 }
 
 .skill-item:hover {
-  border-color: var(--color-accent-primary);
+  border-color: var(--color-accent-tertiary);
   background: var(--color-surface-elevated);
   transform: translateX(6px);
   box-shadow: var(--shadow-md);
 }
 
 .skill-item svg {
-  color: var(--color-accent-primary);
+  /* Brighter icon color */
+  color: var(--color-accent-tertiary);
+  /* </CHANGE> */
   flex-shrink: 0;
-  filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.4));
+  /* Enhanced glow effect */
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.5));
+  /* </CHANGE> */
   transition: all var(--transition-base);
 }
 
@@ -555,7 +616,7 @@ button {
 }
 
 /* ============================================
-   WORK SECTION
+   WORK SECTION - Redesigned Cards
    ============================================ */
 .work {
   padding: var(--spacing-4xl) 0;
@@ -587,8 +648,13 @@ button {
 .work-card::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.04) 0%, rgba(251, 191, 36, 0.02) 100%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Adjusted gradient opacity */
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(251, 191, 36, 0.03) 100%);
+  /* </CHANGE> */
   opacity: 0;
   transition: opacity var(--transition-base);
   pointer-events: none;
@@ -599,7 +665,7 @@ button {
 }
 
 .work-card:hover {
-  border-color: var(--color-accent-primary);
+  border-color: var(--color-accent-tertiary);
   transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
 }
@@ -610,7 +676,9 @@ button {
   right: var(--spacing-lg);
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  /* Brighter gradient for project number */
+  background: linear-gradient(135deg, var(--color-accent-tertiary), var(--color-accent-secondary));
+  /* </CHANGE> */
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -620,7 +688,9 @@ button {
   color: white;
   z-index: 10;
   font-family: var(--font-mono);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  /* Enhanced shadow */
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+  /* </CHANGE> */
   transition: all var(--transition-base);
 }
 
@@ -666,8 +736,8 @@ button {
 }
 
 .work-tech span:hover {
-  border-color: var(--color-accent-primary);
-  color: var(--color-accent-primary);
+  border-color: var(--color-accent-tertiary);
+  color: var(--color-accent-tertiary);
   transform: translateY(-1px);
 }
 
@@ -675,7 +745,9 @@ button {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--color-accent-primary);
+  /* Brighter link color */
+  color: var(--color-accent-tertiary);
+  /* </CHANGE> */
   text-decoration: none;
   font-weight: 700;
   font-size: 14px;
@@ -685,7 +757,9 @@ button {
 
 .work-link:hover {
   gap: var(--spacing-md);
-  text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+  /* Enhanced text shadow */
+  text-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+  /* </CHANGE> */
 }
 
 .work-link.disabled {
@@ -696,7 +770,7 @@ button {
 }
 
 /* ============================================
-   CONTACT SECTION
+   CONTACT SECTION - Enhanced
    ============================================ */
 .contact {
   padding: var(--spacing-4xl) 0;
@@ -732,6 +806,7 @@ button {
   overflow: hidden;
 }
 
+/* Subtle festive shine effect */
 .contact-card::before {
   content: "";
   position: absolute;
@@ -739,7 +814,9 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), rgba(251, 191, 36, 0.05), transparent);
+  /* Adjusted shine gradient */
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.12), rgba(251, 191, 36, 0.06), transparent);
+  /* </CHANGE> */
   transition: left 0.8s ease;
 }
 
@@ -748,7 +825,7 @@ button {
 }
 
 .contact-card:hover {
-  border-color: var(--color-accent-primary);
+  border-color: var(--color-accent-tertiary);
   background: var(--color-surface-elevated);
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
@@ -760,16 +837,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(251, 191, 36, 0.08));
+  /* Brighter background gradient */
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(251, 191, 36, 0.1));
+  /* </CHANGE> */
   border-radius: var(--radius-md);
-  color: var(--color-accent-primary);
+  /* Brighter icon color */
+  color: var(--color-accent-tertiary);
+  /* </CHANGE> */
   flex-shrink: 0;
   transition: all var(--transition-base);
   border: 2px solid var(--color-border-light);
 }
 
 .contact-card:hover .contact-icon {
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  /* Brighter hover gradient */
+  background: linear-gradient(135deg, var(--color-accent-tertiary), var(--color-accent-secondary));
+  /* </CHANGE> */
   color: white;
   transform: scale(1.08) rotate(-3deg);
   border-color: transparent;
@@ -799,7 +882,7 @@ button {
 }
 
 /* ============================================
-   FOOTER
+   FOOTER - Enhanced
    ============================================ */
 .footer {
   padding: var(--spacing-2xl) 0;
@@ -843,11 +926,13 @@ button {
 }
 
 .footer-links a:hover {
-  color: var(--color-accent-primary);
-  border-color: var(--color-accent-primary);
+  color: var(--color-accent-tertiary);
+  border-color: var(--color-accent-tertiary);
   background: var(--color-bg);
   transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
+  /* Enhanced hover shadow */
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.3);
+  /* </CHANGE> */
 }
 
 /* ============================================
@@ -861,189 +946,5 @@ button {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.snowflake {
-  position: fixed;
-  top: -10px;
-  z-index: 9999;
-  user-select: none;
-  pointer-events: none;
-  animation: snowfall linear infinite;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-}
-
-@keyframes snowfall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0.3;
-  }
-}
-
-/* ============================================
-   LOADING STATE
-   ============================================ */
-body:not(.loaded) * {
-  animation-play-state: paused !important;
-}
-
-body.loaded {
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .snowflake {
-    display: none;
-  }
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-@media (max-width: 1024px) {
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --spacing-3xl: 4rem;
-    --spacing-4xl: 5rem;
-  }
-
-  .hero {
-    padding: var(--spacing-2xl) var(--spacing-lg);
-  }
-
-  .hero-greeting {
-    font-size: 1.125rem;
-  }
-
-  .hero-name {
-    font-size: 2.5rem;
-  }
-
-  .hero-role {
-    font-size: 1.375rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .skills {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-methods {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .contact-info {
-    text-align: center;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .work-title {
-    padding-right: 0;
-    margin-top: 60px;
-  }
-
-  .project-number {
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-  }
-}
-
-@media (max-width: 480px) {
-  .work-card {
-    padding: var(--spacing-lg);
-  }
-
-  .section-title::after {
-    width: 50px;
-  }
-}
-
-/* ============================================
-   PRINT STYLES
-   ============================================ */
-@media print {
-  .cursor-dot,
-  .cursor-outline,
-  .scroll-progress,
-  .animated-background,
-  .snowflake,
-  .hero-buttons,
-  .footer-links {
-    display: none !important;
-  }
-
-  body {
-    background: white;
-    color: black;
-  }
-
-  a {
-    text-decoration: underline;
   }
 }
