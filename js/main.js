@@ -1,12 +1,13 @@
 // =============================================
-// PREMIUM PORTFOLIO INTERACTIONS
+// ULTRA-PREMIUM PORTFOLIO INTERACTIONS
+// Smooth • Sophisticated • Buttery
 // =============================================
 
 document.addEventListener("DOMContentLoaded", () => {
   // ===== SCROLL PROGRESS =====
   const scrollProgress = document.querySelector(".scroll-progress")
 
-  window.addEventListener("scroll", () => {
+  function updateScrollProgress() {
     const windowHeight = window.innerHeight
     const documentHeight = document.documentElement.scrollHeight - windowHeight
     const scrolled = window.scrollY
@@ -15,32 +16,43 @@ document.addEventListener("DOMContentLoaded", () => {
     if (scrollProgress) {
       scrollProgress.style.transform = `scaleX(${progress / 100})`
     }
+  }
+
+  let scrollTicking = false
+  window.addEventListener("scroll", () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        updateScrollProgress()
+        scrollTicking = false
+      })
+      scrollTicking = true
+    }
   })
 
-  // ===== ACTIVE NAV LINK ON SCROLL =====
+  // ===== ACTIVE NAVIGATION =====
   const sections = document.querySelectorAll("section[id]")
-  const navLinks = document.querySelectorAll(".nav-link")
+  const navItems = document.querySelectorAll(".nav-item")
 
-  function highlightNavigation() {
-    const scrollY = window.scrollY
+  function highlightNav() {
+    const scrollY = window.scrollY + 200
 
     sections.forEach((section) => {
       const sectionHeight = section.offsetHeight
-      const sectionTop = section.offsetTop - 150
+      const sectionTop = section.offsetTop
       const sectionId = section.getAttribute("id")
 
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        navLinks.forEach((link) => {
-          link.classList.remove("active")
-          if (link.getAttribute("href") === `#${sectionId}`) {
-            link.classList.add("active")
+        navItems.forEach((item) => {
+          item.classList.remove("active")
+          if (item.getAttribute("href") === `#${sectionId}`) {
+            item.classList.add("active")
           }
         })
       }
     })
   }
 
-  window.addEventListener("scroll", highlightNavigation)
+  window.addEventListener("scroll", highlightNav)
 
   // ===== SMOOTH SCROLL =====
   const links = document.querySelectorAll('a[href^="#"]')
@@ -51,11 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (href !== "#" && href.length > 1) {
         e.preventDefault()
-
         const target = document.querySelector(href)
+
         if (target) {
           const offsetTop = target.offsetTop - 100
-
           window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
@@ -65,13 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== SCROLL REVEAL ANIMATIONS =====
+  // ===== SCROLL REVEAL =====
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.15,
+    rootMargin: "0px 0px -80px 0px",
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = "1"
@@ -80,36 +91,97 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }, observerOptions)
 
-  const animatedElements = document.querySelectorAll(".section-header, .about-card, .project-card, .contact-card")
+  const revealElements = document.querySelectorAll(
+    ".section-intro, .about-text, .expertise-card, .work-item, .contact-method",
+  )
 
-  animatedElements.forEach((el) => {
+  revealElements.forEach((el, index) => {
     el.style.opacity = "0"
-    el.style.transform = "translateY(30px)"
-    el.style.transition = "opacity 0.8s ease, transform 0.8s ease"
-    observer.observe(el)
+    el.style.transform = "translateY(40px)"
+    el.style.transition = `opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`
+    scrollObserver.observe(el)
   })
 
-  // ===== PARALLAX ORBS =====
-  const orbs = document.querySelectorAll(".gradient-orb")
+  // ===== PARALLAX MESH =====
+  const meshGradients = document.querySelectorAll(".mesh-gradient")
+  let mouseX = 0
+  let mouseY = 0
+  let currentX = 0
+  let currentY = 0
 
   window.addEventListener("mousemove", (e) => {
-    const mouseX = e.clientX / window.innerWidth
-    const mouseY = e.clientY / window.innerHeight
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2
+  })
 
-    orbs.forEach((orb, index) => {
-      const speed = (index + 1) * 0.05
-      const x = (mouseX - 0.5) * 100 * speed
-      const y = (mouseY - 0.5) * 100 * speed
+  function animateParallax() {
+    currentX += (mouseX - currentX) * 0.05
+    currentY += (mouseY - currentY) * 0.05
 
-      orb.style.transform = `translate(${x}px, ${y}px)`
+    meshGradients.forEach((mesh, index) => {
+      const speed = (index + 1) * 20
+      const x = currentX * speed
+      const y = currentY * speed
+      mesh.style.transform = `translate(${x}px, ${y}px)`
+    })
+
+    requestAnimationFrame(animateParallax)
+  }
+
+  animateParallax()
+
+  // ===== BUTTON INTERACTIONS =====
+  const buttons = document.querySelectorAll(".btn-primary, .btn-secondary, .btn-download")
+
+  buttons.forEach((button) => {
+    button.addEventListener("mouseenter", () => {
+      button.style.transition = "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+    })
+
+    button.addEventListener("mouseleave", () => {
+      button.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
     })
   })
 
-  // ===== CONSOLE MESSAGE =====
+  // ===== WORK ANIMATIONS =====
+  const workItems = document.querySelectorAll(".work-item")
+
+  workItems.forEach((item) => {
+    const decoration = item.querySelector(".work-decoration")
+
+    item.addEventListener("mouseenter", () => {
+      if (decoration) {
+        decoration.style.transform = "translate(-50%, -50%) scale(1.3)"
+        decoration.style.opacity = "0.5"
+      }
+    })
+
+    item.addEventListener("mouseleave", () => {
+      if (decoration) {
+        decoration.style.transform = "translate(-50%, -50%) scale(1)"
+        decoration.style.opacity = "0.3"
+      }
+    })
+  })
+
+  // ===== CONSOLE SIGNATURE =====
   console.log(
-    "%c🔒 MOHAMED MOOKA - CYBERSECURITY ANALYST",
-    "font-size: 18px; font-weight: 800; color: #00d4ff; text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);",
+    "%c✨ MOHAMED MOOKA",
+    "font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 800; color: #d4af37; text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);",
   )
-  console.log("%c⚡ Premium Portfolio Design", "font-size: 14px; color: #a1a1aa;")
-  console.log("%c🛡️ DFIR | SOC | THREAT HUNTING", "font-size: 12px; color: #52525b;")
+  console.log(
+    "%c🔒 Cybersecurity Analyst | DFIR Specialist",
+    "font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: #b4b4c8;",
+  )
+  console.log("%c💼 Available for Opportunities", "font-family: 'Inter', sans-serif; font-size: 12px; color: #7a7a94;")
+
+  // ===== PERFORMANCE OPTIMIZATION =====
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+  if (prefersReducedMotion.matches) {
+    document.querySelectorAll("*").forEach((el) => {
+      el.style.animationDuration = "0.001s"
+      el.style.transitionDuration = "0.001s"
+    })
+  }
 })
