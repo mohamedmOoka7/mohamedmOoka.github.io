@@ -5,7 +5,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     document.body.classList.add("loaded")
-  }, 100)
+  }, 50)
+  // </CHANGE>
 
   // ===== ENHANCED CUSTOM CURSOR =====
   const cursorDot = document.querySelector("[data-cursor-dot]")
@@ -29,9 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const distX = mouseX - outlineX
       const distY = mouseY - outlineY
 
-      // Smoother cursor follow
-      outlineX += distX * 0.15
-      outlineY += distY * 0.15
+      outlineX += distX * 0.18
+      outlineY += distY * 0.18
+      // </CHANGE>
 
       cursorOutline.style.left = `${outlineX}px`
       cursorOutline.style.top = `${outlineY}px`
@@ -215,7 +216,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.borderRadius = "50%"
       ripple.style.background = "rgba(255, 255, 255, 0.5)"
       ripple.style.transform = "translate(-50%, -50%)"
-      ripple.style.animation = "ripple 0.7s ease-out"
+      ripple.style.animation = "ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
+      // </CHANGE>
       ripple.style.pointerEvents = "none"
 
       button.style.position = "relative"
@@ -224,7 +226,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         ripple.remove()
-      }, 700)
+      }, 600)
+      // </CHANGE>
     })
   })
 
@@ -262,7 +265,8 @@ document.addEventListener("DOMContentLoaded", () => {
   animatedElements.forEach((el, index) => {
     el.style.opacity = "0"
     el.style.transform = "translateY(20px)"
-    el.style.transition = `all 0.5s ease-out ${index * 0.08}s`
+    el.style.transition = `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`
+    // </CHANGE>
     observer.observe(el)
   })
 
@@ -281,6 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (hero && scrollTop < window.innerHeight) {
             hero.style.transform = `translateY(${scrollTop * 0.3}px)`
             hero.style.opacity = Math.max(0, 1 - scrollTop / 600)
+            // </CHANGE>
           }
 
           lastScrollTop = scrollTop
@@ -299,7 +304,8 @@ document.addEventListener("DOMContentLoaded", () => {
     img.addEventListener("load", () => {
       img.style.opacity = "1"
     })
-    img.style.transition = "opacity 0.4s ease-out"
+    img.style.transition = "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+    // </CHANGE>
   })
 
   // ===== FESTIVE CHRISTMAS SNOWFLAKES =====
@@ -308,19 +314,22 @@ document.addEventListener("DOMContentLoaded", () => {
     snowflake.classList.add("snowflake")
     snowflake.innerHTML = "❄"
     snowflake.style.left = Math.random() * window.innerWidth + "px"
-    snowflake.style.animationDuration = Math.random() * 3 + 8 + "s"
-    snowflake.style.opacity = Math.random() * 0.6 + 0.3
-    snowflake.style.fontSize = Math.random() * 10 + 10 + "px"
+    snowflake.style.animationDuration = Math.random() * 4 + 7 + "s"
+    snowflake.style.opacity = Math.random() * 0.5 + 0.3
+    snowflake.style.fontSize = Math.random() * 12 + 8 + "px"
+    // </CHANGE>
 
     document.body.appendChild(snowflake)
 
+    const duration = Number.parseFloat(snowflake.style.animationDuration) * 1000
     setTimeout(() => {
       snowflake.remove()
-    }, 12000)
+    }, duration)
+    // </CHANGE>
   }
 
-  // Create snowflakes periodically
-  setInterval(createSnowflake, 400)
+  setInterval(createSnowflake, 500)
+  // </CHANGE>
 
   // ===== ENHANCED CONSOLE MESSAGE =====
   console.log(
