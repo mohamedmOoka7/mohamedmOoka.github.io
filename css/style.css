@@ -1,11 +1,11 @@
 /* ============================================
-   PROFESSIONAL RED THEME WITH CHRISTMAS TOUCHES
+   ULTRA PROFESSIONAL RED THEME - CHRISTMAS EDITION
    ============================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 :root {
-  /* Enhanced color system with festive touches */
+  /* Enhanced professional color system */
   --color-bg: #0a0000;
   --color-surface: #1a0303;
   --color-surface-elevated: #230505;
@@ -15,13 +15,11 @@
   --color-text-secondary: #d4a5a5;
   --color-text-tertiary: #a37676;
 
-  /* Professional Red with festive gold accents */
   --color-accent-primary: #dc2626;
   --color-accent-secondary: #991b1b;
   --color-accent-tertiary: #ef4444;
   --color-accent-gold: #fbbf24;
   --color-accent-green: #10b981;
-  /* </CHANGE> */
 
   --color-success: #10b981;
   --color-warning: #fbbf24;
@@ -29,6 +27,7 @@
 
   --color-border: #2d0606;
   --color-border-light: #3d0808;
+  /* </CHANGE> */
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
@@ -42,10 +41,10 @@
   --spacing-3xl: 6rem;
   --spacing-4xl: 8rem;
 
-  /* Reduced animation speeds for better UX */
-  --transition-fast: 0.2s ease;
-  --transition-base: 0.35s ease;
-  --transition-slow: 0.6s ease;
+  /* Smoother, more professional animations */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   /* </CHANGE> */
 
   --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.15);
@@ -86,7 +85,7 @@ body {
   position: relative;
 }
 
-/* Subtle festive background gradient */
+/* More subtle festive background gradient */
 body::before {
   content: "";
   position: fixed;
@@ -94,8 +93,8 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.05) 0%, transparent 40%);
+  background: radial-gradient(circle at 15% 15%, rgba(220, 38, 38, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(251, 191, 36, 0.03) 0%, transparent 40%);
   pointer-events: none;
   z-index: 0;
 }
@@ -201,8 +200,8 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  /* Reduced opacity for less distraction */
-  opacity: 0.4;
+  /* Reduced opacity for professional look */
+  opacity: 0.3;
   /* </CHANGE> */
 }
 
@@ -245,7 +244,7 @@ button {
   overflow: hidden;
 }
 
-/* Subtle festive glow - less aggressive */
+/* More subtle and professional glow effect */
 .hero::before {
   content: "";
   position: absolute;
@@ -254,21 +253,21 @@ button {
   transform: translateX(-50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(251, 191, 36, 0.08) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.12) 0%, rgba(251, 191, 36, 0.06) 40%, transparent 70%);
   border-radius: 50%;
   filter: blur(100px);
-  animation: gentleGlow 10s ease-in-out infinite alternate;
+  animation: gentleGlow 12s ease-in-out infinite alternate;
   pointer-events: none;
 }
 
 @keyframes gentleGlow {
   0% {
-    opacity: 0.4;
+    opacity: 0.5;
     transform: translateX(-50%) scale(1);
   }
   100% {
-    opacity: 0.6;
-    transform: translateX(-50%) scale(1.1);
+    opacity: 0.7;
+    transform: translateX(-50%) scale(1.08);
   }
 }
 /* </CHANGE> */
@@ -281,23 +280,19 @@ button {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
-  /* Simplified fade-in animation */
-  animation: simpleFadeIn 1.2s ease-out;
-  /* </CHANGE> */
+  animation: simpleFadeIn 1s ease-out;
 }
 
-/* Simplified animations */
 @keyframes simpleFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-/* </CHANGE> */
 
 .hero-greeting {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
@@ -327,7 +322,7 @@ button {
   letter-spacing: -0.015em;
 }
 
-/* Professional festive gradient */
+/* More professional gradient animation */
 .gradient-text {
   background: linear-gradient(
     135deg,
@@ -341,8 +336,8 @@ button {
   background-clip: text;
   display: inline-block;
   background-size: 200% 200%;
-  animation: subtleGradientShift 8s ease infinite;
-  filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.3));
+  animation: subtleGradientShift 10s ease infinite;
+  filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.25));
 }
 
 @keyframes subtleGradientShift {
@@ -456,6 +451,104 @@ button {
 }
 
 /* ============================================
+   STATS SECTION
+   ============================================ */
+
+.stats {
+  padding: var(--spacing-3xl) 0;
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 50%, var(--color-bg) 100%);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 1;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.stat-card:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-surface-elevated);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(251, 191, 36, 0.08));
+  border-radius: var(--radius-md);
+  color: var(--color-accent-primary);
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-base);
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
    SECTION STYLES
    ============================================ */
 
@@ -484,6 +577,16 @@ button {
   background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-gold), var(--color-accent-primary));
   border-radius: 2px;
   box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+}
+/* </CHANGE> */
+
+/* Added subsection title styling */
+.subsection-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin: var(--spacing-2xl) 0 var(--spacing-lg);
+  color: var(--color-text-secondary);
+  text-align: center;
 }
 /* </CHANGE> */
 
@@ -520,7 +623,7 @@ button {
 
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: var(--spacing-md);
   margin-top: var(--spacing-xl);
   max-width: 1000px;
@@ -562,7 +665,7 @@ button {
 .skill-item:hover {
   border-color: var(--color-accent-primary);
   background: var(--color-surface-elevated);
-  transform: translateX(6px);
+  transform: translateX(5px);
   box-shadow: var(--shadow-md);
 }
 
@@ -573,11 +676,11 @@ button {
   transition: all var(--transition-base);
 }
 
+/* Reduced animation intensity */
 .skill-item:hover svg {
-  /* Less aggressive rotation */
-  transform: scale(1.15) rotate(3deg);
-  /* </CHANGE> */
+  transform: scale(1.1) rotate(2deg);
 }
+/* </CHANGE> */
 
 .skill-item span {
   font-size: 15px;
@@ -746,6 +849,16 @@ button {
   text-align: center;
 }
 
+/* Added contact intro text */
+.contact-intro {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  max-width: 700px;
+  margin: 0 auto var(--spacing-2xl);
+  line-height: 1.7;
+}
+/* </CHANGE> */
+
 .contact-methods {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -767,7 +880,7 @@ button {
   overflow: hidden;
 }
 
-/* Subtle festive shine effect */
+/* More subtle shine effect */
 .contact-card::before {
   content: "";
   position: absolute;
@@ -775,8 +888,8 @@ button {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), rgba(251, 191, 36, 0.05), transparent);
-  transition: left 0.8s ease;
+  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.08), rgba(251, 191, 36, 0.04), transparent);
+  transition: left 0.7s ease;
 }
 /* </CHANGE> */
 
@@ -805,15 +918,15 @@ button {
   border: 2px solid var(--color-border-light);
 }
 
+/* Reduced rotation for professional look */
 .contact-card:hover .contact-icon {
   background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
   color: white;
-  /* Reduced rotation */
-  transform: scale(1.08) rotate(-3deg);
-  /* </CHANGE> */
+  transform: scale(1.05) rotate(-2deg);
   border-color: transparent;
   box-shadow: var(--shadow-md);
 }
+/* </CHANGE> */
 
 .contact-info {
   flex: 1;
@@ -826,162 +939,4 @@ button {
   color: var(--color-text-tertiary);
   margin-bottom: 5px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-.contact-value {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--color-text-primary);
-}
-
-/* ============================================
-   FOOTER - Enhanced
-   ============================================ */
-
-.footer {
-  padding: var(--spacing-2xl) 0;
-  border-top: 1px solid var(--color-border);
-  position: relative;
-  z-index: 1;
-  background: var(--color-surface);
-}
-
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
-}
-
-.footer-content p {
-  color: var(--color-text-tertiary);
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.footer-links {
-  display: flex;
-  gap: var(--spacing-md);
-}
-
-.footer-links a {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-tertiary);
-  background: var(--color-surface-elevated);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  transition: all var(--transition-base);
-}
-
-.footer-links a:hover {
-  color: var(--color-accent-primary);
-  border-color: var(--color-accent-primary);
-  background: var(--color-bg);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
-}
-
-/* Simplified and professional animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Snowflakes for festive touch */
-.snowflake {
-  position: fixed;
-  top: -10px;
-  z-index: 9999;
-  user-select: none;
-  pointer-events: none;
-  animation: snowfall linear infinite;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
-}
-
-@keyframes snowfall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0.3;
-  }
-}
-/* </CHANGE> */
-
-/* ============================================
-   LOADING STATE
-   ============================================ */
-
-body:not(.loaded) * {
-  animation-play-state: paused !important;
-}
-
-body.loaded {
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
-@media (max-width: 1024px) {
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero {
-    padding: var(--spacing-2xl) var(--spacing-lg);
-  }
-
-  .hero-greeting {
-    font-size: 1.125rem;
-  }
-
-  .hero-name {
-    font-size: 2.5rem;
-  }
-
-  .hero-role {
-    font-size: 1.375rem;
-  }
-
-  .skills {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-methods {
-    grid-template-columns: 1fr;
-  }
 }
