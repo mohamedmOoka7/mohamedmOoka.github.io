@@ -41,11 +41,10 @@
   --spacing-3xl: 6rem;
   --spacing-4xl: 8rem;
 
-  /* Improved animation timing with cubic-bezier for smoother, more professional feel */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* Reduced animation speeds for better UX */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.35s ease;
+  --transition-slow: 0.6s ease;
 
   --shadow-sm: 0 2px 8px rgba(220, 38, 38, 0.15);
   --shadow-md: 0 4px 16px rgba(220, 38, 38, 0.25);
@@ -85,7 +84,7 @@ body {
   position: relative;
 }
 
-/* Subtle festive gradient background */
+/* Subtle festive background gradient */
 body::before {
   content: "";
   position: fixed;
@@ -122,72 +121,6 @@ button {
 }
 
 /* ============================================
-   CUSTOM CURSOR - Enhanced
-   ============================================ */
-
-.cursor-dot,
-.cursor-outline {
-  pointer-events: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  opacity: 1;
-  /* Smoother cursor transitions with optimized timing */
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s
-    cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10000;
-  mix-blend-mode: difference;
-}
-
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent-primary);
-  box-shadow: 0 0 10px var(--color-accent-primary);
-}
-
-.cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 2px solid var(--color-accent-primary);
-  box-shadow: 0 0 15px rgba(220, 38, 38, 0.3);
-}
-
-@media (max-width: 768px) {
-  .cursor-dot,
-  .cursor-outline {
-    display: none;
-  }
-}
-
-/* ============================================
-   SCROLL PROGRESS - Enhanced
-   ============================================ */
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--color-accent-primary) 0%,
-    var(--color-accent-gold) 50%,
-    var(--color-accent-primary) 100%
-  );
-  transform-origin: left;
-  transform: scaleX(0);
-  z-index: 1001;
-  /* Ultra-smooth scroll progress with will-change for performance */
-  transition: transform 0.08s cubic-bezier(0.4, 0, 1, 1);
-  will-change: transform;
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
-}
-
-/* ============================================
    BACKGROUND EFFECTS - Enhanced
    ============================================ */
 
@@ -199,6 +132,7 @@ button {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  /* Reduced opacity for less distraction */
   opacity: 0.4;
 }
 
@@ -228,7 +162,7 @@ button {
 }
 
 /* ============================================
-   HERO SECTION - Completely Redesigned
+   HERO SECTION - NO ANIMATIONS
    ============================================ */
 
 .hero {
@@ -239,12 +173,9 @@ button {
   padding: var(--spacing-3xl) var(--spacing-lg);
   position: relative;
   overflow: hidden;
-  /* Add smooth transition for parallax */
-  transition: transform 0.1s cubic-bezier(0.4, 0, 1, 1), opacity 0.1s cubic-bezier(0.4, 0, 1, 1);
-  will-change: transform, opacity;
 }
 
-/* Optimized glow animation with longer, smoother cycle */
+/* Removed all animations from hero::before - static glow only */
 .hero::before {
   content: "";
   position: absolute;
@@ -256,21 +187,12 @@ button {
   background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(251, 191, 36, 0.08) 40%, transparent 70%);
   border-radius: 50%;
   filter: blur(100px);
-  animation: gentleGlow 12s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
   pointer-events: none;
+  opacity: 0.5;
 }
+/* </CHANGE> */
 
-@keyframes gentleGlow {
-  0% {
-    opacity: 0.4;
-    transform: translateX(-50%) scale(1);
-  }
-  100% {
-    opacity: 0.6;
-    transform: translateX(-50%) scale(1.1);
-  }
-}
-
+/* Removed fade-in animation from hero-content */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -279,21 +201,8 @@ button {
   align-items: center;
   max-width: 1000px;
   margin: 0 auto;
-  /* Smoother fade-in with optimized timing */
-  animation: simpleFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-
-/* Enhanced fade-in animation */
-@keyframes simpleFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* </CHANGE> */
 
 .hero-greeting {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
@@ -323,7 +232,7 @@ button {
   letter-spacing: -0.015em;
 }
 
-/* Smoother gradient animation with longer cycle */
+/* Removed gradient animation - static gradient only */
 .gradient-text {
   background: linear-gradient(
     135deg,
@@ -336,20 +245,9 @@ button {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
-  background-size: 200% 200%;
-  animation: subtleGradientShift 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   filter: drop-shadow(0 2px 12px rgba(220, 38, 38, 0.3));
 }
-
-@keyframes subtleGradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
+/* </CHANGE> */
 
 .hero-subtitle {
   font-size: clamp(1.0625rem, 1.8vw, 1.375rem);
@@ -381,8 +279,7 @@ button {
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
-  /* Smoother button transitions */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
   cursor: pointer;
   border: none;
   position: relative;
@@ -400,8 +297,7 @@ button {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.15);
   transform: translate(-50%, -50%);
-  /* Smoother ripple effect */
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.5s ease, height 0.5s ease;
   z-index: -1;
 }
 
@@ -411,8 +307,7 @@ button {
 }
 
 .btn svg {
-  /* Smoother icon animation */
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--transition-base);
 }
 
 .btn:hover svg {
@@ -432,9 +327,7 @@ button {
 }
 
 .btn-primary:active {
-  /* Quicker active state for better feedback */
   transform: translateY(0);
-  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary {
@@ -451,9 +344,7 @@ button {
 }
 
 .btn-secondary:active {
-  /* Quicker active state for better feedback */
   transform: translateY(0);
-  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ============================================
@@ -552,8 +443,7 @@ button {
   background: linear-gradient(180deg, var(--color-accent-primary), var(--color-accent-gold));
   transform: scaleY(0);
   transform-origin: bottom;
-  /* Smoother scale animation */
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--transition-base);
 }
 
 .skill-item:hover::before {
@@ -571,11 +461,11 @@ button {
   color: var(--color-accent-primary);
   flex-shrink: 0;
   filter: drop-shadow(0 0 6px rgba(220, 38, 38, 0.4));
-  /* Smoother icon animation */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
 }
 
 .skill-item:hover svg {
+  /* Less aggressive rotation */
   transform: scale(1.15) rotate(3deg);
 }
 
@@ -610,8 +500,7 @@ button {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  /* Smoother card transitions */
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
   position: relative;
   padding: var(--spacing-2xl);
   cursor: pointer;
@@ -626,8 +515,7 @@ button {
   height: 100%;
   background: linear-gradient(135deg, rgba(220, 38, 38, 0.04) 0%, rgba(251, 191, 36, 0.02) 100%);
   opacity: 0;
-  /* Smoother opacity transition */
-  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--transition-base);
   pointer-events: none;
 }
 
@@ -658,13 +546,7 @@ button {
   z-index: 10;
   font-family: var(--font-mono);
   box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
-  /* Smoother number badge animation */
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* Add hover effect to project number */
-.work-card:hover .project-number {
-  transform: scale(1.1) rotate(-5deg);
+  transition: all var(--transition-base);
 }
 
 .work-content {
@@ -705,8 +587,7 @@ button {
   color: var(--color-text-tertiary);
   font-weight: 600;
   font-family: var(--font-mono);
-  /* Smoother tech tag animation */
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
 }
 
 .work-tech span:hover {
@@ -723,8 +604,7 @@ button {
   text-decoration: none;
   font-weight: 700;
   font-size: 14px;
-  /* Smoother link animation */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
   width: fit-content;
 }
 
@@ -772,8 +652,7 @@ button {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-lg);
   text-decoration: none;
-  /* Smoother contact card transitions */
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
 }
@@ -787,8 +666,7 @@ button {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), rgba(251, 191, 36, 0.05), transparent);
-  /* Smoother shine effect with optimized timing */
-  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: left 0.8s ease;
 }
 
 .contact-card:hover::before {
@@ -812,14 +690,14 @@ button {
   border-radius: var(--radius-md);
   color: var(--color-accent-primary);
   flex-shrink: 0;
-  /* Smoother icon animation with bounce */
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all var(--transition-base);
   border: 2px solid var(--color-border-light);
 }
 
 .contact-card:hover .contact-icon {
   background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
   color: white;
+  /* Reduced rotation */
   transform: scale(1.08) rotate(-3deg);
   border-color: transparent;
   box-shadow: var(--shadow-md);
@@ -888,8 +766,7 @@ button {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   text-decoration: none;
-  /* Smoother footer link animation */
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-base);
 }
 
 .footer-links a:hover {
@@ -900,11 +777,11 @@ button {
   box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
 }
 
-/* Enhanced scroll reveal animations */
+/* Simplified and professional animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
   to {
     opacity: 1;
@@ -921,7 +798,7 @@ button {
   }
 }
 
-/* Optimized snowflake animation with variable timing */
+/* Snowflakes for festive touch */
 .snowflake {
   position: fixed;
   top: -10px;
@@ -953,8 +830,7 @@ body:not(.loaded) * {
 }
 
 body.loaded {
-  /* Smoother initial page load */
-  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeIn 0.5s ease-out;
 }
 
 /* ============================================
@@ -994,50 +870,5 @@ body.loaded {
 
   .contact-methods {
     grid-template-columns: 1fr;
-  }
-
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .work-card {
-    padding: var(--spacing-lg);
-  }
-
-  .project-number {
-    width: 45px;
-    height: 45px;
-    font-size: 16px;
-  }
-
-  .work-title {
-    font-size: 22px;
-    padding-right: 55px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .contact-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .contact-info {
-    text-align: center;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
   }
 }
