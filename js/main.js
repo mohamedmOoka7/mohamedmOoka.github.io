@@ -1,9 +1,8 @@
 // =============================================
-// MODERN CYBERSECURITY PORTFOLIO - ENHANCED UX/UI
+// BLOOD RED DRAGON THEME - ENHANCED INTERACTIONS
 // =============================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ===== LOADING STATE =====
   setTimeout(() => {
     document.body.classList.add("loaded")
   }, 100)
@@ -96,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== ENHANCED ANIMATED PARTICLE BACKGROUND =====
+  // ===== RED PARTICLE BACKGROUND =====
   const canvas = document.getElementById("particles-canvas")
   const ctx = canvas.getContext("2d")
 
@@ -116,16 +115,17 @@ document.addEventListener("DOMContentLoaded", () => {
       this.speedX = Math.random() * 1 - 0.5
       this.speedY = Math.random() * 1 - 0.5
       this.opacity = Math.random() * 0.5 + 0.2
-      this.color = this.getRandomColor()
+      this.color = this.getRandomRedColor()
+      // </CHANGE>
     }
 
-    getRandomColor() {
-      const colors = [
-        "0, 212, 255", // Cyan
-        "102, 126, 234", // Purple
-        "240, 147, 251", // Pink
+    getRandomRedColor() {
+      const reds = [
+        "220, 0, 0", // Blood Red
+        "163, 0, 0", // Dark Red
+        "255, 26, 26", // Bright Red
       ]
-      return colors[Math.floor(Math.random() * colors.length)]
+      return reds[Math.floor(Math.random() * reds.length)]
     }
 
     update() {
@@ -164,7 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (distance < 150) {
           const opacity = (1 - distance / 150) * 0.3
-          ctx.strokeStyle = `rgba(0, 212, 255, ${opacity})`
+          ctx.strokeStyle = `rgba(220, 0, 0, ${opacity})`
+          // </CHANGE>
           ctx.lineWidth = 1.5
           ctx.beginPath()
           ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
@@ -288,11 +289,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== ENHANCED CONSOLE MESSAGE =====
   console.log(
-    "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #00d4ff, #667eea); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 10px 0;",
+    "%c🐉 Mohamed Mooka - Blood Dragon Portfolio",
+    "font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #dc0000, #a30000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 10px 0;",
   )
-  console.log("%c⚡ Enhanced UX/UI Design", "font-size: 16px; color: #00d4ff; font-weight: 600;")
-  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 14px; color: #b4bcd0;")
+  console.log("%c⚡ Blood Red Dragon Theme", "font-size: 16px; color: #dc0000; font-weight: 600;")
+  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 14px; color: #d4a5a5;")
+  // </CHANGE>
 
   // ===== PERFORMANCE: REDUCE MOTION =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
@@ -303,34 +305,4 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.transitionDuration = "0.01ms"
     })
   }
-
-  // ===== EASTER EGG: KONAMI CODE =====
-  const konamiCode = [
-    "ArrowUp",
-    "ArrowUp",
-    "ArrowDown",
-    "ArrowDown",
-    "ArrowLeft",
-    "ArrowRight",
-    "ArrowLeft",
-    "ArrowRight",
-    "b",
-    "a",
-  ]
-  let konamiIndex = 0
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === konamiCode[konamiIndex]) {
-      konamiIndex++
-      if (konamiIndex === konamiCode.length) {
-        document.body.style.filter = "hue-rotate(180deg)"
-        setTimeout(() => {
-          document.body.style.filter = "none"
-        }, 3000)
-        konamiIndex = 0
-      }
-    } else {
-      konamiIndex = 0
-    }
-  })
 })
