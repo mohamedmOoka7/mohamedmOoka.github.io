@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/"
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`"
   const fontSize = 16
   const columns = canvas.width / fontSize
   const drops = []
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.font = fontSize + "px monospace"
 
     for (let i = 0; i < drops.length; i++) {
-      const text = chars.charAt(Math.floor(Math.random() * chars.length))
+      const text = characters.charAt(Math.floor(Math.random() * characters.length))
       ctx.fillText(text, i * fontSize, drops[i] * fontSize)
 
       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
