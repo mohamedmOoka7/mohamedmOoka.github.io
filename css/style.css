@@ -6,18 +6,18 @@
 
 /* Updated to premium deep blue and cyan color scheme */
 :root {
-  --color-bg: #050b14;
-  --color-surface: #0a1220;
-  --color-surface-elevated: #0f1829;
-  --color-text: #f0f9ff;
-  --color-text-secondary: #bae6fd;
-  --color-text-tertiary: #7dd3fc;
-  --color-accent: #06b6d4;
-  --color-accent-light: #22d3ee;
-  --color-accent-hover: #0891b2;
-  --color-accent-glow: rgba(6, 182, 212, 0.5);
-  --color-border: #164e63;
-  --color-border-light: #0e7490;
+  --color-bg: #0a0a1a;
+  --color-surface: #12121f;
+  --color-surface-elevated: #1a1a2e;
+  --color-text: #ffffff;
+  --color-text-secondary: #c0c0d8;
+  --color-text-tertiary: #9090b0;
+  --color-accent: #6366f1;
+  --color-accent-light: #818cf8;
+  --color-accent-hover: #4f46e5;
+  --color-accent-glow: rgba(99, 102, 241, 0.4);
+  --color-border: #2a2a40;
+  --color-border-light: #3a3a55;
 
   --font-primary: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
@@ -233,11 +233,6 @@ button {
 }
 
 .hero-name {
-  background: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.5));
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
   line-height: 1.1;
@@ -257,12 +252,11 @@ button {
 
 /* Updated gradient text with cyan to light blue */
 .gradient-text {
-  background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 50%, #38bdf8 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: inline-block;
-  filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.6));
 }
 /* </CHANGE> */
 
