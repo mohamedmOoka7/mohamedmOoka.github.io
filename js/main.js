@@ -7,6 +7,72 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("loaded")
   }, 100)
 
+  // ===== ENHANCED CUSTOM CURSOR =====
+  const cursorDot = document.querySelector("[data-cursor-dot]")
+  const cursorOutline = document.querySelector("[data-cursor-outline]")
+
+  if (cursorDot && cursorOutline && window.innerWidth > 768) {
+    let mouseX = 0
+    let mouseY = 0
+    let outlineX = 0
+    let outlineY = 0
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+
+      cursorDot.style.left = `${mouseX}px`
+      cursorDot.style.top = `${mouseY}px`
+    })
+
+    function animateCursor() {
+      const distX = mouseX - outlineX
+      const distY = mouseY - outlineY
+
+      // Smoother cursor follow
+      outlineX += distX * 0.15
+      outlineY += distY * 0.15
+
+      cursorOutline.style.left = `${outlineX}px`
+      cursorOutline.style.top = `${outlineY}px`
+
+      requestAnimationFrame(animateCursor)
+    }
+    animateCursor()
+
+    const interactiveElements = document.querySelectorAll("a, button, .btn, .work-card, .contact-card, .skill-item")
+
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        cursorDot.style.transform = "translate(-50%, -50%) scale(1.6)"
+        cursorOutline.style.width = "60px"
+        cursorOutline.style.height = "60px"
+        cursorOutline.style.borderWidth = "2px"
+      })
+
+      el.addEventListener("mouseleave", () => {
+        cursorDot.style.transform = "translate(-50%, -50%) scale(1)"
+        cursorOutline.style.width = "40px"
+        cursorOutline.style.height = "40px"
+        cursorOutline.style.borderWidth = "2px"
+      })
+    })
+  }
+
+  // ===== ENHANCED SCROLL PROGRESS =====
+  const scrollProgress = document.querySelector(".scroll-progress")
+
+  window.addEventListener("scroll", () => {
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight - windowHeight
+    const scrolled = window.scrollY
+    const progress = (scrolled / documentHeight) * 100
+
+    if (scrollProgress) {
+      scrollProgress.style.transform = `scaleX(${progress / 100})`
+    }
+  })
+
   // ===== SMOOTH SCROLL WITH EASING =====
   const links = document.querySelectorAll('a[href^="#"]')
 
@@ -32,6 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== RED PARTICLE BACKGROUND =====
   const canvas = document.getElementById("particles-canvas")
+
+  // Check if canvas element exists
+  if (!canvas) {
+    console.warn("Canvas element not found")
+    return
+  }
+
   const ctx = canvas.getContext("2d")
 
   canvas.width = window.innerWidth
@@ -84,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const particlesArray = []
-  const numberOfParticles = 80
+  const numberOfParticles = 80 // Reduced for better performance
 
   for (let i = 0; i < numberOfParticles; i++) {
     particlesArray.push(new Particle())
@@ -142,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ripple.style.borderRadius = "50%"
       ripple.style.background = "rgba(255, 255, 255, 0.5)"
       ripple.style.transform = "translate(-50%, -50%)"
-      ripple.style.animation = "ripple 0.5s ease-out"
+      ripple.style.animation = "ripple 0.7s ease-out"
       ripple.style.pointerEvents = "none"
 
       button.style.position = "relative"
@@ -151,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       setTimeout(() => {
         ripple.remove()
-      }, 500)
+      }, 700)
     })
   })
 
@@ -170,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(style)
   }
 
-  // ===== SCROLL REVEAL ANIMATIONS - Improved Timing =====
+  // ===== SCROLL REVEAL ANIMATIONS =====
   const observerOptions = {
     threshold: 0.15,
     rootMargin: "0px 0px -80px 0px",
@@ -189,11 +262,12 @@ document.addEventListener("DOMContentLoaded", () => {
   animatedElements.forEach((el, index) => {
     el.style.opacity = "0"
     el.style.transform = "translateY(20px)"
-    el.style.transition = `all 0.4s ease-out ${index * 0.06}s`
+    el.style.transition = `all 0.5s ease-out ${index * 0.08}s`
     observer.observe(el)
   })
 
-  // ===== PARALLAX EFFECT ON SCROLL - Improved Performance =====
+  // ===== PARALLAX EFFECT ON SCROLL =====
+  let lastScrollTop = 0
   let ticking = false
 
   window.addEventListener(
@@ -205,10 +279,11 @@ document.addEventListener("DOMContentLoaded", () => {
           const hero = document.querySelector(".hero")
 
           if (hero && scrollTop < window.innerHeight) {
-            hero.style.transform = `translateY(${scrollTop * 0.25}px)`
+            hero.style.transform = `translateY(${scrollTop * 0.3}px)`
             hero.style.opacity = Math.max(0, 1 - scrollTop / 600)
           }
 
+          lastScrollTop = scrollTop
           ticking = false
         })
 
@@ -224,16 +299,16 @@ document.addEventListener("DOMContentLoaded", () => {
     img.addEventListener("load", () => {
       img.style.opacity = "1"
     })
-    img.style.transition = "opacity 0.3s ease-out"
+    img.style.transition = "opacity 0.4s ease-out"
   })
 
-  // ===== FESTIVE CHRISTMAS SNOWFLAKES - Improved Timing =====
+  // ===== FESTIVE CHRISTMAS SNOWFLAKES =====
   function createSnowflake() {
     const snowflake = document.createElement("div")
     snowflake.classList.add("snowflake")
     snowflake.innerHTML = "❄"
     snowflake.style.left = Math.random() * window.innerWidth + "px"
-    snowflake.style.animationDuration = Math.random() * 5 + 10 + "s"
+    snowflake.style.animationDuration = Math.random() * 3 + 8 + "s"
     snowflake.style.opacity = Math.random() * 0.6 + 0.3
     snowflake.style.fontSize = Math.random() * 10 + 10 + "px"
 
@@ -241,10 +316,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       snowflake.remove()
-    }, 16000)
+    }, 12000)
   }
 
-  setInterval(createSnowflake, 600)
+  // Create snowflakes periodically
+  setInterval(createSnowflake, 400)
 
   // ===== ENHANCED CONSOLE MESSAGE =====
   console.log(
