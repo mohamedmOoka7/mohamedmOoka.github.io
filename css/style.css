@@ -1,8 +1,9 @@
 /* ============================================
-   CYBER PORTFOLIO - نسخة سايبر متطورة
+   CYBER PORTFOLIO - Advanced Cyber Version
    ============================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap");
+/* Replaced Arabic fonts with English fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;700;900&display=swap");
 
 :root {
   /* Cyber Theme Colors */
@@ -24,9 +25,9 @@
   --border-color: #1e293b;
   --border-glow: rgba(0, 255, 159, 0.3);
 
-  /* Typography */
-  --font-primary: "Cairo", -apple-system, sans-serif;
-  --font-display: "Tajawal", sans-serif;
+  /* Typography updated to English fonts */
+  --font-primary: "Inter", -apple-system, sans-serif;
+  --font-display: "JetBrains Mono", monospace;
 
   /* Spacing */
   --space-xs: 0.5rem;
@@ -85,7 +86,8 @@ body {
   color: var(--text-primary);
   line-height: 1.7;
   overflow-x: hidden;
-  direction: rtl;
+  /* Changed direction from rtl to ltr */
+  direction: ltr;
 }
 
 ::selection {
@@ -738,12 +740,14 @@ section {
 .command {
   color: var(--cyber-secondary);
   font-weight: 600;
-  margin-right: var(--space-sm);
+  /* Changed margin-right to margin-left for LTR */
+  margin-left: var(--space-sm);
 }
 
 .output {
   color: var(--text-secondary);
-  margin-right: var(--space-lg);
+  /* Changed margin-right to margin-left for LTR */
+  margin-left: var(--space-lg);
   display: block;
   margin-bottom: var(--space-md);
 }
@@ -774,7 +778,8 @@ section {
 .timeline-item:hover {
   border-color: var(--cyber-primary);
   box-shadow: var(--glow-sm);
-  transform: translateX(-5px);
+  /* Changed translateX direction for LTR hover effect */
+  transform: translateX(5px);
 }
 
 .timeline-icon {
@@ -985,7 +990,8 @@ section {
 .project-badge {
   position: absolute;
   top: var(--space-md);
-  right: var(--space-md);
+  /* Changed from right to left for LTR layout */
+  left: var(--space-md);
   background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-secondary));
   color: var(--bg-dark);
   padding: var(--space-xs) var(--space-md);
@@ -1002,7 +1008,8 @@ section {
 .project-number-3d {
   position: absolute;
   top: var(--space-md);
-  left: var(--space-md);
+  /* Changed from left to right for LTR layout */
+  right: var(--space-md);
   width: 60px;
   height: 60px;
   background: var(--bg-elevated);
@@ -1033,9 +1040,8 @@ section {
 
 .project-desc-3d {
   color: var(--text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
   margin-bottom: var(--space-lg);
-  font-size: 1rem;
 }
 
 .project-tech-3d {
@@ -1053,6 +1059,12 @@ section {
   font-size: 0.85rem;
   color: var(--text-secondary);
   font-weight: 600;
+  transition: var(--transition);
+}
+
+.tech-tag:hover {
+  border-color: var(--cyber-primary);
+  color: var(--cyber-primary);
 }
 
 .project-stats {
@@ -1061,7 +1073,7 @@ section {
   margin-bottom: var(--space-lg);
   padding: var(--space-md);
   background: var(--bg-elevated);
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 .stat-mini {
@@ -1080,26 +1092,19 @@ section {
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  padding: var(--space-md) var(--space-lg);
-  background: linear-gradient(135deg, var(--cyber-primary), var(--cyber-secondary));
-  color: var(--bg-dark);
-  border-radius: 12px;
+  color: var(--cyber-primary);
   text-decoration: none;
   font-weight: 700;
   transition: var(--transition);
-  box-shadow: var(--glow-sm);
 }
 
 .project-link-3d:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--glow-md);
+  gap: var(--space-md);
 }
 
 .project-link-3d.disabled {
-  background: var(--bg-elevated);
   color: var(--text-tertiary);
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 /* ============================================
@@ -1112,8 +1117,9 @@ section {
 }
 
 .contact-content {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .contact-info-box {
@@ -1121,7 +1127,7 @@ section {
   border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: var(--space-2xl);
-  text-align: center;
+  margin-bottom: var(--space-xl);
 }
 
 .contact-info-box h3 {
@@ -1135,12 +1141,12 @@ section {
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.8;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 .contact-methods-cyber {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-lg);
 }
 
@@ -1154,45 +1160,46 @@ section {
   border-radius: 16px;
   text-decoration: none;
   transition: var(--transition);
-  text-align: right;
+  text-align: left;
 }
 
 .contact-item-cyber:hover {
   border-color: var(--cyber-primary);
-  box-shadow: var(--glow-sm);
-  transform: translateX(-5px);
+  box-shadow: var(--glow-md);
+  transform: translateY(-5px);
 }
 
 .contact-icon-cyber {
   width: 60px;
   height: 60px;
-  background: var(--bg-card);
-  border: 2px solid var(--border-color);
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--bg-card);
+  border-radius: 12px;
   color: var(--cyber-primary);
   flex-shrink: 0;
 }
 
 .contact-details {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
 }
 
 .contact-label {
-  font-size: 0.9rem;
+  display: block;
+  font-size: 0.85rem;
   color: var(--text-tertiary);
+  margin-bottom: var(--space-xs);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .contact-value {
-  font-size: 1.1rem;
+  display: block;
+  font-size: 1rem;
   color: var(--text-primary);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* ============================================
@@ -1203,17 +1210,6 @@ section {
   background: var(--bg-darker);
   border-top: 1px solid var(--border-color);
   padding: var(--space-xl) 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.footer-wave {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--cyber-primary), var(--cyber-secondary), var(--cyber-purple));
 }
 
 .footer-content-cyber {
@@ -1224,42 +1220,32 @@ section {
   gap: var(--space-lg);
 }
 
-.footer-text {
-  text-align: right;
-}
-
-.footer-text p {
+.footer-content-cyber p {
   color: var(--text-secondary);
-  font-size: 1rem;
-  margin-bottom: var(--space-xs);
+  font-size: 0.95rem;
 }
 
-.footer-tagline {
-  color: var(--text-tertiary);
-  font-size: 0.9rem;
-}
-
-.footer-social {
+.footer-links-cyber {
   display: flex;
   gap: var(--space-md);
 }
 
-.footer-social a {
+.footer-links-cyber a {
   width: 45px;
   height: 45px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
   color: var(--text-secondary);
   transition: var(--transition);
 }
 
-.footer-social a:hover {
-  color: var(--cyber-primary);
+.footer-links-cyber a:hover {
   border-color: var(--cyber-primary);
+  color: var(--cyber-primary);
   box-shadow: var(--glow-sm);
   transform: translateY(-3px);
 }
@@ -1274,17 +1260,26 @@ section {
   }
 
   .projects-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
-
-  .skills-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
   .nav-links {
-    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    flex-direction: column;
+    padding: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+    transform: translateY(-120%);
+    transition: var(--transition);
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
   }
 
   .mobile-toggle {
@@ -1292,33 +1287,97 @@ section {
   }
 
   .hero-stats {
+    flex-direction: column;
     gap: var(--space-lg);
   }
 
-  .hero-actions {
-    flex-direction: column;
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 
-  .cyber-btn {
-    width: 100%;
-  }
-
-  .tech-icons {
-    gap: var(--space-md);
-  }
-
-  .tech-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
+  .contact-methods-cyber {
+    grid-template-columns: 1fr;
   }
 
   .footer-content-cyber {
     flex-direction: column;
     text-align: center;
   }
+}
 
-  .footer-text {
-    text-align: center;
+@media (max-width: 480px) {
+  :root {
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
   }
+
+  .hero-title-cyber {
+    font-size: 2.5rem;
+  }
+
+  .section-title-cyber {
+    font-size: 2rem;
+  }
+
+  .cyber-btn {
+    padding: 14px 30px;
+    font-size: 1rem;
+  }
+
+  .project-badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+
+  .project-number-3d {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   ANIMATIONS & EFFECTS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Scroll animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
