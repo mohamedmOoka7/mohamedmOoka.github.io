@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // ===== PREMIUM ANIMATED BACKGROUND =====
+  // ===== ANIMATED PARTICLE BACKGROUND =====
   const canvas = document.getElementById("particles-canvas")
   const ctx = canvas.getContext("2d")
 
@@ -105,121 +105,72 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.height = window.innerHeight
   })
 
-  // Floating Gradient Orbs
-  class GradientOrb {
-    constructor() {
-      this.x = Math.random() * canvas.width
-      this.y = Math.random() * canvas.height
-      this.radius = Math.random() * 200 + 150
-      this.vx = (Math.random() - 0.5) * 0.3
-      this.vy = (Math.random() - 0.5) * 0.3
-      this.hue = Math.random() * 40 + 230 // Blue to purple range (230-270)
-    }
-
-    update() {
-      this.x += this.vx
-      this.y += this.vy
-
-      if (this.x < -this.radius || this.x > canvas.width + this.radius) {
-        this.vx *= -1
-      }
-      if (this.y < -this.radius || this.y > canvas.height + this.radius) {
-        this.vy *= -1
-      }
-    }
-
-    draw() {
-      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius)
-      gradient.addColorStop(0, `hsla(${this.hue}, 60%, 50%, 0.12)`)
-      gradient.addColorStop(0.5, `hsla(${this.hue}, 55%, 45%, 0.06)`)
-      gradient.addColorStop(1, `hsla(${this.hue}, 50%, 40%, 0)`)
-
-      ctx.fillStyle = gradient
-      ctx.beginPath()
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
-      ctx.fill()
-    }
-  }
-
-  // Floating Particles
   class Particle {
     constructor() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
-      this.size = Math.random() * 2.5 + 1
-      this.speedX = (Math.random() - 0.5) * 0.5
-      this.speedY = (Math.random() - 0.5) * 0.5
-      this.opacity = Math.random() * 0.4 + 0.2
-      this.hue = Math.random() * 40 + 230 // Blue to purple range
+      this.size = Math.random() * 3 + 1
+      this.speedX = Math.random() * 1 - 0.5
+      this.speedY = Math.random() * 1 - 0.5
+      this.opacity = Math.random() * 0.5 + 0.2
     }
 
     update() {
       this.x += this.speedX
       this.y += this.speedY
 
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1
+      if (this.x > canvas.width || this.x < 0) {
+        this.speedX = -this.speedX
+      }
+      if (this.y > canvas.height || this.y < 0) {
+        this.speedY = -this.speedY
+      }
     }
 
     draw() {
-      ctx.fillStyle = `hsla(${this.hue}, 65%, 60%, ${this.opacity})`
-      ctx.shadowBlur = 10
-      ctx.shadowColor = `hsla(${this.hue}, 65%, 60%, 0.4)`
+      ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
       ctx.fill()
-      ctx.shadowBlur = 0
     }
   }
 
-  // Create orbs and particles
-  const orbs = []
-  const particles = []
-  const orbCount = 3
-  const particleCount = 70
+  const particlesArray = []
+  const numberOfParticles = 100
 
-  for (let i = 0; i < orbCount; i++) {
-    orbs.push(new GradientOrb())
+  for (let i = 0; i < numberOfParticles; i++) {
+    particlesArray.push(new Particle())
   }
 
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle())
-  }
-
-  // Animation loop
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-    // Draw orbs
-    orbs.forEach((orb) => {
-      orb.update()
-      orb.draw()
-    })
-
-    // Draw particles
-    particles.forEach((particle) => {
-      particle.update()
-      particle.draw()
-    })
-
-    // Connect nearby particles
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x
-        const dy = particles[i].y - particles[j].y
+  function connectParticles() {
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        const dx = particlesArray[a].x - particlesArray[b].x
+        const dy = particlesArray[a].y - particlesArray[b].y
         const distance = Math.sqrt(dx * dx + dy * dy)
 
         if (distance < 120) {
-          ctx.strokeStyle = `rgba(91, 95, 199, ${0.25 * (1 - distance / 120)})`
-          ctx.lineWidth = 0.8
+          const opacity = (1 - distance / 120) * 0.3
+          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`
+          ctx.lineWidth = 1
           ctx.beginPath()
-          ctx.moveTo(particles[i].x, particles[i].y)
-          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y)
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y)
           ctx.stroke()
         }
       }
     }
+  }
 
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    for (let i = 0; i < particlesArray.length; i++) {
+      particlesArray[i].update()
+      particlesArray[i].draw()
+    }
+
+    connectParticles()
     requestAnimationFrame(animate)
   }
 
@@ -281,10 +232,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== CONSOLE MESSAGE =====
   console.log(
     "%c🔒 Mohamed Mooka - Cybersecurity Portfolio",
-    "font-size: 20px; font-weight: 800; color: #06b6d4; text-shadow: 0 2px 10px rgba(6,182,212,0.6);",
+    "font-size: 20px; font-weight: 800; color: #3b82f6; text-shadow: 0 2px 10px rgba(59,130,246,0.3);",
   )
-  console.log("%c⚡ Professional Cybersecurity Portfolio", "font-size: 14px; color: #bae6fd;")
-  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 12px; color: #7dd3fc;")
+  console.log("%c⚡ Modern Professional Design", "font-size: 14px; color: #a3a3a3;")
+  console.log("%c🛡️ DFIR Specialist | SOC Analyst | Threat Hunter", "font-size: 12px; color: #737373;")
 
   // ===== PERFORMANCE: REDUCE MOTION FOR USERS WHO PREFER IT =====
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
